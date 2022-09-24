@@ -1,6 +1,6 @@
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import styles from "./registration.module.css"
+// import styles from "./registration.module.css"
 
 const Registration = () => {
     const validationSchema = yup.object().shape({
