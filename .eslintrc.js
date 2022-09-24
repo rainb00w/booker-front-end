@@ -1,22 +1,17 @@
 module.exports = {
     "env": {
         "browser": true,
-        "es6": true
+        "es2021": true
     },
     "extends": "plugin:react/recommended",
-    "globals": {
-        "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly"
-    },
+    "overrides": [
+    ],
     "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 2018
+        "ecmaVersion": "latest"
     },
     "plugins": [
         "react"
     ],
     "rules": {
     }
-};
+}
