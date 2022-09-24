@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/241.757d88ff.chunk.js","mappings":"4IAQE,UARe,WACb,OACE,+BACE,qCAGL,C","sources":["pages/training/training.js"],"sourcesContent":["const Training = () => {\n    return (\n      <>\n        <p>Training</p>\n      </>\n    );\n  };\n  \n  export default Training;\n  "],"names":[],"sourceRoot":""}
