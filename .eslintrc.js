@@ -1,12 +1,17 @@
 module.exports = {
-  env: {
-    commonjs: true,
-    es2021: true,
-    node: true,
-  },
-  extends: ['standard', 'prettier'],
-  parserOptions: {
-    ecmaVersion: 12,
-  },
-  rules: {},
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": "plugin:react/recommended",
+    "overrides": [
+    ],
+    "parserOptions": {
+        "ecmaVersion": "latest"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+    }
 }
