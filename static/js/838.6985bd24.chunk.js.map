@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/838.6985bd24.chunk.js","mappings":"qJAUA,UARgB,WACd,OACE,+BACE,qCAGL,C","sources":["pages/library/library.js"],"sourcesContent":["import React from 'react';\n\nconst Library = () => {\n  return (\n    <>\n      <p>Library </p>\n    </>\n  );\n};\n\nexport default Library;\n"],"names":[],"sourceRoot":""}

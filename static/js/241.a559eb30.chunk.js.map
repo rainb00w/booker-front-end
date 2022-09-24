@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/241.a559eb30.chunk.js","mappings":"qJAUE,UARe,WACb,OACE,+BACE,qCAGL,C","sources":["pages/training/training.js"],"sourcesContent":["import React  from 'react';\n\nconst Training = () => {\n    return (\n      <>\n        <p>Training</p>\n      </>\n    );\n  };\n  \n  export default Training;\n  "],"names":[],"sourceRoot":""}
