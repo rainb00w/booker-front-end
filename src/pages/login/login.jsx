@@ -18,11 +18,11 @@ const Login = () => {
                     }}
                     validationSchema={validationSchema}
                     onSubmit={(values, {resetForm}) => {
-                      console.log(values)
-                      resetForm()
+                        console.log(values)
+                        resetForm({values: ""})
                     }}
                 >
-                    {({ errors, touched, handleBlur, handleChange, handleSubmit }) => (
+                    {({ values, errors, touched, handleBlur, handleChange, handleSubmit }) => (
                         <form onSubmit={handleSubmit}>
                             <button type='submit'>Google</button>
 
@@ -30,6 +30,7 @@ const Login = () => {
                             <input
                                 type="email"
                                 name="email"
+                                value={values.email}
                                 onBlur={handleBlur}
                                 onChange={handleChange}
                             />
@@ -39,6 +40,7 @@ const Login = () => {
                             <input
                                 type="password"
                                 name="password"
+                                value={values.password}
                                 onBlur={handleBlur}
                                 onChange={handleChange}
                             />
