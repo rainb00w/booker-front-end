@@ -1,31 +1,37 @@
 {
   "files": {
     "main.css": "/booker-front-end/static/css/main.de730bdc.css",
-    "main.js": "/booker-front-end/static/js/main.82c3e4d8.js",
+    "main.js": "/booker-front-end/static/js/main.5a9748da.js",
     "static/css/138.d0ef8b2c.chunk.css": "/booker-front-end/static/css/138.d0ef8b2c.chunk.css",
-    "static/js/138.8ee493b3.chunk.js": "/booker-front-end/static/js/138.8ee493b3.chunk.js",
-    "static/js/838.6985bd24.chunk.js": "/booker-front-end/static/js/838.6985bd24.chunk.js",
-    "static/js/63.cb313a9f.chunk.js": "/booker-front-end/static/js/63.cb313a9f.chunk.js",
+    "static/js/138.65dfcb51.chunk.js": "/booker-front-end/static/js/138.65dfcb51.chunk.js",
+    "static/css/717.b829669f.chunk.css": "/booker-front-end/static/css/717.b829669f.chunk.css",
+    "static/js/717.881a77d9.chunk.js": "/booker-front-end/static/js/717.881a77d9.chunk.js",
+    "static/js/63.383821c4.chunk.js": "/booker-front-end/static/js/63.383821c4.chunk.js",
     "static/js/241.a559eb30.chunk.js": "/booker-front-end/static/js/241.a559eb30.chunk.js",
-    "static/js/757.e327d42b.chunk.js": "/booker-front-end/static/js/757.e327d42b.chunk.js",
-    "static/js/333.d7dfc26c.chunk.js": "/booker-front-end/static/js/333.d7dfc26c.chunk.js",
+    "static/js/221.bd0ddc10.chunk.js": "/booker-front-end/static/js/221.bd0ddc10.chunk.js",
+    "static/js/928.20a9d151.chunk.js": "/booker-front-end/static/js/928.20a9d151.chunk.js",
+    "static/js/114.f90d94a3.chunk.js": "/booker-front-end/static/js/114.f90d94a3.chunk.js",
+    "static/js/669.cb8ad4de.chunk.js": "/booker-front-end/static/js/669.cb8ad4de.chunk.js",
     "static/media/icon_vector.svg": "/booker-front-end/static/media/icon_vector.467c84b07b3267df92d0a11bc39fceb1.svg",
     "index.html": "/booker-front-end/index.html",
     "static/media/icon_library.svg": "/booker-front-end/static/media/icon_library.1ef78e679dde739723a3ee7f93759188.svg",
     "static/media/icon_home.svg": "/booker-front-end/static/media/icon_home.b3cc0a6a4d8a1f2461a5a0058dafff68.svg",
     "static/media/icon_flag.svg": "/booker-front-end/static/media/icon_flag.630776428b2941a7e4a8d9c083ae3780.svg",
     "main.de730bdc.css.map": "/booker-front-end/static/css/main.de730bdc.css.map",
-    "main.82c3e4d8.js.map": "/booker-front-end/static/js/main.82c3e4d8.js.map",
+    "main.5a9748da.js.map": "/booker-front-end/static/js/main.5a9748da.js.map",
     "138.d0ef8b2c.chunk.css.map": "/booker-front-end/static/css/138.d0ef8b2c.chunk.css.map",
-    "138.8ee493b3.chunk.js.map": "/booker-front-end/static/js/138.8ee493b3.chunk.js.map",
-    "838.6985bd24.chunk.js.map": "/booker-front-end/static/js/838.6985bd24.chunk.js.map",
-    "63.cb313a9f.chunk.js.map": "/booker-front-end/static/js/63.cb313a9f.chunk.js.map",
+    "138.65dfcb51.chunk.js.map": "/booker-front-end/static/js/138.65dfcb51.chunk.js.map",
+    "717.b829669f.chunk.css.map": "/booker-front-end/static/css/717.b829669f.chunk.css.map",
+    "717.881a77d9.chunk.js.map": "/booker-front-end/static/js/717.881a77d9.chunk.js.map",
+    "63.383821c4.chunk.js.map": "/booker-front-end/static/js/63.383821c4.chunk.js.map",
     "241.a559eb30.chunk.js.map": "/booker-front-end/static/js/241.a559eb30.chunk.js.map",
-    "757.e327d42b.chunk.js.map": "/booker-front-end/static/js/757.e327d42b.chunk.js.map",
-    "333.d7dfc26c.chunk.js.map": "/booker-front-end/static/js/333.d7dfc26c.chunk.js.map"
+    "221.bd0ddc10.chunk.js.map": "/booker-front-end/static/js/221.bd0ddc10.chunk.js.map",
+    "928.20a9d151.chunk.js.map": "/booker-front-end/static/js/928.20a9d151.chunk.js.map",
+    "114.f90d94a3.chunk.js.map": "/booker-front-end/static/js/114.f90d94a3.chunk.js.map",
+    "669.cb8ad4de.chunk.js.map": "/booker-front-end/static/js/669.cb8ad4de.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.de730bdc.css",
-    "static/js/main.82c3e4d8.js"
+    "static/js/main.5a9748da.js"
   ]
 }
