@@ -4,13 +4,14 @@
     font-weight: 600;
     color: #242A37;
 }
+
 .blok_info div {
     padding-bottom: 20px;
 }
+
 .blok_info div+div{
     padding-bottom: 40px;
 }
-
 
 .title{
     font-size: 18px;
