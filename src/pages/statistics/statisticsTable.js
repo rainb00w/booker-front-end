@@ -23,20 +23,53 @@ export default function BasicTable() {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ width: 288 }} aria-label="simple table">
-        <TableHead>
-          <TableRow></TableRow>
-        </TableHead>
         <TableBody>
           {rows.map(row => (
             <TableRow
               key={row.date}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              sx={{
+                border: 0,
+              }}
             >
-              <TableCell component="th" scope="row">
+              <TableCell
+                sx={{
+                  fontFamily: 'Montserrat',
+                  fontWeight: 400,
+                  fontSize: 14,
+                  lineHeight: 1.21,
+                  color: '#242A37',
+                  p: 0,
+                }}
+                component="th"
+                scope="row"
+                align="center"
+              >
                 {row.date}
               </TableCell>
-              <TableCell align="right">{row.time}</TableCell>
-              <TableCell align="right">{row.page}</TableCell>
+              <TableCell
+                sx={{
+                  fontFamily: 'Montserrat',
+                  fontSize: 14,
+                  lineHeight: 1.21,
+                  color: '#898F9F',
+                  p: 0,
+                }}
+                align="right"
+              >
+                {row.time}
+              </TableCell>
+              <TableCell
+                sx={{
+                  fontFamily: 'Montserrat',
+                  fontSize: 14,
+                  lineHeight: 1.21,
+                  color: '#242A37',
+                  p: 0,
+                }}
+                align="right"
+              >
+                {row.page}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
