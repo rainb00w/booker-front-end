@@ -12,6 +12,9 @@ const Login = () => {
     return (
         <section className={styles.section}>
             <div className={styles.form__container}>
+                <a className={styles.google__auth}
+                    href="http://localhost:3001/api/user/google"
+                >Google</a>
                 <Formik
                 initialValues={{
                     email: "",
@@ -25,7 +28,6 @@ const Login = () => {
                 >
                 {({ values, errors, touched, handleBlur, handleChange, handleSubmit }) => (
                     <form onSubmit={handleSubmit}>
-                        <button type='submit'>Google</button>
                         <p className={styles.label__title}>Email</p>
                         <input
                             className={styles.input}

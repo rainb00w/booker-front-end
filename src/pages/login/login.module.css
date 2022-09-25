@@ -6,6 +6,18 @@
     padding: 32px 20px;
 }
 
+.google__auth {
+    display: inline-block;
+    text-align: center;
+    padding: 8px 24px;
+    margin-bottom: 20px;
+    color: black;
+    background-color: antiquewhite;
+    cursor: pionter;
+    border: 1px solid black;
+
+}
+
 .label__title {
     font-size: 14px;
     color: white;
