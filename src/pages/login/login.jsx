@@ -1,6 +1,7 @@
 import React from 'react';
 import { Formik } from 'formik';
 import * as yup from 'yup';
+import styles from "./login.module.css";
 
 const Login = () => {
   const validationSchema = yup.object().shape({
@@ -9,51 +10,61 @@ const Login = () => {
   });
   
     return (
-        <>
-            <section>
+        <section className={styles.section}>
+            <div className={styles.form__container}>
                 <Formik
-                    initialValues={{
-                        email: "",
-                        password: ""
-                    }}
-                    validationSchema={validationSchema}
-                    onSubmit={(values, {resetForm}) => {
-                        console.log(values)
-                        resetForm({values: ""})
-                    }}
+                initialValues={{
+                    email: "",
+                    password: ""
+                }}
+                validationSchema={validationSchema}
+                onSubmit={(values, {resetForm}) => {
+                    console.log(values)
+                    resetForm({values: ""})
+                }}
                 >
-                    {({ values, errors, touched, handleBlur, handleChange, handleSubmit }) => (
-                        <form onSubmit={handleSubmit}>
-                            <button type='submit'>Google</button>
-
-                            <label>Email</label>
-                            <input
-                                type="email"
-                                name="email"
-                                value={values.email}
-                                onBlur={handleBlur}
-                                onChange={handleChange}
+                {({ values, errors, touched, handleBlur, handleChange, handleSubmit }) => (
+                    <form onSubmit={handleSubmit}>
+                        <button type='submit'>Google</button>
+                        <p className={styles.label__title}>Email</p>
+                        <input
+                            className={styles.input}
+                            type="email"
+                            placeholder="your@email.com"
+                            name="email"
+                            value={values.email}
+                            onBlur={handleBlur}
+                            onChange={handleChange}
+                        />
+                        {errors.email && touched.email ?
+                            (<p className={styles.warning}>{errors.email}</p>) : null}
+                        <p className={styles.label__title}>Password</p>
+                        <input
+                        className={styles.input}
+                        type="password"
+                        placeholder="Password"
+                        name="password"
+                        value={values.password}
+                        onBlur={handleBlur}
+                        onChange={handleChange}
                             />
-                            {errors.email && touched.email ? (<p>{errors.email}</p>) : null}
-
-                            <label>Password</label>
-                            <input
-                                type="password"
-                                name="password"
-                                value={values.password}
-                                onBlur={handleBlur}
-                                onChange={handleChange}
-                            />
-                            {errors.password && touched.password ? (<p>{errors.password}</p>) : null}
-
-                            <button type='submit'>Login</button>
-                        </form>
+                        {errors.password && touched.password ?
+                            (<p className={styles.warning}>{errors.password}</p>) : null}
+                        <button className={styles.form__button} type='submit'>Login</button>
+                    </form>
                     )}
                 </Formik>
-            </section>
-        </>
+            </div>
+            <div className={styles.text__container}>
+                <svg>
+                    <url></url>
+                </svg>
+                <p className={styles.quote} >Books are the ships of thoughts, wandering through the waves of time.</p>
+                <hr className={styles.hr} />
+                <h2 className={styles.author}>Francis Bacon</h2>
+            </div>
+        </section>
     )
-  };
-  
-  export default Login;
-  
+};
+
+export default Login;
