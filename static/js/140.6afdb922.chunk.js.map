@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/140.6afdb922.chunk.js","mappings":"oJAUE,UARiB,WACf,OACE,+BACE,uCAGL,C","sources":["pages/statistics/statistics.js"],"sourcesContent":["import React  from 'react';\n\nconst Statistics = () => {\n    return (\n      <>\n        <p>Statistics</p>\n      </>\n    );\n  };\n  \n  export default Statistics;\n  "],"names":[],"sourceRoot":""}
