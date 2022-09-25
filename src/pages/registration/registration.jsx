@@ -30,8 +30,9 @@ const Registration = () => {
                         confirmPassword: ""
                     }}
                     validationSchema={validationSchema}
-                    onSubmit={({name, email, password}) => {
+                    onSubmit={({name, email, password}, {resetForm}) => {
                         console.log(name)
+                        resetForm({values: ""})
                     }}
                 >
                     {({ values, errors, touched, handleBlur, handleChange, handleSubmit }) => (
@@ -41,6 +42,7 @@ const Registration = () => {
                             <input
                                 type="text"
                                 name="name"
+                                value={values.name}
                                 onBlur={handleBlur}
                                 onChange={handleChange}
                             />
@@ -50,6 +52,7 @@ const Registration = () => {
                             <input
                                 type="email"
                                 name="email"
+                                value={values.email}
                                 onBlur={handleBlur}
                                 onChange={handleChange}
                             />
@@ -59,6 +62,7 @@ const Registration = () => {
                             <input
                                 type="password"
                                 name="password"
+                                value={values.password}
                                 onBlur={handleBlur}
                                 onChange={handleChange}
                             />
@@ -68,6 +72,7 @@ const Registration = () => {
                             <input
                                 type="password"
                                 name="confirmPassword"
+                                value={values.confirmPassword}
                                 onBlur={handleBlur}
                                 onChange={handleChange}
                             />
