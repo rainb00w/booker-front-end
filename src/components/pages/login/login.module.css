@@ -1,0 +1,239 @@
+.section {
+    display: block;
+}
+
+.login__form,
+.registr__form {
+    padding: 32px 20px;
+}
+
+.form__border {
+    display: block;
+    text-align: center;
+}
+
+.google__auth {
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    min-width: 150px;
+    padding: 8px 24px;
+    margin-bottom: 28px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #707375;
+    background-color: #F5F7FA;
+    cursor: pointer;
+    border: 1px solid #F5F7FA;
+
+}
+
+.label__title {
+    text-align: left;
+    font-size: 14px;
+    color: white;
+    margin: 0;
+    margin-bottom: 8px;
+}
+
+.input {
+    padding: 12px 8px;
+    min-width: 280px;
+    margin-bottom: 20px;
+}
+
+.form__button {
+    display: block;
+    padding: 20px 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 16px;
+    min-width: 280px;
+    color: #ffffff;
+    background-color: #FF6B08;
+    border: 1px solid #FF6B08;
+    cursor: pointer;
+}
+
+.form__button:hover {
+    background-color: #c05006;
+}
+
+.warning {
+    margin: 0;
+    margin-bottom: 8px;
+    font-size: 12px;
+    text-transform: lowercase;
+    color: rgb(161, 0, 0);
+}
+
+.auth__describe {
+    font-size: 13px;
+    color: #898F9F;
+}
+
+.auth__link {
+    display: inline-block;
+    text-align: center;
+    font-size: 13px;
+    color: #FF6B08;
+}
+
+/* =============================================== */
+
+.log__text {
+    text-align: center;
+    padding: 16px 45px;
+}
+
+.svg__qutation {
+    width: 30px;
+    height: 30px;
+    margin-bottom: 10px;
+}
+
+.quote {
+    font-size: 13px;
+    color: #242A37;
+    margin: 0;
+    margin-bottom: 16px
+}
+
+.hr {
+    width: 100px;
+    color: rgba(36, 42, 55, 0.5);
+    margin-bottom: 12px;
+}
+
+.author {
+    margin: 0;
+    font-size: 14px;
+    color: #898F9F;
+}
+
+/* =============================================== */
+.registration__text {
+    padding: 32px 25px 40px;
+}
+
+.title {
+    margin: 0;
+    margin-bottom: 32px;
+    font-weight: 400;
+    font-size: 34px;
+    color: #242A37;
+}
+
+.subtitle {
+    font-weight: 500;
+    font-size: 20px;
+    color: #242A37;
+    margin: 0;
+    margin-bottom: 14px;
+}
+
+.registration__list {
+    margin-bottom: 24px;
+}
+
+.registration__list2 {
+    margin-bottom: 60px;
+}
+
+.registration__item {
+    margin-bottom: 12px;
+}
+
+.item__text {
+    font-size: 14px;
+    font-weight: 500;
+    color: #898F9F;
+}
+
+/* ! ==================================== !!! MEDIA !!! =============================== ! */
+
+@media screen and (min-width: 769px) {
+    .login__form,
+    .registr__form {
+        padding: 64px 185px;
+    }
+
+    .form__border {
+        max-width: 400px;
+        padding: 40px;
+        background-color: #ffffff;
+    }
+
+    .label__title {
+        color: #898F9F;
+    }
+
+    .input {
+        padding: 12px 12px;
+        min-width: 320px;
+        margin-bottom: 32px;
+    }
+
+    .form__button {
+        min-width: 320px;
+    }
+
+    /* ===============================================  */
+    .log__text {
+        padding: 65px 121px 70px;
+    }
+
+    .svg__qutation {
+        margin-bottom: 20px;
+    }
+
+    .quote {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .hr {
+        width: 150px;
+    }
+
+    .author {
+        font-size: 24px;
+    }
+
+    /* ===============================================  */
+    .registration__text {
+        padding: 64px 160px 88px;
+    }
+
+    .title {
+        margin-bottom: 48px;
+    }
+
+    .registration__list {
+        margin-bottom: 32px;
+    }
+}
+
+@media screen and (min-width: 1281px) {
+    .section {
+        display: flex;
+    }
+
+    .login__form {
+        padding: 185px 75px 0;
+    }
+
+    .registr__form {
+        padding: 90px 75px 0;
+    }
+
+    .log__text {
+        padding: 205px 167px 0px;
+    }
+
+    .registration__text {
+        padding: 180px 128px 0px;
+    }
+
+
+}

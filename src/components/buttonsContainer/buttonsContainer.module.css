@@ -1,0 +1,37 @@
+.buttons__container {
+    display: flex;
+}
+
+.login__button,
+.register__button {
+    margin-right: 20px;
+    width: 130px;
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+.login__button {
+    background-color: #fff;
+    border: 1px solid #000000;
+    margin-left: auto;
+}
+
+.register__button {
+    background-color: #FF6B08;
+    border: 1px solid #FF6B08;
+    margin-right: auto;
+}
+
+.login__link,
+.register__link {
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.login__link {
+    color: #242A37;
+}
+
+.register__link {
+    color: #fff;
+}

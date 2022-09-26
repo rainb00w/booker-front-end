@@ -1,10 +1,8 @@
 import React, { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import Registration from './pages/registration/registration';
-import Login from './pages/login/login';
-// import TestRegistration from './pages/testRegistration';
-// import TestLogin from './pages/testLogin';
+import LoginPage from './pages/login/loginPage';
+import RegistrationPage from './pages/registration/registrationPage';
 
 const Header = lazy(() => import('./pages/header'));
 const Library = lazy(() => import('./pages/library/library'));
@@ -16,8 +14,8 @@ function App() {
     <>
       <Suspense fallback="Load...">
         <Header />
-        <Login />
-        <Registration />
+        <LoginPage />
+        <RegistrationPage />
         <Library />
         <Statistics />
         <Training />
