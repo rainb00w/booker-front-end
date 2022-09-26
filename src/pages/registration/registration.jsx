@@ -1,6 +1,9 @@
 import React from 'react';
 import { Formik } from 'formik';
 import * as yup from 'yup';
+import { Link } from 'react-router-dom';
+
+import ButtonsContainer from '../../components/pages/registration/buttonsContainer';
 import styles from "../login/login.module.css";
 
 
@@ -14,11 +17,11 @@ const Registration = () => {
     });
 
 
-    return (
-        
+    return ( 
         <section className={styles.section}>
-            <div className={styles.form__container}>   
-                <Formik
+            <div className={styles.registr__form}>   
+                <div className={styles.form__border}>
+                    <Formik
                     initialValues={{
                         name: "",
                         email: "",
@@ -33,7 +36,9 @@ const Registration = () => {
                 >
                     {({ values, errors, touched, handleBlur, handleChange, handleSubmit }) => (
                     <form onSubmit={handleSubmit}>
-                        <button type='submit'>Google</button>
+                        <a className={styles.google__auth}
+                            href="http://localhost:3001/api/user/google"
+                        >Google</a>
                         <p className={styles.label__title}>Name</p>
                         <input
                             className={styles.input}
@@ -86,11 +91,17 @@ const Registration = () => {
                             {errors.confirmPassword && touched.confirmPassword ?
                                 (<p className={styles.warning}>{errors.confirmPassword}</p>) : null}
 
-                        <button className={styles.form__button} type='submit'>Register</button>
-                    </form>
-                    )}
-                </Formik>
+                            <button className={styles.form__button} type='submit'>Register</button>
+                        </form>
+                        )}
+                    </Formik>
+                    <p className={styles.auth__describe}>
+                        Already have an account?
+                        <Link className={styles.auth__link}>Login</Link>
+                    </p>
+                </div>
             </div> 
+
             <div className={styles.registration__text}>
                 <h1 className={styles.title }>Books Reading</h1>
                 <h2 className={styles.subtitle}>Will help you to</h2>
@@ -117,6 +128,7 @@ const Registration = () => {
                         <p className={styles.item__text}>Become an interesting interlocutor</p>
                     </li>
                 </ul>
+                <ButtonsContainer></ButtonsContainer>
             </div>
         </section>
         
