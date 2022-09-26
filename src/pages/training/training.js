@@ -26,9 +26,9 @@ const Training = () => {
         <TrainingForm />
       </TrainingMaine>
 
-      {/* <TrainingSidebar>
+      <TrainingSidebar>
         <TrainingTitle text="Моя мета прочитати" />
-      </TrainingSidebar> */}
+      </TrainingSidebar>
     </TrainingContainer>
   );
 };

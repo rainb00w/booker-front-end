@@ -8,7 +8,7 @@ import { useState, useEffect, useRef } from 'react';
 
 const Timer = selectedDate => {
   const [time, setTime] = useState(() => Date.now());
-  console.log(selectedDate);
+
   const intervalId = useRef(null);
   const deltaTime = Object.values(selectedDate)[0] - time;
   // const deltaTime = selectedDate - time;
