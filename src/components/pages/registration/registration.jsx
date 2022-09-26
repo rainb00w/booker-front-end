@@ -3,7 +3,7 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import { Link } from 'react-router-dom';
 
-import ButtonsContainer from '../../components/pages/registration/buttonsContainer';
+import ButtonsContainer from '../../buttonsContainer/buttonsContainer';
 import styles from "../login/login.module.css";
 
 
