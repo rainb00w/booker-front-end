@@ -7,6 +7,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
+import s from './statisticsTable.module.css';
+
 function createData(date, time, page) {
   return { date, time, page };
 }
@@ -21,8 +23,12 @@ const rows = [
 
 export default function BasicTable() {
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ width: 288 }} aria-label="simple table">
+    <TableContainer component={Paper} className={s.tableContainer}>
+      <Table
+        sx={{ minWidth: 288 }}
+        aria-label="simple table"
+        className={s.table}
+      >
         <TableBody>
           {rows.map(row => (
             <TableRow
@@ -30,44 +36,20 @@ export default function BasicTable() {
               sx={{
                 border: 0,
               }}
+              className={s.tableRow}
             >
               <TableCell
-                sx={{
-                  fontFamily: 'Montserrat',
-                  fontWeight: 400,
-                  fontSize: 14,
-                  lineHeight: 1.21,
-                  color: '#242A37',
-                  p: 0,
-                }}
                 component="th"
                 scope="row"
                 align="center"
+                className={s.cellDate}
               >
                 {row.date}
               </TableCell>
-              <TableCell
-                sx={{
-                  fontFamily: 'Montserrat',
-                  fontSize: 14,
-                  lineHeight: 1.21,
-                  color: '#898F9F',
-                  p: 0,
-                }}
-                align="right"
-              >
+              <TableCell align="right" className={s.cellTime}>
                 {row.time}
               </TableCell>
-              <TableCell
-                sx={{
-                  fontFamily: 'Montserrat',
-                  fontSize: 14,
-                  lineHeight: 1.21,
-                  color: '#242A37',
-                  p: 0,
-                }}
-                align="right"
-              >
+              <TableCell align="right" className={s.cellPage}>
                 {row.page}
               </TableCell>
             </TableRow>
