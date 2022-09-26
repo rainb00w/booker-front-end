@@ -3,6 +3,8 @@ import { Route, Routes } from 'react-router-dom';
 
 import Registration from './pages/registration/registration';
 import Login from './pages/login/login';
+// import TestRegistration from './pages/testRegistration';
+// import TestLogin from './pages/testLogin';
 
 const Header = lazy(() => import('./pages/header'));
 const Library = lazy(() => import('./pages/library/library'));
@@ -19,7 +21,11 @@ function App() {
         <Library />
         <Statistics />
         <Training />
+        {/* <TestRegistration />
+        <TestLogin /> */}
+
         <Routes>
+     
           
           {/* <Route exact path="/" element={<Login />} /> */}
           {/* <Route path="/register" element={<Registration />} /> */}
