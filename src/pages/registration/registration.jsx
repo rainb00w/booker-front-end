@@ -2,6 +2,8 @@ import React from 'react';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { Link } from 'react-router-dom';
+
+import ButtonsContainer from '../../components/pages/registration/buttonsContainer';
 import styles from "../login/login.module.css";
 
 
@@ -126,7 +128,7 @@ const Registration = () => {
                         <p className={styles.item__text}>Become an interesting interlocutor</p>
                     </li>
                 </ul>
-                <div className={styles.buttons__container}></div>
+                <ButtonsContainer></ButtonsContainer>
             </div>
         </section>
         
