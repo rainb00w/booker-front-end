@@ -12,7 +12,7 @@ const Login = () => {
   
     return (
         <section className={styles.section}>
-            <div className={styles.form__container}>
+            <div className={styles.login__form}>
                 <div className={styles.form__border}>
                     <a className={styles.google__auth}
                     href="http://localhost:3001/api/user/google"
@@ -61,7 +61,7 @@ const Login = () => {
                     <Link className={styles.auth__link}>Register</Link>
                 </div>
             </div>
-            <div className={styles.text__container}>
+            <div className={styles.log__text}>
                 <svg className={styles.svg__qutation}>
                     <url></url>
                 </svg>
