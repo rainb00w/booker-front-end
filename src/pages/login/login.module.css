@@ -6,15 +6,24 @@
     padding: 32px 20px;
 }
 
+.form__border {
+    display: block;
+    text-align: center;
+}
+
 .google__auth {
     display: inline-block;
+    text-decoration: none;
     text-align: center;
+    min-width: 150px;
     padding: 8px 24px;
-    margin-bottom: 20px;
-    color: black;
-    background-color: antiquewhite;
-    cursor: pionter;
-    border: 1px solid black;
+    margin-bottom: 28px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #707375;
+    background-color: #F5F7FA;
+    cursor: pointer;
+    border: 1px solid #F5F7FA;
 
 }
 
@@ -34,6 +43,8 @@
 .form__button {
     display: block;
     padding: 20px 0;
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: 16px;
     min-width: 280px;
     color: #ffffff;
@@ -54,15 +65,28 @@
     color: rgb(161, 0, 0);
 }
 
+.auth__link {
+    display: inline-block;
+    text-align: center;
+    font-size: 13px;
+    color: #FF6B08;
+}
+
 /* =============================================== */
 
 .text__container {
     text-align: center;
-    padding: 20px 45px;
+    padding: 16px 45px;
+}
+
+.svg__qutation {
+    width: 30px;
+    height: 30px;
 }
 
 .quote {
     font-size: 13px;
+    color: #242A37;
     margin: 0;
     margin-bottom: 16px
 }
@@ -115,4 +139,61 @@
     font-size: 14px;
     font-weight: 500;
     color: #898F9F;
+}
+
+
+/* ! ==================================== !!! MEDIA !!! =============================== ! */
+
+@media screen and (min-width: 769px) {
+    .form__container {
+        padding: 40px 185px;
+    }
+
+    .form__border {
+        max-width: 400px;
+        padding: 40px;
+        background-color: #ffffff;
+    }
+
+    .label__title {
+        color: #898F9F;
+    }
+
+    .input {
+        padding: 12px 12px;
+        min-width: 320px;
+        margin-bottom: 32px;
+    }
+
+    .form__button {
+        min-width: 320px;
+    }
+
+    /* ===============================================  */
+    .text__container {
+        padding: 65px 121px 70px;
+    }
+
+    .quote {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .hr {
+        width: 150px;
+    }
+
+    .author {
+        font-size: 24px;
+    }
+}
+
+@media screen and (min-width: 1281px) {
+    .section {
+        display: flex;
+    }
+
+    .text__container {
+        padding: 205px 167px 0px;
+    }
 }
