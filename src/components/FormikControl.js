@@ -1,4 +1,4 @@
-import DatePicker from 'components/DataPicker';
+import DatePicker from "./DataPicker";
 
 function FormikControl(props) {
   const { control, ...rest } = props;

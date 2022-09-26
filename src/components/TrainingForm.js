@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import PeriodSelection from './PeriodSelection';
-import { TrainingTitle } from 'components/TrainingTitle';
-import Timer from 'components/Timer';
+import { TrainingTitle } from './TrainingTitle';
+import Timer from './Timer';
 import { StyledTimerContainer } from './Timer.style';
 
 const TrainingForm = () => {

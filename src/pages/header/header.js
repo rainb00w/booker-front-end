@@ -57,49 +57,41 @@ const Header = () => {
           BR
         </Link>
 
-        {login && (
-          <div className={s.blok}>
-            <div className={s.blok_user}>
-              <button className={s.btn_desktop} type="button">
-                {userLogo}
-              </button>
-              <p className={s.user_name}>{user}</p>
-            </div>
-
-            {statistic && (
-              <nav className={s.nav}>
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? s.active_link : s.link
-                  }
-                  to="/library"
-                >
-                  <img src={library} alt="library" />
-                </NavLink>
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? s.active_link : s.link
-                  }
-                  to="/training"
-                >
-                  <img src={home} alt="home" />
-                </NavLink>
-              </nav>
-            )}
-            <div className={s.line}></div>
-
-            <button className={s.button_mobile} type="button">
+        {/* {login && ( */}
+        <div className={s.blok}>
+          <div className={s.blok_user}>
+            <button className={s.btn_desktop} type="button">
               {userLogo}
             </button>
-            <button
-              className={s.button_exit}
-              type="button"
-              onClick={handleOpen}
-            >
-              Вихід
-            </button>
+            <p className={s.user_name}>{user}</p>
           </div>
-        )}
+
+          {/* {statistic && ( */}
+          <nav className={s.nav}>
+            <NavLink
+              className={({ isActive }) => (isActive ? s.active_link : s.link)}
+              to="/library"
+            >
+              <img src={library} alt="library" />
+            </NavLink>
+            <NavLink
+              className={({ isActive }) => (isActive ? s.active_link : s.link)}
+              to="/training"
+            >
+              <img src={home} alt="home" />
+            </NavLink>
+          </nav>
+          {/* )} */}
+          <div className={s.line}></div>
+
+          <button className={s.button_mobile} type="button">
+            {userLogo}
+          </button>
+          <button className={s.button_exit} type="button" onClick={handleOpen}>
+            Вихід
+          </button>
+        </div>
+        {/* )} */}
       </header>
 
       <div>
