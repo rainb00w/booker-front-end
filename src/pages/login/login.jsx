@@ -1,6 +1,7 @@
 import React from 'react';
 import { Formik } from 'formik';
 import * as yup from 'yup';
+import { Link } from 'react-router-dom';
 import styles from "./login.module.css";
 
 const Login = () => {
@@ -12,53 +13,56 @@ const Login = () => {
     return (
         <section className={styles.section}>
             <div className={styles.form__container}>
-                <a className={styles.google__auth}
+                <div className={styles.form__border}>
+                    <a className={styles.google__auth}
                     href="http://localhost:3001/api/user/google"
-                >Google</a>
-                <Formik
-                initialValues={{
-                    email: "",
-                    password: ""
-                }}
-                validationSchema={validationSchema}
-                onSubmit={(values, {resetForm}) => {
-                    console.log(values)
-                    resetForm({values: ""})
-                }}
-                >
-                {({ values, errors, touched, handleBlur, handleChange, handleSubmit }) => (
-                    <form onSubmit={handleSubmit}>
-                        <p className={styles.label__title}>Email</p>
-                        <input
+                    >Google</a>
+                    <Formik
+                    initialValues={{
+                        email: "",
+                        password: ""
+                    }}
+                    validationSchema={validationSchema}
+                    onSubmit={(values, {resetForm}) => {
+                        console.log(values)
+                        resetForm({values: ""})
+                    }}
+                    >
+                    {({ values, errors, touched, handleBlur, handleChange, handleSubmit }) => (
+                        <form onSubmit={handleSubmit}>
+                            <p className={styles.label__title}>Email</p>
+                            <input
+                                className={styles.input}
+                                type="email"
+                                placeholder="your@email.com"
+                                name="email"
+                                value={values.email}
+                                onBlur={handleBlur}
+                                onChange={handleChange}
+                            />
+                            {errors.email && touched.email ?
+                                (<p className={styles.warning}>{errors.email}</p>) : null}
+                            <p className={styles.label__title}>Password</p>
+                            <input
                             className={styles.input}
-                            type="email"
-                            placeholder="your@email.com"
-                            name="email"
-                            value={values.email}
+                            type="password"
+                            placeholder="Password"
+                            name="password"
+                            value={values.password}
                             onBlur={handleBlur}
                             onChange={handleChange}
-                        />
-                        {errors.email && touched.email ?
-                            (<p className={styles.warning}>{errors.email}</p>) : null}
-                        <p className={styles.label__title}>Password</p>
-                        <input
-                        className={styles.input}
-                        type="password"
-                        placeholder="Password"
-                        name="password"
-                        value={values.password}
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                            />
-                        {errors.password && touched.password ?
-                            (<p className={styles.warning}>{errors.password}</p>) : null}
-                        <button className={styles.form__button} type='submit'>Login</button>
-                    </form>
-                    )}
-                </Formik>
+                                />
+                            {errors.password && touched.password ?
+                                (<p className={styles.warning}>{errors.password}</p>) : null}
+                            <button className={styles.form__button} type='submit'>Login</button>
+                        </form>
+                        )}
+                    </Formik>
+                    <Link className={styles.auth__link}>Register</Link>
+                </div>
             </div>
             <div className={styles.text__container}>
-                <svg>
+                <svg className={styles.svg__qutation}>
                     <url></url>
                 </svg>
                 <p className={styles.quote} >Books are the ships of thoughts, wandering through the waves of time.</p>
