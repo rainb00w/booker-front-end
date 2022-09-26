@@ -1,5 +1,5 @@
 import { TrainingTitle } from 'components/TrainingTitle';
-import TrainingForm from 'components/TrainingForm';
+import TrainingForm from "components/TrainingForm";
 import PeriodSelection from 'components/PeriodSelection';
 import styled from 'styled-components';
 // import Clock from 'components/Clock/Clock';
