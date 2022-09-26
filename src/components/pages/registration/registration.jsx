@@ -10,11 +10,14 @@ import AuthModal from '../../authModal/authModal';
 import RegistrationText from '../../registrationText/registrationText';
 import styles from "../login/login.module.css";
 
+import { authOperations } from '../../../redux/auth';
+import { useDispatch } from 'react-redux';
+
 
 const Registration = () => {
     const [modal, setModal] = useState(true);
 
-
+    const dispatch = useDispatch();
 
     const validationSchema = yup.object().shape({
         name: yup.string().typeError("Will be a string").min(3).required("Required"),
@@ -52,7 +55,8 @@ const Registration = () => {
                             }}
                             validationSchema={validationSchema}
                             onSubmit={({name, email, password}, {resetForm}) => {
-                                console.log(name)
+                                console.log(name);
+                                dispatch(authOperations.register({ name, email, password }));
                                 resetForm({values: ""})
                             }}
                         >
