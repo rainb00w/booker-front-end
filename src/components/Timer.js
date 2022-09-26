@@ -21,10 +21,8 @@ const Timer = selectedDate => {
       }, 1000);
       return;
     }
-    return onStop();
+    return clearInterval(intervalId);
   }, []);
-
-  const onStop = () => (intervalId.current = null);
 
   function convertMs(ms) {
     // Number of milliseconds per unit of time
