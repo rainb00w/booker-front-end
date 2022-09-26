@@ -3,7 +3,7 @@ import React  from 'react';
 const Training = () => {
     return (
       <>
-        <p>Training</p>
+        <h2>Training section -------- </h2>
       </>
     );
   };

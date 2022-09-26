@@ -5,7 +5,7 @@ import BookTable from './bookTable';
 const Library = () => {
   return (
     <>
-      <p>Library </p>
+      <h2>Library Section -------- </h2>
       <BookAddForm />
       <BookTable text="Already read" />
       <BookTable text="Reading now" />
