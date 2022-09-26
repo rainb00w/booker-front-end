@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkbooker_front_end=self.webpackChunkbooker_front_end||[]).push([[241],{1241:function(n,e,r){r.r(e);r(2791);var t=r(184);e.default=function(){return(0,t.jsx)(t.Fragment,{children:(0,t.jsx)("h2",{children:"Training section -------- "})})}}}]);
+//# sourceMappingURL=241.c9b00091.chunk.js.map
