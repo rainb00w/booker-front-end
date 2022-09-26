@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import s from './header.module.css';
@@ -26,7 +26,6 @@ const Header = () => {
   const handleExit = () => setOpen(false);
 
   const [openInfo, setOpenInfo] = React.useState(true);
-  // const handleOpenInfo = () => setOpenInfo(true);
   const handleCloseInfo = () => setOpenInfo(false);
 
   const location = useLocation();
@@ -44,7 +43,7 @@ const Header = () => {
   }, [LINCK_ID]);
 
   useEffect(() => {
-    if (LINCK_ID === '/') {
+    if (LINCK_ID === ('/' || '/register')) {
       setLogin(false);
     } else {
       setLogin(true);
@@ -54,7 +53,9 @@ const Header = () => {
   return (
     <>
       <header className={login ? s.header : s.header_l}>
-        <h1 className={s.title}>BR</h1>
+        <Link to="/" className={s.logo}>
+          BR
+        </Link>
 
         {login && (
           <div className={s.blok}>
