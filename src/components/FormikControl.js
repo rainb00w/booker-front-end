@@ -1,0 +1,14 @@
+import DatePicker from 'components/DataPicker';
+
+function FormikControl(props) {
+  const { control, ...rest } = props;
+  switch (control) {
+    case 'data':
+      return <DatePicker {...rest} />;
+    case 'select':
+      return <DatePicker {...rest} />;
+    default:
+      return null;
+  }
+}
+export default FormikControl;
