@@ -1,6 +1,6 @@
 import React from 'react';
 import FormPropsTextFields from './inputPage';
-import BasicTable from './statisticsTable.js';
+import StatisticsList from './statisticsList';
 
 const Statistics = () => {
   return (
@@ -9,7 +9,7 @@ const Statistics = () => {
       <FormPropsTextFields />
       <button type="submit">Додати результат</button>
       <h2>Статистика</h2>
-      <BasicTable />
+      <StatisticsList />
     </>
   );
 };
