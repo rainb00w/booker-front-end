@@ -153,7 +153,19 @@
 }
 
 .registration__item {
+    display: inline-flex;
+    align-items: center;
     margin-bottom: 12px;
+    list-style: none;
+}
+
+.registration__item::before {
+    content: "";
+    width: 4px;
+    height: 8px;
+    margin-right: 12px;
+    background-size: contain;
+    background-image: url("../../../img/arrow.svg");
 }
 
 .item__text {
