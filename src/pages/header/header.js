@@ -7,7 +7,8 @@ import home from './icon_home.svg';
 import library from './icon_library.svg';
 import Info from './info';
 import { authOperations } from '../../redux/auth';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { authSelectors } from '../../redux/auth';
 
 const style = {
   position: 'absolute',
@@ -19,6 +20,8 @@ const style = {
 };
 
 const Header = () => {
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+
   const user = 'Martha Stewart';
   const userLogo = user[0];
   const dispatch = useDispatch();
@@ -59,45 +62,57 @@ const Header = () => {
   return (
     <>
       <header className={login ? s.header : s.header_l}>
-        <Link to="/" className={s.logo}>
-          BR
-        </Link>
+        {isLoggedIn ? (
+          <div className={s.blok}>
+            <Link to="/" className={s.logo}>
+              BR
+            </Link>
 
-        {/* {login && ( */}
-        <div className={s.blok}>
-          <div className={s.blok_user}>
-            <button className={s.btn_desktop} type="button">
+            <div className={s.blok_user}>
+              <button className={s.btn_desktop} type="button">
+                {userLogo}
+              </button>
+              <p className={s.user_name}>{user}</p>
+            </div>
+
+            {/* {statistic && ( */}
+            <nav className={s.nav}>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? s.active_link : s.link
+                }
+                to="/"
+              >
+                <img src={library} alt="library" />
+              </NavLink>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? s.active_link : s.link
+                }
+                to="/training"
+              >
+                <img src={home} alt="home" />
+              </NavLink>
+            </nav>
+            {/* )} */}
+            <div className={s.line}></div>
+
+            <button className={s.button_mobile} type="button">
               {userLogo}
             </button>
-            <p className={s.user_name}>{user}</p>
+            <button
+              className={s.button_exit}
+              type="button"
+              onClick={handleOpen}
+            >
+              Вихід
+            </button>
           </div>
-
-          {/* {statistic && ( */}
-          <nav className={s.nav}>
-            <NavLink
-              className={({ isActive }) => (isActive ? s.active_link : s.link)}
-              to="/library"
-            >
-              <img src={library} alt="library" />
-            </NavLink>
-            <NavLink
-              className={({ isActive }) => (isActive ? s.active_link : s.link)}
-              to="/training"
-            >
-              <img src={home} alt="home" />
-            </NavLink>
-          </nav>
-          {/* )} */}
-          <div className={s.line}></div>
-
-          <button className={s.button_mobile} type="button">
-            {userLogo}
-          </button>
-          <button className={s.button_exit} type="button" onClick={handleOpen}>
-            Вихід
-          </button>
-        </div>
-        {/* )} */}
+        ) : (
+          <Link to="/" className={s.logo}>
+            BR
+          </Link>
+        )}
       </header>
 
       <div>

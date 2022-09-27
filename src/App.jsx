@@ -1,4 +1,3 @@
-
 import React, { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
@@ -8,6 +7,11 @@ import Header from './pages/header/header';
 import Training from './pages/training/training';
 import Library from './pages/library/library';
 import Statistics from './pages/statistics/statistics';
+
+
+import PrivateRoute from './components/routes/privateRoute';
+import PublicRoute from './components/routes/publicRoute';
+
 // const Header = lazy(() => import('./pages/header'));
 // const Library = lazy(() => import('./pages/library/library'));
 // const Statistics = lazy(() => import('./pages/statistics/statistics'));
@@ -18,18 +22,63 @@ function App() {
     <>
       <Header />
       <Suspense fallback="Load...">
-        {/* <Header /> */}
-        {/* <Login /> */}
-        {/* <Registration /> */}
-        {/* <Library /> */}
-        {/* <Statistics /> */}
-        {/* <Training /> */}
         <Routes>
-          <Route exact path="/" element={<LoginPage />} />
-          <Route path="/register" element={<RegistrationPage />} />
-          <Route path="/library" element={<Library />} />
-          <Route path="/statistics" element={<Statistics />} />
-          <Route path="/training" element={<Training />} />
+          {/* <Route path="/" element={<Library />} /> */}
+
+          <Route
+            path="/"
+            element={
+              <PrivateRoute>
+                <Library />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/statistics"
+            element={
+              <PrivateRoute>
+                <Statistics />
+              </PrivateRoute>
+            }
+          />
+
+
+<Route
+            path="/training"
+            element={
+              <PrivateRoute>
+              <Training />
+              </PrivateRoute>
+            }
+          />
+
+<Route
+            path="/login"
+            element={
+              <PublicRoute restricted>
+              <LoginPage />
+              </PublicRoute>
+            }
+          />
+
+
+<Route
+            path="/register"
+            element={
+              <PublicRoute restricted>
+             <RegistrationPage />
+              </PublicRoute>
+            }
+          />
+
+
+
+{/* 
+          <Route exact path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegistrationPage />} /> */}
+          {/* <Route path="/statistics" element={<Statistics />} /> */}
+          {/* <Route path="/training" element={<Training />} /> */}
           <Route path="*" element={<p>There is nothing here: 404!</p>} />
         </Routes>
       </Suspense>
@@ -38,7 +87,6 @@ function App() {
 }
 
 export default App;
-
 
 // import React, { lazy, Suspense } from 'react';
 // import { Route, Routes } from 'react-router-dom';
@@ -65,8 +113,7 @@ export default App;
 //         <TestLogin /> */}
 
 //         <Routes>
-     
-          
+
 //           {/* <Route exact path="/" element={<Login />} /> */}
 //           {/* <Route path="/register" element={<Registration />} /> */}
 //           {/* <Route path="/library" element={<Library />} /> */}
@@ -80,6 +127,3 @@ export default App;
 // }
 
 // export default App;
-
-
-
