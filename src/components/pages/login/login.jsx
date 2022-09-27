@@ -30,11 +30,13 @@ const Login = () => {
   })
 
   const validationSchema = yup.object().shape({
-    email: yup
-      .string()
-      .typeError('Will be a string')
-      .min(4)
-      .required('Required'),
+    email: yup.string()
+      .typeError("Will be a string")
+      .email()
+      .matches(/^(([^<>()\[\]\\.,;:\s@!?"]{2,}(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ , 'Is not in correct format')
+      .min(10)
+      .max(63)
+      .required("Required field"),
     password: yup
       .string()
       .typeError('Will be a string')
