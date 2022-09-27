@@ -11,7 +11,7 @@ import '/node_modules/modern-normalize/modern-normalize.css';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter basename="/booker-front-end/">
+    <BrowserRouter basename="/booker-front-end">
     <Provider store={store}>
       <App />
       </Provider>
