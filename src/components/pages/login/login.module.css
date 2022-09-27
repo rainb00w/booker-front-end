@@ -5,11 +5,23 @@
 .login__form,
 .registr__form {
     padding: 32px 20px;
+
+    background-image: linear-gradient(
+        to right,
+        rgba(9, 30, 63, 0.8),
+        rgba(9, 30, 63, 0.8)),
+        url("../../../img/background1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .form__border {
     display: block;
     text-align: center;
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .google__auth {
@@ -156,6 +168,11 @@
     .login__form,
     .registr__form {
         padding: 64px 185px;
+
+        background-image: linear-gradient(to right,
+            rgba(9, 30, 63, 0.8),
+            rgba(9, 30, 63, 0.8)),
+        url("../../../img/background2.jpg");
     }
 
     .form__border {
@@ -219,8 +236,16 @@
         display: flex;
     }
 
+    .login__form,
+    .registr__form {
+        background-image: linear-gradient(to right,
+            rgba(9, 30, 63, 0.8),
+            rgba(9, 30, 63, 0.8)),
+        url("../../../img/background3.jpg");
+    }
+
     .login__form {
-        padding: 185px 75px 0;
+        padding: 185px 75px 175px;
     }
 
     .registr__form {

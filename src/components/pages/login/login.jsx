@@ -2,9 +2,13 @@ import React from 'react';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { Link } from 'react-router-dom';
+
+import svgPath from 'services/svgPath';
 import styles from './login.module.css';
+
 import { authOperations } from '../../../redux/auth';
 import { useDispatch } from 'react-redux';
+
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -90,7 +94,7 @@ const Login = () => {
       </div>
       <div className={styles.log__text}>
         <svg className={styles.svg__qutation}>
-          <url></url>
+          <use href={svgPath.quatation + "#quatation"}></use>
         </svg>
         <p className={styles.quote}>
           Books are the ships of thoughts, wandering through the waves of time.
