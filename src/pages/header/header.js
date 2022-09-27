@@ -6,6 +6,8 @@ import s from './header.module.css';
 import home from './icon_home.svg';
 import library from './icon_library.svg';
 import Info from './info';
+import { authOperations } from '../../redux/auth';
+import { useDispatch } from 'react-redux';
 
 const style = {
   position: 'absolute',
@@ -19,11 +21,15 @@ const style = {
 const Header = () => {
   const user = 'Martha Stewart';
   const userLogo = user[0];
+  const dispatch = useDispatch();
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const handleExit = () => setOpen(false);
+  const handleExit = () => {
+    dispatch(authOperations.logOut());
+    setOpen(false);
+  };
 
   const [openInfo, setOpenInfo] = React.useState(true);
   const handleCloseInfo = () => setOpenInfo(false);
