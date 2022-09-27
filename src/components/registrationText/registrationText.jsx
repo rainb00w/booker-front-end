@@ -1,4 +1,5 @@
 import React from "react";
+import Media from 'react-media';
 import ButtonsContainer from "../buttonsContainer/buttonsContainer";
 import styles from "../pages/login/login.module.css"
 
@@ -31,7 +32,13 @@ const RegistrationText = () => {
                         <p className={styles.item__text}>Become an interesting interlocutor</p>
                     </li>
                 </ul>
-                <ButtonsContainer />
+                <Media queries={{ small: "(max-width: 768px)" }}>
+                    {matches => (
+                        <>
+                            {matches.small && <ButtonsContainer />}
+                        </>
+                    )}
+                </Media>
             </div>
     )
 };
