@@ -1,0 +1,15 @@
+.btn {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.25;
+  text-align: center;
+  color: #ffffff;
+  width: 200px;
+  height: 40px;
+  background: #ff6b08;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
