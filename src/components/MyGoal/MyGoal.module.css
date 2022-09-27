@@ -1,0 +1,204 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+ol,
+p,
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+
+.myGoalMainBox {
+    width: 280px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    background-color: white;
+    box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
+    
+}
+
+@media screen and (min-width: 768px) {
+    .myGoalMainBox {
+        width: 704px;
+        height: 105px;
+        display: flex;
+        align-items: center;
+        margin-bottom: 40px;
+        box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.25);
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .myGoalMainBox {
+        width: 288px;
+        height: 304px;
+        display: block;
+        box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
+    }
+}
+
+.myGoalHeadingBox {
+    padding: 18px 34px;
+    background-color: #B1B5C2;
+    box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
+}
+
+@media screen and (min-width: 768px) {
+    .myGoalHeadingBox {
+        width: 275px;
+        height: 60px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .myGoalHeadingBox {
+        width: 288px;
+        margin: 0%;
+    }
+}
+
+.myGoalHeading {
+    text-align: center;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.2;
+    color: white;
+}
+
+.statsBox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 236px;
+    background-color: white;
+    box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
+}
+
+@media screen and (min-width: 768px) {
+    .statsBox {
+        height: 105px;
+        box-shadow: none;
+        margin-left: auto;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .statsBox {
+        height: 244px;
+    }
+}
+
+.myGoalStatsList {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+    .myGoalStatsList {
+        margin-top: 20px;
+        margin-right: 45px;
+        margin-left: 19px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .myGoalStatsList {
+        margin: 0%;
+    }
+}
+
+.myGoalStatsListItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.myGoalStatsListItem:last-child {
+    margin-left: 20px;
+}
+
+@media screen and (min-width: 768px) {
+    .myGoalStatsListItem:last-child {
+        margin-left: 35px;
+    }
+}
+
+.myGoalStatsDigitBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    background: #f5f7fa;
+    box-shadow: 4px 4px 8px rgba(36, 42, 55, 0.15);
+}
+
+
+@media screen and (min-width: 768px) {
+    .myGoalStatsDigitBox {
+        height: 60px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .myGoalStatsDigitBox {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+.myGoalStatsDigit {
+    font-family: Open Sans;
+    font-weight: 700;
+    font-size: 45px;
+    line-height: 1.18;
+    text-align: center;
+    color: #091e3f;
+}
+
+@media screen and (min-width: 768px) {
+    .myGoalStatsDigit {
+        font-size: 40px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .myGoalStatsDigit {
+        font-size: 45px;
+    }
+}
+
+.myGoalStatsText {
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.2;
+    text-align: center;
+    color: #898f9f;
+    margin-top: 14px;
+    max-width: 66px;
+}
+
+@media screen and (min-width: 768px) {
+    .myGoalStatsText {
+        margin-top: 4px;
+        max-width: 100px;
+        font-size: 11px;
+        line-height: 1.18;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .myGoalStatsText {
+        font-size: 14px;
+        line-height: 1.2;
+        margin-top: 14px;
+        max-width: 66px;
+    }
+}
