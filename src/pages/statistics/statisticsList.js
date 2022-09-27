@@ -1,5 +1,6 @@
 import React from 'react';
 import StatisticsRow from './StatisticsRow';
+import s from './statisticsList.module.css';
 const StatisticsList = () => {
   const rows = [
     { date: '10.10.2019', time: '08:08:00', page: 32 },
@@ -9,9 +10,9 @@ const StatisticsList = () => {
     { date: '14.10.2019', time: '12:08:00', page: 21 },
   ];
   return (
-    <ul>
+    <ul className={s.statisticsList}>
       {rows.map(row => (
-        <StatisticsRow key={rows.date} row={row} />
+        <StatisticsRow key={rows.date} row={row} className={s.statisticsList} />
       ))}
     </ul>
   );
