@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React  from 'react';
 import { Link } from 'react-router-dom';
 
 import { Formik } from 'formik';
 import * as yup from 'yup';
 
-import Media from 'react-media';
-
-import AuthModal from '../../authModal/authModal';
 import RegistrationText from '../../registrationText/registrationText';
 import styles from "../login/login.module.css";
 
@@ -15,8 +12,6 @@ import { useDispatch } from 'react-redux';
 
 
 const Registration = () => {
-    const [modal, setModal] = useState(true);
-
     const dispatch = useDispatch();
 
     const validationSchema = yup.object().shape({
@@ -30,19 +25,6 @@ const Registration = () => {
 
     return ( 
         <>
-            {modal && (
-                <Media queries={{
-                    small: "(max-width: 768px)",
-                    medium: "(min-width: 769px) and (max-width: 1280px)",
-                    large: "(min-width: 1281px)"
-                }} >
-                    {matches => (
-                        <>
-                            {matches.small && <AuthModal />}
-                        </>
-                    )}
-                </Media>
-            )}
             <section className={styles.section}>
                 <div className={styles.registr__form}>   
                     <div className={styles.form__border}>
@@ -119,7 +101,7 @@ const Registration = () => {
                         </Formik>
                         <p className={styles.auth__describe}>
                             Already have an account?
-                            <Link className={styles.auth__link}>Login</Link>
+                            <Link className={styles.auth__link} to="/">Login</Link>
                         </p>
                     </div>
                 </div> 
