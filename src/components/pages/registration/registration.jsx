@@ -16,6 +16,9 @@ const Registration = () => {
     const [errName, setErrName] = useState("");
     const [errEmail, setErrEmail] = useState("");
 
+    console.log(errName)
+    console.log(errEmail)
+
 
     return ( 
         <>
@@ -32,35 +35,40 @@ const Registration = () => {
                             validationSchema={registrationValidationSchema}
                             onSubmit={(values, {resetForm}) => {
                                 const { name, email, password } = values;
-                                dispatch(authOperations.register({ name, email, password }))
-                                    .then(answer => {
-                                        const { data, response } = answer.payload
-                                        setErrName("");
-                                        setErrEmail("");
 
-                                        if (data) {
-                                            resetForm({ values: "" });
-                                        }
-                                        else if (response) {
-                                            throw response.data.message;
-                                        }
-                                    })
-                                    .catch(error => {
-                                        switch (error) {
-                                            case "name":
-                                                setErrName("User with this name is already registered")
-                                                return 
-                                            case "email":
-                                                setErrEmail("User with this email is already registered")
-                                                return
-                                            case "name&email":
-                                                setErrName("User with this name is already registered")
-                                                setErrEmail("User with this email is already registered")
-                                                return 
-                                            default:
-                                                return
-                                        }
-                                    });
+
+                      
+                                   
+                                dispatch(authOperations.register({ name, email, password }))
+                                .then(answer => {
+                                    const { data, response } = answer.payload
+                                    setErrName("");
+                                    setErrEmail("");
+
+                                    if (data) {
+                                        resetForm({ values: "" });
+                                    }
+                                    else if (response) {
+                                        throw response.data.message;
+                                    }
+                                })
+                                .catch(error => {
+                                    switch (error) {
+                                        case "name":
+                                            setErrName("User with this name is already registered")
+                                            return 
+                                        case "email":
+                                            setErrEmail("User with this email is already registered")
+                                            return
+                                        case "name&email":
+                                            setErrName("User with this name is already registered")
+                                            setErrEmail("User with this email is already registered")
+                                            return 
+                                        default:
+                                            return
+                                    }
+                                });
+
                             }}
                         >
                             {({ values, errors, touched, handleBlur, handleChange, handleSubmit }) => (
