@@ -16,6 +16,9 @@ const Registration = () => {
     const [errName, setErrName] = useState("");
     const [errEmail, setErrEmail] = useState("");
 
+    console.log(errName)
+    console.log(errEmail)
+
 
     const validationSchema = yup.object().shape({
         name: yup.string()
@@ -62,19 +65,31 @@ const Registration = () => {
 
                                 dispatch(authOperations.register({ name, email, password }))
                                     .then(answer => {
-                                        const { data, response } = answer.payload
-                                        setErrName("")
-                                        setErrEmail("")
+                                        const { data, response } = answer.payload;
+                                        setErrName("");
+                                        setErrEmail("");
 
                                         if (data) {
                                             console.log(data)
                                         }
                                         else if (response) {
-                                            console.log("1!!", response.data)
-                                            setErrName(response.data.message)
+                                            throw response.data.message;
                                         }
                                     })
-                                    .catch(error => console.log("!!2", error));
+                                    .catch(error => {
+                                        switch (error) {
+                                            case "name":
+                                                setErrName("User with this name is already registered")
+                                                return 
+                                            case "email":
+                                                setErrEmail("User with this email is already registered")
+                                                return
+                                            case "name&email":
+                                                setErrName("User with this name is already registered")
+                                                setErrEmail("User with this email is already registered")
+                                                return 
+                                        }
+                                    });
                                 resetForm({values: ""})
                             }}
                         >
