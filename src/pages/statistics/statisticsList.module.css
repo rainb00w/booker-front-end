@@ -1,0 +1,97 @@
+.container {
+  font-family: Montserrat;
+  width: 280px;
+  background-color: #ffffff;
+  padding: 20px 20px 22px 20px;
+}
+.inputs {
+  display: flex;
+  margin-bottom: 28px;
+}
+.inputsLabel {
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.18;
+  color: #898f9f;
+  margin-right: 20px;
+}
+.inputsLabel:last-child {
+  margin-right: 0;
+}
+.inputPage,
+.inputDate {
+  height: 42px;
+  width: 110px;
+  background-color: #f6f7fb;
+  border: 1px solid #a6abb9;
+  padding-top: 12px;
+  padding-left: 13px;
+  padding-bottom: 13px;
+  color: #242a37;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.21;
+  outline: none;
+}
+.addResultBtn {
+  width: 240px;
+  height: 40px;
+  background-color: #ff6b08;
+  padding: 10px 44px;
+  border: none;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 1.25;
+  margin-bottom: 24px;
+}
+.resultsHeader,
+.statisticsHeader {
+  text-transform: uppercase;
+  height: 12px;
+  line-height: 1.25;
+  font-weight: 600;
+  color: #242a37;
+  text-align: center;
+}
+.statisticsHeader {
+  font-weight: 700;
+}
+.statisticsList {
+  margin: 0px;
+  padding: 0px;
+}
+.statisticsListItem {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  color: #242a37;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.21;
+  margin-bottom: 4px;
+}
+
+.statisticsListItem:last-child {
+  margin-bottom: 0;
+}
+.cellDate {
+}
+.cellTime {
+  color: #898f9f;
+}
+.cellPage::after {
+  content: ' стор.';
+  color: #898f9f;
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type='number'],
+input[type='number']:hover,
+input[type='number']:focus {
+  appearance: none;
+  -moz-appearance: textfield;
+}
