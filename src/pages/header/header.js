@@ -22,7 +22,7 @@ const style = {
 const Header = () => {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
 
-  const user = 'Martha Stewart';
+  const user = 'Martha Stewart'; //Добавить текущего пользователя
   const userLogo = user[0];
   const dispatch = useDispatch();
 
@@ -34,13 +34,19 @@ const Header = () => {
     setOpen(false);
   };
 
-  const [openInfo, setOpenInfo] = React.useState(true);
+  const [openInfo, setOpenInfo] = React.useState(false);
   const handleCloseInfo = () => setOpenInfo(false);
+
+  useEffect(() => {
+    //проверить массив книг
+    if (isLoggedIn) {
+      setOpenInfo(true);
+    }
+  }, [isLoggedIn]);
 
   const location = useLocation();
   const LINCK_ID = location.pathname;
 
-  const [login, setLogin] = useState(true);
   const [statistic, setStatistic] = useState(false);
 
   useEffect(() => {
@@ -51,23 +57,15 @@ const Header = () => {
     }
   }, [LINCK_ID]);
 
-  useEffect(() => {
-    if (LINCK_ID === ('/' || '/register')) {
-      setLogin(false);
-    } else {
-      setLogin(true);
-    }
-  }, [LINCK_ID]);
-
   return (
     <>
-      <header className={login ? s.header : s.header_l}>
-        {isLoggedIn ? (
-          <div className={s.blok}>
-            <Link to="/" className={s.logo}>
-              BR
-            </Link>
+      <header className={isLoggedIn ? s.header : s.header_l}>
+        <Link to="/" className={s.logo}>
+          BR
+        </Link>
 
+        {isLoggedIn && (
+          <div className={s.blok}>
             <div className={s.blok_user}>
               <button className={s.btn_desktop} type="button">
                 {userLogo}
@@ -75,26 +73,26 @@ const Header = () => {
               <p className={s.user_name}>{user}</p>
             </div>
 
-            {/* {statistic && ( */}
-            <nav className={s.nav}>
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? s.active_link : s.link
-                }
-                to="/"
-              >
-                <img src={library} alt="library" />
-              </NavLink>
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? s.active_link : s.link
-                }
-                to="/training"
-              >
-                <img src={home} alt="home" />
-              </NavLink>
-            </nav>
-            {/* )} */}
+            {statistic && (
+              <nav className={s.nav}>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? s.active_link : s.link
+                  }
+                  to="/"
+                >
+                  <img src={library} alt="library" />
+                </NavLink>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? s.active_link : s.link
+                  }
+                  to="/training"
+                >
+                  <img src={home} alt="home" />
+                </NavLink>
+              </nav>
+            )}
             <div className={s.line}></div>
 
             <button className={s.button_mobile} type="button">
@@ -108,10 +106,6 @@ const Header = () => {
               Вихід
             </button>
           </div>
-        ) : (
-          <Link to="/" className={s.logo}>
-            BR
-          </Link>
         )}
       </header>
 
