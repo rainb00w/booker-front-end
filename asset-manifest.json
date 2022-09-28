@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/booker-front-end/static/css/main.35518b45.css",
-    "main.js": "/booker-front-end/static/js/main.801c6cda.js",
+    "main.css": "/booker-front-end/static/css/main.dd5f5d85.css",
+    "main.js": "/booker-front-end/static/js/main.0e619b5d.js",
     "static/media/background2.jpg": "/booker-front-end/static/media/background2.1065ac0c23029c4e7b76.jpg",
     "static/media/background3.jpg": "/booker-front-end/static/media/background3.4eb17edd7123c073db0e.jpg",
     "static/media/background1.jpg": "/booker-front-end/static/media/background1.bf9ad2780587b6f86f4f.jpg",
@@ -10,14 +10,15 @@
     "static/media/icon_vector.svg": "/booker-front-end/static/media/icon_vector.467c84b07b3267df92d0a11bc39fceb1.svg",
     "static/media/icon_library.svg": "/booker-front-end/static/media/icon_library.1ef78e679dde739723a3ee7f93759188.svg",
     "static/media/quatation.svg": "/booker-front-end/static/media/quatation.596e0f7554016a674c759c2aad378ade.svg",
+    "static/media/thumb_up-24px.svg": "/booker-front-end/static/media/thumb_up-24px.3a4013bc5430953c4cdaac4a7b3b4bb5.svg",
     "static/media/arrow.svg": "/booker-front-end/static/media/arrow.861b7fa53814610e5f5e5b4d61fe9c04.svg",
     "static/media/icon_home.svg": "/booker-front-end/static/media/icon_home.b3cc0a6a4d8a1f2461a5a0058dafff68.svg",
     "static/media/icon_flag.svg": "/booker-front-end/static/media/icon_flag.630776428b2941a7e4a8d9c083ae3780.svg",
-    "main.35518b45.css.map": "/booker-front-end/static/css/main.35518b45.css.map",
-    "main.801c6cda.js.map": "/booker-front-end/static/js/main.801c6cda.js.map"
+    "main.dd5f5d85.css.map": "/booker-front-end/static/css/main.dd5f5d85.css.map",
+    "main.0e619b5d.js.map": "/booker-front-end/static/js/main.0e619b5d.js.map"
   },
   "entrypoints": [
-    "static/css/main.35518b45.css",
-    "static/js/main.801c6cda.js"
+    "static/css/main.dd5f5d85.css",
+    "static/js/main.0e619b5d.js"
   ]
 }
