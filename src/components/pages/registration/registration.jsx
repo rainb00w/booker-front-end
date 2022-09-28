@@ -13,7 +13,8 @@ import { useDispatch } from 'react-redux';
 
 const Registration = () => {
     const dispatch = useDispatch();
-    const [err, setErr] = useState("");
+    const [errName, setErrName] = useState("");
+    const [errEmail, setErrEmail] = useState("");
 
 
     const validationSchema = yup.object().shape({
@@ -48,7 +49,6 @@ const Registration = () => {
             <section className={styles.section}>
                 <div className={styles.registr__form}>   
                     <div className={styles.form__border}>
-                        {err !== "" && (<h3>{err.message}</h3>)}
                         <Formik
                             initialValues={{
                                 name: "",
@@ -63,25 +63,29 @@ const Registration = () => {
                                 dispatch(authOperations.register({ name, email, password }))
                                     .then(answer => {
                                         const { data, response } = answer.payload
-                                        setErr("")
+                                        setErrName("")
+                                        setErrEmail("")
 
                                         if (data) {
                                             console.log(data)
                                         }
                                         else if (response) {
-                                            console.log(response.data)
-                                            setErr(response.data.message)
+                                            console.log("1!!", response.data)
+                                            setErrName(response.data.message)
                                         }
                                     })
                                     .catch(error => console.log("!!2", error));
                                 resetForm({values: ""})
                             }}
                         >
-                        {({ values, errors, touched, handleBlur, handleChange, handleSubmit }, emailError = err) => (
+                            {({ values, errors, touched, handleBlur, handleChange, handleSubmit },
+                                nameError = errName, emailError = errEmail) => (
                         <form onSubmit={handleSubmit}>
                             <a className={styles.google__auth}
                                 href="http://localhost:3001/api/user/google"
-                            >Google</a>
+                                    >Google</a>
+                                    
+                            {nameError && (<p className={styles.warning}>{errName}</p>)}
                             <p className={styles.label__title}>Name</p>
                             <input
                                 className={styles.input}
@@ -94,7 +98,8 @@ const Registration = () => {
                             />
                                 {errors.name && touched.name ?
                                     (<p className={styles.warning}>{errors.name}</p>) : null}
-                                    {emailError && (<p className={styles.warning}>{err}</p>)}
+                                    
+                            {emailError && (<p className={styles.warning}>{errEmail}</p>)}
                             <p className={styles.label__title}>Email</p>
                             <input
                                 className={styles.input}
