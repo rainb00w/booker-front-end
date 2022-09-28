@@ -2,7 +2,7 @@ import React, { useState }  from 'react';
 import { Link } from 'react-router-dom';
 
 import { Formik } from 'formik';
-import * as yup from 'yup';
+import { registrationValidationSchema } from 'services/yupValidationShema';
 
 import RegistrationText from '../../registrationText/registrationText';
 import styles from "../login/login.module.css";
@@ -17,33 +17,6 @@ const Registration = () => {
     const [errEmail, setErrEmail] = useState("");
 
 
-    const validationSchema = yup.object().shape({
-        name: yup.string()
-            .typeError("Will be a string")
-            .min(3)
-            .max(100)
-            .required("Required field"),
-        email: yup.string()
-            .typeError("Will be a string")
-            .email()
-            .matches(/^(([^<>()\[\]\\.,;:\s@!?"]{2,}(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ , 'Is not in correct format')
-            .min(10)
-            .max(63)
-            .required("Required field"),
-        password: yup.string()
-            .typeError("Will be a string")
-            .min(5)
-            .max(30)
-           // .matches(/^[^<>()\[\]\\.,;:\s"]*/, 'Is not in correct format')
-            .required("Required field"),
-        confirmPassword: yup.string()
-            .min(5)
-            .max(30)
-            .oneOf([yup.ref('password')], "Passwords doesn't match")
-            .required("Required field")
-    });
-
-
     return ( 
         <>
             <section className={styles.section}>
@@ -56,22 +29,17 @@ const Registration = () => {
                                 password: "",
                                 confirmPassword: ""
                             }}
-                            validationSchema={validationSchema}
+                            validationSchema={registrationValidationSchema}
                             onSubmit={(values, {resetForm}) => {
                                 const { name, email, password } = values;
-
-                      
-                                    dispatch(authOperations.register({ name, email, password }))
+                                dispatch(authOperations.register({ name, email, password }))
                                     .then(answer => {
-                                       
-                                        const { data, response } = answer.payload;
-                                        console.log(data);
-                                       console.log(response);
+                                        const { data, response } = answer.payload
                                         setErrName("");
                                         setErrEmail("");
 
                                         if (data) {
-                                            console.log(data)
+                                            resetForm({ values: "" });
                                         }
                                         else if (response) {
                                             throw response.data.message;
@@ -89,24 +57,21 @@ const Registration = () => {
                                                 setErrName("User with this name is already registered")
                                                 setErrEmail("User with this email is already registered")
                                                 return 
+                                            default:
+                                                return
                                         }
                                     });
-
-
-
-                                    
-                                resetForm({values: ""})
                             }}
                         >
-                            {({ values, errors, touched, handleBlur, handleChange, handleSubmit },
-                                nameError = errName, emailError = errEmail) => (
+                            {({ values, errors, touched, handleBlur, handleChange, handleSubmit }) => (
                         <form onSubmit={handleSubmit}>
                             <a className={styles.google__auth}
                                 href="http://localhost:3001/api/user/google"
                                     >Google</a>
-                                    
-                            {nameError && (<p className={styles.warning}>{errName}</p>)}
-                            <p className={styles.label__title}>Name</p>
+                            <p className={styles.label__title}>
+                                Name
+                                {errName && (<span className={styles.error}>* {errName}</span>)}
+                            </p>
                             <input
                                 className={styles.input}
                                 type="text"
@@ -118,9 +83,10 @@ const Registration = () => {
                             />
                                 {errors.name && touched.name ?
                                     (<p className={styles.warning}>{errors.name}</p>) : null}
-                                    
-                            {emailError && (<p className={styles.warning}>{errEmail}</p>)}
-                            <p className={styles.label__title}>Email</p>
+                            <p className={styles.label__title}>
+                                Email
+                                {errEmail && (<span className={styles.error}>* {errEmail}</span>)}
+                            </p>
                             <input
                                 className={styles.input}
                                 type="email"
