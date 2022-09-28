@@ -71,12 +71,23 @@
     background-color: #c05006;
 }
 
+.error,
 .warning {
     margin: 0;
-    margin-bottom: 8px;
+    margin-left: 5px;
     font-size: 12px;
     text-transform: lowercase;
-    color: rgb(161, 0, 0);
+}
+
+.error{
+    margin-left: 5px;
+    color: #FF6B08;
+}
+
+.warning {
+    text-align: left;
+    margin-bottom: 8px;
+    color: #e0190b;
 }
 
 .auth__describe {
@@ -261,7 +272,7 @@
     }
 
     .registr__form {
-        padding: 90px 75px 0;
+        padding: 90px 75px;
     }
 
     .log__text {
@@ -271,6 +282,4 @@
     .registration__text {
         padding: 180px 128px 0px;
     }
-
-
 }
