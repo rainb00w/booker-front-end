@@ -9,7 +9,6 @@ const Library = () => {
   const mobile = useMediaQuery({ query: '(max-width: 767px)' });
   return (
     <>
-      <h2>Library Section -------- </h2>
       <BookAddForm />
       {mobile ? (
         <BookTableMobile text="Already read" />

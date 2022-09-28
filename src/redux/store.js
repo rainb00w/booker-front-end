@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth';
-// import { contactsApi } from './contacts/contactsApi';
+import { booksApi } from './books/booksApi';
 // import filterSlice from '../redux/contacts/filterSlice';
 import persistStore from 'redux-persist/es/persistStore';
 import {
@@ -23,6 +23,7 @@ const authPersistConfig = {
   export const store = configureStore({
     reducer: {
       auth: persistReducer(authPersistConfig, authReducer),
+      [booksApi.reducerPath]: booksApi.reducer,
 
     },
     middleware: getDefaultMiddleware =>
@@ -30,7 +31,7 @@ const authPersistConfig = {
         serializableCheck: {
           ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
         },
-      }),
+      }).concat(booksApi.middleware),
   });
   
   export const persistor = persistStore(store);

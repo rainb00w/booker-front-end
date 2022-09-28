@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import s from './bookTable.module.css';
 import star from './symbol-defs.svg';
+import { useGetAllBooksQuery } from 'redux/books/booksApi';
 
 export default function BookTable({
   text,
@@ -11,8 +12,18 @@ export default function BookTable({
   pages = 213,
   rating = 5,
 }) {
+  const { data } = useGetAllBooksQuery();
+
   return (
     <>
+      {/* По полю статус можно разделить книги по разделам.  */}
+      {data?.payload.books.map(({ author, pages, title, year, status }) => (
+        <p key={title}>
+          {title} , Автор : {author} , Страниц : {pages} , Год : {year}, Статус
+     
+        </p>
+      ))}
+
       <section className={s.section}>
         <h3 className={s.title}>{text}</h3>
         <table className={s.table}>

@@ -3,8 +3,14 @@ import s from './bookAddForm.module.css';
 
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useAddBookMutation } from 'redux/books/booksApi';
 
 const BookAddForm = () => {
+
+  const [addContact, { isLoading }] = useAddBookMutation();
+
+
+
   const formik = useFormik({
     initialValues: {
       title: '',
@@ -27,8 +33,9 @@ const BookAddForm = () => {
         .required('Year is required'),
       pages: Yup.string().max(5, 'Too Long!').required('Pages is required'),
     }),
-    onSubmit: (values, { resetForm }) => {
-      resetForm({ values: '' });
+    onSubmit: ({title, author, year, pages}, { resetForm }) => {
+      addContact({title, author, year, pages}).then(resetForm({ values: '' }));
+      // resetForm({ values: '' });
     },
   });
 
@@ -98,11 +105,12 @@ const BookAddForm = () => {
         <button
           type="submit"
           className={s.btn}
-          onClick={() => window.location.reload(false)}
+          // onClick={() => window.location.reload(false)}
         >
           Add
         </button>
       </form>
+      {isLoading && (<p>Is Adding</p>)}
     </>
   );
 };
