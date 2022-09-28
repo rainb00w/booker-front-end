@@ -18,7 +18,8 @@ import PublicRoute from './components/routes/publicRoute';
 
 function App() {
   return (
-    <>
+  
+    <div className="main_container"> 
       <Header />
       <Suspense fallback="Load...">
         <Routes>
@@ -77,7 +78,7 @@ function App() {
           <Route path="*" element={<p>There is nothing here: 404!</p>} />
         </Routes>
       </Suspense>
-    </>
+    </div>
   );
 }
 
