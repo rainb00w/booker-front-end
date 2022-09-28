@@ -63,33 +63,40 @@ const Registration = () => {
                             onSubmit={(values, {resetForm}) => {
                                 const { name, email, password } = values;
 
+                      
+                                   
                                 dispatch(authOperations.register({ name, email, password }))
-                                    .then(answer => {
-                                        const { data, response } = answer.payload;
-                                        setErrName("");
-                                        setErrEmail("");
+                                .then(answer => {
+                                   
+                                    const { data, response } = answer.payload;
+                                    console.log(data);
+                                   console.log(response);
+                                    setErrName("");
+                                    setErrEmail("");
 
-                                        if (data) {
-                                            console.log(data)
-                                        }
-                                        else if (response) {
-                                            throw response.data.message;
-                                        }
-                                    })
-                                    .catch(error => {
-                                        switch (error) {
-                                            case "name":
-                                                setErrName("User with this name is already registered")
-                                                return 
-                                            case "email":
-                                                setErrEmail("User with this email is already registered")
-                                                return
-                                            case "name&email":
-                                                setErrName("User with this name is already registered")
-                                                setErrEmail("User with this email is already registered")
-                                                return 
-                                        }
-                                    });
+                                    if (data) {
+                                        console.log(data)
+                                    }
+                                    else if (response) {
+                                        throw response.data.message;
+                                    }
+                                })
+                                .catch(error => {
+                                    switch (error) {
+                                        case "name":
+                                            setErrName("User with this name is already registered")
+                                            return 
+                                        case "email":
+                                            setErrEmail("User with this email is already registered")
+                                            return
+                                        case "name&email":
+                                            setErrName("User with this name is already registered")
+                                            setErrEmail("User with this email is already registered")
+                                            return 
+                                    }
+                                });
+
+
                                 resetForm({values: ""})
                             }}
                         >
