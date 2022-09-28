@@ -3,6 +3,7 @@
     width: calc(100% - 2 * 20px);
     display: flex;
     flex-direction: column;
+    margin-bottom: 20px;
     /* justify-content: center; */
   }
   .label {
@@ -29,6 +30,7 @@
 @media screen and (min-width: 768px) and (max-width: 1199px) {
   .form {
     width: 704px;
+    margin-bottom: 40px;
   }
   .inputTitle {
     width: 704px;
@@ -54,8 +56,9 @@
 @media screen and (min-width: 1200px) {
   .form {
     display: flex;
-    justify-content: center;
-    width: 1141px;
+    justify-content: flex-start;
+    width: calc(100% - 2 * 16px);
+    margin-bottom: 80px;
   }
   .inputTitle {
     width: 346px;
@@ -87,7 +90,7 @@
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
-  line-height: 17px;
+  line-height: 1.21;
   color: #898f9f;
 }
 
@@ -120,7 +123,7 @@
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
-  line-height: 17px;
+  line-height: 1.21;
   color: #000000;
   width: 181px;
   height: 42px;
