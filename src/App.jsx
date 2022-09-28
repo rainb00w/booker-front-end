@@ -8,7 +8,6 @@ import Training from './pages/training/training';
 import Library from './pages/library/library';
 import Statistics from './pages/statistics/statistics';
 
-
 import PrivateRoute from './components/routes/privateRoute';
 import PublicRoute from './components/routes/publicRoute';
 
@@ -43,38 +42,34 @@ function App() {
             }
           />
 
-
-<Route
+          <Route
             path="/training"
             element={
               <PrivateRoute>
-              <Training />
+                <Training />
               </PrivateRoute>
             }
           />
 
-<Route
+          <Route
             path="/login"
             element={
               <PublicRoute restricted>
-              <LoginPage />
+                <LoginPage />
               </PublicRoute>
             }
           />
 
-
-<Route
+          <Route
             path="/register"
             element={
               <PublicRoute restricted>
-             <RegistrationPage />
+                <RegistrationPage />
               </PublicRoute>
             }
           />
 
-
-
-{/* 
+          {/* 
           <Route exact path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegistrationPage />} /> */}
           {/* <Route path="/statistics" element={<Statistics />} /> */}
