@@ -60,21 +60,57 @@ const Registration = () => {
                             onSubmit={(values, {resetForm}) => {
                                 const { name, email, password } = values;
 
-                                dispatch(authOperations.register({ name, email, password }))
+                                // dispatch(authOperations.register({ name, email, password }))
+                                //     .then(answer => {
+                                //         console.log('ANSWER', answer.payload);
+                                //         // const { data, response } = answer.payload
+                                //         // setErrName("")
+                                //         // setErrEmail("")
+
+                                //         // if (data) {
+                                //         //     console.log(data)
+                                //         // }
+                                //         // else if (response) {
+                                //         //     console.log("1!!", response.data)
+                                //         //     setErrName(response.data.message)
+                                //         // }
+                                //     })
+                                //     .catch(error => console.log("!!2", error));
+
+                                    dispatch(authOperations.register({ name, email, password }))
                                     .then(answer => {
-                                        const { data, response } = answer.payload
-                                        setErrName("")
-                                        setErrEmail("")
+                                       
+                                        const { data, response } = answer.payload;
+                                        console.log(data);
+                                       console.log(response);
+                                        setErrName("");
+                                        setErrEmail("");
 
                                         if (data) {
                                             console.log(data)
                                         }
                                         else if (response) {
-                                            console.log("1!!", response.data)
-                                            setErrName(response.data.message)
+                                            throw response.data.message;
                                         }
                                     })
-                                    .catch(error => console.log("!!2", error));
+                                    .catch(error => {
+                                        switch (error) {
+                                            case "name":
+                                                setErrName("User with this name is already registered")
+                                                return 
+                                            case "email":
+                                                setErrEmail("User with this email is already registered")
+                                                return
+                                            case "name&email":
+                                                setErrName("User with this name is already registered")
+                                                setErrEmail("User with this email is already registered")
+                                                return 
+                                        }
+                                    });
+
+
+
+                                    
                                 resetForm({values: ""})
                             }}
                         >
