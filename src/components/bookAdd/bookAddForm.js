@@ -7,7 +7,7 @@ import { useAddBookMutation } from 'redux/books/booksApi';
 
 const BookAddForm = () => {
 
-  const [addContact, { isLoading }] = useAddBookMutation();
+  const [addBook, { isLoading }] = useAddBookMutation();
 
 
 
@@ -34,7 +34,7 @@ const BookAddForm = () => {
       pages: Yup.string().max(5, 'Too Long!').required('Pages is required'),
     }),
     onSubmit: ({title, author, year, pages}, { resetForm }) => {
-      addContact({title, author, year, pages}).then(resetForm({ values: '' }));
+      addBook({title, author, year, pages}).then(resetForm({ values: '' }));
       // resetForm({ values: '' });
     },
   });
