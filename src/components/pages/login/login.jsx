@@ -4,9 +4,10 @@ import queryString from 'query-string';
 
 import Media from 'react-media';
 import AuthModal from '../../authModal/authModal';
+import RepeatVerify from '../repeatVerify/repeatVerify';
 
 import { Formik } from 'formik';
-import { loginValidationSchema } from 'services/yupValidationShema';
+import { loginValidationSchema } from 'services/yupValidationSchema';
 import { Link } from 'react-router-dom';
 
 
@@ -20,7 +21,8 @@ import { useDispatch } from 'react-redux';
 const Login = () => {
   const dispatch = useDispatch();
   const [err, setErr] = useState("");
-  const [modal, setModal] = useState(true);
+  const [modal, setModal] = useState(false);
+  const [verifyModal, setVerifyModal] = useState(false);
  
 
   const location = useLocation();
@@ -32,9 +34,11 @@ const Login = () => {
     }
   })
 
+  const modalSwitch = () => setVerifyModal(!verifyModal);
 
   return (
     <>
+      {verifyModal && <RepeatVerify switchFunc={modalSwitch} />}
       {modal && (
           <Media queries={{small: "(max-width: 768px)"}}>
               {matches => (
@@ -98,10 +102,9 @@ const Login = () => {
                   />
                   {errors.email && touched.email ? (
                     <p className={styles.warning}>{errors.email}</p>
-                  ) : null}
+                  ) : <span className={styles.default__count}></span>}
                   <p className={styles.label__title}>
                     Password
-                    {err && (<span className={styles.error}>* {err}</span>)}
                   </p>
                   <input
                     className={styles.input}
@@ -114,13 +117,22 @@ const Login = () => {
                   />
                   {errors.password && touched.password ? (
                     <p className={styles.warning}>{errors.password}</p>
-                  ) : null}
+                  ) : <span className={styles.default__count}></span>}
                   <button className={styles.form__button} type="submit">
                     Login
                   </button>
                 </form>
               )}
             </Formik>
+            <p className={styles.auth__verify}>
+              Didnt receive an email to verify your account? Try to send again:
+              <button
+                className={styles.button__verify}
+                type="button"
+                onClick={() => {modalSwitch()} }>
+                Repeat Verify
+              </button>
+            </p>
             <Link className={styles.auth__link} to="/register">Register</Link>
           </div>
         </div>

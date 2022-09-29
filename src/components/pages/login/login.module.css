@@ -51,7 +51,7 @@
 .input {
     padding: 12px 8px;
     min-width: 280px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .form__button {
@@ -77,22 +77,28 @@
     margin-left: 5px;
     font-size: 12px;
     text-transform: lowercase;
-}
-
-.error{
-    margin-left: 5px;
-    color: #FF6B08;
+    color: #F25137;
 }
 
 .warning {
     text-align: left;
-    margin-bottom: 8px;
-    color: #e0190b;
+    margin-bottom: 10px;
 }
 
-.auth__describe {
+.default__count {
+    display: block;
+    height: 14px;
+    margin-bottom: 10px;
+}
+
+.auth__describe,
+.auth__verify {
     font-size: 13px;
     color: #898F9F;
+}
+
+.auth__verify {
+    text-align: left;
 }
 
 .auth__link {
@@ -100,6 +106,16 @@
     text-align: center;
     font-size: 13px;
     color: #FF6B08;
+}
+
+.button__verify {
+    display: inline-block;
+    color: #FF6B08;
+    background: none;
+    border: none;
+    padding: none;
+    margin: none;
+    cursor: pointer;
 }
 
 /* =============================================== */
@@ -211,12 +227,17 @@
     .input {
         padding: 12px 12px;
         min-width: 320px;
-        margin-bottom: 32px;
     }
 
     .form__button {
         min-width: 320px;
     }
+
+    .warning,
+    .default__count {
+        margin-bottom: 22px;
+    }
+
 
     /* ===============================================  */
     .log__text {
