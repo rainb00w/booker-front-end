@@ -4,6 +4,8 @@ import StatisticsList from './statisticsList';
 import s from './statisticsList.module.css';
 
 import ModalYouAreGood from './modal/ModalYouAreGood';
+import ModalCongratulate from './modal/ModalCongratulate';
+import ModalExit from './modal/ModalExit';
 
 const Statistics = () => {
   return (
@@ -27,6 +29,8 @@ const Statistics = () => {
         <StatisticsList />
       </div>
       <ModalYouAreGood />
+      <ModalCongratulate />
+      <ModalExit />
     </>
   );
 };
