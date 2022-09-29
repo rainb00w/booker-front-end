@@ -32,6 +32,8 @@ const TrainingSidebar = styled.div`
 
 const Training = () => {
   const { data } = useGetAllBooksQuery();
+  // тут получаем все Книги
+  
   const trainingData = useGetAllTrainingsQuery();
   // trainingData это объект, данные доступны  => trainingData.data
 
