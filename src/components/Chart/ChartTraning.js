@@ -54,7 +54,7 @@ const ChartTraning = () => {
             <div className={s.chartBox}>
                 <p className={s.title}>
                     Кількість сторінок / день 
-                    <span className={s.planedPages}>0</span>
+                    <span className={s.planedPages}>34</span>
                 </p>
                 <div className={s.lineBox}>
                     <ul className={s.lineList}>
