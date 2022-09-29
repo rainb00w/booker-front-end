@@ -2,7 +2,7 @@ import React, { useState }  from 'react';
 import { Link } from 'react-router-dom';
 
 import { Formik } from 'formik';
-import { registrationValidationSchema } from 'services/yupValidationShema';
+import { registrationValidationSchema } from 'services/yupValidationSchema';
 
 import RegistrationText from '../../registrationText/registrationText';
 import styles from "../login/login.module.css";
@@ -15,10 +15,6 @@ const Registration = () => {
     const dispatch = useDispatch();
     const [errName, setErrName] = useState("");
     const [errEmail, setErrEmail] = useState("");
-
-    console.log(errName)
-    console.log(errEmail)
-
 
     return ( 
         <>
@@ -36,9 +32,6 @@ const Registration = () => {
                             onSubmit={(values, {resetForm}) => {
                                 const { name, email, password } = values;
 
-
-                      
-                                   
                                 dispatch(authOperations.register({ name, email, password }))
                                 .then(answer => {
                                     const { data, response } = answer.payload
@@ -68,7 +61,6 @@ const Registration = () => {
                                             return
                                     }
                                 });
-
                             }}
                         >
                             {({ values, errors, touched, handleBlur, handleChange, handleSubmit }) => (
@@ -90,7 +82,8 @@ const Registration = () => {
                                 onChange={handleChange}
                             />
                                 {errors.name && touched.name ?
-                                    (<p className={styles.warning}>{errors.name}</p>) : null}
+                                        (<p className={styles.warning}>{errors.name}</p>)
+                                        : (<span className={styles.default__count}></span>)}
                             <p className={styles.label__title}>
                                 Email
                                 {errEmail && (<span className={styles.error}>* {errEmail}</span>)}
@@ -105,7 +98,8 @@ const Registration = () => {
                                 onChange={handleChange}
                             />
                                 {errors.email && touched.email ?
-                                    (<p className={styles.warning}>{errors.email}</p>) : null}
+                                    (<p className={styles.warning}>{errors.email}</p>) :
+                                    (<span className={styles.default__count}></span>)}
                             <p className={styles.label__title}>Password</p>
                             <input
                                 className={styles.input}
@@ -117,7 +111,8 @@ const Registration = () => {
                                 onChange={handleChange}
                             />
                                 {errors.password && touched.password ?
-                                    (<p className={styles.warning}>{errors.password}</p>) : null}
+                                    (<p className={styles.warning}>{errors.password}</p>)
+                                    : (<span className={styles.default__count}></span>)}
                             <p className={styles.label__title}>Confirm password</p>
                             <input
                                 className={styles.input}
@@ -129,7 +124,8 @@ const Registration = () => {
                                 onChange={handleChange}
                             />
                                 {errors.confirmPassword && touched.confirmPassword ?
-                                    (<p className={styles.warning}>{errors.confirmPassword}</p>) : null}
+                                    (<p className={styles.warning}>{errors.confirmPassword}</p>)
+                                    : (<span className={styles.default__count}></span>)}
                                 <button className={styles.form__button} type='submit'>Register</button>
                             </form>
                             )}
