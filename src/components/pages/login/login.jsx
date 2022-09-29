@@ -6,8 +6,9 @@ import Media from 'react-media';
 import AuthModal from '../../authModal/authModal';
 
 import { Formik } from 'formik';
-import * as yup from 'yup';
+import { loginValidationSchema } from 'services/yupValidationShema';
 import { Link } from 'react-router-dom';
+
 
 import svgPath from 'services/svgPath';
 import styles from './login.module.css';
@@ -17,8 +18,10 @@ import { useDispatch } from 'react-redux';
 
 
 const Login = () => {
-  const [modal, setModal] = useState(true);
   const dispatch = useDispatch();
+  const [err, setErr] = useState("");
+  const [modal, setModal] = useState(true);
+ 
 
   const location = useLocation();
   const query = queryString.parse(location.search);
@@ -29,20 +32,6 @@ const Login = () => {
     }
   })
 
-  const validationSchema = yup.object().shape({
-    email: yup.string()
-      .typeError("Will be a string")
-      .email()
-      .matches(/^(([^<>()\[\]\\.,;:\s@!?"]{2,}(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ , 'Is not in correct format')
-      .min(10)
-      .max(63)
-      .required("Required field"),
-    password: yup
-      .string()
-      .typeError('Will be a string')
-      .min(6)
-      .required('Required'),
-  });
 
   return (
     <>
@@ -69,9 +58,19 @@ const Login = () => {
                 email: '',
                 password: '',
               }}
-              validationSchema={validationSchema}
-              onSubmit={({ email, password }, { resetForm }) => {
-                dispatch(authOperations.logIn({ email, password }));
+              validationSchema={loginValidationSchema}
+              onSubmit={(values, { resetForm }) => {
+                const { email, password } = values;
+                dispatch(authOperations.logIn({ email, password }))
+                  .then(answer => {
+                    const { response } = answer.payload;
+                    if (response) {
+                      throw response.data.message;
+                    }
+                  })
+                  .catch(error => {
+                    setErr(error)
+                  })
                 resetForm({ values: '' });
               }}
             >
@@ -84,7 +83,10 @@ const Login = () => {
                 handleSubmit,
               }) => (
                 <form onSubmit={handleSubmit}>
-                  <p className={styles.label__title}>Email</p>
+                  <p className={styles.label__title}>
+                    Email
+                    {err && (<span className={styles.error}>* {err}</span>)}
+                  </p>
                   <input
                     className={styles.input}
                     type="email"
@@ -97,7 +99,10 @@ const Login = () => {
                   {errors.email && touched.email ? (
                     <p className={styles.warning}>{errors.email}</p>
                   ) : null}
-                  <p className={styles.label__title}>Password</p>
+                  <p className={styles.label__title}>
+                    Password
+                    {err && (<span className={styles.error}>* {err}</span>)}
+                  </p>
                   <input
                     className={styles.input}
                     type="password"

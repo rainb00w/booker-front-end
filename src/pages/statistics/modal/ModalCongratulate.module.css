@@ -1,0 +1,36 @@
+.container {
+  width: 280px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-right: 27px;
+  padding-left: 27px;
+  text-align: center;
+}
+.thumbUp {
+  margin-bottom: 14px;
+  width: 54px;
+  height: 54px;
+}
+/* цвет иконки меняем тут */
+.thumbUp * {
+  fill: #ff6b08;
+}
+.text {
+  font-family: Montserrat;
+  font-style: 16px;
+  line-height: 1.375;
+  font-weight: 500;
+  text-align: center;
+  color: #242a37;
+  margin-bottom: 24px;
+}
+.btn {
+  width: 152px;
+  height: 40px;
+  background-color: #ff6b08;
+  padding: 12px 12px;
+  border: none;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 1.25;
+}
