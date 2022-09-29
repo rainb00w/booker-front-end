@@ -33,7 +33,7 @@ ul {
     }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1280px) {
     .myGoalMainBox {
         width: 288px;
         height: 304px;
@@ -56,7 +56,7 @@ ul {
     }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1280px) {
     .myGoalHeadingBox {
         width: 288px;
         margin: 0%;
@@ -88,7 +88,7 @@ ul {
     }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1280px) {
     .statsBox {
         height: 244px;
     }
@@ -107,7 +107,7 @@ ul {
     }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1280px) {
     .myGoalStatsList {
         margin: 0%;
     }
@@ -133,7 +133,7 @@ ul {
     }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1280px) {
     .myGoalStatsListItem {
         margin-bottom: 0px;
     }
@@ -156,7 +156,7 @@ ul {
     }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1280px) {
     .myGoalStatsDigitBox {
         width: 100px;
         height: 100px;
@@ -178,7 +178,7 @@ ul {
     }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1280px) {
     .myGoalStatsDigit {
         font-size: 45px;
     }
@@ -204,7 +204,7 @@ ul {
     }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1280px) {
     .myGoalStatsText {
         font-size: 14px;
         line-height: 1.2;
