@@ -4,6 +4,7 @@ import PeriodSelection from '../../components/PeriodSelection';
 import MyGoal from '../../components/MyGoal';
 import styled from 'styled-components';
 
+ // Raduka test
 import { useGetAllBooksQuery } from 'redux/books/booksApi';
 import * as React from 'react';
 import { useState } from 'react';
@@ -11,7 +12,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useAddTrainingMutation } from 'redux/books/trainingApi';
 import { useGetAllTrainingsQuery } from 'redux/books/trainingApi';
-
+ // Raduka test
 // import Clock from 'components/Clock/Clock';
 
 const TrainingContainer = styled.div`
@@ -30,6 +31,9 @@ const TrainingSidebar = styled.div`
 `;
 
 const Training = () => {
+
+
+  // Raduka CODE
   const { data } = useGetAllBooksQuery();
   const trainingData = useGetAllTrainingsQuery();
   // trainingData это объект, данные доступны  => trainingData.data
@@ -72,6 +76,8 @@ const Training = () => {
       .catch(error => console.error('rejected', error));
   };
 
+   //  Raduka CODE
+  
   return (
     <>
       <TrainingContainer>
@@ -86,6 +92,7 @@ const Training = () => {
         {/* <p>asd</p> */}
       </TrainingContainer>
 
+      // Raduka test
       <div>
         <DatePicker
           selected={startDate}
@@ -137,6 +144,7 @@ const Training = () => {
         </div>
         {isLoading && <p>In process...</p>}
       </div>
+      // Raduka test
     </>
   );
 };
