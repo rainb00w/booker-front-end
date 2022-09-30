@@ -38,12 +38,12 @@ const SelectBooks = ({ options, setArrayValue, ...rest }) => {
   return (
     <>
       <Wrapper>
-        <Autocomplete
+        {bookOptions && <Autocomplete
           onChange={(event, newValue) => setValue(newValue)}
           val={value}
           options={bookOptions}
           renderInput={params => <TextField {...params} />}
-        />
+        />}
 
         <button type="button" onClick={onAddButtonClick}>
           Додати
