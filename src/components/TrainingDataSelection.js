@@ -20,11 +20,10 @@ const StyledControlsWrapper = styled.div`
 // ];
 
 const TrainingDataSelection = ({ onStartTraining }) => {
-
   const { data } = useGetAllBooksQuery();
 
   const booksOptions = data?.payload.books;
-  console.log('booksOptions - ', booksOptions);
+  // console.log('booksOptions - ', booksOptions);
 
   const initialValues = {
     startDate: null,
