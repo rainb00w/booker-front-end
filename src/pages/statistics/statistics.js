@@ -1,5 +1,5 @@
 import React from 'react';
-
+import SendPageForm from './sendPageForm';
 import StatisticsList from './statisticsList';
 import s from './statisticsList.module.css';
 
@@ -12,19 +12,7 @@ const Statistics = () => {
     <>
       <div className={s.container}>
         <h2 className={s.resultsHeader}>Результати</h2>
-        <div className={s.inputs}>
-          <label className={s.inputsLabel}>
-            Дата
-            <input className={s.inputPage} type="date" name="dateInput" />
-          </label>
-          <label className={s.inputsLabel}>
-            Кількість сторінок
-            <input className={s.inputDate} type="number" name="pageInput" />
-          </label>
-        </div>
-        <button className={s.addResultBtn} type="submit">
-          Додати результат
-        </button>
+        <SendPageForm />
         <h2 className={s.statisticsHeader}>Статистика</h2>
         <StatisticsList />
       </div>

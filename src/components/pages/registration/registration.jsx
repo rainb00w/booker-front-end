@@ -1,5 +1,5 @@
 import React, { useState }  from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { Formik } from 'formik';
 import { registrationValidationSchema } from 'services/yupValidationSchema';
@@ -13,6 +13,7 @@ import { useDispatch } from 'react-redux';
 
 const Registration = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [errName, setErrName] = useState("");
     const [errEmail, setErrEmail] = useState("");
 
@@ -34,7 +35,7 @@ const Registration = () => {
 
                                 dispatch(authOperations.register({ name, email, password }))
                                 .then(answer => {
-                                    const { data, response } = answer.payload
+                                    const { data, response } = answer?.payload
                                     setErrName("");
                                     setErrEmail("");
 
@@ -60,7 +61,9 @@ const Registration = () => {
                                         default:
                                             return
                                     }
-                                });
+                                }).finally(
+                                    navigate('/login')
+                                );
                             }}
                         >
                             {({ values, errors, touched, handleBlur, handleChange, handleSubmit }) => (
