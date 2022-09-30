@@ -25,9 +25,11 @@ const Login = () => {
   const location = useLocation();
   const query = queryString.parse(location.search);
 
+
+
   useEffect(() => {
     if (query.token) {
-      console.log(query);
+      console.log('111',query.token);
     }
   });
 
