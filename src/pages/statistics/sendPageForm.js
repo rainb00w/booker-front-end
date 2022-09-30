@@ -1,3 +1,4 @@
+import { YearPicker } from '@mui/x-date-pickers';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
@@ -19,6 +20,15 @@ const SendPageForm = () => {
       dateInput: new Date().yyyymmdd(),
       pageInput: '',
     },
+    validationSchema: Yup.object().shape({
+      dateInput: Yup.date()
+        .min('2020-01-01') // тут повинна бути дата реєстрації користувача
+        .max(new Date().yyyymmdd()), // максимальна дата - це сьогодні
+      pageInput: Yup.number()
+        .positive()
+        .integer('К-ть сторінок має бути ціла')
+        .required('Book page is required'),
+    }),
     onSubmit: ({ dateInput, pageInput }) => {
       console.log(dateInput, pageInput);
     },
