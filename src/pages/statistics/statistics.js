@@ -10,8 +10,8 @@ import ModalCongratulate from './modal/ModalCongratulate';
 import ModalExit from './modal/ModalExit';
 
 const Statistics = () => {
-  const training = useGetAllTrainingsQuery();
-  // console.log(training);
+  // const [getAllTrainings] = useGetAllTrainingsQuery();
+  // console.log(getAllTrainings);
   return (
     <>
       <div className={s.container}>
