@@ -1,5 +1,5 @@
-import DatePicker from './DataPicker';
-import SetMultiselectValues from './SetMultiselectValues';
+import DatePicker from '../DataPicker';
+import SetMultiselectValues from '../SetMultiselectValues/SetMultiselectValues';
 
 function FormikControl(props) {
   const { control, ...rest } = props;

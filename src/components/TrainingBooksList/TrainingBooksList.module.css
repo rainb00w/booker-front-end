@@ -1,0 +1,47 @@
+.item {
+  padding: 20px 36px 20px 34px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.25;
+  color: #242A37;
+  border-bottom: 1px solid #E0E5EB;
+}
+
+.wrapper {
+  position: relative;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.wrapper::before {
+  content: ' ';
+  position: absolute;
+  top: 0;
+  left: -32px;
+  width: 22px;
+  height: 17px;
+  background-image: url('./library-icon.svg');
+}
+
+.title {
+  margin-bottom: 12px;
+}
+
+.text {
+  display: grid;
+  grid-template-columns: 115px 1fr;
+}
+
+.text:not(:last-of-type) {
+  margin-bottom: 14px;
+}
+
+.caption {
+  color: #898F9F;
+}
+
+.icon {
+  fill: black;
+}

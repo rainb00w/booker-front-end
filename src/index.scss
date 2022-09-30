@@ -1,20 +1,73 @@
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+ul {
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+li {
+  margin: 0px;
+  padding: 0px;
+}
+
+.visually-hidden {
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  border: 0px;
+  padding: 0px;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  margin: -1px;
+}
+
 .main_container {
   margin-left: auto;
   margin-right: auto;
 
 
-@media screen and (min-width: 768px) {
-  body {
-    overflow-x: hidden;
-  }
-  max-width: 768px;
-}
+  @media screen and (min-width: 768px) {
+    body {
+      overflow-x: hidden;
+    }
 
-@media screen and (min-width: 1280px) {
-  body {
-    overflow-x: hidden;
+    max-width: 768px;
   }
-  max-width: 1200px;
-}
+
+  @media screen and (min-width: 1280px) {
+    body {
+      overflow-x: hidden;
+    }
+
+    max-width: 1200px;
+  }
 
 }

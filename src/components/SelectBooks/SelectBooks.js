@@ -1,8 +1,7 @@
 import { Stack, Autocomplete, TextField } from '@mui/material';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-
-import TrainingBooksList from './TrainingBooksList ';
+import TrainingBooksList from '../TrainingBooksList/TrainingBooksList';
 
 const Wrapper = styled.div`
   display: flex;

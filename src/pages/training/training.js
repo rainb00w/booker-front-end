@@ -1,4 +1,4 @@
-import TrainingForm from '../../components/TrainingForm';
+import TrainingForm from '../../components/TrainingFrom';
 import MyGoal from '../../components/MyGoal';
 import ChartModal from '../../components/Chart/ChartModal';
 import styled from 'styled-components';
@@ -33,7 +33,7 @@ const TrainingSidebar = styled.div`
 const Training = () => {
   const { data } = useGetAllBooksQuery();
   // тут получаем все Книги
-  
+
   const trainingData = useGetAllTrainingsQuery();
   // trainingData это объект, данные доступны  => trainingData.data
 
@@ -108,7 +108,7 @@ const Training = () => {
                   setBooksInfo([...booksInfo, element]);
                 } else {
                   // remove from list
-                  console.log('remove from lise');
+                  console.log('remove from list');
                   setBooksInfo(
                     booksInfo.filter(books => books._id !== element._id)
                   );
