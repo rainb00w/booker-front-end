@@ -47,13 +47,15 @@
 .resultsHeader,
 .statisticsHeader {
   text-transform: uppercase;
-  height: 12px;
+  font-size: 12px;
   line-height: 1.25;
   font-weight: 600;
   color: #242a37;
   text-align: center;
+  margin-bottom: 12px;
 }
 .statisticsHeader {
+  margin-bottom: 4px;
   font-weight: 700;
 }
 .statisticsList {
