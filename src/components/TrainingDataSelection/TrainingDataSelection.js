@@ -1,7 +1,7 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import styled from 'styled-components';
-import FormikControl from './FormikControl';
+import FormikControl from '../FormikControl/FormikControl';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useGetAllBooksQuery } from 'redux/books/booksApi';
 

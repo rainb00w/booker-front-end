@@ -3,7 +3,7 @@ import {
   StyledItem,
   StyledValue,
   StyledTimerWrapper,
-} from './Timer.style';
+} from './Timer.style.js';
 import { useState, useEffect, useRef } from 'react';
 
 const Timer = selectedDate => {
