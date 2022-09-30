@@ -30,7 +30,7 @@ const SendPageForm = () => {
         .required('Введіть кількість сторінок'),
     }),
     onSubmit: ({ dateInput, pageInput }) => {
-      console.log(dateInput, pageInput, Date.now());
+      console.log({ date: dateInput, pages: pageInput });
     },
   });
 
@@ -38,10 +38,10 @@ const SendPageForm = () => {
     <form onSubmit={formik.handleSubmit}>
       <div className={s.inputs}>
         <label className={s.inputsLabel}>
+          Дата
           {formik.errors.dateInput && formik.touched.dateInput ? (
             <div>{formik.errors.dateInput}</div>
           ) : null}
-          Дата
           <input
             className={s.inputPage}
             type="date"
