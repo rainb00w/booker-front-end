@@ -4,8 +4,8 @@ import * as Yup from 'yup';
 import s from './statisticsList.module.css';
 const SendPageForm = () => {
   Date.prototype.yyyymmdd = function () {
-    var mm = this.getMonth() + 1; // getMonth() is zero-based
-    var dd = this.getDate();
+    let mm = this.getMonth() + 1; // getMonth() is zero-based
+    let dd = this.getDate();
 
     return [
       this.getFullYear(),
