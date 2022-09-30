@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import queryString from 'query-string';
-
+import classNames from 'classnames';
 import Media from 'react-media';
 import AuthModal from '../../authModal/authModal';
 import RepeatVerify from '../repeatVerify/repeatVerify';
@@ -113,7 +113,14 @@ const Login = () => {
                     />
                     <span
                       onClick={handleClickShowIcon}
-                      className={styles.svg__eyeOffCont}
+                      className={
+                        inputType === 'text'
+                          ? classNames(
+                              styles.svg__eyeOffCont,
+                              styles.svg__eyeOffContActive
+                            )
+                          : styles.svg__eyeOffCont
+                      }
                     >
                       <svg className={styles.svg__eyeOff}>
                         <use href={svgPath.eyeOff + '#eyeOff'}></use>
