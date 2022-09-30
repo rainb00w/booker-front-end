@@ -304,3 +304,26 @@
         padding: 180px 128px 0px;
     }
 }
+
+.label_password {
+position: relative;
+}
+
+.svg__eyeOffCont{
+    position: absolute;
+    top: 40px;
+    right: 10px;
+    stroke: #898F9F;
+}
+
+.svg__eyeOffCont:hover,
+.svg__eyeOffCont:focus {
+    cursor: pointer;
+    stroke: #FF6B08;
+}
+
+.svg__eyeOff {
+    width: 20px;
+    height: 20px;
+    stroke: inherit;
+}
