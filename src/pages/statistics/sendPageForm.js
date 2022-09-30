@@ -1,4 +1,3 @@
-import { YearPicker } from '@mui/x-date-pickers';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
@@ -27,10 +26,12 @@ const SendPageForm = () => {
       pageInput: Yup.number()
         .positive('Введіть корректну кількість сторінок')
         .integer('К-ть сторінок має бути ціла')
+        .max(999, 'Забагато сторінок')
         .required('Введіть кількість сторінок'),
     }),
-    onSubmit: ({ dateInput, pageInput }) => {
+    onSubmit: ({ dateInput, pageInput }, { resetForm }) => {
       console.log({ date: dateInput, pages: pageInput });
+      resetForm();
     },
   });
 
