@@ -25,9 +25,9 @@ const SendPageForm = () => {
         .min('2020-01-01') // тут повинна бути дата реєстрації користувача
         .max(new Date().yyyymmdd()), // максимальна дата - це сьогодні
       pageInput: Yup.number()
-        .positive()
+        .positive('Введіть корректну кількість сторінок')
         .integer('К-ть сторінок має бути ціла')
-        .required('Book page is required'),
+        .required('Введіть кількість сторінок'),
     }),
     onSubmit: ({ dateInput, pageInput }) => {
       console.log(dateInput, pageInput);
