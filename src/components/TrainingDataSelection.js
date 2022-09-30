@@ -3,6 +3,7 @@ import * as Yup from 'yup';
 import styled from 'styled-components';
 import FormikControl from './FormikControl';
 import 'react-datepicker/dist/react-datepicker.css';
+import { useGetAllBooksQuery } from 'redux/books/booksApi';
 
 const StyledControlsWrapper = styled.div`
   display: flex;
@@ -10,15 +11,21 @@ const StyledControlsWrapper = styled.div`
   justify-content: space-around;
 `;
 
-const booksOptions = [
-  { id: 1, title: 'book1' },
-  { id: 2, title: 'book2' },
-  { id: 3, title: 'book3' },
-  { id: 4, title: 'book4' },
-  { id: 5, title: 'book5' },
-];
+// const booksOptions = [
+//   { id: 1, title: 'book1' },
+//   { id: 2, title: 'book2' },
+//   { id: 3, title: 'book3' },
+//   { id: 4, title: 'book4' },
+//   { id: 5, title: 'book5' },
+// ];
 
 const TrainingDataSelection = ({ onStartTraining }) => {
+
+  const { data } = useGetAllBooksQuery();
+
+  const booksOptions = data?.payload.books;
+  console.log('booksOptions - ', booksOptions);
+
   const initialValues = {
     startDate: null,
     endDate: null,

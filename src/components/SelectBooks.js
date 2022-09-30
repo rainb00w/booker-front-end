@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 
 const SelectBooks = ({ options, setArrayValue, ...rest }) => {
   const [value, setValue] = useState(null);
-  const bookOptions = options.map(option => option.title);
+  const bookOptions = options?.map(option => option.title);
   const [booksList, setBooksList] = useState([]);
 
   useEffect(() => {
