@@ -23,27 +23,25 @@ const SelectBooks = ({ options, setArrayValue, ...rest }) => {
   const onAddButtonClick = e => {
     const selectBook = options.find(book => book.title === value);
     console.log('selectBook', selectBook);
-    setBooksList(booksList => {
-      booksList.push(selectBook);
-      return booksList;
-    });
+
+    setBooksList(prevBooksList => [...prevBooksList, selectBook]);
     console.log('booksList', booksList);
   };
 
   const onDelete = id => {
-    setBooksList(prevState => prevState.filter(book => book.id !== id));
+    setBooksList(prevState => prevState.filter(book => book._id !== id));
     console.log('booksList', booksList);
   };
 
   return (
     <>
       <Wrapper>
-        {bookOptions && <Autocomplete
+        <Autocomplete
           onChange={(event, newValue) => setValue(newValue)}
           val={value}
-          options={bookOptions}
+          options={bookOptions ? bookOptions : []}
           renderInput={params => <TextField {...params} />}
-        />}
+        />
 
         <button type="button" onClick={onAddButtonClick}>
           Додати
