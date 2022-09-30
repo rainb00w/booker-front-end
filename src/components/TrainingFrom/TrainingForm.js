@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import TrainingDataSelection from '../TrainingDataSelection';
-import { TrainingTitle } from './TrainingTitle';
+import TrainingTitle from '../TrainingTitle';
 import Timer from '../Timer/Timer';
 import { StyledTimerContainer } from './TrainingForm.style';
 

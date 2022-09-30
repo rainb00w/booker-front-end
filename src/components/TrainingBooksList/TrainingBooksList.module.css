@@ -28,7 +28,7 @@
   content: ' ';
   position: absolute;
   top: 0;
-  left: -32px;
+  left: -33px;
   width: 22px;
   height: 17px;
   background-image: url('./library-icon.svg');
@@ -53,8 +53,8 @@
 
 .button {
   position: relative;
-  top: -10px;
-  right: -10px;
+  top: -8px;
+  right: -8px;
   padding: 10px;
   color: #A6ABB9;
   background-color: transparent;
