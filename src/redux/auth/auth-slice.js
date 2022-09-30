@@ -13,8 +13,11 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    increment(state) {
-     console.log(state);
+    googleLogIn(state, action) {
+     state.token = action?.payload;
+     state.isLoggedIn = true;
+     state.isLogging = false;
+     state.loginError = null;
     },
   },
   extraReducers: {
@@ -51,4 +54,6 @@ const authSlice = createSlice({
   },
 });
 
+
+export const { googleLogIn } = authSlice.actions;
 export default authSlice.reducer;

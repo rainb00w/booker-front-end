@@ -16,6 +16,8 @@ import styles from './login.module.css';
 import { authOperations } from '../../../redux/auth';
 import { useDispatch } from 'react-redux';
 
+import { googleLogIn } from 'redux/auth/auth-slice';
+
 const Login = () => {
   const dispatch = useDispatch();
   const [err, setErr] = useState('');
@@ -29,7 +31,7 @@ const Login = () => {
 
   useEffect(() => {
     if (query.token) {
-      console.log('111',query.token);
+      dispatch(googleLogIn(query.token));
     }
   });
 
@@ -72,6 +74,9 @@ const Login = () => {
                   .catch(error => {
                     setErr(error);
                   });
+
+                  
+
                 resetForm({ values: '' });
               }}
             >
