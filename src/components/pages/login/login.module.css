@@ -322,6 +322,10 @@ position: relative;
     stroke: #FF6B08;
 }
 
+.svg__eyeOffContActive{
+    stroke: #FF6B08;
+}
+
 .svg__eyeOff {
     width: 20px;
     height: 20px;
