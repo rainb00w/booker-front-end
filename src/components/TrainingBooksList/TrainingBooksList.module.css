@@ -1,11 +1,20 @@
+.list {
+  margin-top: 20px;
+  margin-bottom: 32px;
+}
+
 .item {
-  padding: 20px 36px 20px 34px;
+  padding: 20px 0px 20px 34px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
   font-size: 12px;
   line-height: 1.25;
   color: #242A37;
   border-bottom: 1px solid #E0E5EB;
+}
+
+.item:first-of-type {
+  border-top: 1px solid #E0E5EB;
 }
 
 .wrapper {
@@ -19,7 +28,7 @@
   content: ' ';
   position: absolute;
   top: 0;
-  left: -32px;
+  left: -33px;
   width: 22px;
   height: 17px;
   background-image: url('./library-icon.svg');
@@ -40,6 +49,16 @@
 
 .caption {
   color: #898F9F;
+}
+
+.button {
+  position: relative;
+  top: -8px;
+  right: -8px;
+  padding: 10px;
+  color: #A6ABB9;
+  background-color: transparent;
+  border-color: transparent;
 }
 
 .icon {
