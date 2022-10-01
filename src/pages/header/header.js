@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -9,6 +9,7 @@ import Info from './info';
 import { authOperations } from '../../redux/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { authSelectors } from '../../redux/auth';
+import { useTranslation } from 'react-i18next';
 
 const style = {
   position: 'absolute',
@@ -21,6 +22,11 @@ const style = {
 
 const Header = () => {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+
+  const { t, i18n } = useTranslation();
+  const changeLanguage = language => {
+    i18n.changeLanguage(language);
+  };
 
   const user = 'Martha Stewart'; //Добавить текущего пользователя
   const userLogo = user[0];
@@ -59,6 +65,12 @@ const Header = () => {
 
   return (
     <>
+        
+      
+      <button onClick={() => changeLanguage('en')}>EN</button>
+      <button onClick={() => changeLanguage('ua')}>UA</button>
+        <div> {t("text")} </div>
+
       <header className={isLoggedIn ? s.header : s.header_l}>
         <Link to="/" className={s.logo}>
           BR
@@ -144,7 +156,9 @@ const Header = () => {
             </button>
           </Box>
         </Modal>
+  
       </div>
+     
     </>
   );
 };

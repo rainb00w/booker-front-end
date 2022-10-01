@@ -3,7 +3,6 @@ import { Route, Routes } from 'react-router-dom';
 
 import LoginPage from './pages/login/loginPage';
 import RegistrationPage from './pages/registration/registrationPage';
-import ChangePasswordPage from 'pages/changePassword/changePasswordPage';
 import Header from './pages/header/header';
 import Training from './pages/training/training';
 import Library from './pages/library/library';
@@ -67,15 +66,6 @@ function App() {
             element={
               <PublicRoute restricted>
                 <RegistrationPage />
-              </PublicRoute>
-            }
-          />
-
-          <Route
-            path="/changePassword"
-            element={
-              <PublicRoute restricted>
-                <ChangePasswordPage />
               </PublicRoute>
             }
           />
