@@ -3,7 +3,7 @@ import { Field, ErrorMessage } from 'formik';
 export { useState } from 'react';
 
 function DatePicker(props) {
-  const { label, name, ...rest } = props;
+  const { label, name, setValue, ...rest } = props;
   return (
     <div>
       <label htmlFor={name}></label>
@@ -18,7 +18,10 @@ function DatePicker(props) {
               {...rest}
               selected={value}
               placeholderText={label}
-              onChange={val => setFieldValue(name, val)}
+              onChange={val => {
+                setFieldValue(name, val);
+                setValue(val);
+              }}
             />
           );
         }}

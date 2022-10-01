@@ -3,7 +3,7 @@ import { Field, ErrorMessage, FieldArray } from 'formik';
 export { useState } from 'react';
 
 const SetMultiselectValues = props => {
-  const { name, ...rest } = props;
+  const { name, setValue, ...rest } = props;
   return (
     <div>
       <label htmlFor={name}></label>
@@ -18,7 +18,10 @@ const SetMultiselectValues = props => {
               {...field}
               {...rest}
               selected={value}
-              setArrayValue={val => setFieldValue(name, val)}
+              setArrayValue={val => {
+                setFieldValue(name, val);
+                setValue(val);
+              }}
             />
           );
         }}
