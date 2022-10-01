@@ -21,7 +21,7 @@ import { googleLogIn } from 'redux/auth/auth-slice';
 const Login = () => {
   const dispatch = useDispatch();
   const [err, setErr] = useState('');
-  // const [modal, setModal] = useState(false);
+  const [modal, setModal] = useState(false);
 
   const [verifyModal, setVerifyModal] = useState(false);
   const [inputType, setInputType] = useState('password');
@@ -30,10 +30,18 @@ const Login = () => {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
 
   useEffect(() => {
+    isLoggedIn ? setModal(false) : setModal(true);
+  }, [isLoggedIn]);
+
+  useEffect(() => {
     if (query.token) {
       dispatch(googleLogIn(query.token));
     }
   });
+
+  const modalBtnClick = () => {
+    setModal(false);
+  };
 
   const modalSwitch = () => setVerifyModal(!verifyModal);
   const handleClickShowIcon = () => {
@@ -42,9 +50,11 @@ const Login = () => {
   return (
     <>
       {verifyModal && <RepeatVerify switchFunc={modalSwitch} />}
-      {!isLoggedIn && (
+      {modal && (
         <Media queries={{ small: '(max-width: 768px)' }}>
-          {matches => <>{matches.small && <AuthModal />}</>}
+          {matches => (
+            <>{matches.small && <AuthModal modalBtnClick={modalBtnClick} />}</>
+          )}
         </Media>
       )}
       <section className={styles.section}>
