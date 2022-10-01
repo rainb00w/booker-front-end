@@ -2,6 +2,8 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 import s from './statisticsList.module.css';
+import { useGetAllTrainingsQuery } from '../../redux/books/trainingApi';
+
 const SendPageForm = () => {
   Date.prototype.yyyymmdd = function () {
     let mm = this.getMonth() + 1; // getMonth() is zero-based
@@ -13,6 +15,12 @@ const SendPageForm = () => {
       (dd > 9 ? '' : '0') + dd,
     ].join('-');
   };
+  const { startedTimeStamp } = useGetAllTrainingsQuery();
+  console.log(new Date(startedTimeStamp).yyyymmdd());
+
+  // let startDate = Date.parse(startedTimeStamp);
+  // console.log(startDate);
+  // console.log(new Date.now());
 
   const formik = useFormik({
     initialValues: {
@@ -21,7 +29,10 @@ const SendPageForm = () => {
     },
     validationSchema: Yup.object().shape({
       dateInput: Yup.date()
-        .min('2020-01-01') // тут повинна бути дата реєстрації користувача або якась інша
+        .min(
+          new Date(startedTimeStamp).yyyymmdd().toString(),
+          'Ви не можете ввести дату до початку тренування'
+        ) // тут треба потестить
         .max(new Date().yyyymmdd(), 'Ви не можете ввести дату в майбутньому'), // максимальна дата - це сьогодні
       pageInput: Yup.number()
         .positive('Введіть корректну кількість сторінок')
