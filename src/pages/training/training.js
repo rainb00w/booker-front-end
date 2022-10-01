@@ -92,57 +92,7 @@ const Training = () => {
         <ChartModal />
       </Container>
 
-      <div>
-        <DatePicker
-          selected={startDate}
-          onChange={date => setStartDate(date)}
-        />
-        <DatePicker selected={endDate} onChange={date => setEndDate(date)} />
-
-        {booksThatNotSelected?.map(element => (
-          <div key={element._id}>
-            <input
-              onChange={e => {
-                // add to list
-                if (e.target.checked) {
-                  setBooksInfo([...booksInfo, element]);
-                } else {
-                  // remove from list
-                  console.log('remove from list');
-                  setBooksInfo(
-                    booksInfo.filter(books => books._id !== element._id)
-                  );
-                }
-              }}
-              value={booksInfo}
-              style={{ margin: '20px' }}
-              type="checkbox"
-            />
-            <label htmlFor={element.title}>
-              {element.title} , Автор : {element.author} , Страниц :{' '}
-              {element.pages} , Год : {element.year}
-            </label>
-          </div>
-        ))}
-        <button onClick={handleAddBooks}>Додати в список</button>
-      </div>
-      <div>
-        <p>Книги на отправку</p>
-        {booksArrayToSend?.map(element => (
-          <div key={element._id + 1}>
-            <label htmlFor={element.title}>
-              {element.title} , Автор : {element.author} , Страниц :{' '}
-              {element.pages} , Год : {element.year}
-              <button onClick={() => removeItem(element._id)}> Удалить </button>
-            </label>
-          </div>
-        ))}
-
-        <div>
-          <button onClick={() => startTraining()}> Почати тренування </button>
-        </div>
-        {isLoading && <p>In process...</p>}
-      </div>
+   
     </>
   );
 };
