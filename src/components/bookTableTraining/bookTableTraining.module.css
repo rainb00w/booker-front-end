@@ -220,4 +220,15 @@ max-width: 270px;
 margin-left: auto;
   margin-right: auto;
   border-bottom: 1px solid rgba(224, 229, 235, 1);
+  height: 300px;
+    overflow-x: auto;
+}
+
+.booksList::-webkit-scrollbar {
+  max-width: 2px;
+
+}
+
+.booksList::-webkit-scrollbar-thumb {
+  background: #afb4c0;
 }
