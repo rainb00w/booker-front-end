@@ -1,10 +1,10 @@
-import { TrainingTitle } from '../../components/TrainingTitle';
-import TrainingForm from '../../components/TrainingForm';
-import PeriodSelection from '../../components/PeriodSelection';
+import TrainingForm from '../../components/TrainingFrom';
 import MyGoal from '../../components/MyGoal';
+import ChartModal from '../../components/Chart/ChartModal';
+import BookTableTraining from '../../components/bookTableTraining/bookTableTraining';
+import BookMobileTableTraining from '../../components/bookTableTraining/bookMobileTableTraining';
 import styled from 'styled-components';
 
- // Raduka test
 import { useGetAllBooksQuery } from 'redux/books/booksApi';
 import * as React from 'react';
 import { useState } from 'react';
@@ -12,13 +12,15 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useAddTrainingMutation } from 'redux/books/trainingApi';
 import { useGetAllTrainingsQuery } from 'redux/books/trainingApi';
- // Raduka test
-// import Clock from 'components/Clock/Clock';
+
+const Container = styled.div`
+  background-color: #f6f7fb;
+`;
 
 const TrainingContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: #f6f7fb;
+
   padding-top: 40px;
 `;
 
@@ -30,16 +32,72 @@ const TrainingSidebar = styled.div`
   width: 25%;
 `;
 
+const defaultChosenBooks = [
+  {
+    _id: '633430de05d976545f184b08',
+    title: 'The Art of War',
+    author: 'Sun Tzu',
+    year: 1974,
+    pages: 100,
+    status: 'readed',
+    owner: '6331e0bd7d50cafaf02cf8c8',
+  },
+  {
+    _id: '6331fa40c8e0d7f99f187435',
+    title: '1984',
+    author: 'George Orwell',
+    year: 1949,
+    pages: 100,
+    status: 'toRead',
+    owner: '6331e0bd7d50cafaf02cf8c8',
+  },
+  {
+    _id: '633430de05d976545f184b11',
+    title: 'The Art of War',
+    author: 'Sun Tzu',
+    year: 1974,
+    pages: 100,
+    status: 'toRead',
+    owner: '6331e0bd7d50cafaf02cf8c8',
+  },
+  {
+    _id: '6331fa40c8e0d7f99f1874332',
+    title: '1984',
+    author: 'George Orwell',
+    year: 1949,
+    pages: 100,
+    status: 'toRead',
+    owner: '6331e0bd7d50cafaf02cf8c8',
+  },
+  {
+    _id: '633430de05d976545f184b88',
+    title: 'The Art of War',
+    author: 'Sun Tzu',
+    year: 1974,
+    pages: 100,
+    status: 'toRead',
+    owner: '6331e0bd7d50cafaf02cf8c8',
+  },
+  {
+    _id: '6331fa40c8e0d7f99f187436',
+    title: '1984',
+    author: 'George Orwell',
+    year: 1949,
+    pages: 100,
+    status: 'toRead',
+    owner: '6331e0bd7d50cafaf02cf8c8',
+  },
+];
+
 const Training = () => {
-
-
-  // Raduka CODE
   const { data } = useGetAllBooksQuery();
+  // тут получаем все Книги
+
   const trainingData = useGetAllTrainingsQuery();
   // trainingData это объект, данные доступны  => trainingData.data
-  
+
   const [booksInfo, setBooksInfo] = useState([]);
-  const [booksArrayToSend, setBooksArrayToSend] = useState([]);
+  const [booksArrayToSend, setBooksArrayToSend] = useState(defaultChosenBooks);
   const [addTraining, { isLoading }] = useAddTrainingMutation();
 
   const [startDate, setStartDate] = useState(new Date());
@@ -76,77 +134,36 @@ const Training = () => {
       .catch(error => console.error('rejected', error));
   };
 
-   //  Raduka CODE
-  
   return (
     <>
-      <TrainingContainer>
-        <TrainingMaine>
-          <TrainingForm />
-        </TrainingMaine>
-
-        <TrainingSidebar>
-          <MyGoal />
-          {/* <TrainingTitle text="Моя мета прочитати" /> */}
-        </TrainingSidebar>
-        {/* <p>asd</p> */}
-      </TrainingContainer>
-
-      // Raduka test
-      <div>
-        <DatePicker
-          selected={startDate}
-          onChange={date => setStartDate(date)}
-        />
-        <DatePicker selected={endDate} onChange={date => setEndDate(date)} />
-
-        {booksThatNotSelected?.map(element => (
-          <div key={element._id}>
-            <input
-              onChange={e => {
-                // add to list
-                if (e.target.checked) {
-                  setBooksInfo([...booksInfo, element]);
-                } else {
-                  // remove from list
-                  console.log('remove from lise');
-                  setBooksInfo(
-                    booksInfo.filter(books => books._id !== element._id)
-                  );
-                }
-              }}
-              value={booksInfo}
-              style={{ margin: '20px' }}
-              type="checkbox"
+      <Container>
+        <TrainingContainer>
+          <TrainingMaine>
+            <TrainingForm />
+            <BookTableTraining
+              booksList={booksArrayToSend}
+              onClick={removeItem}
+              isEmptyTraining={!trainingData.data}
             />
-            <label htmlFor={element.title}>
-              {element.title} , Автор : {element.author} , Страниц :{' '}
-              {element.pages} , Год : {element.year}
-            </label>
-          </div>
-        ))}
-        <button onClick={handleAddBooks}>Додати в список</button>
-      </div>
-      <div>
-        <p>Книги на отправку</p>
-        {booksArrayToSend?.map(element => (
-          <div key={element._id + 1}>
-            <label htmlFor={element.title}>
-              {element.title} , Автор : {element.author} , Страниц :{' '}
-              {element.pages} , Год : {element.year}
-              <button onClick={() => removeItem(element._id)}> Удалить </button>
-            </label>
-          </div>
-        ))}
+            <BookMobileTableTraining
+              booksList={booksArrayToSend}
+              onClick={removeItem}
+              isEmptyTraining={!trainingData.data}
+            />
+          </TrainingMaine>
 
-        <div>
-          <button onClick={() => startTraining()}> Почати тренування </button>
-        </div>
-        {isLoading && <p>In process...</p>}
-      </div>
-      // Raduka test
+          <TrainingSidebar>
+            <MyGoal />
+            {/* <TrainingTitle text="Моя мета прочитати" /> */}
+          </TrainingSidebar>
+          {/* <p>asd</p> */}
+        </TrainingContainer>
+        <ChartModal />
+      </Container>
     </>
   );
 };
 
 export default Training;
+
+

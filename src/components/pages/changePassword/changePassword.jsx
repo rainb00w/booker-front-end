@@ -1,96 +1,58 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import queryString from 'query-string';
+import React, { useState } from 'react';
 import classNames from 'classnames';
-import Media from 'react-media';
-import AuthModal from '../../authModal/authModal';
-import RepeatVerify from '../repeatVerify/repeatVerify';
-
+import newPasswordAPI from 'services/newPasswordAPI';
 import { Formik } from 'formik';
 import { loginValidationSchema } from 'services/yupValidationSchema';
 import { Link } from 'react-router-dom';
 
 import svgPath from 'services/svgPath';
-import styles from './login.module.css';
+import styles from "../login/login.module.css";
 
-import { authOperations } from '../../../redux/auth';
-import { useDispatch } from 'react-redux';
+// import { authOperations } from '../../../redux/auth';
 
-import { googleLogIn } from 'redux/auth/auth-slice';
+const ChangePassword = () => {
+    const [inputType, setInputType] = useState('password');
+    const [err, setErr] = useState('');
 
-const Login = () => {
-  const dispatch = useDispatch();
-  const [err, setErr] = useState('');
-  const [modal, setModal] = useState(false);
-  
-  const [verifyModal, setVerifyModal] = useState(false);
-  const [inputType, setInputType] = useState('password');
-  const location = useLocation();
-  const query = queryString.parse(location.search);
+    const handleClickShowIcon = () => {
+        setInputType(inputType === 'password' ? 'text' : 'password');
+    };
 
-
-
-  useEffect(() => {
-    if (query.token) {
-      dispatch(googleLogIn(query.token));
-    }
-  });
-
-  const modalSwitch = () => setVerifyModal(!verifyModal);
-  const handleClickShowIcon = () => {
-    setInputType(inputType === 'password' ? 'text' : 'password');
-  };
-  return (
+    return (
     <>
-      {verifyModal && <RepeatVerify switchFunc={modalSwitch} />}
-      {modal && (
-        <Media queries={{ small: '(max-width: 768px)' }}>
-          {matches => <>{matches.small && <AuthModal />}</>}
-        </Media>
-      )}
-      <section className={styles.section}>
-        <div className={styles.login__form}>
-          <div className={styles.form__border}>
-            <a
-              className={styles.google__auth}
-              href="http://localhost:3001/api/user/google"
-            >
-              Google
-            </a>
+        <section className={styles.section}>
+            <div className={styles.login__form}>
+                <div className={styles.form__border}>
+                    <h2 className={styles.subtitle}>Change password</h2>
             <Formik
-              initialValues={{
-                email: '',
-                password: '',
-              }}
-              validationSchema={loginValidationSchema}
-              onSubmit={(values, { resetForm }) => {
-                const { email, password } = values;
-                dispatch(authOperations.logIn({ email, password }))
-                  .then(answer => {
-                    const { response } = answer.payload;
-                    if (response) {
-                      throw response.data.message;
-                    }
-                  })
-                  .catch(error => {
-                    setErr(error);
-                  });
-
-                  
+                initialValues={{
+                    email: '',
+                    password: '',
+                }}
+                validationSchema={loginValidationSchema}
+                onSubmit={(values, { resetForm }) => {
+                    const { email, password } = values;
+                    setErr("")
+                    newPasswordAPI(email, password)
+                        .then(answer => console.log("009", answer))
+                        .catch(err => {
+                            const errorMessage = err.response.data.message;
+                            setErr(errorMessage);
+                        })
 
                 resetForm({ values: '' });
-              }}
+                }}
             >
-              {({
+                {({
                 values,
                 errors,
                 touched,
                 handleBlur,
                 handleChange,
                 handleSubmit,
-              }) => (
+                }) => (
                 <form onSubmit={handleSubmit}>
-                  <p className={styles.label__title}>
+                    <p className={styles.label__title}>
                     Email
                     {err && <span className={styles.error}>* {err}</span>}
                   </p>
@@ -142,30 +104,13 @@ const Login = () => {
                     )}
                   </label>
                   <button className={styles.form__button} type="submit">
-                    Login
+                        Change Password
                   </button>
-                  <Link to="/changePassword">
-                    <button className={styles.form__button} type="button">
-                      Forgot Password
-                    </button>
-                  </Link>
                 </form>
               )}
             </Formik>
-            <p className={styles.auth__verify}>
-              Didnt receive an email to verify your account? Try to send again:
-              <button
-                className={styles.button__verify}
-                type="button"
-                onClick={() => {
-                  modalSwitch();
-                }}
-              >
-                Repeat Verify
-              </button>
-            </p>
-            <Link className={styles.auth__link} to="/register">
-              Register
+            <Link className={styles.auth__link} to="/login">
+              Login
             </Link>
           </div>
         </div>
@@ -185,4 +130,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ChangePassword;
