@@ -3,6 +3,7 @@ import TrainingDataSelection from 'components/TrainingDataSelection/TrainingData
 
 import Timer from 'components/Timer/Timer';
 import { StyledTimerContainer } from './training.style';
+// import RatingBook from 'components/RatingBook';
 
 const Training = () => {
   const [startDate, setStartDate] = useState(null);
