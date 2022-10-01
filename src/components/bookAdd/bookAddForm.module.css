@@ -9,11 +9,8 @@
   .label {
     margin-bottom: 45px;
   }
-
   .label:last-child {
     margin-bottom: 40px;
-    margin-left: auto;
-    margin-right: auto;
   }
   .inputTitle,
   .inputAuthor,
