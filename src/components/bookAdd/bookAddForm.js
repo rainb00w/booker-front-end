@@ -1,15 +1,11 @@
 import React from 'react';
 import s from './bookAddForm.module.css';
-
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useAddBookMutation } from 'redux/books/booksApi';
 
 const BookAddForm = () => {
-
   const [addBook, { isLoading }] = useAddBookMutation();
-
-
 
   const formik = useFormik({
     initialValues: {
@@ -27,14 +23,19 @@ const BookAddForm = () => {
         .min(1, 'Too Short!')
         .max(50, 'Too Long!')
         .required('Author is required'),
-      year: Yup.string()
+      year: Yup.string().min(1, 'Too Short!').max(5, 'Too Long!'),
+      pages: Yup.string()
         .min(1, 'Too Short!')
-        .max(5, 'Too Long!')
-        .required('Year is required'),
-      pages: Yup.string().max(5, 'Too Long!').required('Pages is required'),
+        .max(4, 'Too Long!')
+        .required('Pages is required'),
     }),
-    onSubmit: ({title, author, year, pages}, { resetForm }) => {
-      addBook({title, author, year, pages}).then(resetForm({ values: '' }));
+    onSubmit: ({ title, author, year, pages }, { resetForm }) => {
+      addBook({
+        title,
+        author,
+        year,
+        pages,
+      }).then(resetForm({ values: '' }));
       // resetForm({ values: '' });
     },
   });
@@ -43,10 +44,7 @@ const BookAddForm = () => {
     <>
       <form onSubmit={formik.handleSubmit} className={s.form}>
         <label htmlFor="title" className={s.label}>
-          Book title
-          {formik.errors.title && formik.touched.title ? (
-            <div>{formik.errors.title}</div>
-          ) : null}
+          Book title *
           <input
             id="title"
             name="title"
@@ -56,12 +54,12 @@ const BookAddForm = () => {
             value={formik.values.title}
             className={s.inputTitle}
           />
+          {formik.errors.title && formik.touched.title ? (
+            <div>{formik.errors.title}</div>
+          ) : null}
         </label>
         <label htmlFor="author" className={s.label}>
-          Author
-          {formik.errors.author && formik.touched.author ? (
-            <div>{formik.errors.author}</div>
-          ) : null}
+          Author *
           <input
             id="author"
             name="author"
@@ -71,12 +69,12 @@ const BookAddForm = () => {
             value={formik.values.author}
             className={s.inputAuthor}
           />
+          {formik.errors.author && formik.touched.author ? (
+            <div>{formik.errors.author}</div>
+          ) : null}
         </label>
         <label htmlFor="year" className={s.label}>
           Publication date
-          {formik.errors.year && formik.touched.year ? (
-            <div>{formik.errors.year}</div>
-          ) : null}
           <input
             id="year"
             name="year"
@@ -86,12 +84,12 @@ const BookAddForm = () => {
             value={formik.values.date}
             className={s.inputDate}
           />
+          {formik.errors.year && formik.touched.year ? (
+            <div>{formik.errors.year}</div>
+          ) : null}
         </label>
         <label htmlFor="pages" className={s.label}>
-          Amount of pages
-          {formik.errors.pages && formik.touched.pages ? (
-            <div>{formik.errors.pages}</div>
-          ) : null}
+          Amount of pages *
           <input
             id="pages"
             name="pages"
@@ -101,6 +99,9 @@ const BookAddForm = () => {
             value={formik.values.pages}
             className={s.inputPages}
           />
+          {formik.errors.pages && formik.touched.pages ? (
+            <div>{formik.errors.pages}</div>
+          ) : null}
         </label>
         <button
           type="submit"
@@ -110,7 +111,7 @@ const BookAddForm = () => {
           Add
         </button>
       </form>
-      {isLoading && (<p>Is Adding</p>)}
+      {isLoading && <p>Is Adding</p>}
     </>
   );
 };
