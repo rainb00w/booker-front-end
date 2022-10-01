@@ -1,15 +1,68 @@
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+
 import s from './statisticsList.module.css';
 const SendPageForm = () => {
+  Date.prototype.yyyymmdd = function () {
+    let mm = this.getMonth() + 1; // getMonth() is zero-based
+    let dd = this.getDate();
+
+    return [
+      this.getFullYear(),
+      (mm > 9 ? '' : '0') + mm,
+      (dd > 9 ? '' : '0') + dd,
+    ].join('-');
+  };
+
+  const formik = useFormik({
+    initialValues: {
+      dateInput: new Date().yyyymmdd(),
+      pageInput: '',
+    },
+    validationSchema: Yup.object().shape({
+      dateInput: Yup.date()
+        .min('2020-01-01') // тут повинна бути дата реєстрації користувача або якась інша
+        .max(new Date().yyyymmdd(), 'Ви не можете ввести дату в майбутньому'), // максимальна дата - це сьогодні
+      pageInput: Yup.number()
+        .positive('Введіть корректну кількість сторінок')
+        .integer('К-ть сторінок має бути ціла')
+        .max(999, 'Забагато сторінок')
+        .required('Введіть кількість сторінок'),
+    }),
+    onSubmit: ({ dateInput, pageInput }, { resetForm }) => {
+      console.log({ date: dateInput, pages: pageInput });
+      resetForm();
+    },
+  });
+
   return (
-    <form>
+    <form onSubmit={formik.handleSubmit}>
       <div className={s.inputs}>
         <label className={s.inputsLabel}>
           Дата
-          <input className={s.inputPage} type="date" name="dateInput" />
+          {formik.errors.dateInput && formik.touched.dateInput ? (
+            <div>{formik.errors.dateInput}</div>
+          ) : null}
+          <input
+            className={s.inputPage}
+            type="date"
+            name="dateInput"
+            onChange={formik.handleChange}
+            value={formik.values.dateInput}
+          />
         </label>
         <label className={s.inputsLabel}>
           Кількість сторінок
-          <input className={s.inputDate} type="number" name="pageInput" />
+          {formik.errors.pageInput && formik.touched.pageInput ? (
+            <div>{formik.errors.pageInput}</div>
+          ) : null}
+          <input
+            className={s.inputDate}
+            type="number"
+            name="pageInput"
+            onChange={formik.handleChange}
+            value={formik.values.pageInput}
+          />
         </label>
       </div>
       <button className={s.addResultBtn} type="submit">
