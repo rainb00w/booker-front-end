@@ -121,6 +121,7 @@ const Training = () => {
         <TrainingContainer>
           <TrainingMaine>
             <TrainingForm />
+
             <BookTableTraining
               booksList={booksArrayToSend}
               onClick={removeItem}
@@ -139,7 +140,10 @@ const Training = () => {
           </TrainingSidebar>
           {/* <p>asd</p> */}
         </TrainingContainer>
+
         <ChartModal />
+
+        
       </Container>
     </>
   );
