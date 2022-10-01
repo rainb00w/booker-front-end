@@ -39,7 +39,7 @@ const defaultChosenBooks = [
     author: 'Sun Tzu',
     year: 1974,
     pages: 100,
-    status: 'toRead',
+    status: 'readed',
     owner: '6331e0bd7d50cafaf02cf8c8',
   },
   {
@@ -143,10 +143,12 @@ const Training = () => {
             <BookTableTraining
               booksList={booksArrayToSend}
               onClick={removeItem}
+              isEmptyTraining={!trainingData.data}
             />
             <BookMobileTableTraining
               booksList={booksArrayToSend}
               onClick={removeItem}
+              isEmptyTraining={!trainingData.data}
             />
           </TrainingMaine>
 
@@ -158,8 +160,6 @@ const Training = () => {
         </TrainingContainer>
         <ChartModal />
       </Container>
-
-   
     </>
   );
 };
