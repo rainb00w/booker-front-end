@@ -71,15 +71,6 @@ export const Autocomplete = styledMaterial(MuiAutocomplete)((props) => ({
     lineHeight: 1.21,
     color: '#A6ABB9',
   },
-  '& .MuiOutlinedInput-notchedOutline': {
-    height: '47px',
-    border: '1px solid rgba(0,0,0,.25)',
-    borderRadius: 0,
-  },
-  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-    border: '2px solid #FF6B08',
-    borderRadius: 0,
-  },
   '& .css-odcobn-MuiAutocomplete-root': {
     border: 'transparent',
     borderRadius: 0,
@@ -89,6 +80,15 @@ export const Autocomplete = styledMaterial(MuiAutocomplete)((props) => ({
   },
   '& .MuiSvgIcon-root.css-i4bv87-MuiSvgIcon-root': {
     fill: 'currentColor',
+  },
+  '& .MuiOutlinedInput-notchedOutline': {
+    height: '47px',
+    border: '1px solid rgba(0,0,0,.25)',
+    borderRadius: 0,
+  },
+  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+    border: '2px solid #FF6B08',
+    borderRadius: 0,
   },
 }));
 
