@@ -1,7 +1,7 @@
 {
   "name": "booker-front-end",
   "version": "0.1.0",
-  "homepage": "https://rainb00w.github.io/booker-front-end/",
+  "homepage": "https://willowy-chebakia-764848.netlify.app/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.4",
