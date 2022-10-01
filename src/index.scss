@@ -53,12 +53,10 @@ li {
   margin-left: auto;
   margin-right: auto;
 
-
   @media screen and (min-width: 768px) {
     body {
       overflow-x: hidden;
     }
-
     max-width: 768px;
   }
 
@@ -66,8 +64,13 @@ li {
     body {
       overflow-x: hidden;
     }
-
     max-width: 1200px;
   }
+}
 
+.MuiAutocomplete-popper.MuiPopperUnstyled-root .MuiAutocomplete-option {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 14;
+  line-height: 1.21;
 }
