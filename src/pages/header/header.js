@@ -22,6 +22,7 @@ const style = {
 
 const Header = () => {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+  const isLoggedInName = useSelector(authSelectors.getUsername);
 
   const { t, i18n } = useTranslation();
   const changeLanguage = language => {
@@ -66,7 +67,7 @@ const Header = () => {
   return (
     <>
         
-      
+      <span> {isLoggedInName} </span>
       <button onClick={() => changeLanguage('en')}>EN</button>
       <button onClick={() => changeLanguage('ua')}>UA</button>
         <div> {t("text")} </div>
