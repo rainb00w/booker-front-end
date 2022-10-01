@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-
 export const StyledTimerContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
@@ -8,4 +7,3 @@ export const StyledTimerContainer = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
-
