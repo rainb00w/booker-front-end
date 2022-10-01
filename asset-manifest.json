@@ -1,29 +1,29 @@
 {
   "files": {
-    "main.css": "/static/css/main.a2e16428.css",
-    "main.js": "/static/js/main.4241e618.js",
-    "static/media/background2.jpg": "/static/media/background2.1065ac0c23029c4e7b76.jpg",
-    "static/media/background3.jpg": "/static/media/background3.4eb17edd7123c073db0e.jpg",
-    "static/media/background1.jpg": "/static/media/background1.bf9ad2780587b6f86f4f.jpg",
-    "static/media/symbol-defs.svg": "/static/media/symbol-defs.dead69c9e36e0a20b0711977a5c8e9ea.svg",
-    "index.html": "/index.html",
-    "static/media/icon_vector.svg": "/static/media/icon_vector.467c84b07b3267df92d0a11bc39fceb1.svg",
-    "static/media/calendar.svg": "/static/media/calendar.ef5cead41189bb23e56d59083fe0417d.svg",
-    "static/media/icon_library.svg": "/static/media/icon_library.1ef78e679dde739723a3ee7f93759188.svg",
-    "static/media/quatation.svg": "/static/media/quatation.596e0f7554016a674c759c2aad378ade.svg",
-    "static/media/eye-off.svg": "/static/media/eye-off.9885b4d684628eb8ae545f474ef84eac.svg",
-    "static/media/thumb_up-24px.svg": "/static/media/thumb_up-24px.3a4013bc5430953c4cdaac4a7b3b4bb5.svg",
-    "static/media/arrow.svg": "/static/media/arrow.861b7fa53814610e5f5e5b4d61fe9c04.svg",
-    "static/media/library-icon.svg": "/static/media/library-icon.e495a68c79524c1478c4.svg",
-    "static/media/getFetch.cjs": "/static/media/getFetch.40f37ddea2378391108f.cjs",
-    "static/media/delete-icon.svg": "/static/media/delete-icon.f5bcf35f60572ba77d17621d02195506.svg",
-    "static/media/icon_home.svg": "/static/media/icon_home.b3cc0a6a4d8a1f2461a5a0058dafff68.svg",
-    "static/media/icon_flag.svg": "/static/media/icon_flag.630776428b2941a7e4a8d9c083ae3780.svg",
-    "main.a2e16428.css.map": "/static/css/main.a2e16428.css.map",
-    "main.4241e618.js.map": "/static/js/main.4241e618.js.map"
+    "main.css": "/booker-front-end/static/css/main.0bff9ae3.css",
+    "main.js": "/booker-front-end/static/js/main.faaf4cb5.js",
+    "static/media/background2.jpg": "/booker-front-end/static/media/background2.1065ac0c23029c4e7b76.jpg",
+    "static/media/background3.jpg": "/booker-front-end/static/media/background3.4eb17edd7123c073db0e.jpg",
+    "static/media/background1.jpg": "/booker-front-end/static/media/background1.bf9ad2780587b6f86f4f.jpg",
+    "static/media/symbol-defs.svg": "/booker-front-end/static/media/symbol-defs.dead69c9e36e0a20b0711977a5c8e9ea.svg",
+    "index.html": "/booker-front-end/index.html",
+    "static/media/icon_vector.svg": "/booker-front-end/static/media/icon_vector.467c84b07b3267df92d0a11bc39fceb1.svg",
+    "static/media/calendar.svg": "/booker-front-end/static/media/calendar.ef5cead41189bb23e56d59083fe0417d.svg",
+    "static/media/icon_library.svg": "/booker-front-end/static/media/icon_library.1ef78e679dde739723a3ee7f93759188.svg",
+    "static/media/quatation.svg": "/booker-front-end/static/media/quatation.596e0f7554016a674c759c2aad378ade.svg",
+    "static/media/eye-off.svg": "/booker-front-end/static/media/eye-off.9885b4d684628eb8ae545f474ef84eac.svg",
+    "static/media/thumb_up-24px.svg": "/booker-front-end/static/media/thumb_up-24px.3a4013bc5430953c4cdaac4a7b3b4bb5.svg",
+    "static/media/arrow.svg": "/booker-front-end/static/media/arrow.861b7fa53814610e5f5e5b4d61fe9c04.svg",
+    "static/media/library-icon.svg": "/booker-front-end/static/media/library-icon.e495a68c79524c1478c4.svg",
+    "static/media/getFetch.cjs": "/booker-front-end/static/media/getFetch.40f37ddea2378391108f.cjs",
+    "static/media/delete-icon.svg": "/booker-front-end/static/media/delete-icon.f5bcf35f60572ba77d17621d02195506.svg",
+    "static/media/icon_home.svg": "/booker-front-end/static/media/icon_home.b3cc0a6a4d8a1f2461a5a0058dafff68.svg",
+    "static/media/icon_flag.svg": "/booker-front-end/static/media/icon_flag.630776428b2941a7e4a8d9c083ae3780.svg",
+    "main.0bff9ae3.css.map": "/booker-front-end/static/css/main.0bff9ae3.css.map",
+    "main.faaf4cb5.js.map": "/booker-front-end/static/js/main.faaf4cb5.js.map"
   },
   "entrypoints": [
-    "static/css/main.a2e16428.css",
-    "static/js/main.4241e618.js"
+    "static/css/main.0bff9ae3.css",
+    "static/js/main.faaf4cb5.js"
   ]
 }
