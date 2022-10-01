@@ -13,22 +13,21 @@ import { Link } from 'react-router-dom';
 import svgPath from 'services/svgPath';
 import styles from './login.module.css';
 
-import { authOperations } from '../../../redux/auth';
-import { useDispatch } from 'react-redux';
+import { authOperations, authSelectors } from '../../../redux/auth';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { googleLogIn } from 'redux/auth/auth-slice';
 
 const Login = () => {
   const dispatch = useDispatch();
   const [err, setErr] = useState('');
-  const [modal, setModal] = useState(false);
-  
+  // const [modal, setModal] = useState(false);
+
   const [verifyModal, setVerifyModal] = useState(false);
   const [inputType, setInputType] = useState('password');
   const location = useLocation();
   const query = queryString.parse(location.search);
-
-
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
 
   useEffect(() => {
     if (query.token) {
@@ -43,7 +42,7 @@ const Login = () => {
   return (
     <>
       {verifyModal && <RepeatVerify switchFunc={modalSwitch} />}
-      {modal && (
+      {!isLoggedIn && (
         <Media queries={{ small: '(max-width: 768px)' }}>
           {matches => <>{matches.small && <AuthModal />}</>}
         </Media>
@@ -75,8 +74,6 @@ const Login = () => {
                   .catch(error => {
                     setErr(error);
                   });
-
-                  
 
                 resetForm({ values: '' });
               }}
