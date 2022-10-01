@@ -1,6 +1,8 @@
 import TrainingForm from '../../components/TrainingFrom';
 import MyGoal from '../../components/MyGoal';
 import ChartModal from '../../components/Chart/ChartModal';
+import BookTableTraining from '../../components/bookTableTraining/bookTableTraining';
+import BookMobileTableTraining from '../../components/bookTableTraining/bookMobileTableTraining';
 import styled from 'styled-components';
 
 import { useGetAllBooksQuery } from 'redux/books/booksApi';
@@ -30,6 +32,63 @@ const TrainingSidebar = styled.div`
   width: 25%;
 `;
 
+const defaultChosenBooks = [
+  {
+    _id: '633430de05d976545f184b08',
+    title: 'The Art of War',
+    author: 'Sun Tzu',
+    year: 1974,
+    pages: 100,
+    status: 'toRead',
+    owner: '6331e0bd7d50cafaf02cf8c8',
+  },
+  {
+    _id: '6331fa40c8e0d7f99f187435',
+    title: '1984',
+    author: 'George Orwell',
+    year: 1949,
+    pages: 100,
+    status: 'toRead',
+    owner: '6331e0bd7d50cafaf02cf8c8',
+  },
+  {
+    _id: '633430de05d976545f184b11',
+    title: 'The Art of War',
+    author: 'Sun Tzu',
+    year: 1974,
+    pages: 100,
+    status: 'toRead',
+    owner: '6331e0bd7d50cafaf02cf8c8',
+  },
+  {
+    _id: '6331fa40c8e0d7f99f1874332',
+    title: '1984',
+    author: 'George Orwell',
+    year: 1949,
+    pages: 100,
+    status: 'toRead',
+    owner: '6331e0bd7d50cafaf02cf8c8',
+  },
+  {
+    _id: '633430de05d976545f184b88',
+    title: 'The Art of War',
+    author: 'Sun Tzu',
+    year: 1974,
+    pages: 100,
+    status: 'toRead',
+    owner: '6331e0bd7d50cafaf02cf8c8',
+  },
+  {
+    _id: '6331fa40c8e0d7f99f187436',
+    title: '1984',
+    author: 'George Orwell',
+    year: 1949,
+    pages: 100,
+    status: 'toRead',
+    owner: '6331e0bd7d50cafaf02cf8c8',
+  },
+];
+
 const Training = () => {
   const { data } = useGetAllBooksQuery();
   // тут получаем все Книги
@@ -38,7 +97,7 @@ const Training = () => {
   // trainingData это объект, данные доступны  => trainingData.data
 
   const [booksInfo, setBooksInfo] = useState([]);
-  const [booksArrayToSend, setBooksArrayToSend] = useState([]);
+  const [booksArrayToSend, setBooksArrayToSend] = useState(defaultChosenBooks);
   const [addTraining, { isLoading }] = useAddTrainingMutation();
 
   const [startDate, setStartDate] = useState(new Date());
@@ -81,6 +140,14 @@ const Training = () => {
         <TrainingContainer>
           <TrainingMaine>
             <TrainingForm />
+            <BookTableTraining
+              booksList={booksArrayToSend}
+              onClick={removeItem}
+            />
+            <BookMobileTableTraining
+              booksList={booksArrayToSend}
+              onClick={removeItem}
+            />
           </TrainingMaine>
 
           <TrainingSidebar>
