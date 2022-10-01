@@ -1,13 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { Formik } from 'formik';
 import { repeatVerifyValidationSchema } from 'services/yupValidationSchema';
+import verifyAPI from 'services/verifyAPI';
 import styles from "./repeatVerify.module.css";
 
 const modalRoot = document.querySelector('#modal__root');
 
 
 const RepeatVerify = ({ switchFunc }) => {
+    const [err, setErr] = useState("");
+
     useEffect(() => {
     window.addEventListener('keydown', handleKeyboard);
 
@@ -35,7 +38,14 @@ const RepeatVerify = ({ switchFunc }) => {
                         }}
                         validationSchema={repeatVerifyValidationSchema}
                         onSubmit={(values, { resetForm }) => {
-                            console.log(values)
+                            setErr("");
+                            const { email } = values;
+                            verifyAPI(email)
+                                .then(answer => console.log(answer))
+                                .catch(err => {
+                                    const errorMessage = err.response.data.message;
+                                    setErr(errorMessage);
+                                })
                             resetForm({ values: '' });
                         }}
                     >
@@ -50,6 +60,7 @@ const RepeatVerify = ({ switchFunc }) => {
                             <form onSubmit={handleSubmit}>
                                 <p className={styles.verify__label}>
                                     Email for verify
+                                    {err && <span className={styles.verify__error}>* {err}</span>}
                                 </p>
                                 <input
                                     className={styles.verify__input}

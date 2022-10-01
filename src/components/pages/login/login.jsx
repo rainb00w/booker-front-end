@@ -31,7 +31,9 @@ const Login = () => {
 
   useEffect(() => {
     if (query.token) {
-      dispatch(googleLogIn(query.token));
+      const { name, token, avatar } = query;
+      console.log(query)
+      dispatch(googleLogIn(token));
     }
   });
 
@@ -141,14 +143,12 @@ const Login = () => {
                   <button className={styles.form__button} type="submit">
                     Login
                   </button>
-                  <Link to="/changePassword">
-                    <button className={styles.form__button} type="button">
-                      Forgot Password
-                    </button>
-                  </Link>
                 </form>
               )}
             </Formik>
+            <Link className={styles.auth__link} to="/register">
+              Register
+            </Link>
             <p className={styles.auth__verify}>
               Didnt receive an email to verify your account? Try to send again:
               <button
@@ -161,9 +161,12 @@ const Login = () => {
                 Repeat Verify
               </button>
             </p>
-            <Link className={styles.auth__link} to="/register">
-              Register
-            </Link>
+            <p className={styles.auth__verify}>
+              Click if you forgot your password:
+              <Link className={styles.authforgot__link} to="/changePassword">
+                Forgot Password
+              </Link>
+            </p>
           </div>
         </div>
         <div className={styles.log__text}>
