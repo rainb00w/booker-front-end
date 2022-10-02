@@ -28,8 +28,8 @@ const BookAddForm = () => {
         .required('Author is required'),
       year: Yup.string()
         .typeError('Year should be a number')
-        .min(1000, 'Year should not be less than 1000!')
-        .max(20222, 'Year should be less than currentYear!'),
+        .min(1, 'Year should not be less than 1000!')
+        .max(20, 'Year should be less than currentYear!'),
       pages: Yup.string()
         .typeError('Pages should be a number')
         .min(1, 'Too Short!')
@@ -88,7 +88,7 @@ const BookAddForm = () => {
             type="text"
             placeholder="..."
             onChange={formik.handleChange}
-            value={formik.values.date}
+            value={formik.values.year}
             className={s.inputDate}
           />
           {formik.errors.year && formik.touched.year ? (
