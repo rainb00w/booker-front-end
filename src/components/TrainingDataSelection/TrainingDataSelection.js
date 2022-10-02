@@ -59,6 +59,11 @@ const TrainingDataSelection = ({ onStartTraining }) => {
   const onSubmit = values => {
     console.log('Form data', values);
     onStartTraining(values);
+    const [addTraining, { isLoading }] = useAddTrainingMutation();
+    addTraining(values)
+      .unwrap()
+      .then(payload => console.log('fulfilled', payload))
+      .catch(error => console.error('rejected', error));
   };
 
   return (
