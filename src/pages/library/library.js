@@ -6,17 +6,26 @@ import BtnMyTraining from 'components/BtnLibrary/btnMyTraining';
 // import RatingBook from 'components/RatingBook';
 import { useMediaQuery } from 'react-responsive';
 import s from './library.module.css';
+import { useGetAllBooksQuery } from 'redux/books/booksApi';
+import Info from '../../components/EmptyLibrary/EmptyLibrary';
 
 const Library = () => {
   const mobile = useMediaQuery({ query: '(max-width: 767px)' });
+  const { data } = useGetAllBooksQuery();
   return (
     <>
-      <div className={s.section}>
-        <BookAddForm />
-        {mobile ? <BookTableMobile /> : <BookTable />}
-        <BtnMyTraining />
-        {/* <RatingBook /> */}
-      </div>
+      {!data?.payload.books.length > 0 ? (
+        <div className={s.section}>
+          <BookAddForm />
+          <Info />
+        </div>
+      ) : (
+        <div className={s.section}>
+          <BookAddForm />
+          {mobile ? <BookTableMobile /> : <BookTable />}
+          <BtnMyTraining />
+        </div>
+      )}
     </>
   );
 };

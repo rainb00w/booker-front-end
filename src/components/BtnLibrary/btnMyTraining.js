@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const BtnMyTraining = () => {
   const navigate = useNavigate();
+
   return (
     <>
       <button

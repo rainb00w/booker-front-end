@@ -16,17 +16,24 @@ const BookAddForm = () => {
     },
     validationSchema: Yup.object().shape({
       title: Yup.string()
-        .min(1, 'Too Short!')
-        .max(50, 'Too Long!')
+        .max(50, 'Book title should be less than 50')
+        .matches(/^[^\s-]/, 'Name should not start from space or dash')
         .required('Book title is required'),
       author: Yup.string()
-        .min(1, 'Too Short!')
-        .max(50, 'Too Long!')
+        .max(50, 'Author name should be less than 50')
+        .matches(
+          /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я])?[a-zA-Zа-яА-Я]*)*$/,
+          'Author name must contain letters'
+        )
         .required('Author is required'),
-      year: Yup.string().min(1, 'Too Short!').max(5, 'Too Long!'),
+      year: Yup.string()
+        .typeError('Year should be a number')
+        .min(1000, 'Year should not be less than 1000!')
+        .max(20222, 'Year should be less than currentYear!'),
       pages: Yup.string()
+        .typeError('Pages should be a number')
         .min(1, 'Too Short!')
-        .max(4, 'Too Long!')
+        .max(9999, 'Must be no more than 4 characters')
         .required('Pages is required'),
     }),
     onSubmit: ({ title, author, year, pages }, { resetForm }) => {
