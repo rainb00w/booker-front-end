@@ -2,18 +2,39 @@ import styled from 'styled-components';
 import calendarIcon from './calendar.svg';
 
 export const Button = styled.button`
-  background-color: #ff6b08;
+  display: block;
   width: 171px;
   height: 42px;
+  margin-left: auto;
+  margin-right: auto;
   color: #fff;
-  align-self: center;
+  background-color: #ff6b08;
+  cursor: pointer;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover {
+    background-color: #D15807;
+  }
+  &:disabled {
+    color: #b1b5c2;
+    background-color: transparent;
+    border-color: #b1b5c2;
+  }
+  @media screen and (min-width: 768px) {
+    width: 200px;
+    height: 40px;
+  }
+  @media screen and (min-width: 1280px) {
+    margin-left: 380px;
+    margin-right: 0;
+  }
 `;
 
 export const TrainingWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  @media screen and (min-width: 1200px) {
+  flex-direction: column-reverse;
+  @media screen and (min-width: 1280px) {
     flex-direction: row;
+    gap: 32px;
   }
 `;
 
@@ -58,13 +79,30 @@ export const Container = styled.div`
 `;
 
 export const TrainingContainer = styled.div`
-  padding-top: 40px;
+  min-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 32px 20px;
+  background-color: #F6F7FB;
+  @media screen and (min-width: 768px) {
+    min-width: 768px;
+    padding: 40px 32px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 1280px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 `;
 
 export const TrainingMaine = styled.div`
-  width: 70%;
+  @media screen and (min-width: 1280px) {
+    width: 928px;
+  }
 `;
 
 export const TrainingSidebar = styled.div`
-  width: 25%;
+  @media screen and (min-width: 1280px) {
+    width: 288px;
+  }
 `;

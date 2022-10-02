@@ -14,17 +14,16 @@ ul {
 
 
 .myGoalMainBox {
-    width: 280px;
+    min-width: 280px;
     margin: 0;
     margin-bottom: 30px;
     background-color: white;
     box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
-    
+
 }
 
 @media screen and (min-width: 768px) {
     .myGoalMainBox {
-        width: 704px;
         height: 105px;
         display: flex;
         align-items: center;
@@ -43,7 +42,7 @@ ul {
 }
 
 .myGoalHeadingBox {
-    padding: 18px 34px;
+    padding: 18px 30px;
     background-color: #B1B5C2;
     box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
 }
@@ -53,6 +52,7 @@ ul {
         width: 275px;
         height: 60px;
         margin-left: 28px;
+        padding: 18px 27px;
     }
 }
 
@@ -64,11 +64,12 @@ ul {
 }
 
 .myGoalHeading {
-    text-align: center;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 1.2;
-    color: white;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  color: white;
 }
 
 .statsBox {
@@ -109,7 +110,7 @@ ul {
 
 @media screen and (min-width: 1280px) {
     .myGoalStatsList {
-        margin: 0%;
+        margin: 0;
     }
 }
 
@@ -136,6 +137,10 @@ ul {
 @media screen and (min-width: 1280px) {
     .myGoalStatsListItem {
         margin-bottom: 0px;
+    }
+
+    .myGoalStatsListItem:last-child {
+      margin-left: 20px;
     }
 }
 
