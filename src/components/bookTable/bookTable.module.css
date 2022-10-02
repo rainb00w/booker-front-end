@@ -43,7 +43,7 @@
     margin-right: auto;
   }
 }
-@media screen and (min-width: 768px) and (max-width: 1199px) {
+@media screen and (min-width: 768px) and (max-width: 1279px) {
   .section {
     width: calc(100% - 2 * 32px);
     margin-bottom: 50px;
@@ -87,7 +87,7 @@
     margin: 0;
   }
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1280px) {
   .section {
     width: calc(100% - 2 * 16px);
     margin-bottom: 50px;

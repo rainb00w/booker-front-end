@@ -11,9 +11,10 @@ export const Button = styled.button`
 
 export const TrainingWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  @media screen and (min-width: 1200px) {
+  flex-direction: column-reverse;
+  @media screen and (min-width: 1280px) {
     flex-direction: row;
+    gap: 32px;
   }
 `;
 
@@ -58,13 +59,30 @@ export const Container = styled.div`
 `;
 
 export const TrainingContainer = styled.div`
-  padding-top: 40px;
+  min-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 32px 20px;
+  background-color: #F6F7FB;
+  @media screen and (min-width: 768px) {
+    min-width: 768px;
+    padding: 40px 32px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 1280px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 `;
 
 export const TrainingMaine = styled.div`
-  width: 70%;
+  @media screen and (min-width: 1280px) {
+    width: 75%;
+  }
 `;
 
 export const TrainingSidebar = styled.div`
-  width: 25%;
+  @media screen and (min-width: 1280px) {
+    width: 25%;
+  }
 `;
