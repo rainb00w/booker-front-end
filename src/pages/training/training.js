@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
 import TrainingDataSelection from 'components/TrainingDataSelection/TrainingDataSelection';
 import ChartModal from '../../components/Chart/ChartModal';
-import Timer from 'components/Timer/Timer';
-import { StyledTimerContainer } from './training.style';
-import BookTableTraining from 'components/bookTableTraining/bookTableTraining';
-import BookMobileTableTraining from 'components/bookTableTraining/bookMobileTableTraining';
+import { useGetAllBooksQuery } from 'redux/books/booksApi';
 import { useAddTrainingMutation } from 'redux/books/trainingApi';
 import { useGetAllTrainingsQuery } from 'redux/books/trainingApi';
+import SendPageForm from '../statistics/sendPageForm';
+import Statistics from '../statistics/statistics';
 
 const Training = () => {
   const [startDate, setStartDate] = useState(null);
@@ -18,15 +17,26 @@ const Training = () => {
   const trainingData = useGetAllTrainingsQuery();
   console.log(trainingData);
 
+  const { data } = useGetAllBooksQuery();
+  const booksOptions = data?.payload.books;
+
   useEffect(() => {
     console.log('useEffect');
     if (trainingData.status === 'fulfilled') {
       const { books, finishDate } = trainingData.data;
       setEndDate(new Date(finishDate));
-      setSelectedBooks(books);
+
+      const findBooks = books.reduce((acc, { _id }) => {
+        const findBook = booksOptions.find(
+          bookOption => bookOption._id === _id
+        );
+        return [...acc, findBook];
+      }, []);
+
+      setSelectedBooks(findBooks);
       setStartTraining(true);
-      console.log('startTraining', startTraining);
     }
+    console.log('startTraining', selectedBooks);
   }, [trainingData]);
 
   // const status = trainingData.status;
@@ -55,20 +65,11 @@ const Training = () => {
         <TrainingDataSelection onStartTraining={onStartTraining} />
       )}
       {startTraining && (
-        <>
-          <StyledTimerContainer>
-            <Timer endDate={endYear} />
-            <Timer endDate={endDate} />
-          </StyledTimerContainer>
-          <BookTableTraining
-            booksList={selectedBooks}
-            isEmptyTraining={false}
-          />
-          <BookMobileTableTraining
-            booksList={selectedBooks}
-            isEmptyTraining={false}
-          />
-        </>
+        <Statistics
+          endDate={endDate}
+          endYear={endYear}
+          selectedBooks={selectedBooks}
+        />
       )}
       <ChartModal />
     </>
