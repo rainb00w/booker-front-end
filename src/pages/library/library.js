@@ -3,6 +3,7 @@ import BookAddForm from '../../components/bookAdd/bookAddForm';
 import BookTable from '../../components/bookTable/bookTable';
 import BookTableMobile from 'components/bookTable/bookMobileTable';
 import BtnMyTraining from 'components/BtnLibrary/btnMyTraining';
+// import RatingBook from 'components/RatingBook';
 import { useMediaQuery } from 'react-responsive';
 import s from './library.module.css';
 import { useGetAllBooksQuery } from 'redux/books/booksApi';
