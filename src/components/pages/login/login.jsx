@@ -66,7 +66,12 @@ const Login = () => {
               className={styles.google__auth}
               href="http://localhost:3001/api/user/google"
             >
-              Google
+              <div className={styles.google__container}>
+                <svg className={styles.svg__google}>
+                  <use href={svgPath.google + '#google'}></use>
+                </svg>
+                <p className={styles.google__text}>Google</p>
+              </div>
             </a>
             <Formik
               initialValues={{
