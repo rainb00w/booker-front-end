@@ -11,7 +11,7 @@ export const registrationValidationSchema = yup.object().shape({
     email: yup.string()
         .typeError("Will be a string")
         .email()
-        .matches(/^(?!-)([\w\.\!#\$%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]{2,})+@(([\w\.\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]{3,56})+\.)+[\w]{2,}(?!-)$/ , 'Is not in correct format')
+        .matches( /^(?!-)([\w\.\!#\$%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]{2,})+@(([\w\.\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]{1,56})+\.)+[\w]{2,}(?!-)$/ , 'Is not in correct format')
         .min(10)
         .max(63)
         .required("Required field"),
@@ -35,7 +35,7 @@ export const loginValidationSchema = yup.object().shape({
     email: yup.string()
         .typeError("Will be a string")
         .email()
-        .matches(/^(?!-)([\w\.\!#\$%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]{2,})+@(([\w\.\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]{3,56})+\.)+[\w]{2,}(?!-)$/ , 'Is not in correct format')
+        .matches( /^(?!-)([\w\.\!#\$%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]{2,})+@(([\w\.\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]{1,56})+\.)+[\w]{2,}(?!-)$/ , 'Is not in correct format')
         .min(10)
         .max(63)
         .required("Required field"),
@@ -52,7 +52,7 @@ export const repeatVerifyValidationSchema = yup.object().shape({
     email: yup.string()
             .typeError("Will be a string")
             .email()
-            .matches(/^(?!-)([\w\.\!#\$%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]{2,})+@(([\w\.\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]{3,56})+\.)+[\w]{2,}(?!-)$/ , 'Is not in correct format')
+            .matches( /^(?!-)([\w\.\!#\$%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]{2,})+@(([\w\.\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]{1,56})+\.)+[\w]{2,}(?!-)$/ , 'Is not in correct format')
             .min(10)
             .max(63)
             .required("Required field")
