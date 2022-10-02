@@ -2,6 +2,8 @@ import React, { useEffect, useState, Suspense } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
+import LangSwitch from '../../components/langSwitch/langSwitch';
+
 import s from './header.module.css';
 import home from './icon_home.svg';
 import library from './icon_library.svg';
@@ -24,13 +26,14 @@ const Header = () => {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   const isLoggedInName = useSelector(authSelectors.getUsername);
 
+  const [user, setUser] = useState(isLoggedInName);
+
   const { t, i18n } = useTranslation();
   const changeLanguage = language => {
     i18n.changeLanguage(language);
   };
 
-  const user = 'Martha Stewart'; //Добавить текущего пользователя
-  const userLogo = user[0];
+  const userLogo = user ? user[0] : 'U';
   const dispatch = useDispatch();
 
   const [open, setOpen] = React.useState(false);
@@ -66,24 +69,26 @@ const Header = () => {
 
   return (
     <>
-        
-      <span> {isLoggedInName} </span>
+      {/* кнопки не удалял, чтобы можно было на формулы посмотреть
+      
       <button onClick={() => changeLanguage('en')}>EN</button>
       <button onClick={() => changeLanguage('ua')}>UA</button>
-        <div> {t("text")} </div>
+      <div> {t('text')} </div> */}
 
       <header className={isLoggedIn ? s.header : s.header_l}>
         <Link to="/" className={s.logo}>
           BR
         </Link>
 
+        <LangSwitch onChangeLanguage={changeLanguage} />
+
         {isLoggedIn && (
           <div className={s.blok}>
             <div className={s.blok_user}>
               <button className={s.btn_desktop} type="button">
-                {userLogo}
+                {isLoggedIn && userLogo}
               </button>
-              <p className={s.user_name}>{user}</p>
+              <p className={s.user_name}>{isLoggedIn && user}</p>
             </div>
 
             {statistic && (
@@ -157,9 +162,7 @@ const Header = () => {
             </button>
           </Box>
         </Modal>
-  
       </div>
-     
     </>
   );
 };
