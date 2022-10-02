@@ -11,7 +11,7 @@ export const Button = styled.button`
   background-color: #ff6b08;
   cursor: pointer;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  &:hover, &:active {
+  &:hover {
     background-color: #D15807;
   }
   &:disabled {
