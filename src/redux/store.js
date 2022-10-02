@@ -16,24 +16,25 @@ import {
 } from 'redux-persist';
 
 const authPersistConfig = {
-    key: 'auth',
-    storage,
-    whitelist: ['token', 'isLoggedIn'],
-  };
+  key: 'auth',
+  storage,
+  whitelist: ['token', 'isLoggedIn', 'name'],
+};
 
-  export const store = configureStore({
-    reducer: {
-      auth: persistReducer(authPersistConfig, authReducer),
-      [booksApi.reducerPath]: booksApi.reducer,
-      [trainingApi.reducerPath]: trainingApi.reducer,
+export const store = configureStore({
+  reducer: {
+    auth: persistReducer(authPersistConfig, authReducer),
+    [booksApi.reducerPath]: booksApi.reducer,
+    [trainingApi.reducerPath]: trainingApi.reducer,
+  },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    })
+      .concat(booksApi.middleware)
+      .concat(trainingApi.middleware),
+});
 
-    },
-    middleware: getDefaultMiddleware =>
-      getDefaultMiddleware({
-        serializableCheck: {
-          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-        },
-      }).concat(booksApi.middleware).concat(trainingApi.middleware),
-  });
-  
-  export const persistor = persistStore(store);
+export const persistor = persistStore(store);
