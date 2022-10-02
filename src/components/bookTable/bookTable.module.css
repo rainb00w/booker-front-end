@@ -1,5 +1,6 @@
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .section {
+    min-width: 320px;
     width: calc(100% - 2 * 20px);
     margin-bottom: 40px;
   }
@@ -45,6 +46,7 @@
 }
 @media screen and (min-width: 768px) and (max-width: 1279px) {
   .section {
+    max-width: 768px;
     width: calc(100% - 2 * 32px);
     margin-bottom: 50px;
   }
@@ -84,11 +86,14 @@
   .btn {
     width: 80px;
     height: 40px;
-    margin: 0;
+    display: block;
+    text-align: center;
+    margin: auto 0 auto auto;
   }
 }
 @media screen and (min-width: 1280px) {
   .section {
+    max-width: 1280px;
     width: calc(100% - 2 * 16px);
     margin-bottom: 50px;
   }
@@ -113,7 +118,7 @@
 
   .subtitle {
     display: inline-block;
-    min-width: calc(100% / 6);
+    min-width: calc(100% / 5);
   }
   .img {
     margin-right: 18px;
@@ -121,7 +126,9 @@
   .btn {
     width: 130px;
     height: 40px;
-    margin: 0;
+    display: block;
+    text-align: center;
+    margin: auto 0 auto auto;
   }
 }
 .section {
@@ -169,6 +176,7 @@
   color: #ffffff;
   background: #6d7a8d;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
 }
 li {
   list-style-type: none;
