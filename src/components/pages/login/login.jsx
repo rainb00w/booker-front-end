@@ -5,6 +5,8 @@ import classNames from 'classnames';
 import Media from 'react-media';
 import AuthModal from '../../authModal/authModal';
 import RepeatVerify from '../repeatVerify/repeatVerify';
+import getPhrases from '../../phrases/getPhrases';
+import LoginPhrase from './loginPhrase';
 
 import { Formik } from 'formik';
 import { loginValidationSchema } from 'services/yupValidationSchema';
@@ -28,6 +30,7 @@ const Login = () => {
   const location = useLocation();
   const query = queryString.parse(location.search);
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+  const phrase = getPhrases();
 
   useEffect(() => {
     isLoggedIn ? setModal(false) : setModal(true);
@@ -36,7 +39,7 @@ const Login = () => {
   useEffect(() => {
     if (query.token) {
       const { name, token, avatar } = query;
-      console.log(query)
+      console.log(query);
       dispatch(googleLogIn(token));
     }
   });
@@ -188,12 +191,7 @@ const Login = () => {
           <svg className={styles.svg__qutation}>
             <use href={svgPath.quatation + '#quatation'}></use>
           </svg>
-          <p className={styles.quote}>
-            Books are the ships of thoughts, wandering through the waves of
-            time.
-          </p>
-          <hr className={styles.hr} />
-          <h2 className={styles.author}>Francis Bacon</h2>
+          <LoginPhrase phrase={phrase} />
         </div>
       </section>
     </>
