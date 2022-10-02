@@ -8,18 +8,15 @@
   display: flex;
   margin-bottom: 28px;
 }
+
 .inputsLabel {
   font-size: 11px;
   font-weight: 500;
   line-height: 1.18;
   color: #898f9f;
-  margin-right: 20px;
 }
-.inputsLabel:last-child {
-  margin-right: 0;
-}
-.inputPage,
-.inputDate {
+.inputDate,
+.inputPage {
   height: 42px;
   width: 110px;
   background-color: #f6f7fb;
@@ -32,18 +29,24 @@
   font-size: 14px;
   line-height: 1.21;
   outline: none;
+  margin-right: 20px;
 }
+.inputPage {
+  margin-right: 0;
+}
+
 .addResultBtn {
-  width: 240px;
+  min-width: 240px;
   height: 40px;
   background-color: #ff6b08;
   padding: 10px 44px;
   border: none;
   color: #ffffff;
   font-size: 16px;
-  line-height: 1.25;
+  line-height: 1.2375;
   margin-bottom: 24px;
 }
+
 .resultsHeader,
 .statisticsHeader {
   text-transform: uppercase;
@@ -63,8 +66,8 @@
   padding: 0px;
 }
 .statisticsListItem {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   list-style: none;
   color: #242a37;
   font-size: 14px;
@@ -80,6 +83,10 @@
 }
 .cellTime {
   color: #898f9f;
+  margin: 0 auto;
+}
+.cellPage {
+  margin-left: auto;
 }
 .cellPage::after {
   content: ' стор.';
@@ -96,4 +103,40 @@ input[type='number']:hover,
 input[type='number']:focus {
   appearance: none;
   -moz-appearance: textfield;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  .container {
+    width: 704px;
+    padding: 28px 96px 32px 96px;
+  }
+  .formResults {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 21px;
+  }
+  .inputs {
+    margin-bottom: 0px;
+  }
+  .addResultBtn {
+    height: 42px;
+    margin-bottom: 0;
+    padding: 11px 44px;
+  }
+  .resultsHeader,
+  .statisticsHeader {
+    font-style: 14px;
+  }
+  .resultsHeader {
+    margin-bottom: 27px;
+  }
+  .statisticsHeader {
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .inputDate,
+  .inputPage {
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1199px) {
 }

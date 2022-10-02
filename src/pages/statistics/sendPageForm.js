@@ -15,8 +15,8 @@ const SendPageForm = () => {
       (dd > 9 ? '' : '0') + dd,
     ].join('-');
   };
-  const { startedTimeStamp } = useGetAllTrainingsQuery();
-  console.log(new Date(startedTimeStamp).yyyymmdd());
+  const { data = {} } = useGetAllTrainingsQuery();
+  console.log(data);
 
   // let startDate = Date.parse(startedTimeStamp);
   // console.log(startDate);
@@ -30,7 +30,8 @@ const SendPageForm = () => {
     validationSchema: Yup.object().shape({
       dateInput: Yup.date()
         .min(
-          new Date(startedTimeStamp).yyyymmdd().toString(),
+          // new Date(startedTimeStamp).yyyymmdd().toString(),
+          '2021-31-01',
           'Ви не можете ввести дату до початку тренування'
         ) // тут треба потестить
         .max(new Date().yyyymmdd(), 'Ви не можете ввести дату в майбутньому'), // максимальна дата - це сьогодні
@@ -47,7 +48,7 @@ const SendPageForm = () => {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <form onSubmit={formik.handleSubmit} className={s.formResults}>
       <div className={s.inputs}>
         <label className={s.inputsLabel}>
           Дата
@@ -55,7 +56,7 @@ const SendPageForm = () => {
             <div>{formik.errors.dateInput}</div>
           ) : null}
           <input
-            className={s.inputPage}
+            className={s.inputDate}
             type="date"
             name="dateInput"
             onChange={formik.handleChange}
@@ -68,7 +69,7 @@ const SendPageForm = () => {
             <div>{formik.errors.pageInput}</div>
           ) : null}
           <input
-            className={s.inputDate}
+            className={s.inputPage}
             type="number"
             name="pageInput"
             onChange={formik.handleChange}
