@@ -6,7 +6,6 @@ const getPhrases = () => {
     lang = 'en';
   }
   const index = Math.floor(Math.random() * 10);
-  console.log(phrases[lang][index]);
   return phrases[lang][index];
 };
 

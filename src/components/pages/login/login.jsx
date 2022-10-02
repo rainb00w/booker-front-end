@@ -24,13 +24,13 @@ const Login = () => {
   const dispatch = useDispatch();
   const [err, setErr] = useState('');
   const [modal, setModal] = useState(false);
+  const [phrase, setPhrase] = useState(getPhrases());
 
   const [verifyModal, setVerifyModal] = useState(false);
   const [inputType, setInputType] = useState('password');
   const location = useLocation();
   const query = queryString.parse(location.search);
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
-  const phrase = getPhrases();
 
   useEffect(() => {
     isLoggedIn ? setModal(false) : setModal(true);
