@@ -1,5 +1,6 @@
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .form {
+    min-width: 320px;
     width: calc(100% - 2 * 20px);
     display: flex;
     flex-direction: column;
@@ -24,12 +25,14 @@
   }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1199px) {
+@media screen and (min-width: 768px) and (max-width: 1279px) {
   .form {
+    max-width: 768px;
     width: 704px;
     margin-bottom: 40px;
   }
   .inputTitle {
+    max-width: 768px;
     width: 704px;
     margin-bottom: 24px;
   }
@@ -52,6 +55,7 @@
 
 @media screen and (min-width: 1280px) {
   .form {
+    max-width: 1280px;
     display: flex;
     justify-content: flex-start;
     width: calc(100% - 2 * 16px);
@@ -126,4 +130,5 @@
   height: 42px;
   background: #f6f7fb;
   border: 1px solid #242a37;
+  cursor: pointer;
 }
