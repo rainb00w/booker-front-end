@@ -3,22 +3,22 @@ import classNames from 'classnames';
 import newPasswordAPI from 'services/newPasswordAPI';
 import { Formik } from 'formik';
 import { loginValidationSchema } from 'services/yupValidationSchema';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import svgPath from 'services/svgPath';
 import styles from "../login/login.module.css";
 
-// import { authOperations } from '../../../redux/auth';
 
 const ChangePassword = () => {
-    const [inputType, setInputType] = useState('password');
-    const [err, setErr] = useState('');
+  const [inputType, setInputType] = useState('password');
+  const navigate = useNavigate();
+  const [err, setErr] = useState('');
 
-    const handleClickShowIcon = () => {
-        setInputType(inputType === 'password' ? 'text' : 'password');
-    };
+  const handleClickShowIcon = () => {
+    setInputType(inputType === 'password' ? 'text' : 'password');
+  };
 
-    return (
+  return (
     <>
         <section className={styles.section}>
             <div className={styles.login__form}>
@@ -34,7 +34,10 @@ const ChangePassword = () => {
                     const { email, password } = values;
                     setErr("")
                     newPasswordAPI(email, password)
-                        .then(answer => console.log("009", answer))
+                      .then(answer => {
+                        console.log(answer)
+                        navigate('/login');
+                      })
                         .catch(err => {
                             const errorMessage = err.response.data.message;
                             setErr(errorMessage);
