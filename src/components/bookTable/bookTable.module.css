@@ -1,7 +1,6 @@
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .section {
-    min-width: 320px;
-    width: calc(100% - 2 * 20px);
+    width: 280px;
     margin-bottom: 40px;
   }
   .table + .table {
@@ -11,22 +10,22 @@
     margin: 0 0 20px 0;
   }
   .item {
-    padding-bottom: 32px;
+    padding: 20px 26px 32px 20px;
   }
   .item + .item {
     margin-top: 16px;
   }
   .subtitle:first-child {
     margin-bottom: 15px;
-    margin-left: 20px;
+    margin-left: 0;
   }
   .subtitle {
     margin-bottom: 15px;
-    margin-left: 54px;
+    margin-left: 34px;
   }
   .subtitle:last-child {
     margin-bottom: 32px;
-    margin-left: 54px;
+    margin-left: 34px;
   }
   .img {
     margin-right: 15px;
@@ -50,6 +49,10 @@
     width: calc(100% - 2 * 32px);
     margin-bottom: 50px;
   }
+  .table {
+    width: 100%;
+    border-spacing: 0 10px;
+  }
   .table + .table {
     margin-top: 40px;
   }
@@ -58,24 +61,24 @@
   }
 
   .head {
-    display: flex;
-    justify-content: space-between;
+    width: 100%;
   }
   .topic {
     margin-bottom: 8px;
   }
   .item {
-    display: flex;
-    justify-content: space-between;
+    height: 62px;
+    /* display: flex;
+    justify-content: space-between; */
   }
-  .item + .item {
+  /* .item + .item {
     margin-top: 10px;
-  }
+  } 
 
-  .subtitle {
+   .subtitle {
     display: inline-block;
     width: calc(100% / 5);
-  }
+  } */
   .table + .table {
     margin-top: 32px;
   }
@@ -100,32 +103,39 @@
   .title {
     margin: 0 0 24px 0;
   }
-
+  .table {
+    width: 100%;
+    border-spacing: 0 10px;
+  }
   .head {
-    display: flex;
-    justify-content: space-between;
+    /* display: flex;
+    justify-content: space-between; */
+    width: 100%;
   }
   .topic {
     margin-bottom: 8px;
   }
   .item {
-    display: flex;
-    justify-content: space-between;
+    /* display: flex;
+    justify-content: space-between; */
+    height: 62px;
   }
-  .item + .item {
+  /* .item + .item {
     margin-top: 10px;
-  }
+  }  */
 
-  .subtitle {
+  /* .subtitle {
     display: inline-block;
     min-width: calc(100% / 5);
-  }
+  } */
   .img {
     margin-right: 18px;
   }
   .btn {
     width: 130px;
     height: 40px;
+    margin-right: 0;
+    margin-left: auto;
     display: block;
     text-align: center;
     margin: auto 0 auto auto;
@@ -166,6 +176,7 @@
 }
 .item {
   background-color: #ffffff;
+  list-style-type: none;
 }
 .btn {
   font-family: 'Montserrat';
@@ -176,6 +187,11 @@
   color: #ffffff;
   background: #6d7a8d;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+.btnDelete {
+  background-color: inherit;
+  border: 0;
   cursor: pointer;
 }
 li {
