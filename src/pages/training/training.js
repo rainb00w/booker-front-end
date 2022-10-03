@@ -1,165 +1,77 @@
-import TrainingForm from '../../components/TrainingFrom';
-import MyGoal from '../../components/MyGoal';
+import { useEffect, useState } from 'react';
+import TrainingDataSelection from 'components/TrainingDataSelection/TrainingDataSelection';
 import ChartModal from '../../components/Chart/ChartModal';
-import BookTableTraining from '../../components/bookTableTraining/bookTableTraining';
-import BookMobileTableTraining from '../../components/bookTableTraining/bookMobileTableTraining';
-import styled from 'styled-components';
-
 import { useGetAllBooksQuery } from 'redux/books/booksApi';
-import * as React from 'react';
-import { useState } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 import { useAddTrainingMutation } from 'redux/books/trainingApi';
 import { useGetAllTrainingsQuery } from 'redux/books/trainingApi';
-
-const Container = styled.div`
-  background-color: #f6f7fb;
-`;
-
-const TrainingContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-
-  padding-top: 40px;
-`;
-
-const TrainingMaine = styled.div`
-  width: 70%;
-`;
-
-const TrainingSidebar = styled.div`
-  width: 25%;
-`;
-
-const defaultChosenBooks = [
-  {
-    _id: '633430de05d976545f184b08',
-    title: 'The Art of War',
-    author: 'Sun Tzu',
-    year: 1974,
-    pages: 100,
-    status: 'toRead',
-    owner: '6331e0bd7d50cafaf02cf8c8',
-  },
-  {
-    _id: '6331fa40c8e0d7f99f187435',
-    title: '1984',
-    author: 'George Orwell',
-    year: 1949,
-    pages: 100,
-    status: 'toRead',
-    owner: '6331e0bd7d50cafaf02cf8c8',
-  },
-  {
-    _id: '633430de05d976545f184b11',
-    title: 'The Art of War',
-    author: 'Sun Tzu',
-    year: 1974,
-    pages: 100,
-    status: 'toRead',
-    owner: '6331e0bd7d50cafaf02cf8c8',
-  },
-  {
-    _id: '6331fa40c8e0d7f99f1874332',
-    title: '1984',
-    author: 'George Orwell',
-    year: 1949,
-    pages: 100,
-    status: 'toRead',
-    owner: '6331e0bd7d50cafaf02cf8c8',
-  },
-  {
-    _id: '633430de05d976545f184b88',
-    title: 'The Art of War',
-    author: 'Sun Tzu',
-    year: 1974,
-    pages: 100,
-    status: 'toRead',
-    owner: '6331e0bd7d50cafaf02cf8c8',
-  },
-  {
-    _id: '6331fa40c8e0d7f99f187436',
-    title: '1984',
-    author: 'George Orwell',
-    year: 1949,
-    pages: 100,
-    status: 'toRead',
-    owner: '6331e0bd7d50cafaf02cf8c8',
-  },
-];
+import SendPageForm from '../statistics/sendPageForm';
+import Statistics from '../statistics/statistics';
 
 const Training = () => {
-  const { data } = useGetAllBooksQuery();
-  // тут получаем все Книги
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [endYear, setEndYear] = useState(new Date(2022, 11, 31));
+  const [selectedBooks, setSelectedBooks] = useState([]);
+  const [startTraining, setStartTraining] = useState(false);
 
   const trainingData = useGetAllTrainingsQuery();
-  // trainingData это объект, данные доступны  => trainingData.data
+  console.log(trainingData);
 
-  const [booksInfo, setBooksInfo] = useState([]);
-  const [booksArrayToSend, setBooksArrayToSend] = useState(defaultChosenBooks);
-  const [addTraining, { isLoading }] = useAddTrainingMutation();
+  const { data } = useGetAllBooksQuery();
+  const booksOptions = data?.payload.books;
 
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  useEffect(() => {
+    console.log('useEffect');
+    if (trainingData.status === 'fulfilled') {
+      const { books, finishDate } = trainingData.data;
+      setEndDate(new Date(finishDate));
 
-  const handleAddBooks = e => {
-    e.preventDefault();
-    setBooksArrayToSend(booksInfo);
-  };
+      const findBooks = books.reduce((acc, { _id }) => {
+        const findBook = booksOptions.find(
+          bookOption => bookOption._id === _id
+        );
+        return [...acc, findBook];
+      }, []);
 
-  const booksThatNotSelected = data?.payload.books.filter(
-    el => !booksArrayToSend.includes(el)
-  );
+      setSelectedBooks(findBooks);
+      setStartTraining(true);
+    }
+    console.log('startTraining', selectedBooks);
+  }, [trainingData]);
 
-  const removeItem = id => {
-    const newBooksArrayToSend = booksArrayToSend.filter(
-      book => book._id !== id
-    );
-    const newBooksInfo = booksInfo.filter(book => book._id !== id);
-    setBooksArrayToSend(newBooksArrayToSend);
-    setBooksInfo(newBooksInfo);
-  };
-
-  const startTraining = () => {
-    const array = {
-      startDate: startDate.toISOString(),
-      finishDate: endDate.toISOString(),
-      books: booksArrayToSend.map(element => ({ _id: element._id })),
-    };
-
-    addTraining(array)
-      .unwrap()
-      .then(payload => console.log('fulfilled', payload))
-      .catch(error => console.error('rejected', error));
+  // const status = trainingData.status;
+  const onStartTraining = values => {
+    const keys = Object.keys(values);
+    console.log(keys);
+    keys.forEach(key => {
+      if (key === 'startDate') {
+        setStartDate(values[key]);
+      }
+      if (key === 'endDate') {
+        setEndDate(values[key]);
+      }
+      if (key === 'selectedBooks') {
+        setSelectedBooks(values[key]);
+      }
+      if (endDate && selectedBooks.length > 0) {
+        setStartTraining(true);
+      }
+    });
   };
 
   return (
     <>
-      <Container>
-        <TrainingContainer>
-          <TrainingMaine>
-            <TrainingForm />
-            <BookTableTraining
-              booksList={booksArrayToSend}
-              onClick={removeItem}
-            />
-            <BookMobileTableTraining
-              booksList={booksArrayToSend}
-              onClick={removeItem}
-            />
-          </TrainingMaine>
-
-          <TrainingSidebar>
-            <MyGoal />
-            {/* <TrainingTitle text="Моя мета прочитати" /> */}
-          </TrainingSidebar>
-          {/* <p>asd</p> */}
-        </TrainingContainer>
-        <ChartModal />
-      </Container>
-
-   
+      {!startTraining && (
+        <TrainingDataSelection onStartTraining={onStartTraining} />
+      )}
+      {startTraining && (
+        <Statistics
+          endDate={endDate}
+          endYear={endYear}
+          selectedBooks={selectedBooks}
+        />
+      )}
+      <ChartModal />
     </>
   );
 };

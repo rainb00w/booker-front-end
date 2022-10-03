@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import s from './bookTableTraining.module.css';
-import star from './symbol-defs.svg';
+import icons from './symbol-defs.svg';
 import Tooltip from '@mui/material/Tooltip';
 
-export default function BookTableTraining({ booksList, onClick }) {
+export default function BookTableTraining({
+  booksList,
+  onClick,
+  isEmptyTraining,
+}) {
   const handleDelete = e => {
-    console.log(e.currentTarget.id);
     onClick(e.currentTarget.id);
   };
 
@@ -23,7 +26,7 @@ export default function BookTableTraining({ booksList, onClick }) {
               <th className={s.topic} width="15%">
                 Year
               </th>
-              <th className={s.topic} width="25%">
+              <th className={s.topic} width="20%">
                 Pages
               </th>
             </tr>
@@ -32,38 +35,48 @@ export default function BookTableTraining({ booksList, onClick }) {
         <div className={s.container}>
           <table className={s.table}>
             <tbody className={s.tbody}>
-              {booksList.map(({ _id, author, pages, title, year }) => (
-                <tr key={_id + author}>
+              {booksList.map(({ _id, author, pages, title, year, status }) => (
+                <tr key={_id}>
                   <td className={s.tdTitle}>
-                    <svg width={22} height={17} className={s.bookIcon}>
-                      <use href={`${star}#white_book`}></use>
-                    </svg>
+                    {(status === 'toRead' ||
+                      status === 'reading' ||
+                      isEmptyTraining) && (
+                      <svg width={22} height={17} className={s.bookIcon}>
+                        <use href={`${icons}#white_book`}></use>
+                      </svg>
+                    )}
+                    {status === 'readed' && !isEmptyTraining && (
+                      <svg width={22} height={17} className={s.bookIcon}>
+                        <use href={`${icons}#yellow_book`}></use>
+                      </svg>
+                    )}
                     <Tooltip title={title}>
                       <span className={s.textContainer}>{title}</span>
                     </Tooltip>
                   </td>
-
                   <td className={s.td} width="25%">
                     {author}
                   </td>
                   <td className={s.td} width="15%">
                     {year}
                   </td>
-                  <td className={s.td} width="15%">
+                  <td className={s.td} width={isEmptyTraining ? '10%' : '20%'}>
                     {pages}
                   </td>
-                  <td className={s.td} width="10%">
-                    <button
-                      id={_id}
-                      type="button"
-                      className={s.btnDelete}
-                      onClick={handleDelete}
-                    >
-                      <svg width={22} height={17}>
-                        <use href={`${star}#icon-delete`}></use>
-                      </svg>
-                    </button>
-                  </td>
+                  {isEmptyTraining && (
+                    <td className={s.td} width="10%">
+                      <button
+                        id={_id}
+                        type="button"
+                        className={s.btnDelete}
+                        onClick={handleDelete}
+                      >
+                        <svg width={22} height={17}>
+                          <use href={`${icons}#icon-delete`}></use>
+                        </svg>
+                      </button>
+                    </td>
+                  )}
                 </tr>
               ))}
             </tbody>
@@ -84,5 +97,6 @@ BookTableTraining.propTypes = {
     })
   ),
 
-  onClick: PropTypes.func,
+  onClick: PropTypes.func.isRequired,
+  isEmptyTraining: PropTypes.bool.isRequired,
 };

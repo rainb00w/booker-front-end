@@ -2,7 +2,7 @@
   .section {
     width: calc(100% - 2 * 20px);
     margin-bottom: 40px;
-   
+
   }
   .title {
     margin-bottom: 20px;
@@ -17,7 +17,7 @@
   }
 
 }
-@media screen and (min-width: 768px) and (max-width: 1199px) {
+@media screen and (min-width: 768px) and (max-width: 1279px) {
 .section {
     display: none;
   }
@@ -26,13 +26,13 @@
     width: calc(100% - 2 * 32px);
     margin-bottom: 40px;
   }
- 
+
     .table {
       width: 100%;
       border-collapse: collapse;
     }
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1280px) {
 
   .section {
       display: none;
@@ -43,9 +43,9 @@
    padding-bottom: 32px;
   margin-left: auto;
     margin-right: auto;
-   
 
-   
+
+
   }
 }
 
@@ -61,7 +61,7 @@ height: 180px;
   width: 100%;
   max-width: 928px;
   border-collapse: collapse;
- 
+
 
   table-layout: fixed;
   border: none;
@@ -70,7 +70,7 @@ height: 180px;
 .tr {
   border-top: 1px solid rgba(224, 229, 235, 1);
   border-bottom: 1px solid rgba(224, 229, 235, 1);
- 
+
 }
 
 /* scroll container + scroll options  */
@@ -86,7 +86,7 @@ height: 180px;
 
 .container::-webkit-scrollbar {
   max-width: 2px;
-  
+
 }
 
 .container::-webkit-scrollbar-thumb {
@@ -118,7 +118,7 @@ height: 180px;
   padding-top: 12px;
     padding-bottom: 12px;
 
-   
+
 
 }
 
@@ -152,7 +152,7 @@ height: 180px;
 
   color: #242A37;
 
-  
+
 }
 
 .tdTitle div {
@@ -186,7 +186,7 @@ width: 200px;
   padding-top: 15px;
   padding-bottom: 15px;
   border-top: 1px solid rgba(224, 229, 235, 1);
- 
+
 }
 
 .mobileContainer {
@@ -202,12 +202,12 @@ width: 200px;
     line-height: 1.25;
     color: #242a37;
 
-   
+
     display: flex;
     align-items: center;
     align-items: flex-start;
     justify-content: space-between;
-  
+
 }
 
 .titleMobile {
@@ -220,4 +220,15 @@ max-width: 270px;
 margin-left: auto;
   margin-right: auto;
   border-bottom: 1px solid rgba(224, 229, 235, 1);
+  height: 300px;
+    overflow-x: auto;
+}
+
+.booksList::-webkit-scrollbar {
+  max-width: 2px;
+
+}
+
+.booksList::-webkit-scrollbar-thumb {
+  background: #afb4c0;
 }

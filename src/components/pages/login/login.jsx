@@ -4,6 +4,8 @@ import classNames from 'classnames';
 import Media from 'react-media';
 import AuthModal from '../../authModal/authModal';
 import RepeatVerify from '../repeatVerify/repeatVerify';
+import getPhrases from '../../phrases/getPhrases';
+import LoginPhrase from './loginPhrase';
 
 import { Formik } from 'formik';
 import { loginValidationSchema } from 'services/yupValidationSchema';
@@ -21,6 +23,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const [err, setErr] = useState('');
   const [modal, setModal] = useState(false);
+  const [phrase, setPhrase] = useState(getPhrases());
 
   const [verifyModal, setVerifyModal] = useState(false);
   const [inputType, setInputType] = useState('password');
@@ -36,7 +39,9 @@ const Login = () => {
 
   useEffect(() => {
     if (query.token) {
-      dispatch(googleLogIn(query.token));
+      const { name, token, avatar } = query;
+      console.log(query);
+      dispatch(googleLogIn(token));
     }
   });
 
@@ -74,9 +79,14 @@ const Login = () => {
           <div className={styles.form__border}>
             <a
               className={styles.google__auth}
-              href="http://localhost:3001/api/user/google"
+              href="https://booker-back-end.herokuapp.com/api/user/google"
             >
-              Google
+              <div className={styles.google__container}>
+                <svg className={styles.svg__google}>
+                  <use href={svgPath.google + '#google'}></use>
+                </svg>
+                <p className={styles.google__text}>Google</p>
+              </div>
             </a>
             <Formik
               initialValues={{
@@ -163,14 +173,12 @@ const Login = () => {
                   <button className={styles.form__button} type="submit">
                     Login
                   </button>
-                  <Link to="/changePassword">
-                    <button className={styles.form__button} type="button">
-                      Forgot Password
-                    </button>
-                  </Link>
                 </form>
               )}
             </Formik>
+            <Link className={styles.auth__link} to="/register">
+              Register
+            </Link>
             <p className={styles.auth__verify}>
               Didnt receive an email to verify your account? Try to send again:
               <button
@@ -183,21 +191,19 @@ const Login = () => {
                 Repeat Verify
               </button>
             </p>
-            <Link className={styles.auth__link} to="/register">
-              Register
-            </Link>
+            <p className={styles.auth__verify}>
+              Click if you forgot your password:
+              <Link className={styles.authforgot__link} to="/changePassword">
+                Forgot Password
+              </Link>
+            </p>
           </div>
         </div>
         <div className={styles.log__text}>
           <svg className={styles.svg__qutation}>
             <use href={svgPath.quatation + '#quatation'}></use>
           </svg>
-          <p className={styles.quote}>
-            Books are the ships of thoughts, wandering through the waves of
-            time.
-          </p>
-          <hr className={styles.hr} />
-          <h2 className={styles.author}>Francis Bacon</h2>
+          <LoginPhrase phrase={phrase} />
         </div>
       </section>
     </>

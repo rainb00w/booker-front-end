@@ -6,10 +6,24 @@ import s from './statisticsList.module.css';
 import ModalYouAreGood from './modal/ModalYouAreGood';
 import ModalCongratulate from './modal/ModalCongratulate';
 import ModalExit from './modal/ModalExit';
+import Timer from 'components/Timer/Timer';
+import { StyledTimerContainer } from './statistics.style';
+import BookTableTraining from 'components/bookTableTraining/bookTableTraining';
+import BookMobileTableTraining from 'components/bookTableTraining/bookMobileTableTraining';
 
-const Statistics = () => {
+const Statistics = ({ endDate, endYear, selectedBooks }) => {
   return (
     <>
+      <StyledTimerContainer>
+        <Timer endDate={endYear} />
+        <Timer endDate={endDate} />
+      </StyledTimerContainer>
+      <BookTableTraining booksList={selectedBooks} isEmptyTraining={false} />
+      <BookMobileTableTraining
+        booksList={selectedBooks}
+        isEmptyTraining={false}
+      />
+
       <div className={s.container}>
         <h2 className={s.resultsHeader}>Результати</h2>
         <SendPageForm />

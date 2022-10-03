@@ -47,12 +47,13 @@ const Registration = () => {
 
                 dispatch(authOperations.register({ name, email, password }))
                   .then(answer => {
-                    const { data, response } = answer?.payload;
-                    setErrName('');
-                    setErrEmail('');
+                    const { data, response } = answer.payload;
 
                     if (data) {
                       resetForm({ values: '' });
+                      setErrName('');
+                      setErrEmail('');
+                      navigate('/login');
                     } else if (response) {
                       throw response.data.message;
                     }
@@ -61,8 +62,10 @@ const Registration = () => {
                     switch (error) {
                       case 'name':
                         setErrName('User with this name is already registered');
+                        setErrEmail('');
                         return;
                       case 'email':
+                        setErrName('');
                         setErrEmail(
                           'User with this email is already registered'
                         );
@@ -76,8 +79,7 @@ const Registration = () => {
                       default:
                         return;
                     }
-                  })
-                  .finally(navigate('/login'));
+                  });
               }}
             >
               {({
@@ -91,7 +93,7 @@ const Registration = () => {
                 <form onSubmit={handleSubmit}>
                   <a
                     className={styles.google__auth}
-                    href="http://localhost:3001/api/user/google"
+                    href="https://booker-back-end.herokuapp.com/api/user/google"
                   >
                     Google
                   </a>

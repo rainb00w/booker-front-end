@@ -1,25 +1,26 @@
 .container {
-  font-family: Montserrat;
   width: 280px;
-  background-color: #ffffff;
+  margin-left: auto;
+  margin-right: auto;
   padding: 20px 20px 22px 20px;
+  font-family: Montserrat;
+  background-color: #ffffff;
+  box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
 }
+
 .inputs {
   display: flex;
   margin-bottom: 28px;
 }
+
 .inputsLabel {
   font-size: 11px;
   font-weight: 500;
   line-height: 1.18;
   color: #898f9f;
-  margin-right: 20px;
 }
-.inputsLabel:last-child {
-  margin-right: 0;
-}
-.inputPage,
-.inputDate {
+.inputDate,
+.inputPage {
   height: 42px;
   width: 110px;
   background-color: #f6f7fb;
@@ -32,18 +33,32 @@
   font-size: 14px;
   line-height: 1.21;
   outline: none;
+  margin-right: 20px;
+  margin-top: 4px;
 }
+.inputPage {
+  margin-right: 0;
+}
+
 .addResultBtn {
-  width: 240px;
+  min-width: 240px;
   height: 40px;
   background-color: #ff6b08;
   padding: 10px 44px;
   border: none;
   color: #ffffff;
   font-size: 16px;
-  line-height: 1.25;
+  font-weight: 600;
+  line-height: 1.2375;
   margin-bottom: 24px;
+  cursor: pointer;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+.addResultBtn:hover {
+  background-color: #D15807;
+}
+
 .resultsHeader,
 .statisticsHeader {
   text-transform: uppercase;
@@ -55,16 +70,30 @@
   margin-bottom: 12px;
 }
 .statisticsHeader {
+  display: flex;
+  align-items: center;
   margin-bottom: 4px;
   font-weight: 700;
+}
+.statisticsHeader::after, .statisticsHeader::before {
+  content: ' ';
+  height: 1px;
+  width: 72px;
+  background: #E0E5EB;
+}
+.statisticsHeader::before {
+  margin-right: 4px;
+}
+.statisticsHeader::after {
+  margin-left: 4px;
 }
 .statisticsList {
   margin: 0px;
   padding: 0px;
 }
 .statisticsListItem {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   list-style: none;
   color: #242a37;
   font-size: 14px;
@@ -76,10 +105,12 @@
 .statisticsListItem:last-child {
   margin-bottom: 0;
 }
-.cellDate {
-}
 .cellTime {
   color: #898f9f;
+  margin: 0 auto;
+}
+.cellPage {
+  margin-left: auto;
 }
 .cellPage::after {
   content: ' стор.';
@@ -96,4 +127,54 @@ input[type='number']:hover,
 input[type='number']:focus {
   appearance: none;
   -moz-appearance: textfield;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .container {
+    width: 704px;
+    padding: 28px 96px 32px 96px;
+  }
+  .formResults {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 21px;
+  }
+  .inputs {
+    margin-bottom: 0px;
+  }
+  .addResultBtn {
+    height: 42px;
+    margin-bottom: 0;
+    padding: 11px 44px;
+  }
+  .resultsHeader,
+  .statisticsHeader {
+    font-size: 14px;
+    line-height: 1.21;
+  }
+  .statisticsHeader::before {
+    width: 0;
+    height: 0;
+    margin: 0;
+  }
+  .statisticsHeader::after {
+    width: 128px;
+    margin-left: 8px;
+  }
+  .statisticsList {
+    width: 240px;
+  }
+  .resultsHeader {
+    margin-bottom: 27px;
+  }
+  .statisticsHeader {
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .container {
+      width: 288px;
+      padding: 20px 24px 22px 24px;
+    }
 }

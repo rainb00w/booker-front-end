@@ -1,0 +1,101 @@
+.container {
+    width: 570px;
+    height: 408px;
+
+    padding-top: 17px;
+    padding-left: 30px;
+}
+
+@media screen and (max-width: 767px) {
+    .container {
+        width: 270px;
+        height: 395px;
+    }
+}
+
+.title {
+    font-family: 'Montserrat';
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 2.3;
+    color: #242A37;
+}
+
+.textarea {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 2.3;
+
+    width: 510px;
+    height: 170px;
+    margin-bottom: 28px;
+    resize: none;
+
+    border: 1px solid #a6abb9;
+}
+
+@media screen and (max-width: 767px) {
+    .textarea {
+        width: 210px;
+        height: 170px;
+    }
+}
+
+.errorMessage {
+    padding-left: 5px;
+    color: #ff6b08;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.centered {
+    display: flex;
+    justify-content: center;
+
+}
+
+.btnBack {
+    background-color: white;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    border: 1px solid #242A37;
+    color: #242a37;
+    transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    width: 130px;
+    height: 40px;
+    margin-right: 28px;
+}
+
+@media screen and (max-width: 767px) {
+    .btnBack {
+        width: 98px;
+        margin-right: 16px;
+    }
+}
+
+.btnBack:hover {
+    transform: scale(1.05);
+}
+
+
+.btnSave {
+    background-color: #FF6B08;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    color: white;
+    border: none;
+    outline: none;
+    transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1);
+    
+    width: 130px;
+    height: 40px;
+}
+
+@media screen and (max-width: 767px) {
+    .btnSave {
+        width: 97px;
+    }
+}
+
+.btnSave:hover {
+    transform: scale(1.05);
+}

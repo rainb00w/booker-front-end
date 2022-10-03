@@ -29,7 +29,7 @@
     text-decoration: none;
     text-align: center;
     min-width: 150px;
-    padding: 8px 24px;
+    padding: 11px 14px;
     margin-bottom: 28px;
     font-size: 16px;
     font-weight: 700;
@@ -37,8 +37,24 @@
     background-color: #F5F7FA;
     cursor: pointer;
     border: 1px solid #F5F7FA;
-
 }
+
+.google__container {
+    display: flex;
+}
+
+.svg__google {
+    width: 18px;
+    height: 18px;
+    margin-right: 16px;
+}
+
+.google__text {
+    padding: 0;
+    margin: 0;
+}
+
+
 
 .label__title {
     text-align: left;
@@ -52,6 +68,10 @@
     padding: 12px 8px;
     min-width: 280px;
     margin-bottom: 10px;
+    background: #F5F7FA;
+    box-shadow: inset 0px 1px 2px rgba(29, 29, 27, 0.15);
+    outline: none;
+    border: none;
 }
 
 .form__button {
@@ -93,6 +113,7 @@
 
 .auth__describe,
 .auth__verify {
+    margin-top: 10px;
     font-size: 13px;
     color: #898F9F;
 }
@@ -101,11 +122,16 @@
     text-align: left;
 }
 
-.auth__link {
+.auth__link,
+.authforgot__link {
     display: inline-block;
     text-align: center;
     font-size: 13px;
     color: #FF6B08;
+}
+
+.authforgot__link {
+    margin-left: 5px;
 }
 
 .button__verify {

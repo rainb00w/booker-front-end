@@ -3,29 +3,29 @@ import BookAddForm from '../../components/bookAdd/bookAddForm';
 import BookTable from '../../components/bookTable/bookTable';
 import BookTableMobile from 'components/bookTable/bookMobileTable';
 import BtnMyTraining from 'components/BtnLibrary/btnMyTraining';
+// import RatingBook from 'components/RatingBook';
 import { useMediaQuery } from 'react-responsive';
+import s from './library.module.css';
+import { useGetAllBooksQuery } from 'redux/books/booksApi';
+import Info from '../../components/EmptyLibrary/EmptyLibrary';
 
 const Library = () => {
   const mobile = useMediaQuery({ query: '(max-width: 767px)' });
+  const { data } = useGetAllBooksQuery();
   return (
     <>
-      <BookAddForm />
-      {mobile ? (
-        <BookTableMobile text="Already read" />
+      {!data?.payload.books.length > 0 ? (
+        <div className={s.section}>
+          <BookAddForm />
+          <Info />
+        </div>
       ) : (
-        <BookTable text="Already read" />
+        <div className={s.section}>
+          <BookAddForm />
+          {mobile ? <BookTableMobile /> : <BookTable />}
+          <BtnMyTraining />
+        </div>
       )}
-      {mobile ? (
-        <BookTableMobile text="Reading now" />
-      ) : (
-        <BookTable text="Reading now" />
-      )}
-      {mobile ? (
-        <BookTableMobile text="Going to read" />
-      ) : (
-        <BookTable text="Going to read" />
-      )}
-      <BtnMyTraining />
     </>
   );
 };

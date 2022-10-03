@@ -1,10 +1,8 @@
 .container {
   width: 280px;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  padding-right: 27px;
-  padding-left: 27px;
+  padding: 40px 27px 40px 27px;
   text-align: center;
+  box-shadow: 10px 10px 20px rgba(9, 30, 63, 0.2);
 }
 .thumbUp {
   margin-bottom: 14px;
@@ -33,4 +31,15 @@
   color: #ffffff;
   font-size: 16px;
   line-height: 1.25;
+  box-shadow: 10px 10px 20px rgba(9, 30, 63, 0.2);
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 394px;
+    padding: 40px 84px 40px 84px;
+  }
+  .btn {
+    width: 130px;
+  }
 }

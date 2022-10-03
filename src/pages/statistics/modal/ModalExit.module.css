@@ -1,10 +1,8 @@
 .container {
   width: 280px;
-  padding-top: 44px;
-  padding-bottom: 44px;
-  padding-right: 29px;
-  padding-left: 14px;
+  padding: 48px 22px 48px 22px;
   text-align: center;
+  box-shadow: 10px 10px 20px rgba(9, 30, 63, 0.2);
 }
 .text {
   font-family: Montserrat;
@@ -41,4 +39,16 @@
 }
 .btnExit:hover {
   background-color: #d15807;
+}
+@media screen and (min-width: 768px) {
+  .container {
+    width: 394px;
+    padding: 48px 53px;
+  }
+  .text {
+    margin-bottom: 24px;
+  }
+  .btnCancel {
+    margin-right: 30px;
+  }
 }
