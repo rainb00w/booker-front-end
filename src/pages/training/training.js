@@ -10,6 +10,8 @@ import ChartTraning from 'components/Chart/ChartTraning';
 import BookTableTraining from 'components/bookTableTraining/bookTableTraining';
 import BookMobileTableTraining from 'components/bookTableTraining/bookMobileTableTraining';
 import { Field, Form, Formik, FormikProps } from 'formik';
+import Timer from 'components/Timer/Timer';
+import TrainingDataSelection from 'components/TrainingDataSelection';
 
 
 const Training = () => {
@@ -88,13 +90,15 @@ const Training = () => {
   return (
     <>
       <div>
+      {/* <div><Timer/></div> */}
+      <div><TrainingDataSelection /></div>
         {/* <DatePicker
           selected={startDate}
           onChange={date => setStartDate(date)}
         />
         <DatePicker selected={endDate} onChange={date => setEndDate(date)} /> */}
 
- 
+
       </div>
       <div>
         <div></div>
@@ -104,7 +108,7 @@ const Training = () => {
       <div className={s.gridContainer}>
         {/* <div className={s.gridItem1}>1</div> */}
 
-        <form onSubmit={handleAddBooks}>
+        {/* <form onSubmit={handleAddBooks}>
           <select
             className={s.addField}
             onChange={e => setSelectedBook(e.currentTarget.value)}
@@ -119,12 +123,13 @@ const Training = () => {
           <button className={s.addButton} type="Submit">
             Додати
           </button>
-        </form>
-        
+        </form> */}
+
 
 
         <Formik
        initialValues={{ id: '' }}
+       onChange={()=> console.log('change')}
        onSubmit={(values, actions) => {
          setTimeout(() => {
            alert(JSON.stringify(values, null, 2));
@@ -134,12 +139,10 @@ const Training = () => {
      >
        {(props: FormikProps<any>) => (
          <Form>
-           <Field as="select" name="id">
-             {/* <option value="red">Red</option>
-             <option value="green">Green</option>
-             <option value="blue">Blue</option> */}
+          
+           <Field as="select" name="id" > 
              {booksThatNotSelected?.map(element => (
-              <option key={element._id} value={element._id} >
+              <option key={element._id} value={element._id} className={s.bookField} >
                 {element.title}
               </option>
             ))}
@@ -150,6 +153,7 @@ const Training = () => {
          </Form>
        )}
      </Formik>
+
 
 
         <div className={s.gridItem3}>
