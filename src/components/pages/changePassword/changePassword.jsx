@@ -3,22 +3,23 @@ import classNames from 'classnames';
 import newPasswordAPI from 'services/newPasswordAPI';
 import { Formik } from 'formik';
 import { loginValidationSchema } from 'services/yupValidationSchema';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import svgPath from 'services/svgPath';
 import styles from "../login/login.module.css";
 
-// import { authOperations } from '../../../redux/auth';
 
 const ChangePassword = () => {
-    const [inputType, setInputType] = useState('password');
-    const [err, setErr] = useState('');
+  const [inputType, setInputType] = useState('password');
+  const navigate = useNavigate();
+  const [err, setErr] = useState('');
 
-    const handleClickShowIcon = () => {
-        setInputType(inputType === 'password' ? 'text' : 'password');
-    };
+  const handleClickShowIcon = () => {
+    setInputType(inputType === 'password' ? 'text' : 'password');
+  };
 
-    return (
+  return (
     <>
         <section className={styles.section}>
             <div className={styles.login__form}>
@@ -31,14 +32,19 @@ const ChangePassword = () => {
                 }}
                 validationSchema={loginValidationSchema}
                 onSubmit={(values, { resetForm }) => {
-                    const { email, password } = values;
-                    setErr("")
-                    newPasswordAPI(email, password)
-                        .then(answer => console.log("009", answer))
-                        .catch(err => {
-                            const errorMessage = err.response.data.message;
-                            setErr(errorMessage);
-                        })
+                  const { email, password } = values;
+                  setErr("")
+                  newPasswordAPI(email, password)
+                    .then(() => {
+                      Notify.success('To confirm the password change, follow the link that we sent you by mail.');
+                      setTimeout(() => {
+                        navigate('/login');
+                      }, 2000); 
+                    })
+                    .catch(err => {
+                      const errorMessage = err.response.data.message;
+                      setErr(errorMessage);
+                    })
 
                 resetForm({ values: '' });
                 }}

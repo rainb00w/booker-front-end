@@ -5,11 +5,14 @@ import styles from './authModal.module.css';
 
 const modalRoot = document.querySelector('#modal__root');
 
-const AuthModal = ({ modalBtnClick }) => {
+const AuthModal = ({ modalBtnRegisterClick, modalBtnLoginClick }) => {
   return createPortal(
     <div className={styles.overlay}>
       <div className={styles.modal}>
-        <RegistrationText modalBtnClick={modalBtnClick} />
+        <RegistrationText
+          modalBtnRegisterClick={modalBtnRegisterClick}
+          modalBtnLoginClick={modalBtnLoginClick}
+        />
       </div>
     </div>,
     modalRoot

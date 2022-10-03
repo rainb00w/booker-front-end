@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import s from './bookTable.module.css';
-import star from './symbol-defs.svg';
+import icons from './symbol-defs.svg';
 import {
   useGetAllBooksQuery,
   useDeleteBookMutation,
@@ -21,152 +21,165 @@ export default function BookTable() {
     <>
       <section className={s.section}>
         {status('haveRead') && (
-          <div className={s.table}>
+          <table className={s.table}>
             <h3 className={s.title}>Already read</h3>
-            <ul className={s.head}>
-              <li className={s.topic}>Book title</li>
-              <li className={s.topic}>Author</li>
-              <li className={s.topic}>Year</li>
-              <li className={s.topic}>Pages</li>
-              <li className={s.topic}>Rating</li>
-            </ul>
-            <ul className={s.body}>
+            <thead className={s.head}>
+              <tr>
+                <th className={s.topic}>Book title</th>
+                <th className={s.topic}>Author</th>
+                <th className={s.topic}>Year</th>
+                <th className={s.topic}>Pages</th>
+                <th className={s.topic}>Rating</th>
+              </tr>
+            </thead>
+            <tbody className={s.body}>
               {data?.payload.books.map(
-                ({ _id, author, pages, title, year, status, rating }) =>
+                ({ _id, author, pages, title, year, status, rating = 0 }) =>
                   status === 'haveRead' && (
-                    <li key={_id} className={s.item}>
-                      <p className={s.subtitle}>
+                    <tr key={_id} className={s.item}>
+                      <td className={s.subtitle}>
                         <svg width={22} height={17} className={s.img}>
-                          <use href={`${star}#white_book`}></use>
+                          <use href={`${icons}#white_book`}></use>
                         </svg>
                         {title}
-                      </p>
-                      <p className={s.subtitle}> {author}</p>
-                      <p className={s.subtitle}>{year}</p>
-                      <p className={s.subtitle}>{pages}</p>
-                      <p className={s.subtitle}>
+                      </td>
+                      <td className={s.subtitle}> {author}</td>
+                      <td className={s.subtitle}>{year}</td>
+                      <td className={s.subtitle}>{pages}</td>
+                      <td className={s.subtitle}>
                         {rating >= 1 ? (
                           <svg width={17} height={17}>
-                            <use href={`${star}#yellow_star`}></use>
+                            <use href={`${icons}#yellow_star`}></use>
                           </svg>
                         ) : (
                           <svg width={17} height={17}>
-                            <use href={`${star}#white_star`}></use>
+                            <use href={`${icons}#white_star`}></use>
                           </svg>
                         )}
                         {rating >= 2 ? (
                           <svg width={17} height={17}>
-                            <use href={`${star}#yellow_star`}></use>
+                            <use href={`${icons}#yellow_star`}></use>
                           </svg>
                         ) : (
                           <svg width={17} height={17}>
-                            <use href={`${star}#white_star`}></use>
+                            <use href={`${icons}#white_star`}></use>
                           </svg>
                         )}
                         {rating >= 3 ? (
                           <svg width={17} height={17}>
-                            <use href={`${star}#yellow_star`}></use>
+                            <use href={`${icons}#yellow_star`}></use>
                           </svg>
                         ) : (
                           <svg width={17} height={17}>
-                            <use href={`${star}#white_star`}></use>
+                            <use href={`${icons}#white_star`}></use>
                           </svg>
                         )}
                         {rating >= 4 ? (
                           <svg width={17} height={17}>
-                            <use href={`${star}#yellow_star`}></use>
+                            <use href={`${icons}#yellow_star`}></use>
                           </svg>
                         ) : (
                           <svg width={17} height={17}>
-                            <use href={`${star}#white_star`}></use>
+                            <use href={`${icons}#white_star`}></use>
                           </svg>
                         )}
                         {rating >= 5 ? (
                           <svg width={17} height={17}>
-                            <use href={`${star}#yellow_star`}></use>
+                            <use href={`${icons}#yellow_star`}></use>
                           </svg>
                         ) : (
                           <svg width={17} height={17}>
-                            <use href={`${star}#white_star`}></use>
+                            <use href={`${icons}#white_star`}></use>
                           </svg>
                         )}
                         <button type="button" className={s.btn}>
                           Resume
                         </button>
-                      </p>
-                    </li>
+                      </td>
+                    </tr>
                   )
               )}
-            </ul>
-          </div>
+            </tbody>
+          </table>
         )}
         {status('reading') && (
-          <div className={s.table}>
+          <table className={s.table}>
             <h3 className={s.title}>Reading now</h3>
-            <ul className={s.head}>
-              <li className={s.topic}>Book title</li>
-              <li className={s.topic}>Author</li>
-              <li className={s.topic}>Year</li>
-              <li className={s.topic}>Pages</li>
-            </ul>
-            <ul className={s.body}>
+            <thead className={s.head}>
+              <tr>
+                <th className={s.topic}>Book title</th>
+                <th className={s.topic}>Author</th>
+                <th className={s.topic}>Year</th>
+                <th className={s.topic}>Pages</th>
+                <th className={s.topic}></th>
+              </tr>
+            </thead>
+            <tbody className={s.body}>
               {data?.payload.books.map(
                 ({ _id, author, pages, title, year, status, rating }) =>
                   status === 'reading' && (
-                    <li key={_id} className={s.item}>
-                      <p className={s.subtitle}>
+                    <tr key={_id} className={s.item}>
+                      <td className={s.subtitle}>
                         <svg width={22} height={17} className={s.img}>
-                          <use href={`${star}#yellow_book`}></use>
+                          <use href={`${icons}#yellow_book`}></use>
                         </svg>
                         {title}
-                      </p>
-                      <p className={s.subtitle}> {author}</p>
-                      <p className={s.subtitle}>{year}</p>
-                      <p className={s.subtitle}>{pages}</p>
-                    </li>
+                      </td>
+                      <td className={s.subtitle}> {author}</td>
+                      <td className={s.subtitle}>{year}</td>
+                      <td className={s.subtitle}>{pages}</td>
+                    </tr>
                   )
               )}
-            </ul>
-          </div>
+            </tbody>
+          </table>
         )}
         {status('toRead') && (
-          <div className={s.table}>
+          <>
             <h3 className={s.title}>Going to read</h3>
-            <ul className={s.head}>
-              <li className={s.topic}>Book title</li>
-              <li className={s.topic}>Author</li>
-              <li className={s.topic}>Year</li>
-              <li className={s.topic}>Pages</li>
-            </ul>
-            <ul className={s.body}>
-              {data?.payload.books.map(
-                ({ _id, author, pages, title, year, status }) =>
-                  status === 'toRead' && (
-                    <li key={_id} className={s.item}>
-                      <p className={s.subtitle}>
-                        <svg width={22} height={17} className={s.img}>
-                          <use href={`${star}#white_book`}></use>
-                        </svg>
-                        {title}
-                      </p>
-                      <p className={s.subtitle}>{author}</p>
-                      <p className={s.subtitle}>{year}</p>
-                      <p className={s.subtitle}>
-                        {pages}{' '}
-                        <button
-                          type="button"
-                          className={s.btn}
-                          onClick={() => deleteContact(_id)}
-                          disabled={isDeleting}
-                        >
-                          Delete Book
-                        </button>
-                      </p>
-                    </li>
-                  )
-              )}
-            </ul>
-          </div>
+            <table className={s.table}>
+              <thead className={s.head}>
+                <tr>
+                  <th className={s.topic}>Book title</th>
+                  <th className={s.topic}>Author</th>
+                  <th className={s.topic}>Year</th>
+                  <th className={s.topic}>Pages</th>
+                  <th className={s.topic}></th>
+                </tr>
+              </thead>
+              <tbody className={s.body}>
+                {data?.payload.books.map(
+                  ({ _id, author, pages, title, year, status }) =>
+                    status === 'toRead' && (
+                      <tr key={_id} className={s.item}>
+                        <td className={s.subtitle}>
+                          <svg width={22} height={17} className={s.img}>
+                            <use href={`${icons}#white_book`}></use>
+                          </svg>
+                          {title}
+                        </td>
+                        <td className={s.subtitle}> {author}</td>
+                        <td className={s.subtitle}>{year}</td>
+                        <td className={s.subtitle}>{pages}</td>
+                        <td width="3%">
+                          <button
+                            className={s.btnDelete}
+                            id={_id}
+                            type="button"
+                            onClick={() => deleteContact(_id)}
+                            disabled={isDeleting}
+                          >
+                            <svg width={22} height={17}>
+                              <use href={`${icons}#delete_book`}></use>
+                            </svg>
+                          </button>
+                        </td>
+                      </tr>
+                    )
+                )}
+              </tbody>
+            </table>
+          </>
         )}
       </section>
     </>

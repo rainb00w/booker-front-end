@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import s from './bookTable.module.css';
-import star from './symbol-defs.svg';
+import icons from './symbol-defs.svg';
 import {
   useGetAllBooksQuery,
   useDeleteBookMutation,
@@ -28,7 +28,7 @@ export default function BookTableMobile() {
                     <li key={_id} className={s.item}>
                       <p className={s.subtitle}>
                         <svg width={22} height={17} className={s.img}>
-                          <use href={`${star}#white_book`}></use>
+                          <use href={`${icons}#white_book`}></use>
                         </svg>
                         {title}
                       </p>
@@ -47,47 +47,47 @@ export default function BookTableMobile() {
                         <span className={s.topic}>Rating</span>
                         {rating >= 1 ? (
                           <svg width={17} height={17}>
-                            <use href={`${star}#yellow_star`}></use>
+                            <use href={`${icons}#yellow_star`}></use>
                           </svg>
                         ) : (
                           <svg width={17} height={17}>
-                            <use href={`${star}#white_star`}></use>
+                            <use href={`${icons}#white_star`}></use>
                           </svg>
                         )}
                         {rating >= 2 ? (
                           <svg width={17} height={17}>
-                            <use href={`${star}#yellow_star`}></use>
+                            <use href={`${icons}#yellow_star`}></use>
                           </svg>
                         ) : (
                           <svg width={17} height={17}>
-                            <use href={`${star}#white_star`}></use>
+                            <use href={`${icons}#white_star`}></use>
                           </svg>
                         )}
                         {rating >= 3 ? (
                           <svg width={17} height={17}>
-                            <use href={`${star}#yellow_star`}></use>
+                            <use href={`${icons}#yellow_star`}></use>
                           </svg>
                         ) : (
                           <svg width={17} height={17}>
-                            <use href={`${star}#white_star`}></use>
+                            <use href={`${icons}#white_star`}></use>
                           </svg>
                         )}
                         {rating >= 4 ? (
                           <svg width={17} height={17}>
-                            <use href={`${star}#yellow_star`}></use>
+                            <use href={`${icons}#yellow_star`}></use>
                           </svg>
                         ) : (
                           <svg width={17} height={17}>
-                            <use href={`${star}#white_star`}></use>
+                            <use href={`${icons}#white_star`}></use>
                           </svg>
                         )}
                         {rating >= 5 ? (
                           <svg width={17} height={17}>
-                            <use href={`${star}#yellow_star`}></use>
+                            <use href={`${icons}#yellow_star`}></use>
                           </svg>
                         ) : (
                           <svg width={17} height={17}>
-                            <use href={`${star}#white_star`}></use>
+                            <use href={`${icons}#white_star`}></use>
                           </svg>
                         )}
                       </p>
@@ -110,7 +110,7 @@ export default function BookTableMobile() {
                     <li key={_id} className={s.item}>
                       <p className={s.subtitle}>
                         <svg width={22} height={17} className={s.img}>
-                          <use href={`${star}#yellow_book`}></use>
+                          <use href={`${icons}#yellow_book`}></use>
                         </svg>
                         {title}
                       </p>
@@ -141,9 +141,20 @@ export default function BookTableMobile() {
                     <li key={_id} className={s.item}>
                       <p className={s.subtitle}>
                         <svg width={22} height={17} className={s.img}>
-                          <use href={`${star}#white_book`}></use>
+                          <use href={`${icons}#white_book`}></use>
                         </svg>
                         {title}
+                        <button
+                          className={s.btnDelete}
+                          id={_id}
+                          type="button"
+                          onClick={() => deleteContact(_id)}
+                          disabled={isDeleting}
+                        >
+                          <svg width={22} height={17}>
+                            <use href={`${icons}#delete_book`}></use>
+                          </svg>
+                        </button>
                       </p>
                       <p className={s.subtitle}>
                         <span className={s.topic}>Author:</span> {author}
@@ -156,14 +167,6 @@ export default function BookTableMobile() {
                         <span className={s.topic}>Pages:</span>
                         {pages}
                       </p>
-                      <button
-                        type="button"
-                        className={s.btn}
-                        onClick={() => deleteContact(id)}
-                        disabled={isDeleting}
-                      >
-                        Delete Book
-                      </button>
                     </li>
                   )
               )}

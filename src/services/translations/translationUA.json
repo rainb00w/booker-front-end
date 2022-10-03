@@ -1,4 +1,11 @@
 {
   "text": "укр",
-  "newText": "новийУкр"
+  "email": "Електронна адреса",
+  "password": "Пароль",
+  "login": "Увійти",
+  "register": "Реєстрація",
+  "name": "Ім’я",
+  "confirmPassword": "Підтвердити пароль",
+  "alreadyHaveAnAccount": "Вже з нами?",
+  "logIn": "Увійти"
 }

@@ -1,15 +1,13 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import styles from './buttonsContainer.module.css';
 
-const ButtonsContainer = ({ modalBtnClick }) => {
-  const navigate = useNavigate();
+const ButtonsContainer = ({ modalBtnRegisterClick, modalBtnLoginClick }) => {
   return (
     <>
       <div className={styles.buttons__container}>
         <button
           onClick={() => {
-            modalBtnClick();
+            modalBtnLoginClick();
           }}
           className={styles.login__button}
         >
@@ -17,7 +15,7 @@ const ButtonsContainer = ({ modalBtnClick }) => {
         </button>
         <button
           onClick={() => {
-            navigate('/register');
+            modalBtnRegisterClick();
           }}
           className={styles.register__button}
         >

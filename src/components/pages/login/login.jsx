@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import queryString from 'query-string';
 import classNames from 'classnames';
 import Media from 'react-media';
@@ -10,7 +9,7 @@ import LoginPhrase from './loginPhrase';
 
 import { Formik } from 'formik';
 import { loginValidationSchema } from 'services/yupValidationSchema';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 import svgPath from 'services/svgPath';
 import styles from './login.module.css';
@@ -30,11 +29,13 @@ const Login = () => {
   const [inputType, setInputType] = useState('password');
   const location = useLocation();
   const query = queryString.parse(location.search);
+
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    isLoggedIn ? setModal(false) : setModal(true);
-  }, [isLoggedIn]);
+    location.state === 'modal' ? setModal(false) : setModal(true);
+  }, []);
 
   useEffect(() => {
     if (query.token) {
@@ -44,7 +45,11 @@ const Login = () => {
     }
   });
 
-  const modalBtnClick = () => {
+  const modalBtnRegisterClick = () => {
+    navigate('/register', { state: 'modal' });
+  };
+
+  const modalBtnLoginClick = () => {
     setModal(false);
   };
 
@@ -58,7 +63,14 @@ const Login = () => {
       {modal && (
         <Media queries={{ small: '(max-width: 768px)' }}>
           {matches => (
-            <>{matches.small && <AuthModal modalBtnClick={modalBtnClick} />}</>
+            <>
+              {matches.small && (
+                <AuthModal
+                  modalBtnRegisterClick={modalBtnRegisterClick}
+                  modalBtnLoginClick={modalBtnLoginClick}
+                />
+              )}
+            </>
           )}
         </Media>
       )}
@@ -67,7 +79,7 @@ const Login = () => {
           <div className={styles.form__border}>
             <a
               className={styles.google__auth}
-              href="http://localhost:3001/api/user/google"
+              href="https://booker-back-end.herokuapp.com/api/user/google"
             >
               <div className={styles.google__container}>
                 <svg className={styles.svg__google}>

@@ -3,7 +3,7 @@ import Media from 'react-media';
 import ButtonsContainer from '../buttonsContainer/buttonsContainer';
 import styles from '../pages/login/login.module.css';
 
-const RegistrationText = ({ modalBtnClick }) => {
+const RegistrationText = ({ modalBtnRegisterClick, modalBtnLoginClick }) => {
   return (
     <div className={styles.registration__text}>
       <h1 className={styles.title}>Books Reading</h1>
@@ -45,7 +45,10 @@ const RegistrationText = ({ modalBtnClick }) => {
         {matches => (
           <>
             {matches.small && (
-              <ButtonsContainer modalBtnClick={modalBtnClick} />
+              <ButtonsContainer
+                modalBtnRegisterClick={modalBtnRegisterClick}
+                modalBtnLoginClick={modalBtnLoginClick}
+              />
             )}
           </>
         )}
