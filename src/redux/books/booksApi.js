@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const booksApi = createApi({
   reducerPath: 'books',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://booker-back-end.herokuapp.com/api/books',
+    baseUrl: 'http://localhost:3001/api/books',
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
 

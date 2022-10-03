@@ -9,6 +9,7 @@ import StatisticsList from 'pages/statistics/statisticsList';
 import ChartTraning from 'components/Chart/ChartTraning';
 import BookTableTraining from 'components/bookTableTraining/bookTableTraining';
 import BookMobileTableTraining from 'components/bookTableTraining/bookMobileTableTraining';
+import { Field, Form, Formik, FormikProps } from 'formik';
 
 
 const Training = () => {
@@ -47,10 +48,10 @@ const Training = () => {
   const handleAddBooks = e => {
     e.preventDefault();
     console.log('selectedBook', selectedBook);
-    // const arrayToSend = data?.payload.books.filter(
-    //   el => el._id === currentBook
-    // );
-    // setBooksArrayToSend(booksArrayToSend.concat(arrayToSend));
+    const arrayToSend = data?.payload.books.filter(
+      el => el._id === selectedBook
+    );
+    setBooksArrayToSend(booksArrayToSend.concat(arrayToSend));
   };
 
   const booksThatNotSelected = data?.payload.books.filter(
@@ -80,7 +81,9 @@ const Training = () => {
     // .then(payload => console.log('fulfilled', payload))
   };
 
-  console.log(selectedBook);
+  const MyInput = ({ field, form, ...props }) => {
+    return <input {...field} {...props} />;
+  };
 
   return (
     <>
@@ -117,6 +120,36 @@ const Training = () => {
             Додати
           </button>
         </form>
+
+
+        <Formik
+       initialValues={{ id: '' }}
+       onSubmit={(values, actions) => {
+         setTimeout(() => {
+           alert(JSON.stringify(values, null, 2));
+           actions.setSubmitting(false);
+         }, 1000);
+       }}
+     >
+       {(props: FormikProps<any>) => (
+         <Form>
+           <Field as="select" name="id">
+             {/* <option value="red">Red</option>
+             <option value="green">Green</option>
+             <option value="blue">Blue</option> */}
+             {booksThatNotSelected?.map(element => (
+              <option key={element._id} value={element._id} >
+                {element.title}
+              </option>
+            ))}
+
+           </Field>
+
+           <button type="submit">Додати</button>
+         </Form>
+       )}
+     </Formik>
+
 
         <div className={s.gridItem3}>
           {booksArrayToSend && (

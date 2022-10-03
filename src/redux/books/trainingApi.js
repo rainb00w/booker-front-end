@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const trainingApi = createApi({
   reducerPath: 'training',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://booker-back-end.herokuapp.com/api/training',
+    baseUrl: 'http://localhost:3001/api/training',
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
       // console.log('TOKEN', token);
