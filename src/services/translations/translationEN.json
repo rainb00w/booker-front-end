@@ -1,3 +1,11 @@
 {
-  "text": "eng"
+  "text": "eng",
+  "email": "Email",
+  "password": "Password",
+  "login": "Login",
+  "register": "Register",
+  "name": "Name",
+  "confirmPassword": "Confirm password",
+  "alreadyHaveAnAccount": "Already have an account?",
+  "logIn": "Log in"
 }
