@@ -35,13 +35,14 @@ const Registration = () => {
                                 const { name, email, password } = values;
 
                                 dispatch(authOperations.register({ name, email, password }))
-                                .then(answer => {
-                                    const { data, response } = answer?.payload
-                                    setErrName("");
-                                    setErrEmail("");
+                                    .then(answer => {
+                                    const { data, response } = answer.payload
 
                                     if (data) {
                                         resetForm({ values: "" });
+                                        setErrName("");
+                                        setErrEmail("");
+                                        navigate('/login');
                                     }
                                     else if (response) {
                                         throw response.data.message;
@@ -50,24 +51,21 @@ const Registration = () => {
                                 .catch(error => {
                                     switch (error) {
                                         case "name":
-                                            setErrName("User with this name is already registered")
+                                            setErrName("User with this name is already registered");
+                                            setErrEmail("");
                                             return 
                                         case "email":
-                                            setErrEmail("User with this email is already registered")
+                                            setErrName("");
+                                            setErrEmail("User with this email is already registered");
                                             return
                                         case "name&email":
-                                            setErrName("User with this name is already registered")
-                                            setErrEmail("User with this email is already registered")
+                                            setErrName("User with this name is already registered");
+                                            setErrEmail("User with this email is already registered");
                                             return 
                                         default:
                                             return
                                     }
                                 })
-                                .finally(() => {
-                                    if (!errName && !errEmail) {
-                                        navigate('/login')
-                                    }
-                                });
                             }}
                         >
                             {({ values, errors, touched, handleBlur, handleChange, handleSubmit }) => (
