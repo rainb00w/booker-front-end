@@ -5,9 +5,8 @@ import Modal from '@mui/material/Modal';
 import LangSwitch from '../../components/langSwitch/langSwitch';
 
 import s from './header.module.css';
-import home from './icon_home.svg';
-import library from './icon_library.svg';
-import Info from './info';
+import home from '../../img/icon_home.svg';
+import library from '../../img/icon_library.svg';
 import { authOperations } from '../../redux/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { authSelectors } from '../../redux/auth';
@@ -43,16 +42,6 @@ const Header = () => {
     dispatch(authOperations.logOut());
     setOpen(false);
   };
-
-  const [openInfo, setOpenInfo] = React.useState(false);
-  const handleCloseInfo = () => setOpenInfo(false);
-
-  useEffect(() => {
-    //проверить массив книг
-    if (isLoggedIn) {
-      setOpenInfo(true);
-    }
-  }, [isLoggedIn]);
 
   const location = useLocation();
   const LINCK_ID = location.pathname;
@@ -146,20 +135,6 @@ const Header = () => {
                 Вийти
               </button>
             </div>
-          </Box>
-        </Modal>
-      </div>
-      <div>
-        <Modal open={openInfo} onClose={handleCloseInfo}>
-          <Box sx={style} className={s.modalInfo}>
-            <Info />
-            <button
-              className={s.btn_info}
-              type="button"
-              onClick={handleCloseInfo}
-            >
-              Ok
-            </button>
           </Box>
         </Modal>
       </div>
