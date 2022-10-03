@@ -35,13 +35,14 @@ const Registration = () => {
                                 const { name, email, password } = values;
 
                                 dispatch(authOperations.register({ name, email, password }))
-                                .then(answer => {
-                                    const { data, response } = answer?.payload
-                                    setErrName("");
-                                    setErrEmail("");
+                                    .then(answer => {
+                                    const { data, response } = answer.payload
 
                                     if (data) {
                                         resetForm({ values: "" });
+                                        setErrName("");
+                                        setErrEmail("");
+                                        navigate('/login');
                                     }
                                     else if (response) {
                                         throw response.data.message;
@@ -50,28 +51,28 @@ const Registration = () => {
                                 .catch(error => {
                                     switch (error) {
                                         case "name":
-                                            setErrName("User with this name is already registered")
+                                            setErrName("User with this name is already registered");
+                                            setErrEmail("");
                                             return 
                                         case "email":
-                                            setErrEmail("User with this email is already registered")
+                                            setErrName("");
+                                            setErrEmail("User with this email is already registered");
                                             return
                                         case "name&email":
-                                            setErrName("User with this name is already registered")
-                                            setErrEmail("User with this email is already registered")
+                                            setErrName("User with this name is already registered");
+                                            setErrEmail("User with this email is already registered");
                                             return 
                                         default:
                                             return
                                     }
-                                }).finally(
-                                    navigate('/login')
-                                );
+                                })
                             }}
                         >
                             {({ values, errors, touched, handleBlur, handleChange, handleSubmit }) => (
                         <form onSubmit={handleSubmit}>
                             <a
                                 className={styles.google__auth}
-                                href="http://localhost:3001/api/user/google"
+                                href="https://booker-back-end.herokuapp.com/api/user/google"
                             >
                                 <div className={styles.google__container}>
                                     <svg className={styles.svg__google}>

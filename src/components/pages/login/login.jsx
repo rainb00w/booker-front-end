@@ -67,7 +67,7 @@ const Login = () => {
           <div className={styles.form__border}>
             <a
               className={styles.google__auth}
-              href="http://localhost:3001/api/user/google"
+              href="https://booker-back-end.herokuapp.com/api/user/google"
             >
               <div className={styles.google__container}>
                 <svg className={styles.svg__google}>
