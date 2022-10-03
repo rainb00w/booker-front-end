@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { Formik } from 'formik';
 import { repeatVerifyValidationSchema } from 'services/yupValidationSchema';
+
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import verifyAPI from 'services/verifyAPI';
 import styles from "./repeatVerify.module.css";
 
-const modalRoot = document.querySelector('#modal__root');
 
+const modalRoot = document.querySelector('#modal__root');
 
 const RepeatVerify = ({ switchFunc }) => {
     const [err, setErr] = useState("");
@@ -41,9 +43,11 @@ const RepeatVerify = ({ switchFunc }) => {
                             setErr("");
                             const { email } = values;
                             verifyAPI(email)
-                                .then(answer => {
-                                    console.log(answer);
-                                    switchFunc();
+                                .then(() => {
+                                    Notify.success('To confirm the password change, follow the link that we sent you by mail.');
+                                    setTimeout(() => {
+                                        switchFunc();
+                                    }, 2000);
                                 })
                                 .catch(err => {
                                     const errorMessage = err.response.data.message;

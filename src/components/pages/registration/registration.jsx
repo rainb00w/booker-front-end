@@ -11,6 +11,8 @@ import { useDispatch } from 'react-redux';
 import Media from 'react-media';
 import AuthModal from '../../authModal/authModal';
 
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 const Registration = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -53,8 +55,12 @@ const Registration = () => {
                       resetForm({ values: '' });
                       setErrName('');
                       setErrEmail('');
-                      navigate('/login');
-                    } else if (response) {
+                      Notify.success('You have successfully registered. A confirmation email has been sent to you!');
+                      setTimeout(() => {
+                        navigate('/login');
+                      }, 2000) 
+                    }
+                    else if (response) {
                       throw response.data.message;
                     }
                   })
