@@ -120,6 +120,7 @@ const Training = () => {
             Додати
           </button>
         </form>
+        
 
 
         <Formik
