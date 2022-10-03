@@ -31,7 +31,7 @@ export default function BookTable() {
             </ul>
             <ul className={s.body}>
               {data?.payload.books.map(
-                ({ _id, author, pages, title, year, status }) =>
+                ({ _id, author, pages, title, year, status, rating = 0 }) =>
                   status === 'haveRead' && (
                     <li key={_id} className={s.item}>
                       <p className={s.subtitle}>

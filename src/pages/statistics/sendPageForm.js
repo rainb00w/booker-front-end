@@ -29,11 +29,11 @@ const SendPageForm = () => {
     },
     validationSchema: Yup.object().shape({
       dateInput: Yup.date()
-        .min(
+        // .min(
           // new Date(startedTimeStamp).yyyymmdd().toString(),
-          '2021-31-01',
-          'Ви не можете ввести дату до початку тренування'
-        ) // тут треба потестить
+          // '2021-31-01',
+          // 'Ви не можете ввести дату до початку тренування'
+        //) // тут треба потестить
         .max(new Date().yyyymmdd(), 'Ви не можете ввести дату в майбутньому'), // максимальна дата - це сьогодні
       pageInput: Yup.number()
         .positive('Введіть корректну кількість сторінок')

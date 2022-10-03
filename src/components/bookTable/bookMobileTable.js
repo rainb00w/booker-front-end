@@ -23,7 +23,7 @@ export default function BookTableMobile() {
             <h3 className={s.title}>Already read</h3>
             <ul className={s.table}>
               {data?.payload.books.map(
-                ({ _id, author, pages, title, year, status }) =>
+                ({ _id, author, pages, title, year, status, rating = 0 }) =>
                   status === 'haveRead' && (
                     <li key={_id} className={s.item}>
                       <p className={s.subtitle}>
