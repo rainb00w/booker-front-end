@@ -3,6 +3,9 @@ import {
   StyledItem,
   StyledValue,
   StyledTimerWrapper,
+  TimerTitle,
+  StyledSpan,
+  StyledSeparator,
 } from './Timer.style.js';
 import { useState, useEffect, useRef } from 'react';
 import convertMs from './convertMs';
@@ -27,22 +30,35 @@ const Timer = selectedDate => {
 
   return (
     <StyledTimerWrapper>
+      <TimerTitle>До закінчення року залишилось</TimerTitle>
       <StyledContainer>
         <StyledItem>
           <StyledValue>{timeLeft.days}</StyledValue>
-          <span>дн</span>
+          <StyledSpan>дн</StyledSpan>
         </StyledItem>
+
         <StyledItem>
-          <StyledValue>{timeLeft.hours}</StyledValue>
-          <span>год</span>
+          <StyledValue>
+            <StyledSeparator>:</StyledSeparator>
+            {timeLeft.hours}
+          </StyledValue>
+          <StyledSpan>год</StyledSpan>
         </StyledItem>
+
         <StyledItem>
-          <StyledValue> {timeLeft.minutes}</StyledValue>
-          <span>хв</span>
+          <StyledValue>
+            <StyledSeparator>:</StyledSeparator>
+            {timeLeft.minutes}
+          </StyledValue>
+          <StyledSpan>хв</StyledSpan>
         </StyledItem>
+
         <StyledItem>
-          <StyledValue>{timeLeft.seconds}</StyledValue>
-          <span>сек</span>
+          <StyledValue>
+            <StyledSeparator>:</StyledSeparator>
+            {timeLeft.seconds}
+          </StyledValue>
+          <StyledSpan>сек</StyledSpan>
         </StyledItem>
       </StyledContainer>
     </StyledTimerWrapper>
