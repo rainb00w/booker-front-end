@@ -14,7 +14,7 @@ ul {
 
 
 .myGoalMainBox {
-    min-width: 280px;
+    width: 280px;
     margin: 0;
     margin-bottom: 30px;
     background-color: white;
@@ -24,6 +24,7 @@ ul {
 
 @media screen and (min-width: 768px) {
     .myGoalMainBox {
+        width: 700px;
         height: 105px;
         display: flex;
         align-items: center;

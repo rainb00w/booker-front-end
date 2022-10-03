@@ -10,9 +10,7 @@ import ChartTraning from 'components/Chart/ChartTraning';
 import BookTableTraining from 'components/bookTableTraining/bookTableTraining';
 import BookMobileTableTraining from 'components/bookTableTraining/bookMobileTableTraining';
 import { Field, Form, Formik, FormikProps } from 'formik';
-import Timer from 'components/Timer/Timer';
-import TrainingDataSelection from 'components/TrainingDataSelection';
-
+import MyGoal from 'components/MyGoal';
 
 const Training = () => {
   const { data } = useGetAllBooksQuery();
@@ -90,15 +88,13 @@ const Training = () => {
   return (
     <>
       <div>
-      {/* <div><Timer/></div> */}
-      <div><TrainingDataSelection /></div>
+        {/* <div><Timer/></div> */}
+
         {/* <DatePicker
           selected={startDate}
           onChange={date => setStartDate(date)}
         />
         <DatePicker selected={endDate} onChange={date => setEndDate(date)} /> */}
-
-
       </div>
       <div>
         <div></div>
@@ -125,37 +121,45 @@ const Training = () => {
           </button>
         </form> */}
 
-
-
         <Formik
-       initialValues={{ id: '' }}
-       onChange={()=> console.log('change')}
-       onSubmit={(values, actions) => {
-         setTimeout(() => {
-           alert(JSON.stringify(values, null, 2));
-           actions.setSubmitting(false);
-         }, 1000);
-       }}
-     >
-       {(props: FormikProps<any>) => (
-         <Form>
-          
-           <Field as="select" name="id" > 
-             {booksThatNotSelected?.map(element => (
-              <option key={element._id} value={element._id} className={s.bookField} >
-                {element.title}
-              </option>
-            ))}
+          initialValues={{ id: '' }}
+          onChange={() => console.log('change')}
+          onSubmit={(values, actions) => {
+            setTimeout(() => {
+              alert(JSON.stringify(values, null, 2));
+              actions.setSubmitting(false);
+            }, 1000);
+          }}
+        >
+          {(props: FormikProps<any>) => (
+            <Form>
+              <Field as="select" name="id">
+                {booksThatNotSelected?.map(element => (
+                  <option
+                    key={element._id}
+                    value={element._id}
+                    className={s.bookField}
+                  >
+                    {element.title}
+                  </option>
+                ))}
+              </Field>
 
-           </Field>
+              <button type="submit">Додати</button>
+            </Form>
+          )}
+        </Formik>
 
-           <button type="submit">Додати</button>
-         </Form>
-       )}
-     </Formik>
+        {/* <div className={s.goalMainBox}>
+  <div className={s.goalHeader}>Моя мета прочитати</div>
+  <div>
 
 
-
+  </div>
+</div> */}
+        <div className={s.gridItem2}>
+          <MyGoal />
+        </div>
         <div className={s.gridItem3}>
           {booksArrayToSend && (
             <div>
@@ -194,9 +198,8 @@ const Training = () => {
 
 export default Training;
 
-
-
-       {/* {booksThatNotSelected?.map(element => (
+{
+  /* {booksThatNotSelected?.map(element => (
           <div key={element._id}>
             <input
               onChange={e => {
@@ -218,4 +221,5 @@ export default Training;
               {element.pages} , Год : {element.year}
             </label>
           </div>
-        ))} */}
+        ))} */
+}
