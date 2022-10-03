@@ -41,7 +41,10 @@ const RepeatVerify = ({ switchFunc }) => {
                             setErr("");
                             const { email } = values;
                             verifyAPI(email)
-                                .then(answer => console.log(answer))
+                                .then(answer => {
+                                    console.log(answer);
+                                    switchFunc();
+                                })
                                 .catch(err => {
                                     const errorMessage = err.response.data.message;
                                     setErr(errorMessage);
