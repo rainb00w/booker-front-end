@@ -5,6 +5,7 @@ import { Formik } from 'formik';
 import { loginValidationSchema } from 'services/yupValidationSchema';
 import { Link, useNavigate } from 'react-router-dom';
 
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import svgPath from 'services/svgPath';
 import styles from "../login/login.module.css";
 
@@ -31,17 +32,19 @@ const ChangePassword = () => {
                 }}
                 validationSchema={loginValidationSchema}
                 onSubmit={(values, { resetForm }) => {
-                    const { email, password } = values;
-                    setErr("")
-                    newPasswordAPI(email, password)
-                      .then(answer => {
-                        console.log(answer)
+                  const { email, password } = values;
+                  setErr("")
+                  newPasswordAPI(email, password)
+                    .then(() => {
+                      Notify.success('To confirm the password change, follow the link that we sent you by mail.');
+                      setTimeout(() => {
                         navigate('/login');
-                      })
-                        .catch(err => {
-                            const errorMessage = err.response.data.message;
-                            setErr(errorMessage);
-                        })
+                      }, 2000); 
+                    })
+                    .catch(err => {
+                      const errorMessage = err.response.data.message;
+                      setErr(errorMessage);
+                    })
 
                 resetForm({ values: '' });
                 }}
