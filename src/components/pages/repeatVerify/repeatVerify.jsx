@@ -7,7 +7,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import verifyAPI from 'services/verifyAPI';
 import styles from "./repeatVerify.module.css";
 
-
+console.log("!")
 const modalRoot = document.querySelector('#modal__root');
 
 const RepeatVerify = ({ switchFunc }) => {
