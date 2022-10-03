@@ -55,7 +55,6 @@ const Registration = () => {
                       resetForm({ values: '' });
                       setErrName('');
                       setErrEmail('');
-                      console.log(999999)
                       Notify.success('You have successfully registered. A confirmation email has been sent to you!');
                       setTimeout(() => {
                         navigate('/login');
