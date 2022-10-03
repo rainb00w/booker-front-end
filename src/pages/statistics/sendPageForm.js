@@ -16,7 +16,7 @@ const SendPageForm = () => {
     ].join('-');
   };
   const { data = {} } = useGetAllTrainingsQuery();
-  console.log(data);
+  // console.log(data);
 
   // let startDate = Date.parse(startedTimeStamp);
   // console.log(startDate);

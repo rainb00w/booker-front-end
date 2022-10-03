@@ -1,79 +1,183 @@
-import { useEffect, useState } from 'react';
-import TrainingDataSelection from 'components/TrainingDataSelection/TrainingDataSelection';
-import ChartModal from '../../components/Chart/ChartModal';
+import React, { useEffect, useState } from 'react';
 import { useGetAllBooksQuery } from 'redux/books/booksApi';
 import { useAddTrainingMutation } from 'redux/books/trainingApi';
 import { useGetAllTrainingsQuery } from 'redux/books/trainingApi';
-import SendPageForm from '../statistics/sendPageForm';
-import Statistics from '../statistics/statistics';
+import s from './training.module.scss';
+
+import SendPageForm from 'pages/statistics/sendPageForm';
+import StatisticsList from 'pages/statistics/statisticsList';
+import ChartTraning from 'components/Chart/ChartTraning';
+import BookTableTraining from 'components/bookTableTraining/bookTableTraining';
+import BookMobileTableTraining from 'components/bookTableTraining/bookMobileTableTraining';
+
 
 const Training = () => {
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
-  const [endYear, setEndYear] = useState(new Date(2022, 11, 31));
-  const [selectedBooks, setSelectedBooks] = useState([]);
-  const [startTraining, setStartTraining] = useState(false);
+  const { data } = useGetAllBooksQuery();
+  // тут получаем все Книги
 
   const trainingData = useGetAllTrainingsQuery();
-  console.log(trainingData);
+  // trainingData это объект, данные доступны  => trainingData.data
 
-  const { data } = useGetAllBooksQuery();
-  const booksOptions = data?.payload.books;
+  // console.log('DATA', data.payload.books);
 
-  useEffect(() => {
-    console.log('useEffect');
-    if (trainingData.status === 'fulfilled') {
-      const { books, finishDate } = trainingData.data;
-      setEndDate(new Date(finishDate));
+  const booksThatHaveReadingStatus = data?.payload?.books.filter(
+    book => book.status === 'reading'
+  );
 
-      const findBooks = books.reduce((acc, { _id }) => {
-        const findBook = booksOptions.find(
-          bookOption => bookOption._id === _id
-        );
-        return [...acc, findBook];
-      }, []);
+  let isEmptyTraining = false;
+  if (trainingData?.data === undefined) {
+    isEmptyTraining = true;
+  }
+  // console.log('isEmptyTraining', isEmptyTraining);
+  const [selectedBook, setSelectedBook] = useState([]);
+  const [booksInfo, setBooksInfo] = useState([]);
+  const [booksArrayToSend, setBooksArrayToSend] = useState([]);
+  const [addTraining, { isLoading }] = useAddTrainingMutation();
 
-      setSelectedBooks(findBooks);
-      setStartTraining(true);
-    }
-    console.log('startTraining', selectedBooks);
-  }, [trainingData]);
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+  let bookTableArray = [];
 
-  // const status = trainingData.status;
-  const onStartTraining = values => {
-    const keys = Object.keys(values);
-    console.log(keys);
-    keys.forEach(key => {
-      if (key === 'startDate') {
-        setStartDate(values[key]);
-      }
-      if (key === 'endDate') {
-        setEndDate(values[key]);
-      }
-      if (key === 'selectedBooks') {
-        setSelectedBooks(values[key]);
-      }
-      if (endDate && selectedBooks.length > 0) {
-        setStartTraining(true);
-      }
-    });
+  if (booksThatHaveReadingStatus?.length > 0) {
+    bookTableArray = booksThatHaveReadingStatus;
+  } else {
+    bookTableArray = booksArrayToSend;
+  }
+
+  const handleAddBooks = e => {
+    e.preventDefault();
+    console.log('selectedBook', selectedBook);
+    // const arrayToSend = data?.payload.books.filter(
+    //   el => el._id === currentBook
+    // );
+    // setBooksArrayToSend(booksArrayToSend.concat(arrayToSend));
   };
+
+  const booksThatNotSelected = data?.payload.books.filter(
+    el => !booksArrayToSend.includes(el)
+  );
+
+  const removeItem = id => {
+    const newBooksArrayToSend = booksArrayToSend.filter(
+      book => book._id !== id
+    );
+    const newBooksInfo = booksInfo.filter(book => book._id !== id);
+    setBooksArrayToSend(newBooksArrayToSend);
+    setBooksInfo(newBooksInfo);
+  };
+
+  const startTraining = () => {
+    const array = {
+      startDate: startDate.toISOString(),
+      finishDate: endDate.toISOString(),
+      books: booksArrayToSend.map(element => ({ _id: element._id })),
+    };
+
+    addTraining(array)
+      .unwrap()
+      .catch(error => console.error('rejected', error));
+
+    // .then(payload => console.log('fulfilled', payload))
+  };
+
+  console.log(selectedBook);
 
   return (
     <>
-      {!startTraining && (
-        <TrainingDataSelection onStartTraining={onStartTraining} />
-      )}
-      {startTraining && (
-        <Statistics
-          endDate={endDate}
-          endYear={endYear}
-          selectedBooks={selectedBooks}
+      <div>
+        {/* <DatePicker
+          selected={startDate}
+          onChange={date => setStartDate(date)}
         />
-      )}
-      <ChartModal />
+        <DatePicker selected={endDate} onChange={date => setEndDate(date)} /> */}
+
+ 
+      </div>
+      <div>
+        <div></div>
+        {isLoading && <p>In process...</p>}
+      </div>
+
+      <div className={s.gridContainer}>
+        {/* <div className={s.gridItem1}>1</div> */}
+
+        <form onSubmit={handleAddBooks}>
+          <select
+            className={s.addField}
+            onChange={e => setSelectedBook(e.currentTarget.value)}
+          >
+            <option disabled></option>
+            {booksThatNotSelected?.map(element => (
+              <option key={element._id} value={element._id} name={element._id}>
+                {element.title}
+              </option>
+            ))}
+          </select>
+          <button className={s.addButton} type="Submit">
+            Додати
+          </button>
+        </form>
+
+        <div className={s.gridItem3}>
+          {booksArrayToSend && (
+            <div>
+              <BookTableTraining
+                booksList={bookTableArray}
+                isEmptyTraining={isEmptyTraining}
+                onClick={removeItem}
+              />
+              <BookMobileTableTraining
+                booksList={bookTableArray}
+                onClick={removeItem}
+                isEmptyTraining={isEmptyTraining}
+              />
+              <button
+                className={s.startTraingButton}
+                onClick={() => startTraining()}
+              >
+                Почати тренування
+              </button>
+            </div>
+          )}
+        </div>
+        <div className={s.gridItem4}>
+          <ChartTraning />
+        </div>
+        <div className={s.gridItem5}>
+          <h2 className={s.resultsHeader}>Результати</h2>
+          <SendPageForm />
+          <h2 className={s.statisticsHeader}>Статистика</h2>
+          <StatisticsList />
+        </div>
+      </div>
     </>
   );
 };
 
 export default Training;
+
+
+
+       {/* {booksThatNotSelected?.map(element => (
+          <div key={element._id}>
+            <input
+              onChange={e => {
+                if (e.target.checked) {
+                  setBooksInfo([...booksInfo, element]);
+                } else {
+                  console.log('remove from list');
+                  setBooksInfo(
+                    booksInfo.filter(books => books._id !== element._id)
+                  );
+                }
+              }}
+              value={booksInfo}
+              style={{ margin: '20px' }}
+              type="checkbox"
+            />
+            <label htmlFor={element.title}>
+              {element.title} , Автор : {element.author} , Страниц :{' '}
+              {element.pages} , Год : {element.year}
+            </label>
+          </div>
+        ))} */}

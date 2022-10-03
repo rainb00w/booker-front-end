@@ -2,7 +2,7 @@ import React from 'react';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import styles from "../pages/login/login.module.css";
-import {authOperations}  from "../redux/auth";
+import {authOperations}  from "./src/redux/auth";
 import { useDispatch } from 'react-redux';
 
 

@@ -11,6 +11,7 @@ export default function BookTable() {
   const { data } = useGetAllBooksQuery();
   const [deleteContact, { isLoading: isDeleting }] = useDeleteBookMutation();
 
+  console.log(data);
   const status = e => {
     const status = data?.payload.books.some(book => book.status === e);
     return status;
@@ -31,7 +32,7 @@ export default function BookTable() {
             </ul>
             <ul className={s.body}>
               {data?.payload.books.map(
-                ({ _id, author, pages, title, year, status }) =>
+                ({ _id, author, pages, title, year, status, rating }) =>
                   status === 'haveRead' && (
                     <li key={_id} className={s.item}>
                       <p className={s.subtitle}>
@@ -110,7 +111,7 @@ export default function BookTable() {
             </ul>
             <ul className={s.body}>
               {data?.payload.books.map(
-                ({ _id, author, pages, title, year, status }) =>
+                ({ _id, author, pages, title, year, status, rating }) =>
                   status === 'reading' && (
                     <li key={_id} className={s.item}>
                       <p className={s.subtitle}>

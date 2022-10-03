@@ -12,7 +12,7 @@ const StatisticsList = () => {
   return (
     <ul className={s.statisticsList}>
       {rows.map(row => (
-        <StatisticsRow key={rows.date} row={row} className={s.statisticsList} />
+        <StatisticsRow key={row.date} row={row} className={s.statisticsList} />
       ))}
     </ul>
   );
