@@ -4,6 +4,7 @@ import { useAddTrainingMutation } from 'redux/books/trainingApi';
 import { useGetAllTrainingsQuery } from 'redux/books/trainingApi';
 import s from './training.module.scss';
 
+import DatePicker from 'react-datepicker';
 import Select, { components } from 'react-select';
 import SendPageForm from 'pages/statistics/sendPageForm';
 import StatisticsList from 'pages/statistics/statisticsList';
@@ -13,6 +14,7 @@ import BookMobileTableTraining from 'components/bookTableTraining/bookMobileTabl
 import MyGoal from 'components/MyGoal';
 import SelectBooksStyled from 'components/selectBooks/SelectBooksStyled';
 import Timer from 'components/Timer/Timer';
+// import DatePickerTrainingStyled from 'components/datePickerTraining/DatePickerTrainingStyled';
 
 const Training = () => {
   const { data } = useGetAllBooksQuery();
@@ -71,6 +73,8 @@ const Training = () => {
     label: title,
   }));
 
+
+
   const removeItem = id => {
     const newBooksArrayToSend = booksArrayToSend?.filter(
       book => book._id !== id
@@ -92,16 +96,31 @@ const Training = () => {
     // .then(payload => console.log('fulfilled', payload))
   };
 
+  /// select time section
+  const addDays = (date, days) => {
+    const result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
+  };
+  const today = new Date();
+  const onHandleStartDateChange = (date) => {
+    setStartDate(date);
+  };
+
+  const onHandleEndDateChange = date => {
+    setEndDate(date);
+  };
+
   return (
     <>
       <div>
         {/* <div><Timer/></div> */}
 
-        {/* <DatePicker
+        <DatePicker
           selected={startDate}
           onChange={date => setStartDate(date)}
         />
-        <DatePicker selected={endDate} onChange={date => setEndDate(date)} /> */}
+        <DatePicker selected={endDate} onChange={date => setEndDate(date)} />
       </div>
       <div>
         <div></div>
@@ -109,8 +128,41 @@ const Training = () => {
       </div>
 
       <div className={s.gridContainer}>
-        <div className={s.gridItem1}><Timer /></div>
+        {/* <div className={s.gridItem1}><Timer /></div> */}
 
+        {/* <div>
+          <DatePickerTrainingStyled className="datePicker">
+            <div className="datePickerWrapper">
+              <DatePicker
+                className="datePickerTraining"
+                placeholderText="start"
+                dateFormat="dd.MM.yyyy"
+                selected={startDate}
+                onChange={onHandleStartDateChange}
+                selectsStart
+                minDate={today}
+                startDate={startDate}
+                endDate={endDate}
+              />
+          
+            </div>
+            <div className="datePickerWrapper">
+              <DatePicker
+                className="datePickerTraining"
+                dateFormat="dd.MM.yyyy"
+                placeholderText="finish"
+                selected={endDate}
+                onChange={onHandleEndDateChange}
+                selectsEnd
+                startDate={startDate}
+                endDate={endDate}
+                minDate={startDate}
+                maxDate={addDays(startDate, 31)}
+              />
+          
+            </div>
+          </DatePickerTrainingStyled>
+        </div> */}
         <div className={s.gridItem2}>
           <MyGoal />
         </div>
