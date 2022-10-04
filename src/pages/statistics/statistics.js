@@ -14,15 +14,6 @@ import BookMobileTableTraining from 'components/bookTableTraining/bookMobileTabl
 const Statistics = ({ endDate, endYear, selectedBooks }) => {
   return (
     <>
-      <StyledTimerContainer>
-        <Timer endDate={endYear} />
-        <Timer endDate={endDate} />
-      </StyledTimerContainer>
-      <BookTableTraining booksList={selectedBooks} isEmptyTraining={false} />
-      <BookMobileTableTraining
-        booksList={selectedBooks}
-        isEmptyTraining={false}
-      />
 
       <div className={s.container}>
         <h2 className={s.resultsHeader}>Результати</h2>

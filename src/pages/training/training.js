@@ -4,7 +4,9 @@ import { useAddTrainingMutation } from 'redux/books/trainingApi';
 import { useGetAllTrainingsQuery } from 'redux/books/trainingApi';
 import s from './training.module.scss';
 
+import { Formik, Form } from 'formik';
 import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import Select, { components } from 'react-select';
 import SendPageForm from 'pages/statistics/sendPageForm';
 import StatisticsList from 'pages/statistics/statisticsList';
@@ -14,7 +16,7 @@ import BookMobileTableTraining from 'components/bookTableTraining/bookMobileTabl
 import MyGoal from 'components/MyGoal';
 import SelectBooksStyled from 'components/selectBooks/SelectBooksStyled';
 import Timer from 'components/Timer/Timer';
-// import DatePickerTrainingStyled from 'components/datePickerTraining/DatePickerTrainingStyled';
+import convertMs from 'components/Timer/convertMs';
 
 const Training = () => {
   const { data } = useGetAllBooksQuery();
@@ -36,8 +38,24 @@ const Training = () => {
 
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+  const [daysNumber, setDaysNumber] = useState(0);
   const [disable, setDisable] = useState(false);
+  const yearEnd = new Date(['2023-01-01', '00:00']);
   let bookTableArray = [];
+
+  useEffect(() => {
+
+    if (startDate && endDate) {
+      const start = new Date(startDate);
+      const end = new Date(endDate);
+      const deltaTime = end.valueOf() - start.valueOf();
+      const deltaTimeObj = convertMs(deltaTime);
+      setDaysNumber(deltaTimeObj.days);
+      console.log(deltaTimeObj.days);
+    }
+  }, [startDate, endDate]);
+
+
 
   const incomeBooks = data?.payload?.books;
   const booksThatHaveReadingStatus = incomeBooks?.filter(
@@ -73,8 +91,6 @@ const Training = () => {
     label: title,
   }));
 
-
-
   const removeItem = id => {
     const newBooksArrayToSend = booksArrayToSend?.filter(
       book => book._id !== id
@@ -82,6 +98,8 @@ const Training = () => {
     setBooksArrayToSend(newBooksArrayToSend);
   };
 
+  let booksNumber = booksArrayToSend?.length;
+  
   const startTraining = () => {
     const array = {
       startDate: startDate.toISOString(),
@@ -96,32 +114,19 @@ const Training = () => {
     // .then(payload => console.log('fulfilled', payload))
   };
 
-  /// select time section
-  const addDays = (date, days) => {
-    const result = new Date(date);
-    result.setDate(result.getDate() + days);
-    return result;
-  };
   const today = new Date();
-  const onHandleStartDateChange = (date) => {
-    setStartDate(date);
-  };
-
-  const onHandleEndDateChange = date => {
-    setEndDate(date);
-  };
 
   return (
     <>
       <div>
-        {/* <div><Timer/></div> */}
-
-        <DatePicker
-          selected={startDate}
-          onChange={date => setStartDate(date)}
-        />
-        <DatePicker selected={endDate} onChange={date => setEndDate(date)} />
+        <div className={s.timerSection}>
+          <Timer selectedDate={yearEnd} />
+        </div>
+        <div>
+          <Timer selectedDate={endDate} />
+        </div>
       </div>
+
       <div>
         <div></div>
         {isLoading && <p>In process...</p>}
@@ -130,42 +135,63 @@ const Training = () => {
       <div className={s.gridContainer}>
         {/* <div className={s.gridItem1}><Timer /></div> */}
 
-        {/* <div>
-          <DatePickerTrainingStyled className="datePicker">
-            <div className="datePickerWrapper">
-              <DatePicker
-                className="datePickerTraining"
-                placeholderText="start"
-                dateFormat="dd.MM.yyyy"
-                selected={startDate}
-                onChange={onHandleStartDateChange}
-                selectsStart
-                minDate={today}
-                startDate={startDate}
-                endDate={endDate}
-              />
-          
-            </div>
-            <div className="datePickerWrapper">
-              <DatePicker
-                className="datePickerTraining"
-                dateFormat="dd.MM.yyyy"
-                placeholderText="finish"
-                selected={endDate}
-                onChange={onHandleEndDateChange}
-                selectsEnd
-                startDate={startDate}
-                endDate={endDate}
-                minDate={startDate}
-                maxDate={addDays(startDate, 31)}
-              />
-          
-            </div>
-          </DatePickerTrainingStyled>
-        </div> */}
         <div className={s.gridItem2}>
-          <MyGoal />
+          <MyGoal days={daysNumber} books={booksNumber} />
         </div>
+
+        <div>
+          <Formik initialValues={{ startDate: new Date() }}>
+            {({ values, setFieldValue }) => (
+              <div className="row clearfix">
+                <div className="header"></div>
+                <Form>
+                  <div className="row ml-4 mr-4">
+                    <div className="form-group col-3 mb-2">
+                      <DatePicker
+                        selected={values.startDate}
+                        placeholderText="Початок"
+                        dateFormat="dd.MM.yyyy"
+                        className="form-control"
+                        name="startDate"
+                        selectsStart
+                        minDate={today}
+                        onChange={date => {
+                          setFieldValue('startDate', date), setStartDate(date);
+                        }}
+                      />
+                    </div>
+                  </div>
+                </Form>
+              </div>
+            )}
+          </Formik>
+          <Formik initialValues={{ endDate: new Date() }}>
+            {({ values, setFieldValue }) => (
+              <div className="row clearfix">
+                <div className="header"></div>
+                <Form>
+                  <div className="row ml-4 mr-4">
+                    <div className="form-group col-3 mb-2">
+                      <DatePicker
+                        selected={values.endDate}
+                        placeholderText="Початок"
+                        dateFormat="dd.MM.yyyy"
+                        className="form-control"
+                        name="endDate"
+                        selectsStart
+                        minDate={today}
+                        onChange={date => {
+                          setFieldValue('endDate', date), setEndDate(date);
+                        }}
+                      />
+                    </div>
+                  </div>
+                </Form>
+              </div>
+            )}
+          </Formik>
+        </div>
+
         <div>
           <SelectBooksStyled>
             <Select
