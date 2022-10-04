@@ -3,7 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 import { Formik } from 'formik';
 import { registrationValidationSchema } from 'services/yupValidationSchema';
-
+import RegistrationText from '../../RegistrationText';
 import styles from '../login/login.module.css';
 
 import { authOperations } from '../../../redux/auth';
@@ -58,7 +58,7 @@ const Registration = () => {
                       Notify.success('You have successfully registered. A confirmation email has been sent to you!');
                       setTimeout(() => {
                         navigate('/login');
-                      }, 2000) 
+                      }, 2000)
                     }
                     else if (response) {
                       throw response.data.message;
@@ -201,6 +201,13 @@ const Registration = () => {
             )}
           </Media>
         )}
+        <Media queries={{ tablet: '(min-width: 768px)' }}>
+          {
+            matches => (
+              matches.tablet && <RegistrationText />
+            )
+          }
+        </Media>
       </section>
     </>
   );
