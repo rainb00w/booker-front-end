@@ -117,8 +117,8 @@ const Training = () => {
 
   return (
     <>
-      <div>
-        <div className={s.timerSection}>
+      <div className={s.timerSection}>
+        <div >
           <Timer selectedDate={endYear} title={yearTitle} />
         </div>
         <div>
@@ -147,10 +147,11 @@ const Training = () => {
                   <div className="row ml-4 mr-4">
                     <div className="form-group col-3 mb-2">
                       <DatePicker
+                        
                         selected={values.startDate}
                         placeholderText="Початок"
                         dateFormat="dd.MM.yyyy"
-                        className="form-control"
+                        className={s.datePicker}
                         name="startDate"
                         selectsStart
                         minDate={today}
@@ -175,12 +176,12 @@ const Training = () => {
                         selected={values.endDate}
                         placeholderText="Початок"
                         dateFormat="dd.MM.yyyy"
-                        className="form-control"
+                        className={s.datePicker}
                         name="endDate"
                         selectsStart
                         minDate={today}
                         onChange={date => {
-                          setFieldValue('endDate', date), setEndDate(date);
+                          setFieldValue('Кінець', date), setEndDate(date);
                         }}
                       />
                     </div>
