@@ -59,92 +59,90 @@ const Header = () => {
 
   return (
     <>
-    <div className="main_container"> 
-      {/* кнопки не удалял, чтобы можно было на формулы посмотреть
+      <div className="main_container">
+        {/* кнопки не удалял, чтобы можно было на формулы посмотреть
       
       <button onClick={() => changeLanguage('en')}>EN</button>
       <button onClick={() => changeLanguage('ua')}>UA</button>
       <div> {t('text')} </div> */}
 
-      <header className={isLoggedIn ? s.header : s.header_l}>
-        <Link to="/" className={s.logo}>
-          BR
-        </Link>
+        <header className={isLoggedIn ? s.header : s.header_l}>
+          <Link to="/" className={s.logo}>
+            BR
+          </Link>
 
-        <LangSwitch onChangeLanguage={changeLanguage} />
+          <LangSwitch onChangeLanguage={changeLanguage} />
 
-        {isLoggedIn && (
-          <div className={s.blok}>
-            <div className={s.blok_user}>
-              <button className={s.btn_desktop} type="button">
-                {isLoggedIn && userLogo}
+          {isLoggedIn && (
+            <div className={s.blok}>
+              <div className={s.blok_user}>
+                <button className={s.btn_desktop} type="button">
+                  {isLoggedIn && userLogo}
+                </button>
+                <p className={s.user_name}>{isLoggedIn && user}</p>
+              </div>
+
+              {statistic && (
+                <nav className={s.nav}>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? s.active_link : s.link
+                    }
+                    to="/"
+                  >
+                    <Tooltip title="library">
+                      <img src={library} alt="library" />
+                    </Tooltip>
+                  </NavLink>
+
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? s.active_link : s.link
+                    }
+                    to="/training"
+                  >
+                    <Tooltip title="training">
+                      <img src={home} alt="home" />
+                    </Tooltip>
+                  </NavLink>
+                </nav>
+              )}
+              <div className={s.line}></div>
+
+              <button className={s.button_mobile} type="button">
+                {userLogo}
               </button>
-              <p className={s.user_name}>{isLoggedIn && user}</p>
-            </div>
-
-            {statistic && (
-              <nav className={s.nav}>
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? s.active_link : s.link
-                  }
-                  to="/"
-                >
-                  <Tooltip title="library">
-                    <img src={library} alt="library" />
-                  </Tooltip>
-                </NavLink>
-
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? s.active_link : s.link
-                  }
-                  to="/training"
-                >
-                  <Tooltip title="training">
-                    <img src={home} alt="home" />
-                  </Tooltip>
-                </NavLink>
-              </nav>
-            )}
-            <div className={s.line}></div>
-
-            <button className={s.button_mobile} type="button">
-              {userLogo}
-            </button>
-            <button
-              className={s.button_exit}
-              type="button"
-              onClick={handleOpen}
-            >
-              Вихід
-            </button>
-          </div>
-        )}
-      </header>
-
-      <div>
-        <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={style} className={s.modal}>
-            <p className={s.modal_text}>
-              Якщо Ви вийдете з програми незбережені дані будуть втрачені
-            </p>
-            <div className={s.btn_modal}>
-              <button type="button" onClick={handleClose}>
-                Відміна
-              </button>
-              <button type="button" onClick={handleExit}>
-                Вийти
+              <button
+                className={s.button_exit}
+                type="button"
+                onClick={handleOpen}
+              >
+                {t('logout')}
               </button>
             </div>
-          </Box>
-        </Modal>
-      </div>
+          )}
+        </header>
+
+        <div>
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style} className={s.modal}>
+              <p className={s.modal_text}>{t('modal1_notification')}</p>
+              <div className={s.btn_modal}>
+                <button type="button" onClick={handleClose}>
+                  {t('btnCancel')}
+                </button>
+                <button type="button" onClick={handleExit}>
+                  {t('btnLeave')}
+                </button>
+              </div>
+            </Box>
+          </Modal>
+        </div>
       </div>
     </>
   );
