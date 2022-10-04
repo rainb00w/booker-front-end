@@ -14,7 +14,7 @@ import ChartTraning from 'components/Chart/ChartTraning';
 import BookTableTraining from 'components/bookTableTraining/bookTableTraining';
 import BookMobileTableTraining from 'components/bookTableTraining/bookMobileTableTraining';
 import MyGoal from 'components/MyGoal';
-import SelectBooksStyled from 'components/selectBooks/SelectBooksStyled';
+import SelectBooksStyled from 'components/SelectBooks/SelectBooksStyled';
 import Timer from 'components/Timer/Timer';
 import convertMs from 'components/Timer/convertMs';
 
@@ -40,11 +40,10 @@ const Training = () => {
   const [endDate, setEndDate] = useState(new Date());
   const [daysNumber, setDaysNumber] = useState(0);
   const [disable, setDisable] = useState(false);
-  const yearEnd = new Date(['2023-01-01', '00:00']);
+  const [endYear, setEndYear] = useState(new Date(2022, 11, 31));
   let bookTableArray = [];
 
   useEffect(() => {
-
     if (startDate && endDate) {
       const start = new Date(startDate);
       const end = new Date(endDate);
@@ -54,8 +53,6 @@ const Training = () => {
       console.log(deltaTimeObj.days);
     }
   }, [startDate, endDate]);
-
-
 
   const incomeBooks = data?.payload?.books;
   const booksThatHaveReadingStatus = incomeBooks?.filter(
@@ -99,7 +96,7 @@ const Training = () => {
   };
 
   let booksNumber = booksArrayToSend?.length;
-  
+
   const startTraining = () => {
     const array = {
       startDate: startDate.toISOString(),
@@ -115,17 +112,17 @@ const Training = () => {
   };
 
   const today = new Date();
-  const yearTitle = "До конца";
-  const trainingTitle =  "Тоже до конца";
+  const yearTitle = 'До закінчення року залишилось';
+  const trainingTitle = 'До досягнення мети залишилось';
 
   return (
     <>
       <div>
         <div className={s.timerSection}>
-          <Timer selectedDate={yearEnd} title={yearTitle}/>
+          <Timer selectedDate={endYear} title={yearTitle} />
         </div>
         <div>
-          <Timer selectedDate={endDate} title={trainingTitle}/>
+          <Timer selectedDate={endDate} title={trainingTitle} />
         </div>
       </div>
 
