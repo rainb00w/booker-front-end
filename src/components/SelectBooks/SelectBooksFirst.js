@@ -13,7 +13,7 @@ import {
   getAllSelectedBooks,
 } from "../../../../redux/target/targetSelectors";
 
-import SelectBooksStyled from "./SelectBooksStyled";
+import SelectBooksStyled from "./SelectBooksFirstStyled";
 import { ThemeContext } from "../../../App";
 
 import sprite from "../../../../images/sprite.svg";
@@ -35,7 +35,7 @@ const DropdownIndicator = (props) => {
   );
 };
 
-const SelectBooks = ({ toggleModal }) => {
+const SelectBooksFirst = ({ toggleModal }) => {
   const { t } = useTranslation();
   const { theme } = useContext(ThemeContext);
 
@@ -134,4 +134,4 @@ const SelectBooks = ({ toggleModal }) => {
   );
 };
 
-export default SelectBooks;
+export default SelectBooksFirst;

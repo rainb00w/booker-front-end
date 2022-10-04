@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const SelectBooksStyled = styled.div`
+const SelectBooksFirstStyled = styled.div`
   @media screen and (min-width: 768px) {
     display: flex;
     justify-content: space-between;
@@ -95,4 +95,4 @@ const SelectBooksStyled = styled.div`
   }
 `;
 
-export default SelectBooksStyled;
+export default SelectBooksFirstStyled;

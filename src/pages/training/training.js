@@ -14,7 +14,7 @@ import ChartTraning from 'components/Chart/ChartTraning';
 import BookTableTraining from 'components/bookTableTraining/bookTableTraining';
 import BookMobileTableTraining from 'components/bookTableTraining/bookMobileTableTraining';
 import MyGoal from 'components/MyGoal';
-import SelectBooksStyled from '../../components/SelectBooks/SelectBooksStyled';
+import SelectBooksFirstStyled from 'components/SelectBooks/SelectBooksFirstStyled';
 import Timer from 'components/Timer/Timer';
 import convertMs from 'components/Timer/convertMs';
 
@@ -130,7 +130,7 @@ const Training = () => {
             <>
             <h3 className={s.myTrainingHeader}>Моє тренування </h3>
                  <div>
-              <SelectBooksStyled>
+              <SelectBooksFirstStyled>
                 <Select
                   defaultValue={{ value: null, label: 'Оберіть книгу' }}
                   options={selectedOptions}
@@ -145,7 +145,7 @@ const Training = () => {
                 >
                   add
                 </button>
-              </SelectBooksStyled>
+              </SelectBooksFirstStyled>
             </div>
             {/* <div>
             <Formik initialValues={{ startDate: new Date() }}>
