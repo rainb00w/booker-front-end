@@ -28,11 +28,7 @@ const Training = () => {
   }
   // console.log('isEmptyTraining', isEmptyTraining);
 
-
-
-
-
-  const [booksInfo, setBooksInfo] = useState([]);
+  const [booksInfo, setBooksInfo] = useState(null);
   const [selectedBook, setSelectedBook] = useState(null);
   const [booksArrayToSend, setBooksArrayToSend] = useState([]);
   const [addTraining, { isLoading }] = useAddTrainingMutation();
@@ -51,21 +47,6 @@ const Training = () => {
     setSelectedBook(value);
   };
 
-
-  const selectedOptions = incomeBooks?.map(({ title, _id }) => ({
-    value: { _id },
-    label: title,
-  }));
-
-
-
-
-  // console.log('booksThatHaveReadingStatus', booksThatHaveReadingStatus);
-  // console.log('booksArrayToSend', incomeBooks);
-  // console.log('selectedOptions', selectedOptions);
-  // console.log('selectedBook', selectedBook);
-
-
   if (booksThatHaveReadingStatus?.length > 0) {
     bookTableArray = booksThatHaveReadingStatus;
   } else {
@@ -73,30 +54,32 @@ const Training = () => {
   }
 
   const addBookToSelected = () => {
-    const temporaryArray = incomeBooks.filter(book => book._id === selectedBook._id)
-    setBooksArrayToSend([...booksArrayToSend].concat(temporaryArray))
-    console.log(booksArrayToSend);
+    const addBooksArray = incomeBooks.filter(book => book._id === selectedBook._id)
+    setBooksArrayToSend([...booksArrayToSend].concat(addBooksArray))
+  
   };
 
-  // const handleAddBooks = e => {
-  //   e.preventDefault();
-  //   console.log('selectedBook', selectedBook);
-  //   const arrayToSend = data?.payload.books.filter(
-  //     el => el._id === selectedBook
-  //   );
-  //   setBooksArrayToSend(booksArrayToSend.concat(arrayToSend));
-  // };
+  const booksThatNotSelected = incomeBooks?.filter(
+    el => !booksArrayToSend.includes(el)
+  );
 
-  // const booksThatNotSelected = data?.payload.books.filter(
-  //   el => !booksArrayToSend.includes(el)
-  // );
+  const selectedOptions = booksThatNotSelected?.map(({ title, _id }) => ({
+    value: { _id },
+    label: title,
+  }));
+
+
+  console.log('booksThatNotSelected', booksThatNotSelected);
+console.log('booksArrayToSend', booksArrayToSend)
 
   const removeItem = id => {
-    // const newBooksArrayToSend = booksArrayToSend.filter(
-    //   book => book._id !== id
-    // );
+    const newBooksArrayToSend = booksArrayToSend?.filter(
+      book => book._id !== id
+    );
+    setBooksArrayToSend(newBooksArrayToSend);
+
     // const newBooksInfo = booksInfo.filter(book => book._id !== id);
-    // setBooksArrayToSend(newBooksArrayToSend);
+
     // setBooksInfo(newBooksInfo);
   };
 
