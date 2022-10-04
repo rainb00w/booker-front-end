@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/booker-front-end/static/css/main.723eacb8.css",
-    "main.js": "/booker-front-end/static/js/main.06e3a02f.js",
+    "main.css": "/booker-front-end/static/css/main.4997a999.css",
+    "main.js": "/booker-front-end/static/js/main.b0c52e4a.js",
     "static/media/background2.jpg": "/booker-front-end/static/media/background2.1065ac0c23029c4e7b76.jpg",
     "static/media/background3.jpg": "/booker-front-end/static/media/background3.4eb17edd7123c073db0e.jpg",
     "static/media/background1.jpg": "/booker-front-end/static/media/background1.bf9ad2780587b6f86f4f.jpg",
@@ -14,17 +14,18 @@
     "static/media/google.svg": "/booker-front-end/static/media/google.cb6e35e7033aee8f1d74f9cd824b1cf4.svg",
     "static/media/eye-off.svg": "/booker-front-end/static/media/eye-off.9885b4d684628eb8ae545f474ef84eac.svg",
     "static/media/thumb_up-24px.svg": "/booker-front-end/static/media/thumb_up-24px.3a4013bc5430953c4cdaac4a7b3b4bb5.svg",
+    "static/media/back.svg": "/booker-front-end/static/media/back.838666f3e31248a49fe002337d798abc.svg",
     "static/media/arrow.svg": "/booker-front-end/static/media/arrow.861b7fa53814610e5f5e5b4d61fe9c04.svg",
     "static/media/library-icon.svg": "/booker-front-end/static/media/library-icon.e495a68c79524c1478c4.svg",
     "static/media/getFetch.cjs": "/booker-front-end/static/media/getFetch.40f37ddea2378391108f.cjs",
     "static/media/delete-icon.svg": "/booker-front-end/static/media/delete-icon.f5bcf35f60572ba77d17621d02195506.svg",
     "static/media/icon_home.svg": "/booker-front-end/static/media/icon_home.b3cc0a6a4d8a1f2461a5a0058dafff68.svg",
     "static/media/icon_flag.svg": "/booker-front-end/static/media/icon_flag.630776428b2941a7e4a8d9c083ae3780.svg",
-    "main.723eacb8.css.map": "/booker-front-end/static/css/main.723eacb8.css.map",
-    "main.06e3a02f.js.map": "/booker-front-end/static/js/main.06e3a02f.js.map"
+    "main.4997a999.css.map": "/booker-front-end/static/css/main.4997a999.css.map",
+    "main.b0c52e4a.js.map": "/booker-front-end/static/js/main.b0c52e4a.js.map"
   },
   "entrypoints": [
-    "static/css/main.723eacb8.css",
-    "static/js/main.06e3a02f.js"
+    "static/css/main.4997a999.css",
+    "static/js/main.b0c52e4a.js"
   ]
 }
