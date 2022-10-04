@@ -7,6 +7,7 @@ const RegistrationText = ({ modalBtnRegisterClick, modalBtnLoginClick }) => {
   return (
     <div className={styles.registration__text}>
       <h1 className={styles.title}>Books Reading</h1>
+      <div className={styles.container}>
       <h2 className={styles.subtitle}>Will help you to</h2>
       <ul className={styles.registration__list}>
         <li className={styles.registration__item}>
@@ -40,7 +41,8 @@ const RegistrationText = ({ modalBtnRegisterClick, modalBtnLoginClick }) => {
             Become an interesting interlocutor
           </p>
         </li>
-      </ul>
+        </ul>
+      </div>
       <Media queries={{ small: '(max-width: 768px)' }}>
         {matches => (
           <>

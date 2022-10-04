@@ -7,6 +7,7 @@
   font-weight: 400;
   font-size: 34px;
   line-height: 1.12;
+  text-align: center;
   color: #242A37;
 }
 
@@ -23,19 +24,19 @@
   margin-bottom: 24px;
 }
 
-.registration__list2 {
-  margin-bottom: 60px;
-}
-
 .registration__item {
-  display: flex;
-  align-items: center;
+  position: relative;
   margin-bottom: 12px;
+  padding-left: 16px;
   list-style: none;
 }
 
 .registration__item::before {
   content: "";
+  position: absolute;
+  top: 3px;
+  left: 0;
+  display: block;
   width: 4px;
   height: 8px;
   margin-right: 12px;
@@ -52,10 +53,20 @@
 }
 
 /* ! ==================================== !!! MEDIA !!! =============================== ! */
+@media screen and (max-width: 767px) {
+  .container {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .registration__list2 {
+    margin-bottom: 60px;
+  }
+}
 
 @media screen and (min-width: 768px) {
   .registration__text {
-    padding: 64px 160px 88px;
+    padding: 64px 120px 88px;
   }
 
   .title {
