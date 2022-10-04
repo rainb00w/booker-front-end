@@ -39,7 +39,11 @@
   width: 280px;
   background-color: #ffffff;
   padding: 20px 20px 22px 20px;
+  @media screen and (min-width: 768px) {
+    width: 704px;
+  }
   @media screen and (min-width: 1280px) {
+    width: 280px;
     grid-area: sidebar;
   }
 }
