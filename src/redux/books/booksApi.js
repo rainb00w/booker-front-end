@@ -26,7 +26,7 @@ export const booksApi = createApi({
       providesTags: ['Books'],
     }),
     addBook: builder.mutation({
-      query: ({ title, author,year,pages }) => ({
+      query: ({ title, author, year, pages }) => ({
         url: '/',
         method: 'POST',
         body: { title: title, author: author, year: year, pages: pages },
@@ -40,15 +40,20 @@ export const booksApi = createApi({
       }),
       invalidatesTags: ['Books'],
     }),
+    updateBookResume: builder.mutation({
+      query: ({ id, resume, rating }) => ({
+        url: `/books/resume/${id}`,
+        method: 'PUT',
+        body: { id, resume: resume, rating: rating },
+      }),
+      invalidatesTags: ['Books'],
+    }),
   }),
 });
-
-
-
-
 
 export const {
   useGetAllBooksQuery,
   useAddBookMutation,
   useDeleteBookMutation,
+  useUpdateBookResumeMutation,
 } = booksApi;
