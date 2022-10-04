@@ -87,6 +87,9 @@ const Training = () => {
   // trainingData это объект, данные доступны  => trainingData.data
 
   // console.log('DATA', data.payload.books);
+  const sendToStatisticStartDate = trainingData?.data?.startDate;
+  const sendToStatisticResults = trainingData?.data?.results
+  // console.log('startDate', trainingData.data.startDate ,'array', trainingData.data.results );
 
   let isEmptyTraining = false;
   if (trainingData?.data === undefined) {
@@ -304,10 +307,10 @@ const Training = () => {
 
         <div className={s.gridItem4}>
           <h2 className={s.resultsHeader}>Результати</h2>
-          <SendPageForm />
+          <SendPageForm startDate={sendToStatisticStartDate}/>
 
           <h2 className={s.statisticsHeader}>Статистика</h2>
-          <StatisticsList />
+          <StatisticsList results={sendToStatisticResults} />
         </div>
       </div>
     </>
