@@ -50,6 +50,12 @@
     outline: none;
 }
 
+.verify__input::placeholder {
+    font-weight: 400;
+    font-size: 14px;
+    color: #A6ABB9;
+}
+
 .verify__warning,
 .verify__error {
     margin: 0;
@@ -71,23 +77,22 @@
     margin-bottom: 10px;
 }
 
-.verify__default {
-    display: block;
-    height: 14px;
-    margin-bottom: 10px;
-}
-
 .verify__button {
     display: block;
     padding: 20px 0;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
     min-width: 280px;
+    font-weight: 600;
     color: #ffffff;
     background-color: #FF6B08;
     border: 1px solid #FF6B08;
     cursor: pointer;
+}
+
+.verify__button:hover {
+    background-color: #D15807;
 }
 
 
@@ -111,5 +116,11 @@
     .verify__warning,
     .verify__default {
         margin-bottom: 22px;
+    }
+}
+
+@media screen and (min-width: 1281px) {
+    .verify__button {
+        margin-bottom: 32px;
     }
 }
