@@ -1,5 +1,11 @@
 .gridContainer {
   background-color: #f6f7fb;
+  @media screen and (max-width: 1280px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .gridItem5 {
@@ -8,6 +14,15 @@
   background-color: #ffffff;
   padding: 20px 20px 22px 20px;
 }
+
+.timerSection{
+  @media screen and (min-width: 768px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
 .inputs {
   display: flex;
   margin-bottom: 28px;

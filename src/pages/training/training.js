@@ -112,14 +112,14 @@ const Training = () => {
   };
 
   const today = new Date();
-  const yearTitle = 'До закінчення року залишилось';
-  const trainingTitle = 'До досягнення мети залишилось';
+  const yearTitle = 'До конца';
+  const trainingTitle = 'Тоже до конца';
 
   return (
     <>
-      <div>
-        <div className={s.timerSection}>
-          <Timer selectedDate={endYear} title={yearTitle} />
+      <div className={s.timerSection}>
+        <div>
+          <Timer selectedDate={yearEnd} title={yearTitle} />
         </div>
         <div>
           <Timer selectedDate={endDate} title={trainingTitle} />
@@ -139,59 +139,60 @@ const Training = () => {
         </div>
 
         <div>
-          <Formik initialValues={{ startDate: new Date() }}>
-            {({ values, setFieldValue }) => (
-              <div className="row clearfix">
-                <div className="header"></div>
-                <Form>
-                  <div className="row ml-4 mr-4">
-                    <div className="form-group col-3 mb-2">
-                      <DatePicker
-                        selected={values.startDate}
-                        placeholderText="Початок"
-                        dateFormat="dd.MM.yyyy"
-                        className="form-control"
-                        name="startDate"
-                        selectsStart
-                        minDate={today}
-                        onChange={date => {
-                          setFieldValue('startDate', date), setStartDate(date);
-                        }}
-                      />
+          <span> Моє тренування</span>{' '}
+          <div>
+            <Formik initialValues={{ startDate: new Date() }}>
+              {({ values, setFieldValue }) => (
+                <div className="row clearfix">
+                  <div className="header"></div>
+                  <Form>
+                    <div className="row ml-4 mr-4">
+                      <div className="form-group col-3 mb-2">
+                        <DatePicker
+                          selected={values.startDate}
+                          placeholderText="Початок"
+                          dateFormat="dd.MM.yyyy"
+                          className="form-control"
+                          name="startDate"
+                          selectsStart
+                          minDate={today}
+                          onChange={date => {
+                            setFieldValue('startDate', date),
+                              setStartDate(date);
+                          }}
+                        />
+                      </div>
                     </div>
-                  </div>
-                </Form>
-              </div>
-            )}
-          </Formik>
-          <Formik initialValues={{ endDate: new Date() }}>
-            {({ values, setFieldValue }) => (
-              <div className="row clearfix">
-                <div className="header"></div>
-                <Form>
-                  <div className="row ml-4 mr-4">
-                    <div className="form-group col-3 mb-2">
-                      <DatePicker
-                        selected={values.endDate}
-                        placeholderText="Початок"
-                        dateFormat="dd.MM.yyyy"
-                        className="form-control"
-                        name="endDate"
-                        selectsStart
-                        minDate={today}
-                        onChange={date => {
-                          setFieldValue('endDate', date), setEndDate(date);
-                        }}
-                      />
+                  </Form>
+                </div>
+              )}
+            </Formik>
+            <Formik initialValues={{ endDate: new Date() }}>
+              {({ values, setFieldValue }) => (
+                <div className="row clearfix">
+                  <div className="header"></div>
+                  <Form>
+                    <div className="row ml-4 mr-4">
+                      <div className="form-group col-3 mb-2">
+                        <DatePicker
+                          selected={values.endDate}
+                          placeholderText="Початок"
+                          dateFormat="dd.MM.yyyy"
+                          className="form-control"
+                          name="endDate"
+                          selectsStart
+                          minDate={today}
+                          onChange={date => {
+                            setFieldValue('endDate', date), setEndDate(date);
+                          }}
+                        />
+                      </div>
                     </div>
-                  </div>
-                </Form>
-              </div>
-            )}
-          </Formik>
-        </div>
-
-        <div>
+                  </Form>
+                </div>
+              )}
+            </Formik>
+          </div>
           <SelectBooksStyled>
             <Select
               defaultValue={{ value: null, label: 'Оберіть книгу' }}
