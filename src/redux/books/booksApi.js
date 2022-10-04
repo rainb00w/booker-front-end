@@ -42,7 +42,7 @@ export const booksApi = createApi({
     }),
     updateBookResume: builder.mutation({
       query: ({ id, resume, rating }) => ({
-        url: `/books/resume/${id}`,
+        url: `/resume/${id}`,
         method: 'PUT',
         body: { id, resume: resume, rating: rating },
       }),

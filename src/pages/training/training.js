@@ -27,6 +27,8 @@ const StyledControlsWrapper = styled.div`
   justify-content: space-around;
 `;
 
+
+
 const Training = () => {
   const { data } = useGetAllBooksQuery();
   // тут получаем все Книги
@@ -35,7 +37,6 @@ const Training = () => {
   // trainingData это объект, данные доступны  => trainingData.data
 
   // console.log('DATA', data.payload.books);
-  console.log('DATA', trainingData.data);
 
   let isEmptyTraining = false;
   if (trainingData?.data === undefined) {
@@ -127,11 +128,8 @@ const Training = () => {
     // .then(payload => console.log('fulfilled', payload))
   };
 
-  const today = new Date();
   const yearTitle = 'До закінчення року залишилось';
   const trainingTitle = 'До досягнення мети залишилось';
-
-
 
   const handleStartSelect = value => {
     console.log(value);
@@ -169,18 +167,26 @@ const Training = () => {
                   </button>
                 </SelectBooksFirstStyled>
               </div>
-      
 
-              <DatePicker
-                selected={startDate}
-                onSelect={handleStartSelect} //when day is clicked
-                // onChange={handleStartChange} //only when value has changed
-              />
-               <DatePicker
-                selected={endDate}
-                onSelect={handleEndSelect} //when day is clicked
-                // onChange={handleDateChange} //only when value has changed
-              />
+              <div>
+                <DatePicker
+                  selected={startDate}
+                  onSelect={handleStartSelect} //when day is clicked
+                  // onChange={handleStartChange} //only when value has changed
+                  dateFormat="dd.MM.yyyy"
+                  placeholderText="Початок"
+                  selectsEnd
+                  // startDate={startDate}
+                  // endDate={endDate}
+                  // minDate={startDate}
+                  // maxDate={addDays(startDate, 31)}
+                />
+                <DatePicker
+                  selected={endDate}
+                  onSelect={handleEndSelect} //when day is clicked
+                  // onChange={handleDateChange} //only when value has changed
+                />
+              </div>
             </>
           ) : (
             <div className={s.timerSection}>
@@ -226,7 +232,7 @@ const Training = () => {
         <div className={s.gridItem4}>
           <h2 className={s.resultsHeader}>Результати</h2>
           <SendPageForm />
-        
+
           <h2 className={s.statisticsHeader}>Статистика</h2>
           <StatisticsList />
         </div>
@@ -238,8 +244,6 @@ const Training = () => {
 export default Training;
 
 {
-
-
   /* 
     startDate={}  
   {booksThatNotSelected?.map(element => (
@@ -304,9 +308,8 @@ export default Training;
 </div> */
 }
 
-
-
-        {/* <div>
+{
+  /* <div>
             <Formik initialValues={{ startDate: new Date() }}>
               {({ values, setFieldValue }) => (
                 <div className="row clearfix">
@@ -358,4 +361,5 @@ export default Training;
                 </div>
               )}
             </Formik>
-          </div> */}
+          </div> */
+}
