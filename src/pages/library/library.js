@@ -23,7 +23,8 @@ const Library = () => {
         <div className={s.section}>
           <BookAddForm />
           {mobile ? <BookTableMobile /> : <BookTable />}
-          <BtnMyTraining />
+            <BtnMyTraining />
+            
         </div>
       )}
     </>
