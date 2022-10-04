@@ -59,6 +59,7 @@ const Header = () => {
 
   return (
     <>
+    <div className="main_container"> 
       {/* кнопки не удалял, чтобы можно было на формулы посмотреть
       
       <button onClick={() => changeLanguage('en')}>EN</button>
@@ -143,6 +144,7 @@ const Header = () => {
             </div>
           </Box>
         </Modal>
+      </div>
       </div>
     </>
   );
