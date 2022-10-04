@@ -60,7 +60,8 @@ const ChangePassword = () => {
                 <form onSubmit={handleSubmit}>
                     <p className={styles.label__title}>
                     Email
-                    {err && <span className={styles.error}>* {err}</span>}
+                    <span className={styles.label__star}>*</span>
+                    {err && <span className={styles.error}>{err}</span>}
                   </p>
                   <input
                     className={styles.input}
@@ -77,7 +78,10 @@ const ChangePassword = () => {
                     <span className={styles.default__count}></span>
                   )}
                   <label className={styles.label_password}>
-                    <p className={styles.label__title}>Password</p>
+                    <p className={styles.label__title}>
+                      Password
+                      <span className={styles.label__star}>*</span>
+                    </p>
                     <input
                       className={styles.input}
                       type={inputType}

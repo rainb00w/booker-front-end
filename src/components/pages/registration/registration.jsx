@@ -121,8 +121,9 @@ const Registration = () => {
                   </a>
                   <p className={styles.label__title}>
                     Name
+                    <span className={styles.label__star}>*</span>
                     {errName && (
-                      <span className={styles.error}>* {errName}</span>
+                      <span className={styles.error}>{errName}</span>
                     )}
                   </p>
                   <input
@@ -141,6 +142,7 @@ const Registration = () => {
                   )}
                   <p className={styles.label__title}>
                     Email
+                    <span className={styles.label__star}>*</span>
                     {errEmail && (
                       <span className={styles.error}>* {errEmail}</span>
                     )}
@@ -159,7 +161,10 @@ const Registration = () => {
                   ) : (
                     <span className={styles.default__count}></span>
                   )}
-                  <p className={styles.label__title}>Password</p>
+                  <p className={styles.label__title}>
+                    Password
+                    <span className={styles.label__star}>*</span>
+                  </p>
                   <input
                     className={styles.input}
                     type="password"
@@ -174,7 +179,10 @@ const Registration = () => {
                   ) : (
                     <span className={styles.default__count}></span>
                   )}
-                  <p className={styles.label__title}>Confirm password</p>
+                  <p className={styles.label__title}>
+                    Confirm password
+                    <span className={styles.label__star}>*</span>
+                  </p>
                   <input
                     className={styles.input}
                     type="password"
@@ -197,7 +205,7 @@ const Registration = () => {
             </Formik>
             <p className={styles.auth__describe}>
               Already have an account?
-              <Link className={styles.auth__link} to="/">
+              <Link className={styles.authforgot__link} to="/">
                 Login
               </Link>
             </p>

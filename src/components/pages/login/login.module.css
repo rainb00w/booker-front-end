@@ -99,8 +99,10 @@
     background-color: #D15807;
 }
 
+
 .error,
-.warning {
+.warning,
+.label__star {
     margin: 0;
     margin-left: 5px;
     font-size: 12px;

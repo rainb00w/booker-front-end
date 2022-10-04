@@ -32,6 +32,7 @@
     "react-media": "^1.10.0",
     "react-rating-stars-component": "^2.2.0",
     "react-redux": "^8.0.4",
+    "react-remove-scroll": "^2.5.5",
     "react-responsive": "^9.0.0",
     "react-router-dom": "^6.4.1",
     "react-scripts": "5.0.1",
