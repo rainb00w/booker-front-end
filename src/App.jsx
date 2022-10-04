@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { Notify } from 'notiflix';
 
 import LoginPage from './pages/login/loginPage';
 import RegistrationPage from './pages/registration/registrationPage';
@@ -11,6 +12,8 @@ import Statistics from './pages/statistics/statistics';
 
 import PrivateRoute from './components/routes/privateRoute';
 import PublicRoute from './components/routes/publicRoute';
+
+
 
 // const Header = lazy(() => import('./pages/header'));
 // const Library = lazy(() => import('./pages/library/library'));

@@ -44,10 +44,8 @@ const RepeatVerify = ({ switchFunc }) => {
                             const { email } = values;
                             verifyAPI(email)
                                 .then(() => {
-                                    Notify.success('To confirm the password change, follow the link that we sent you by mail.');
-                                    setTimeout(() => {
-                                        switchFunc();
-                                    }, 2000);
+                                    Notify.success('To activate your profile, follow the link that we sent to your email.');
+                                    switchFunc();
                                 })
                                 .catch(err => {
                                     const errorMessage = err.response.data.message;

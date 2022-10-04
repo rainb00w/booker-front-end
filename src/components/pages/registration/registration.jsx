@@ -13,6 +13,16 @@ import AuthModal from '../../authModal/authModal';
 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
+
+Notify.init({
+  timeout: 3000,
+  success: {
+    background: 'rgb(255, 107, 8)',
+    textColor: 'rgb(255, 255, 255)',
+    notiflixIconColor: 'rgb(255, 255, 255)',
+  },
+});
+
 const Registration = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
