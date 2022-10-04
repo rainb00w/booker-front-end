@@ -131,18 +131,13 @@ const Training = () => {
   const yearTitle = 'До закінчення року залишилось';
   const trainingTitle = 'До досягнення мети залишилось';
 
-  const handleStartSelect = value => {
-    console.log(value);
-  };
+
 
   const handleStartChange = value => {
     console.log(value);
     setStartDate(value);
   };
-  const handleEndSelect = value => {
-    console.log(value);
-    setEndDate(value);
-  };
+
   const handleDateChange = value => {
     console.log(value);
     setEndDate(value);
