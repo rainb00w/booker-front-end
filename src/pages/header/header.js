@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import LangSwitch from '../../components/langSwitch/langSwitch';
+import Tooltip from '@mui/material/Tooltip';
 
 import s from './header.module.css';
 import home from '../../img/icon_home.svg';
@@ -88,15 +89,20 @@ const Header = () => {
                   }
                   to="/"
                 >
-                  <img src={library} alt="library" />
+                  <Tooltip title="library">
+                    <img src={library} alt="library" />
+                  </Tooltip>
                 </NavLink>
+
                 <NavLink
                   className={({ isActive }) =>
                     isActive ? s.active_link : s.link
                   }
                   to="/training"
                 >
-                  <img src={home} alt="home" />
+                  <Tooltip title="training">
+                    <img src={home} alt="home" />
+                  </Tooltip>
                 </NavLink>
               </nav>
             )}
