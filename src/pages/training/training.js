@@ -4,13 +4,20 @@ import { useAddTrainingMutation } from 'redux/books/trainingApi';
 import { useGetAllTrainingsQuery } from 'redux/books/trainingApi';
 import s from './training.module.scss';
 
+import Select from 'react-select';
 import SendPageForm from 'pages/statistics/sendPageForm';
 import StatisticsList from 'pages/statistics/statisticsList';
 import ChartTraning from 'components/Chart/ChartTraning';
 import BookTableTraining from 'components/bookTableTraining/bookTableTraining';
 import BookMobileTableTraining from 'components/bookTableTraining/bookMobileTableTraining';
-import { Field, Form, Formik, FormikProps } from 'formik';
 import MyGoal from 'components/MyGoal';
+import SelectBooksStyled from 'components/selectBooks/SelectBooksStyled';
+
+const options = [
+  { value: 'chocolate', label: 'Chocolate' },
+  { value: 'strawberry', label: 'Strawberry' },
+  { value: 'vanilla', label: 'Vanilla' },
+];
 
 const Training = () => {
   const { data } = useGetAllBooksQuery();
@@ -21,16 +28,12 @@ const Training = () => {
 
   // console.log('DATA', data.payload.books);
 
-  const booksThatHaveReadingStatus = data?.payload?.books.filter(
-    book => book.status === 'reading'
-  );
-
   let isEmptyTraining = false;
   if (trainingData?.data === undefined) {
     isEmptyTraining = true;
   }
   // console.log('isEmptyTraining', isEmptyTraining);
-  const [selectedBook, setSelectedBook] = useState([]);
+
   const [booksInfo, setBooksInfo] = useState([]);
   const [booksArrayToSend, setBooksArrayToSend] = useState([]);
   const [addTraining, { isLoading }] = useAddTrainingMutation();
@@ -38,6 +41,10 @@ const Training = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   let bookTableArray = [];
+
+  const booksThatHaveReadingStatus = data?.payload?.books.filter(
+    book => book.status === 'reading'
+  );
 
   if (booksThatHaveReadingStatus?.length > 0) {
     bookTableArray = booksThatHaveReadingStatus;
@@ -67,6 +74,16 @@ const Training = () => {
     setBooksInfo(newBooksInfo);
   };
 
+  const selectedOptions = booksThatHaveReadingStatus?.map(({ name, _id }) => ({
+    value: { _id },
+    label: name,
+  }));
+
+  console.log(data?.payload?.books)
+
+
+
+
   const startTraining = () => {
     const array = {
       startDate: startDate.toISOString(),
@@ -81,9 +98,8 @@ const Training = () => {
     // .then(payload => console.log('fulfilled', payload))
   };
 
-  const MyInput = ({ field, form, ...props }) => {
-    return <input {...field} {...props} />;
-  };
+
+
 
   return (
     <>
@@ -121,7 +137,15 @@ const Training = () => {
           </button>
         </form> */}
 
-        <Formik
+        {/* {booksThatNotSelected?.map(element => (
+                <option key={element._id} value={element._id}>
+                  {element.title}
+                </option>
+              ))} */}
+
+  
+
+        {/* <Formik
           initialValues={{ id: '' }}
           onChange={() => console.log('change')}
           onSubmit={(values, actions) => {
@@ -148,7 +172,7 @@ const Training = () => {
               <button type="submit">Додати</button>
             </Form>
           )}
-        </Formik>
+        </Formik> */}
 
         {/* <div className={s.goalMainBox}>
   <div className={s.goalHeader}>Моя мета прочитати</div>
@@ -157,9 +181,30 @@ const Training = () => {
 
   </div>
 </div> */}
+
+
         <div className={s.gridItem2}>
           <MyGoal />
         </div>
+        <div>
+<SelectBooksStyled >
+      <Select
+        options={selectedOptions}
+        placeholder="Choose books from the library"
+        closeMenuOnSelect={true}
+        // onChange={handleSelectBook}
+        // components={{ DropdownIndicator }}
+      />
+      <button
+        // disabled={disable}
+        className="selectBooksButton"
+        // onClick={addBookToSelected}
+      >
+        add
+      </button>
+    </SelectBooksStyled>
+</div>
+       
         <div className={s.gridItem3}>
           {booksArrayToSend && (
             <div>

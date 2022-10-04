@@ -2,5 +2,5 @@
   "compilerOptions": {
     "baseUrl": "src"
   },
-  "include": ["src", "testRegistration.js", "testLogin.js"]
+  "include": ["src", "testRegistration.js", "testLogin.js", "backUp/SelectBooksOld"]
 }
