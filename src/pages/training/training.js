@@ -20,7 +20,7 @@ import SelectBooksFirstStyled from 'components/SelectBooks/SelectBooksFirstStyle
 import Timer from 'components/Timer/Timer';
 import convertMs from 'components/Timer/convertMs';
 import FormikControl from 'components/FormikControl';
-import sprite from "../../img/sprite.svg";
+import sprite from '../../img/sprite.svg';
 
 const DatePickerTrainingStyled = styled.div`
   @media screen and (min-width: 768px) {
@@ -219,26 +219,6 @@ const Training = () => {
               </div>
 
               <div>
-                {/* <DatePickerTrainingStyled>
-                  <DatePicker
-                    selected={startDate}
-                    onSelect={handleStartSelect} //when day is clicked
-                    // onChange={handleStartChange} //only when value has changed
-                    dateFormat="dd.MM.yyyy"
-                    placeholderText="Початок"
-                    selectsEnd
-                    // startDate={startDate}
-                    // endDate={endDate}
-                    // minDate={startDate}
-                    // maxDate={addDays(startDate, 31)}
-                  />
-                  <DatePicker
-                    selected={endDate}
-                    onSelect={handleEndSelect} //when day is clicked
-                    // onChange={handleDateChange} //only when value has changed
-                  />
-                </DatePickerTrainingStyled> */}
-
                 <DatePickerTrainingStyled className="datePicker">
                   <div className="datePickerWrapper">
                     <DatePicker
@@ -304,12 +284,12 @@ const Training = () => {
                 onClick={removeItem}
                 isEmptyTraining={isEmptyTraining}
               />
-              <button
+              {isEmptyTraining && <button
                 className={s.startTraingButton}
                 onClick={() => startTraining()}
               >
                 Почати тренування
-              </button>
+              </button>}
             </div>
           )}
         </div>
