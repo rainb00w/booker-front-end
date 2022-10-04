@@ -1,7 +1,7 @@
 import React from 'react';
 import Media from 'react-media';
 import ButtonsContainer from '../buttonsContainer/buttonsContainer';
-import styles from '../pages/login/login.module.css';
+import styles from './RegistrationText.module.css';
 
 const RegistrationText = ({ modalBtnRegisterClick, modalBtnLoginClick }) => {
   return (

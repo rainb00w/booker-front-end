@@ -1,0 +1,74 @@
+.registration__text {
+  padding: 32px 25px 40px;
+}
+
+.title {
+  margin-bottom: 32px;  font-family: 'Abril Fatface';
+  font-weight: 400;
+  font-size: 34px;
+  line-height: 1.12;
+  color: #242A37;
+}
+
+.subtitle {
+  margin-bottom: 14px;
+  font-family: 'Montserrat';
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.9;
+  color: #242A37;
+}
+
+.registration__list {
+  margin-bottom: 24px;
+}
+
+.registration__list2 {
+  margin-bottom: 60px;
+}
+
+.registration__item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  list-style: none;
+}
+
+.registration__item::before {
+  content: "";
+  width: 4px;
+  height: 8px;
+  margin-right: 12px;
+  background-size: contain;
+  background-image: url("../../img/arrow.svg");
+}
+
+.item__text {
+  font-family: 'Montserrat';
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.21;
+  color: #898F9F;
+}
+
+/* ! ==================================== !!! MEDIA !!! =============================== ! */
+
+@media screen and (min-width: 768px) {
+  .registration__text {
+    padding: 64px 160px 88px;
+  }
+
+  .title {
+    margin-bottom: 48px;
+  }
+
+  .registration__list {
+    margin-bottom: 32px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .registration__text {
+    padding: 180px 127px 180px;
+  }
+}

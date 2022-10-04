@@ -1,6 +1,6 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
-import RegistrationText from '../registrationText/registrationText';
+import RegistrationText from '../RegistrationText';
 import styles from './authModal.module.css';
 
 const modalRoot = document.querySelector('#modal__root');
