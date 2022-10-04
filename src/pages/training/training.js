@@ -117,101 +117,90 @@ const Training = () => {
 
   return (
     <>
-      <div className={s.timerSection}>
-        <div >
-          <Timer selectedDate={endYear} title={yearTitle} />
-        </div>
-        <div>
-          <Timer selectedDate={endDate} title={trainingTitle} />
-        </div>
-      </div>
-
-      <div>
-        <div></div>
-        {isLoading && <p>In process...</p>}
-      </div>
-
       <div className={s.gridContainer}>
-        {/* <div className={s.gridItem1}><Timer /></div> */}
+        <div>{isLoading && <p>In process...</p>}</div>
+        <div className={s.gridItem1}>
+          <div className={s.timerSection}>
+            <div>
+              <Timer selectedDate={endYear} title={yearTitle} />
+            </div>
+            <div>
+              <Timer selectedDate={endDate} title={trainingTitle} />
+            </div>
+          </div>
 
-        <div className={s.gridItem2}>
-          <MyGoal days={daysNumber} books={booksNumber} />
-        </div>
-
-        <div>
-          <Formik initialValues={{ startDate: new Date() }}>
-            {({ values, setFieldValue }) => (
-              <div className="row clearfix">
-                <div className="header"></div>
-                <Form>
-                  <div className="row ml-4 mr-4">
-                    <div className="form-group col-3 mb-2">
-                      <DatePicker
-                        
-                        selected={values.startDate}
-                        placeholderText="Початок"
-                        dateFormat="dd.MM.yyyy"
-                        className={s.datePicker}
-                        name="startDate"
-                        selectsStart
-                        minDate={today}
-                        onChange={date => {
-                          setFieldValue('startDate', date), setStartDate(date);
-                        }}
-                      />
+          <div>
+            <SelectBooksStyled>
+              <Select
+                defaultValue={{ value: null, label: 'Оберіть книгу' }}
+                options={selectedOptions}
+                placeholder="Choose books from the library"
+                closeMenuOnSelect={true}
+                onChange={handleSelectBook}
+              />
+              <button
+                disabled={disable}
+                className="selectBooksButton"
+                onClick={addBookToSelected}
+              >
+                add
+              </button>
+            </SelectBooksStyled>
+          </div>
+          <div>
+            <Formik initialValues={{ startDate: new Date() }}>
+              {({ values, setFieldValue }) => (
+                <div className="row clearfix">
+                  <div className="header"></div>
+                  <Form>
+                    <div className="row ml-4 mr-4">
+                      <div className="form-group col-3 mb-2">
+                        <DatePicker
+                          selected={values.startDate}
+                          placeholderText="Початок"
+                          dateFormat="dd.MM.yyyy"
+                          className={s.datePicker}
+                          name="startDate"
+                          selectsStart
+                          minDate={today}
+                          onChange={date => {
+                            setFieldValue('startDate', date),
+                              setStartDate(date);
+                          }}
+                        />
+                      </div>
                     </div>
-                  </div>
-                </Form>
-              </div>
-            )}
-          </Formik>
-          <Formik initialValues={{ endDate: new Date() }}>
-            {({ values, setFieldValue }) => (
-              <div className="row clearfix">
-                <div className="header"></div>
-                <Form>
-                  <div className="row ml-4 mr-4">
-                    <div className="form-group col-3 mb-2">
-                      <DatePicker
-                        selected={values.endDate}
-                        placeholderText="Початок"
-                        dateFormat="dd.MM.yyyy"
-                        className={s.datePicker}
-                        name="endDate"
-                        selectsStart
-                        minDate={today}
-                        onChange={date => {
-                          setFieldValue('Кінець', date), setEndDate(date);
-                        }}
-                      />
+                  </Form>
+                </div>
+              )}
+            </Formik>
+            <Formik initialValues={{ endDate: new Date() }}>
+              {({ values, setFieldValue }) => (
+                <div className="row clearfix">
+                  <div className="header"></div>
+                  <Form>
+                    <div className="row ml-4 mr-4">
+                      <div className="form-group col-3 mb-2">
+                        <DatePicker
+                          selected={values.endDate}
+                          placeholderText="Початок"
+                          dateFormat="dd.MM.yyyy"
+                          className={s.datePicker}
+                          name="endDate"
+                          selectsStart
+                          minDate={today}
+                          onChange={date => {
+                            setFieldValue('Кінець', date), setEndDate(date);
+                          }}
+                        />
+                      </div>
                     </div>
-                  </div>
-                </Form>
-              </div>
-            )}
-          </Formik>
-        </div>
+                  </Form>
+                </div>
+              )}
+            </Formik>
+          </div>
 
-        <div>
-          <SelectBooksStyled>
-            <Select
-              defaultValue={{ value: null, label: 'Оберіть книгу' }}
-              options={selectedOptions}
-              placeholder="Choose books from the library"
-              closeMenuOnSelect={true}
-              onChange={handleSelectBook}
-            />
-            <button
-              disabled={disable}
-              className="selectBooksButton"
-              onClick={addBookToSelected}
-            >
-              add
-            </button>
-          </SelectBooksStyled>
-        </div>
-
-        <div className={s.gridItem3}>
           {booksArrayToSend && (
             <div>
               <BookTableTraining
@@ -233,10 +222,17 @@ const Training = () => {
             </div>
           )}
         </div>
-        <div className={s.gridItem4}>
+
+        <div className={s.gridItem2}>
+          <MyGoal days={daysNumber} books={booksNumber} />
+        </div>
+
+        <div className={s.gridItem3}>
           <ChartTraning />
         </div>
-        <div className={s.gridItem5}>
+
+       
+        <div className={s.gridItem4}>
           <h2 className={s.resultsHeader}>Результати</h2>
           <SendPageForm />
           <h2 className={s.statisticsHeader}>Статистика</h2>

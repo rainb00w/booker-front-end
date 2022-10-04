@@ -1,21 +1,52 @@
 .gridContainer {
   background-color: #f6f7fb;
-  @media screen and (max-width: 1280px) {
+  @media screen and (max-width: 1279px) {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
+  @media screen and (min-width: 1280px) {
+    display: grid;
+    width: 100%;
+    grid-template-areas:
+      'headmain headsidebar'
+      'main sidebar';
+    grid-template-columns: 1fr 300px;
+  }
 }
 
-.gridItem5 {
+.gridItem1 {
+  @media screen and (min-width: 1280px) {
+    grid-area: headmain;
+  }
+}
+
+.gridItem2 {
+  @media screen and (min-width: 1280px) {
+    grid-area: headsidebar;
+  }
+}
+
+.gridItem3 {
+  @media screen and (min-width: 1280px) {
+    grid-area: main;
+  }
+}
+
+.gridItem4 {
   font-family: Montserrat;
   width: 280px;
   background-color: #ffffff;
   padding: 20px 20px 22px 20px;
+  @media screen and (min-width: 1280px) {
+    grid-area: sidebar;
+  }
 }
 
-.timerSection{
+
+
+.timerSection {
   @media screen and (min-width: 768px) {
     display: flex;
     align-items: center;
@@ -23,19 +54,17 @@
   }
 }
 
-.datePicker{
-
-  background: #F6F7FB;
-border: 1px solid #A6ABB9;
+.datePicker {
+  background: #f6f7fb;
+  border: 1px solid #a6abb9;
 }
 
 .react-datepicker-wrapper,
 .react-datepicker__input-container,
 .react-datepicker__input-container input {
-  background: #F6F7FB;
-  border: 1px solid #A6ABB9;
+  background: #f6f7fb;
+  border: 1px solid #a6abb9;
 }
-
 
 .inputs {
   display: flex;

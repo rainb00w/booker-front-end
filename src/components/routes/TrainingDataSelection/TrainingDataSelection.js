@@ -2,7 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import TrainingTitle from 'components/TrainingTitle/TrainingTitle';
 import MyGoal from 'components/MyGoal/MyGoal';
 import * as Yup from 'yup';
-import FormikControl from '../FormikControl/FormikControl';
+import FormikControl from '../../FormikControl/FormikControl';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useGetAllBooksQuery } from 'redux/books/booksApi';
 import { useState, useEffect } from 'react';
@@ -15,7 +15,7 @@ import {
   TrainingSidebar,
   TrainingWrapper,
 } from './TrainingDataSelection.style';
-import convertMs from '../Timer/convertMs';
+import convertMs from '../../Timer/convertMs';
 
 const TrainingDataSelection = ({ onStartTraining }) => {
   const [startDate, setStartDate] = useState(null);
