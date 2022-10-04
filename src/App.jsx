@@ -13,8 +13,6 @@ import Statistics from './pages/statistics/statistics';
 import PrivateRoute from './components/routes/privateRoute';
 import PublicRoute from './components/routes/publicRoute';
 
-
-
 // const Header = lazy(() => import('./pages/header'));
 // const Library = lazy(() => import('./pages/library/library'));
 // const Statistics = lazy(() => import('./pages/statistics/statistics'));
@@ -22,8 +20,7 @@ import PublicRoute from './components/routes/publicRoute';
 
 function App() {
   return (
-  
-    <div className="main_container"> 
+    <div className="main_container">
       <Header />
       <Suspense fallback="Load...">
         <Routes>

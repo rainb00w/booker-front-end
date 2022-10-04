@@ -1,10 +1,12 @@
 import React from 'react';
+import classNames from 'classnames';
 import s from './bookAddForm.module.css';
+import svgPath from 'services/svgPath';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useAddBookMutation } from 'redux/books/booksApi';
 
-const BookAddForm = () => {
+const BookAddForm = ({ handleClickClose, showAdd }) => {
   const [addBook, { isLoading }] = useAddBookMutation();
 
   const formik = useFormik({
@@ -48,78 +50,93 @@ const BookAddForm = () => {
   });
 
   return (
-    <>
-      <form onSubmit={formik.handleSubmit} className={s.form}>
-        <label htmlFor="title" className={s.label}>
-          Book title *
-          <input
-            id="title"
-            name="title"
-            type="text"
-            placeholder="..."
-            onChange={formik.handleChange}
-            value={formik.values.title}
-            className={s.inputTitle}
-          />
-          {formik.errors.title && formik.touched.title ? (
-            <div>{formik.errors.title}</div>
-          ) : null}
-        </label>
-        <label htmlFor="author" className={s.label}>
-          Author *
-          <input
-            id="author"
-            name="author"
-            type="text"
-            placeholder="..."
-            onChange={formik.handleChange}
-            value={formik.values.author}
-            className={s.inputAuthor}
-          />
-          {formik.errors.author && formik.touched.author ? (
-            <div>{formik.errors.author}</div>
-          ) : null}
-        </label>
-        <label htmlFor="year" className={s.label}>
-          Publication date
-          <input
-            id="year"
-            name="year"
-            type="text"
-            placeholder="..."
-            onChange={formik.handleChange}
-            value={formik.values.date}
-            className={s.inputDate}
-          />
-          {formik.errors.year && formik.touched.year ? (
-            <div>{formik.errors.year}</div>
-          ) : null}
-        </label>
-        <label htmlFor="pages" className={s.label}>
-          Amount of pages *
-          <input
-            id="pages"
-            name="pages"
-            type="text"
-            placeholder="..."
-            onChange={formik.handleChange}
-            value={formik.values.pages}
-            className={s.inputPages}
-          />
-          {formik.errors.pages && formik.touched.pages ? (
-            <div>{formik.errors.pages}</div>
-          ) : null}
-        </label>
-        <button
-          type="submit"
-          className={s.btn}
-          // onClick={() => window.location.reload(false)}
+    <div
+      className={showAdd ? s.formCont : classNames(s.formCont, s.formHidden)}
+    >
+      <div>
+        <span onClick={handleClickClose} className={s.backBtn}>
+          <svg>
+            <use href={svgPath.back + '#back'}></use>
+          </svg>
+        </span>
+        <form
+          onSubmit={() => {
+            formik.handleSubmit();
+            handleClickClose();
+          }}
+          className={s.form}
         >
-          Add
-        </button>
-      </form>
-      {isLoading && <p>Is Adding</p>}
-    </>
+          <label htmlFor="title" className={s.label}>
+            Book title *
+            <input
+              id="title"
+              name="title"
+              type="text"
+              placeholder="..."
+              onChange={formik.handleChange}
+              value={formik.values.title}
+              className={s.inputTitle}
+            />
+            {formik.errors.title && formik.touched.title ? (
+              <div>{formik.errors.title}</div>
+            ) : null}
+          </label>
+          <label htmlFor="author" className={s.label}>
+            Author *
+            <input
+              id="author"
+              name="author"
+              type="text"
+              placeholder="..."
+              onChange={formik.handleChange}
+              value={formik.values.author}
+              className={s.inputAuthor}
+            />
+            {formik.errors.author && formik.touched.author ? (
+              <div>{formik.errors.author}</div>
+            ) : null}
+          </label>
+          <label htmlFor="year" className={s.label}>
+            Publication date
+            <input
+              id="year"
+              name="year"
+              type="text"
+              placeholder="..."
+              onChange={formik.handleChange}
+              value={formik.values.date}
+              className={s.inputDate}
+            />
+            {formik.errors.year && formik.touched.year ? (
+              <div>{formik.errors.year}</div>
+            ) : null}
+          </label>
+          <label htmlFor="pages" className={s.label}>
+            Amount of pages *
+            <input
+              id="pages"
+              name="pages"
+              type="text"
+              placeholder="..."
+              onChange={formik.handleChange}
+              value={formik.values.pages}
+              className={s.inputPages}
+            />
+            {formik.errors.pages && formik.touched.pages ? (
+              <div>{formik.errors.pages}</div>
+            ) : null}
+          </label>
+          <button
+            type="submit"
+            className={s.btn}
+            // onClick={() => window.location.reload(false)}
+          >
+            Add
+          </button>
+        </form>
+        {isLoading && <p>Is Adding</p>}
+      </div>
+    </div>
   );
 };
 

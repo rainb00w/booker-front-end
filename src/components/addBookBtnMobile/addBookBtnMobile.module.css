@@ -1,0 +1,18 @@
+.btn {
+    padding: 0;
+    position: fixed;
+    z-index: 99;
+    bottom: 30px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FF6B08;
+    border: none;
+    width: 52px;
+    height: 52px;
+    color: #fff;
+    font-size: 25px;
+    border-radius: 50%;
+}
