@@ -5,6 +5,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch, { SwitchProps } from '@mui/material/Switch';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import s from './langSwitch.module.css';
 
 const AntSwitch = styled(Switch)(({ theme }) => ({
   width: 28,
@@ -27,7 +28,6 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
       '& + .MuiSwitch-track': {
         opacity: 1,
         backgroundColor: theme.palette.mode === 'dark' ? '#177dd' : '#ff6b08',
-        //  backgroundColor: theme.palette.mode === 'dark' ? '#177ddc' : '#1890ff',
       },
     },
   },
@@ -49,19 +49,13 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
   },
 }));
 
-// #A6ABB9;
-
 export default function CustomizedSwitches({ onChangeLanguage }) {
   const [lang, setLang] = React.useState(false);
 
   const handleChange = event => {
-    // console.log(event.target.checked);
-
     if (event.target.checked) {
       onChangeLanguage('ua');
-      console.log('ua');
     } else {
-      console.log('en');
       onChangeLanguage('en');
     }
 
@@ -71,29 +65,16 @@ export default function CustomizedSwitches({ onChangeLanguage }) {
   };
 
   return (
-    // <FormGroup>
-    //   <FormControlLabel
-    //     control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
-    //     label="MUI switch"
-    //   />
-    //   <FormControlLabel
-    //     control={<Android12Switch defaultChecked />}
-    //     label="Android 12"
-    //   />
-    //   <FormControlLabel
-    //     control={<IOSSwitch sx={{ m: 1 }} defaultChecked />}
-    //     label="iOS style"
-    //   />
     <FormGroup>
       <Stack direction="row" spacing={1} alignItems="center">
-        <Typography>{lang ? 'UA' : 'EN'}</Typography>
+        <Typography>
+          <span className={s.swithText}>{lang ? 'UA' : 'EN'}</span>
+        </Typography>
         <AntSwitch
-          //   defaultChecked
           inputProps={{ 'aria-label': 'ant design' }}
           onChange={handleChange}
           name="checkedA"
         />
-        {/* <Typography>ua</Typography> */}
       </Stack>
     </FormGroup>
   );
