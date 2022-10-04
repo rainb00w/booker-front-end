@@ -4,6 +4,7 @@ import authOperations from './auth-operations';
 const initialState = {
   name: null,
   token: null,
+  avatarGoogle: null,
   isLoggedIn: false,
   isLogging: false,
   loginError: null,
@@ -14,7 +15,10 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     googleLogIn(state, action) {
-     state.token = action?.payload;
+      // console.log('auth slice', action.payload)
+     state.token = action?.payload.token;
+     state.name = action?.payload.name;
+     state.avatarGoogle = action?.payload.avatar;
      state.isLoggedIn = true;
      state.isLogging = false;
      state.loginError = null;
@@ -34,7 +38,7 @@ const authSlice = createSlice({
       state.loginError = action.payload;
     },
     [authOperations.logIn.fulfilled](state, action) {
-      console.log('action payload !!!',action.payload);
+      // console.log('action payload !!!',action.payload);
       state.name = action?.payload.name;
       state.token = action?.payload.token;
       state.isLoggedIn = true;

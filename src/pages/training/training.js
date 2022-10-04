@@ -108,6 +108,7 @@ const Training = () => {
   const sendToStatisticResults = trainingData?.data?.results
   // console.log('startDate', trainingData.data.startDate ,'array', trainingData.data.results );
 
+
   let isEmptyTraining = false;
   if (trainingData?.data === undefined) {
     isEmptyTraining = true;

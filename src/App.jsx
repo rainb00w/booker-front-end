@@ -22,9 +22,9 @@ import PublicRoute from './components/routes/publicRoute';
 
 function App() {
   return (
-  
-    <div className="main_container"> 
-      <Header />
+  <>
+    <Header />
+      <div className="main_container"> 
       <Suspense fallback="Load...">
         <Routes>
           {/* <Route path="/" element={<Library />} /> */}
@@ -92,6 +92,9 @@ function App() {
         </Routes>
       </Suspense>
     </div>
+  </>
+   
+    
   );
 }
 

@@ -4,6 +4,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Formik } from 'formik';
 import { registrationValidationSchema } from 'services/yupValidationSchema';
 import RegistrationText from '../../RegistrationText';
+import svgPath from 'services/svgPath';
 import styles from '../login/login.module.css';
 
 import { authOperations } from '../../../redux/auth';
@@ -111,12 +112,18 @@ const Registration = () => {
                     className={styles.google__auth}
                     href="https://booker-back-end.herokuapp.com/api/user/google"
                   >
-                    Google
+                    <div className={styles.google__container}>
+                      <svg className={styles.svg__google}>
+                        <use href={svgPath.google + '#google'}></use>
+                      </svg>
+                      <p className={styles.google__text}>Google</p>
+                    </div>
                   </a>
                   <p className={styles.label__title}>
                     Name
+                    <span className={styles.label__star}>*</span>
                     {errName && (
-                      <span className={styles.error}>* {errName}</span>
+                      <span className={styles.error}>{errName}</span>
                     )}
                   </p>
                   <input
@@ -135,6 +142,7 @@ const Registration = () => {
                   )}
                   <p className={styles.label__title}>
                     Email
+                    <span className={styles.label__star}>*</span>
                     {errEmail && (
                       <span className={styles.error}>* {errEmail}</span>
                     )}
@@ -153,7 +161,10 @@ const Registration = () => {
                   ) : (
                     <span className={styles.default__count}></span>
                   )}
-                  <p className={styles.label__title}>Password</p>
+                  <p className={styles.label__title}>
+                    Password
+                    <span className={styles.label__star}>*</span>
+                  </p>
                   <input
                     className={styles.input}
                     type="password"
@@ -168,7 +179,10 @@ const Registration = () => {
                   ) : (
                     <span className={styles.default__count}></span>
                   )}
-                  <p className={styles.label__title}>Confirm password</p>
+                  <p className={styles.label__title}>
+                    Confirm password
+                    <span className={styles.label__star}>*</span>
+                  </p>
                   <input
                     className={styles.input}
                     type="password"
@@ -191,7 +205,7 @@ const Registration = () => {
             </Formik>
             <p className={styles.auth__describe}>
               Already have an account?
-              <Link className={styles.auth__link} to="/">
+              <Link className={styles.authforgot__link} to="/">
                 Login
               </Link>
             </p>

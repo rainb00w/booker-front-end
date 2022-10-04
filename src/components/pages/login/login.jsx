@@ -40,8 +40,8 @@ const Login = () => {
   useEffect(() => {
     if (query.token) {
       const { name, token, avatar } = query;
-      console.log(query);
-      dispatch(googleLogIn(token));
+      // console.log('useEffect', name, token, avatar );
+      dispatch(googleLogIn({token, name, avatar}));
     }
   });
 
@@ -121,7 +121,8 @@ const Login = () => {
                 <form onSubmit={handleSubmit}>
                   <p className={styles.label__title}>
                     Email
-                    {err && <span className={styles.error}>* {err}</span>}
+                    <span className={styles.label__star}>*</span>
+                    {err && <span className={styles.error}>{err}</span>}
                   </p>
                   <input
                     className={styles.input}
@@ -138,7 +139,10 @@ const Login = () => {
                     <span className={styles.default__count}></span>
                   )}
                   <label className={styles.label_password}>
-                    <p className={styles.label__title}>Password</p>
+                    <p className={styles.label__title}>
+                      Password
+                      <span className={styles.label__star}>*</span>
+                    </p>
                     <input
                       className={styles.input}
                       type={inputType}
