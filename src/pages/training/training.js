@@ -20,14 +20,64 @@ import SelectBooksFirstStyled from 'components/SelectBooks/SelectBooksFirstStyle
 import Timer from 'components/Timer/Timer';
 import convertMs from 'components/Timer/convertMs';
 import FormikControl from 'components/FormikControl';
+import sprite from "../../img/sprite.svg";
 
-const StyledControlsWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
+const DatePickerTrainingStyled = styled.div`
+  @media screen and (min-width: 768px) {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 30px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+  }
+
+  .datePickerWrapper {
+    position: relative;
+
+    @media screen and (min-width: 1280px) {
+      &:not(:first-child) {
+        margin-left: 45px;
+      }
+    }
+  }
+  .datePickerIcon {
+    position: absolute;
+    left: 17px;
+    top: 11px;
+    width: 17px;
+    height: 17px;
+  }
+  .datePickerIconPolygon {
+    position: absolute;
+    right: 18px;
+    top: 17px;
+    width: 13px;
+    height: 7px;
+  }
+  .datePickerTraining {
+    font-size: 14px;
+    line-height: 2.71;
+
+    color: black;
+
+    padding-left: 47px;
+    width: 270px;
+    height: 42px;
+    margin-bottom: 20px;
+    border: 1px solid black;
+
+    @media screen and (min-width: 768px) {
+      width: 250px;
+    }
+    .datePicker .datePickerTraining {
+      background-color: black;
+    }
+  }
 `;
-
-
 
 const Training = () => {
   const { data } = useGetAllBooksQuery();
@@ -127,7 +177,7 @@ const Training = () => {
 
     // .then(payload => console.log('fulfilled', payload))
   };
-
+  const today = new Date();
   const yearTitle = 'До закінчення року залишилось';
   const trainingTitle = 'До досягнення мети залишилось';
 
@@ -169,23 +219,66 @@ const Training = () => {
               </div>
 
               <div>
-                <DatePicker
-                  selected={startDate}
-                  onSelect={handleStartSelect} //when day is clicked
-                  // onChange={handleStartChange} //only when value has changed
-                  dateFormat="dd.MM.yyyy"
-                  placeholderText="Початок"
-                  selectsEnd
-                  // startDate={startDate}
-                  // endDate={endDate}
-                  // minDate={startDate}
-                  // maxDate={addDays(startDate, 31)}
-                />
-                <DatePicker
-                  selected={endDate}
-                  onSelect={handleEndSelect} //when day is clicked
-                  // onChange={handleDateChange} //only when value has changed
-                />
+                {/* <DatePickerTrainingStyled>
+                  <DatePicker
+                    selected={startDate}
+                    onSelect={handleStartSelect} //when day is clicked
+                    // onChange={handleStartChange} //only when value has changed
+                    dateFormat="dd.MM.yyyy"
+                    placeholderText="Початок"
+                    selectsEnd
+                    // startDate={startDate}
+                    // endDate={endDate}
+                    // minDate={startDate}
+                    // maxDate={addDays(startDate, 31)}
+                  />
+                  <DatePicker
+                    selected={endDate}
+                    onSelect={handleEndSelect} //when day is clicked
+                    // onChange={handleDateChange} //only when value has changed
+                  />
+                </DatePickerTrainingStyled> */}
+
+                <DatePickerTrainingStyled className="datePicker">
+                  <div className="datePickerWrapper">
+                    <DatePicker
+                      className="datePickerTraining"
+                      placeholderText="start"
+                      dateFormat="dd.MM.yyyy"
+                      selected={startDate}
+                      onChange={handleStartSelect}
+                      selectsStart
+                      minDate={today}
+                      startDate={startDate}
+                      endDate={endDate}
+                    />
+                    <svg className="datePickerIcon">
+                      <use href={sprite + '#icon-calendar'} />
+                    </svg>
+                    <svg className="datePickerIconPolygon">
+                      <use href={sprite + '#icon-polygon'} />
+                    </svg>
+                  </div>
+                  <div className="datePickerWrapper">
+                    <DatePicker
+                      className="datePickerTraining"
+                      dateFormat="dd.MM.yyyy"
+                      placeholderText="finish"
+                      selected={endDate}
+                      onChange={handleEndSelect}
+                      selectsEnd
+                      startDate={startDate}
+                      endDate={endDate}
+                      minDate={startDate}
+                    />
+                    <svg className="datePickerIcon">
+                      <use href={sprite + '#icon-calendar'} />
+                    </svg>
+                    <svg className="datePickerIconPolygon">
+                      <use href={sprite + '#icon-polygon'} />
+                    </svg>
+                  </div>
+                </DatePickerTrainingStyled>
               </div>
             </>
           ) : (
