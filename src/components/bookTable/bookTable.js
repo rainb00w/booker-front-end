@@ -21,130 +21,169 @@ export default function BookTable() {
     <>
       <section className={s.section}>
         {status('haveRead') && (
-          <table className={s.table}>
+          <div className={s.table}>
             <h3 className={s.title}>Already read</h3>
-            <thead className={s.head}>
-              <tr>
-                <th className={s.topic}>Book title</th>
-                <th className={s.topic}>Author</th>
-                <th className={s.topic}>Year</th>
-                <th className={s.topic}>Pages</th>
-                <th className={s.topic}>Rating</th>
-              </tr>
-            </thead>
-            <tbody className={s.body}>
-              {data?.payload.books.map(
-                ({ _id, author, pages, title, year, status, rating = 0 }) =>
-                  status === 'haveRead' && (
-                    <tr key={_id} className={s.item}>
-                      <td className={s.subtitle}>
-                        <svg width={22} height={17} className={s.img}>
-                          <use href={`${icons}#white_book`}></use>
-                        </svg>
-                        {title}
-                      </td>
-                      <td className={s.subtitle}> {author}</td>
-                      <td className={s.subtitle}>{year}</td>
-                      <td className={s.subtitle}>{pages}</td>
-                      <td className={s.subtitle}>
-                        {rating >= 1 ? (
-                          <svg width={17} height={17}>
-                            <use href={`${icons}#yellow_star`}></use>
-                          </svg>
-                        ) : (
-                          <svg width={17} height={17}>
-                            <use href={`${icons}#white_star`}></use>
-                          </svg>
-                        )}
-                        {rating >= 2 ? (
-                          <svg width={17} height={17}>
-                            <use href={`${icons}#yellow_star`}></use>
-                          </svg>
-                        ) : (
-                          <svg width={17} height={17}>
-                            <use href={`${icons}#white_star`}></use>
-                          </svg>
-                        )}
-                        {rating >= 3 ? (
-                          <svg width={17} height={17}>
-                            <use href={`${icons}#yellow_star`}></use>
-                          </svg>
-                        ) : (
-                          <svg width={17} height={17}>
-                            <use href={`${icons}#white_star`}></use>
-                          </svg>
-                        )}
-                        {rating >= 4 ? (
-                          <svg width={17} height={17}>
-                            <use href={`${icons}#yellow_star`}></use>
-                          </svg>
-                        ) : (
-                          <svg width={17} height={17}>
-                            <use href={`${icons}#white_star`}></use>
-                          </svg>
-                        )}
-                        {rating >= 5 ? (
-                          <svg width={17} height={17}>
-                            <use href={`${icons}#yellow_star`}></use>
-                          </svg>
-                        ) : (
-                          <svg width={17} height={17}>
-                            <use href={`${icons}#white_star`}></use>
-                          </svg>
-                        )}
-                        <button type="button" className={s.btn}>
-                          Resume
-                        </button>
-                      </td>
-                    </tr>
-                  )
-              )}
-            </tbody>
-          </table>
-        )}
-        {status('reading') && (
-          <table className={s.table}>
-            <h3 className={s.title}>Reading now</h3>
-            <thead className={s.head}>
-              <tr>
-                <th className={s.topic}>Book title</th>
-                <th className={s.topic}>Author</th>
-                <th className={s.topic}>Year</th>
-                <th className={s.topic}>Pages</th>
-                <th className={s.topic}></th>
-              </tr>
-            </thead>
-            <tbody className={s.body}>
-              {data?.payload.books.map(
-                ({ _id, author, pages, title, year, status, rating }) =>
-                  status === 'reading' && (
-                    <tr key={_id} className={s.item}>
-                      <td className={s.subtitle}>
-                        <svg width={22} height={17} className={s.img}>
-                          <use href={`${icons}#yellow_book`}></use>
-                        </svg>
-                        {title}
-                      </td>
-                      <td className={s.subtitle}> {author}</td>
-                      <td className={s.subtitle}>{year}</td>
-                      <td className={s.subtitle}>{pages}</td>
-                    </tr>
-                  )
-              )}
-            </tbody>
-          </table>
-        )}
-        {status('toRead') && (
-          <>
-            <h3 className={s.title}>Going to read</h3>
-            <table className={s.table}>
+            <table className={s.subTable}>
               <thead className={s.head}>
                 <tr>
-                  <th className={s.topic}>Book title</th>
-                  <th className={s.topic}>Author</th>
-                  <th className={s.topic}>Year</th>
-                  <th className={s.topic}>Pages</th>
-                  <th className={s.topic}></th>
+                  <th className={s.topic} width="30%">
+                    Book title
+                  </th>
+                  <th className={s.topic} width="25%">
+                    Author
+                  </th>
+                  <th className={s.topic} width="10%">
+                    Year
+                  </th>
+                  <th className={s.topic} width="10%">
+                    Pages
+                  </th>
+                  <th className={s.topic} width="25%">
+                    Rating
+                  </th>
+                </tr>
+              </thead>
+              <tbody className={s.body}>
+                {data?.payload.books.map(
+                  ({
+                    _id,
+                    author,
+                    pages,
+                    title,
+                    year,
+                    status,
+                    rating = 0,
+                    resume,
+                  }) =>
+                    status === 'haveRead' && (
+                      <tr key={_id} className={s.item}>
+                        <td className={s.subtitle}>
+                          <svg width={22} height={17} className={s.img}>
+                            <use href={`${icons}#white_book`}></use>
+                          </svg>
+                          {title}
+                        </td>
+                        <td className={s.subtitle}>{author}</td>
+                        <td className={s.subtitle}>{year}</td>
+                        <td className={s.subtitle}>{pages}</td>
+                        <td className={s.subtitle}>
+                          {rating >= 1 ? (
+                            <svg width={17} height={17}>
+                              <use href={`${icons}#yellow_star`}></use>
+                            </svg>
+                          ) : (
+                            <svg width={17} height={17}>
+                              <use href={`${icons}#white_star`}></use>
+                            </svg>
+                          )}
+                          {rating >= 2 ? (
+                            <svg width={17} height={17}>
+                              <use href={`${icons}#yellow_star`}></use>
+                            </svg>
+                          ) : (
+                            <svg width={17} height={17}>
+                              <use href={`${icons}#white_star`}></use>
+                            </svg>
+                          )}
+                          {rating >= 3 ? (
+                            <svg width={17} height={17}>
+                              <use href={`${icons}#yellow_star`}></use>
+                            </svg>
+                          ) : (
+                            <svg width={17} height={17}>
+                              <use href={`${icons}#white_star`}></use>
+                            </svg>
+                          )}
+                          {rating >= 4 ? (
+                            <svg width={17} height={17}>
+                              <use href={`${icons}#yellow_star`}></use>
+                            </svg>
+                          ) : (
+                            <svg width={17} height={17}>
+                              <use href={`${icons}#white_star`}></use>
+                            </svg>
+                          )}
+                          {rating >= 5 ? (
+                            <svg width={17} height={17}>
+                              <use href={`${icons}#yellow_star`}></use>
+                            </svg>
+                          ) : (
+                            <svg width={17} height={17}>
+                              <use href={`${icons}#white_star`}></use>
+                            </svg>
+                          )}
+                          <button type="button" className={s.btn}>
+                            Resume
+                          </button>
+                        </td>
+                      </tr>
+                    )
+                )}
+              </tbody>
+            </table>
+          </div>
+        )}
+
+        {status('reading') && (
+          <div className={s.table}>
+            <h3 className={s.title}>Reading now</h3>
+            <table className={s.subTable}>
+              <thead className={s.head}>
+                <tr>
+                  <th className={s.topic} width="55%">
+                    Book title
+                  </th>
+                  <th className={s.topic} width="25%">
+                    Author
+                  </th>
+                  <th className={s.topic} width="10%">
+                    Year
+                  </th>
+                  <th className={s.topic} width="10%">
+                    Pages
+                  </th>
+                </tr>
+              </thead>
+              <tbody className={s.body}>
+                {data?.payload.books.map(
+                  ({ _id, author, pages, title, year, status, rating }) =>
+                    status === 'reading' && (
+                      <tr key={_id} className={s.item}>
+                        <td className={s.subtitle}>
+                          <svg width={22} height={17} className={s.img}>
+                            <use href={`${icons}#yellow_book`}></use>
+                          </svg>
+                          {title}
+                        </td>
+                        <td className={s.subtitle}> {author}</td>
+                        <td className={s.subtitle}>{year}</td>
+                        <td className={s.subtitle}>{pages}</td>
+                      </tr>
+                    )
+                )}
+              </tbody>
+            </table>
+          </div>
+        )}
+        {status('toRead') && (
+          <div className={s.table}>
+            <h3 className={s.title}>Going to read</h3>
+            <table className={s.subTable}>
+              <thead className={s.head}>
+                <tr>
+                  <th className={s.topic} width="55%">
+                    Book title
+                  </th>
+                  <th className={s.topic} width="25%">
+                    Author
+                  </th>
+                  <th className={s.topic} width="10%">
+                    Year
+                  </th>
+                  <th className={s.topic} width="5%">
+                    Pages
+                  </th>
+                  <th className={s.topic} width="5%"></th>
                 </tr>
               </thead>
               <tbody className={s.body}>
@@ -161,7 +200,7 @@ export default function BookTable() {
                         <td className={s.subtitle}> {author}</td>
                         <td className={s.subtitle}>{year}</td>
                         <td className={s.subtitle}>{pages}</td>
-                        <td width="3%">
+                        <td>
                           <button
                             className={s.btnDelete}
                             id={_id}
@@ -179,7 +218,7 @@ export default function BookTable() {
                 )}
               </tbody>
             </table>
-          </>
+          </div>
         )}
       </section>
     </>
