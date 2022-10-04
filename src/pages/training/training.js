@@ -115,15 +115,17 @@ const Training = () => {
   };
 
   const today = new Date();
+  const yearTitle = "До конца";
+  const trainingTitle =  "Тоже до конца";
 
   return (
     <>
       <div>
         <div className={s.timerSection}>
-          <Timer selectedDate={yearEnd} />
+          <Timer selectedDate={yearEnd} title={yearTitle}/>
         </div>
         <div>
-          <Timer selectedDate={endDate} />
+          <Timer selectedDate={endDate} title={trainingTitle}/>
         </div>
       </div>
 

@@ -10,9 +10,11 @@ import {
 import { useState, useEffect, useRef } from 'react';
 import convertMs from './convertMs';
 
+// пример деструктуризации ({selectedDate, title})
+
 const Timer = selectedDate => {
   const [time, setTime] = useState(() => Date.now());
-// console.log(header);
+// console.log(selectedDate);
 
   const intervalId = useRef(null);
   const deltaTime = Object.values(selectedDate)[0] - time;
