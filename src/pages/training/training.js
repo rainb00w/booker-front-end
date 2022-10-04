@@ -14,7 +14,7 @@ import ChartTraning from 'components/Chart/ChartTraning';
 import BookTableTraining from 'components/bookTableTraining/bookTableTraining';
 import BookMobileTableTraining from 'components/bookTableTraining/bookMobileTableTraining';
 import MyGoal from 'components/MyGoal';
-import SelectBooksStyled from 'components/selectBooks/SelectBooksStyled';
+import SelectBooksStyled from 'components/SelectBooks/SelectBooksStyled';
 import Timer from 'components/Timer/Timer';
 import convertMs from 'components/Timer/convertMs';
 
@@ -147,7 +147,7 @@ const Training = () => {
                 </button>
               </SelectBooksStyled>
             </div>
-            <div>
+            {/* <div>
             <Formik initialValues={{ startDate: new Date() }}>
               {({ values, setFieldValue }) => (
                 <div className="row clearfix">
@@ -199,7 +199,24 @@ const Training = () => {
                 </div>
               )}
             </Formik>
-          </div>
+          </div> */}
+{/* 
+<Formik
+      // validationSchema={validationSchema}
+      // initialValues={initialValues}
+      // onSubmit={onSubmit}
+    >
+      {() => (
+        <Form>
+          <StyledControlsWrapper>
+            <FormikControl control="data" label="Початок" name="startDate" />
+            <FormikControl control="data" label="Завершення" name="endDate" />
+          </StyledControlsWrapper>
+
+          <button type="submit">Submit</button>
+        </Form>
+      )}
+    </Formik> */}
             </>
        
 
