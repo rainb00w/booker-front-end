@@ -4,7 +4,7 @@ import { useAddTrainingMutation } from 'redux/books/trainingApi';
 import { useGetAllTrainingsQuery } from 'redux/books/trainingApi';
 import s from './training.module.scss';
 
-import Select, { components } from "react-select";
+import Select, { components } from 'react-select';
 import SendPageForm from 'pages/statistics/sendPageForm';
 import StatisticsList from 'pages/statistics/statisticsList';
 import ChartTraning from 'components/Chart/ChartTraning';
@@ -12,6 +12,7 @@ import BookTableTraining from 'components/bookTableTraining/bookTableTraining';
 import BookMobileTableTraining from 'components/bookTableTraining/bookMobileTableTraining';
 import MyGoal from 'components/MyGoal';
 import SelectBooksStyled from 'components/selectBooks/SelectBooksStyled';
+import Timer from 'components/Timer/Timer';
 
 const Training = () => {
   const { data } = useGetAllBooksQuery();
@@ -26,15 +27,14 @@ const Training = () => {
   if (trainingData?.data === undefined) {
     isEmptyTraining = true;
   }
-  // console.log('isEmptyTraining', isEmptyTraining);
 
-  const [booksInfo, setBooksInfo] = useState(null);
   const [selectedBook, setSelectedBook] = useState(null);
   const [booksArrayToSend, setBooksArrayToSend] = useState([]);
   const [addTraining, { isLoading }] = useAddTrainingMutation();
 
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+  const [disable, setDisable] = useState(false);
   let bookTableArray = [];
 
   const incomeBooks = data?.payload?.books;
@@ -42,8 +42,9 @@ const Training = () => {
     book => book.status === 'reading'
   );
 
-  const handleSelectBook = (selectedOption) => {
+  const handleSelectBook = selectedOption => {
     const { value } = selectedOption;
+    setDisable(false);
     setSelectedBook(value);
   };
 
@@ -54,9 +55,11 @@ const Training = () => {
   }
 
   const addBookToSelected = () => {
-    const addBooksArray = incomeBooks.filter(book => book._id === selectedBook._id)
-    setBooksArrayToSend([...booksArrayToSend].concat(addBooksArray))
-  
+    setDisable(true);
+    const addBooksArray = incomeBooks.filter(
+      book => book._id === selectedBook._id
+    );
+    setBooksArrayToSend([...booksArrayToSend].concat(addBooksArray));
   };
 
   const booksThatNotSelected = incomeBooks?.filter(
@@ -68,19 +71,11 @@ const Training = () => {
     label: title,
   }));
 
-
-  console.log('booksThatNotSelected', booksThatNotSelected);
-console.log('booksArrayToSend', booksArrayToSend)
-
   const removeItem = id => {
     const newBooksArrayToSend = booksArrayToSend?.filter(
       book => book._id !== id
     );
     setBooksArrayToSend(newBooksArrayToSend);
-
-    // const newBooksInfo = booksInfo.filter(book => book._id !== id);
-
-    // setBooksInfo(newBooksInfo);
   };
 
   const startTraining = () => {
@@ -114,40 +109,7 @@ console.log('booksArrayToSend', booksArrayToSend)
       </div>
 
       <div className={s.gridContainer}>
-        {/* <div className={s.gridItem1}>1</div> */}
-
-        {/* <form onSubmit={handleAddBooks}>
-          <select
-            className={s.addField}
-            onChange={e => setSelectedBook(e.currentTarget.value)}
-          >
-            <option disabled></option>
-            {booksThatNotSelected?.map(element => (
-              <option key={element._id} value={element._id} name={element._id}>
-                {element.title}
-              </option>
-            ))}
-          </select>
-          <button className={s.addButton} type="Submit">
-            Додати
-          </button>
-        </form> */}
-
-        {/* {booksThatNotSelected?.map(element => (
-                <option key={element._id} value={element._id}>
-                  {element.title}
-                </option>
-              ))} */}
-
-      
-
-        {/* <div className={s.goalMainBox}>
-  <div className={s.goalHeader}>Моя мета прочитати</div>
-  <div>
-
-
-  </div>
-</div> */}
+        <div className={s.gridItem1}><Timer /></div>
 
         <div className={s.gridItem2}>
           <MyGoal />
@@ -155,16 +117,16 @@ console.log('booksArrayToSend', booksArrayToSend)
         <div>
           <SelectBooksStyled>
             <Select
+              defaultValue={{ value: null, label: 'Оберіть книгу' }}
               options={selectedOptions}
               placeholder="Choose books from the library"
               closeMenuOnSelect={true}
               onChange={handleSelectBook}
-               
             />
             <button
-              // disabled={disable}
+              disabled={disable}
               className="selectBooksButton"
-               onClick={addBookToSelected}
+              onClick={addBookToSelected}
             >
               add
             </button>
@@ -233,4 +195,41 @@ export default Training;
             </label>
           </div>
         ))} */
+}
+
+{
+  /* <form onSubmit={handleAddBooks}>
+          <select
+            className={s.addField}
+            onChange={e => setSelectedBook(e.currentTarget.value)}
+          >
+            <option disabled></option>
+            {booksThatNotSelected?.map(element => (
+              <option key={element._id} value={element._id} name={element._id}>
+                {element.title}
+              </option>
+            ))}
+          </select>
+          <button className={s.addButton} type="Submit">
+            Додати
+          </button>
+        </form> */
+}
+
+{
+  /* {booksThatNotSelected?.map(element => (
+                <option key={element._id} value={element._id}>
+                  {element.title}
+                </option>
+              ))} */
+}
+
+{
+  /* <div className={s.goalMainBox}>
+  <div className={s.goalHeader}>Моя мета прочитати</div>
+  <div>
+
+
+  </div>
+</div> */
 }
