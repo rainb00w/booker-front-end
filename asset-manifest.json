@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/booker-front-end/static/css/main.f4cf57e9.css",
+    "main.css": "/booker-front-end/static/css/main.5bdc5100.css",
     "main.js": "/booker-front-end/static/js/main.d0248b2f.js",
     "static/media/background2.jpg": "/booker-front-end/static/media/background2.1065ac0c23029c4e7b76.jpg",
     "static/media/background3.jpg": "/booker-front-end/static/media/background3.4eb17edd7123c073db0e.jpg",
@@ -17,11 +17,11 @@
     "static/media/getFetch.cjs": "/booker-front-end/static/media/getFetch.40f37ddea2378391108f.cjs",
     "static/media/icon_home.svg": "/booker-front-end/static/media/icon_home.b3cc0a6a4d8a1f2461a5a0058dafff68.svg",
     "static/media/icon_flag.svg": "/booker-front-end/static/media/icon_flag.630776428b2941a7e4a8d9c083ae3780.svg",
-    "main.f4cf57e9.css.map": "/booker-front-end/static/css/main.f4cf57e9.css.map",
+    "main.5bdc5100.css.map": "/booker-front-end/static/css/main.5bdc5100.css.map",
     "main.d0248b2f.js.map": "/booker-front-end/static/js/main.d0248b2f.js.map"
   },
   "entrypoints": [
-    "static/css/main.f4cf57e9.css",
+    "static/css/main.5bdc5100.css",
     "static/js/main.d0248b2f.js"
   ]
 }
