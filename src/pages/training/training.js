@@ -4,7 +4,7 @@ import { useAddTrainingMutation } from 'redux/books/trainingApi';
 import { useGetAllTrainingsQuery } from 'redux/books/trainingApi';
 import s from './training.module.scss';
 
-import Select from 'react-select';
+import Select, { components } from "react-select";
 import SendPageForm from 'pages/statistics/sendPageForm';
 import StatisticsList from 'pages/statistics/statisticsList';
 import ChartTraning from 'components/Chart/ChartTraning';
@@ -12,12 +12,6 @@ import BookTableTraining from 'components/bookTableTraining/bookTableTraining';
 import BookMobileTableTraining from 'components/bookTableTraining/bookMobileTableTraining';
 import MyGoal from 'components/MyGoal';
 import SelectBooksStyled from 'components/selectBooks/SelectBooksStyled';
-
-const options = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' },
-];
 
 const Training = () => {
   const { data } = useGetAllBooksQuery();
@@ -34,7 +28,12 @@ const Training = () => {
   }
   // console.log('isEmptyTraining', isEmptyTraining);
 
+
+
+
+
   const [booksInfo, setBooksInfo] = useState([]);
+  const [selectedBook, setSelectedBook] = useState(null);
   const [booksArrayToSend, setBooksArrayToSend] = useState([]);
   const [addTraining, { isLoading }] = useAddTrainingMutation();
 
@@ -42,47 +41,64 @@ const Training = () => {
   const [endDate, setEndDate] = useState(new Date());
   let bookTableArray = [];
 
-  const booksThatHaveReadingStatus = data?.payload?.books.filter(
+  const incomeBooks = data?.payload?.books;
+  const booksThatHaveReadingStatus = incomeBooks?.filter(
     book => book.status === 'reading'
   );
+
+  const handleSelectBook = (selectedOption) => {
+    const { value } = selectedOption;
+    setSelectedBook(value);
+  };
+
+
+  const selectedOptions = incomeBooks?.map(({ title, _id }) => ({
+    value: { _id },
+    label: title,
+  }));
+
+
+
+
+  // console.log('booksThatHaveReadingStatus', booksThatHaveReadingStatus);
+  // console.log('booksArrayToSend', incomeBooks);
+  // console.log('selectedOptions', selectedOptions);
+  // console.log('selectedBook', selectedBook);
+
 
   if (booksThatHaveReadingStatus?.length > 0) {
     bookTableArray = booksThatHaveReadingStatus;
   } else {
-    bookTableArray = booksArrayToSend;
+    bookTableArray = incomeBooks;
   }
 
-  const handleAddBooks = e => {
-    e.preventDefault();
-    console.log('selectedBook', selectedBook);
-    const arrayToSend = data?.payload.books.filter(
-      el => el._id === selectedBook
-    );
-    setBooksArrayToSend(booksArrayToSend.concat(arrayToSend));
+  const addBookToSelected = () => {
+    const temporaryArray = incomeBooks.filter(book => book._id === selectedBook._id)
+    setBooksArrayToSend([...booksArrayToSend].concat(temporaryArray))
+    console.log(booksArrayToSend);
   };
 
-  const booksThatNotSelected = data?.payload.books.filter(
-    el => !booksArrayToSend.includes(el)
-  );
+  // const handleAddBooks = e => {
+  //   e.preventDefault();
+  //   console.log('selectedBook', selectedBook);
+  //   const arrayToSend = data?.payload.books.filter(
+  //     el => el._id === selectedBook
+  //   );
+  //   setBooksArrayToSend(booksArrayToSend.concat(arrayToSend));
+  // };
+
+  // const booksThatNotSelected = data?.payload.books.filter(
+  //   el => !booksArrayToSend.includes(el)
+  // );
 
   const removeItem = id => {
-    const newBooksArrayToSend = booksArrayToSend.filter(
-      book => book._id !== id
-    );
-    const newBooksInfo = booksInfo.filter(book => book._id !== id);
-    setBooksArrayToSend(newBooksArrayToSend);
-    setBooksInfo(newBooksInfo);
+    // const newBooksArrayToSend = booksArrayToSend.filter(
+    //   book => book._id !== id
+    // );
+    // const newBooksInfo = booksInfo.filter(book => book._id !== id);
+    // setBooksArrayToSend(newBooksArrayToSend);
+    // setBooksInfo(newBooksInfo);
   };
-
-  const selectedOptions = booksThatHaveReadingStatus?.map(({ name, _id }) => ({
-    value: { _id },
-    label: name,
-  }));
-
-  console.log(data?.payload?.books)
-
-
-
 
   const startTraining = () => {
     const array = {
@@ -97,9 +113,6 @@ const Training = () => {
 
     // .then(payload => console.log('fulfilled', payload))
   };
-
-
-
 
   return (
     <>
@@ -143,36 +156,7 @@ const Training = () => {
                 </option>
               ))} */}
 
-  
-
-        {/* <Formik
-          initialValues={{ id: '' }}
-          onChange={() => console.log('change')}
-          onSubmit={(values, actions) => {
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-              actions.setSubmitting(false);
-            }, 1000);
-          }}
-        >
-          {(props: FormikProps<any>) => (
-            <Form>
-              <Field as="select" name="id">
-                {booksThatNotSelected?.map(element => (
-                  <option
-                    key={element._id}
-                    value={element._id}
-                    className={s.bookField}
-                  >
-                    {element.title}
-                  </option>
-                ))}
-              </Field>
-
-              <button type="submit">Додати</button>
-            </Form>
-          )}
-        </Formik> */}
+      
 
         {/* <div className={s.goalMainBox}>
   <div className={s.goalHeader}>Моя мета прочитати</div>
@@ -182,39 +166,38 @@ const Training = () => {
   </div>
 </div> */}
 
-
         <div className={s.gridItem2}>
           <MyGoal />
         </div>
         <div>
-<SelectBooksStyled >
-      <Select
-        options={selectedOptions}
-        placeholder="Choose books from the library"
-        closeMenuOnSelect={true}
-        // onChange={handleSelectBook}
-        // components={{ DropdownIndicator }}
-      />
-      <button
-        // disabled={disable}
-        className="selectBooksButton"
-        // onClick={addBookToSelected}
-      >
-        add
-      </button>
-    </SelectBooksStyled>
-</div>
-       
+          <SelectBooksStyled>
+            <Select
+              options={selectedOptions}
+              placeholder="Choose books from the library"
+              closeMenuOnSelect={true}
+              onChange={handleSelectBook}
+               
+            />
+            <button
+              // disabled={disable}
+              className="selectBooksButton"
+               onClick={addBookToSelected}
+            >
+              add
+            </button>
+          </SelectBooksStyled>
+        </div>
+
         <div className={s.gridItem3}>
           {booksArrayToSend && (
             <div>
               <BookTableTraining
-                booksList={bookTableArray}
+                booksList={booksArrayToSend}
                 isEmptyTraining={isEmptyTraining}
                 onClick={removeItem}
               />
               <BookMobileTableTraining
-                booksList={bookTableArray}
+                booksList={booksArrayToSend}
                 onClick={removeItem}
                 isEmptyTraining={isEmptyTraining}
               />
