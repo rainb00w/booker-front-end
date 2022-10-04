@@ -133,12 +133,12 @@ const Training = () => {
 
 
 
-  const handleStartChange = value => {
+  const handleStartSelect = value => {
     console.log(value);
     setStartDate(value);
   };
 
-  const handleDateChange = value => {
+  const handleEndSelect = value => {
     console.log(value);
     setEndDate(value);
   };
