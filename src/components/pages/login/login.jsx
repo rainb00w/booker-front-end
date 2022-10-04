@@ -54,9 +54,11 @@ const Login = () => {
   };
 
   const modalSwitch = () => setVerifyModal(!verifyModal);
+
   const handleClickShowIcon = () => {
     setInputType(inputType === 'password' ? 'text' : 'password');
   };
+
   return (
     <>
       {verifyModal && <RepeatVerify switchFunc={modalSwitch} />}
@@ -106,7 +108,6 @@ const Login = () => {
                   .catch(error => {
                     setErr(error);
                   });
-
                 resetForm({ values: '' });
               }}
             >

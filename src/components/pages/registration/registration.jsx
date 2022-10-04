@@ -10,6 +10,7 @@ import { authOperations } from '../../../redux/auth';
 import { useDispatch } from 'react-redux';
 import Media from 'react-media';
 import AuthModal from '../../authModal/authModal';
+import RegistrationText from 'components/registrationText/registrationText';
 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
@@ -20,9 +21,14 @@ const Registration = () => {
   const [errEmail, setErrEmail] = useState('');
   const [modal, setModal] = useState(true);
   const location = useLocation();
+
+
+
   useEffect(() => {
     location.state === 'modal' ? setModal(false) : setModal(true);
   }, []);
+
+  
   const modalBtnRegisterClick = () => {
     setModal(false);
   };
@@ -33,6 +39,20 @@ const Registration = () => {
 
   return (
     <>
+      {modal && (
+        <Media queries={{ small: '(max-width: 768px)' }}>
+          {matches => (
+            <>
+              {matches.small && (
+                <AuthModal
+                  modalBtnRegisterClick={modalBtnRegisterClick}
+                  modalBtnLoginClick={modalBtnLoginClick}
+                />
+              )}
+            </>
+          )}
+        </Media>
+      )}
       <section className={styles.section}>
         <div className={styles.registr__form}>
           <div className={styles.form__border}>
@@ -187,20 +207,7 @@ const Registration = () => {
             </p>
           </div>
         </div>
-        {modal && (
-          <Media queries={{ small: '(max-width: 768px)' }}>
-            {matches => (
-              <>
-                {matches.small && (
-                  <AuthModal
-                    modalBtnRegisterClick={modalBtnRegisterClick}
-                    modalBtnLoginClick={modalBtnLoginClick}
-                  />
-                )}
-              </>
-            )}
-          </Media>
-        )}
+        <RegistrationText />
       </section>
     </>
   );

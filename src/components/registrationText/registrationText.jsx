@@ -1,9 +1,8 @@
 import React from 'react';
-import Media from 'react-media';
-import ButtonsContainer from '../buttonsContainer/buttonsContainer';
 import styles from '../pages/login/login.module.css';
 
-const RegistrationText = ({ modalBtnRegisterClick, modalBtnLoginClick }) => {
+
+const RegistrationText = () => {
   return (
     <div className={styles.registration__text}>
       <h1 className={styles.title}>Books Reading</h1>
@@ -41,18 +40,6 @@ const RegistrationText = ({ modalBtnRegisterClick, modalBtnLoginClick }) => {
           </p>
         </li>
       </ul>
-      <Media queries={{ small: '(max-width: 768px)' }}>
-        {matches => (
-          <>
-            {matches.small && (
-              <ButtonsContainer
-                modalBtnRegisterClick={modalBtnRegisterClick}
-                modalBtnLoginClick={modalBtnLoginClick}
-              />
-            )}
-          </>
-        )}
-      </Media>
     </div>
   );
 };
