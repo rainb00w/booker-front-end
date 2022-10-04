@@ -10,15 +10,13 @@ import {
 import { useState, useEffect, useRef } from 'react';
 import convertMs from './convertMs';
 
-// пример деструктуризации ({selectedDate, title})
-
-const Timer = selectedDate => {
+const Timer = ({ selectedDate, title }) => {
   const [time, setTime] = useState(() => Date.now());
-// console.log(selectedDate);
+  // console.log(selectedDate);
 
   const intervalId = useRef(null);
-  const deltaTime = Object.values(selectedDate)[0] - time;
-  // const deltaTime = selectedDate - time;
+  // const deltaTime = Object.values(selectedDate)[0] - time;
+  const deltaTime = selectedDate - time;
   const timeLeft = convertMs(deltaTime);
 
   useEffect(() => {
@@ -33,7 +31,7 @@ const Timer = selectedDate => {
 
   return (
     <StyledTimerWrapper>
-      <TimerTitle>До закінчення року залишилось</TimerTitle>
+      <TimerTitle>{title}</TimerTitle>
       <StyledContainer>
         <StyledItem>
           <StyledValue>{timeLeft.days}</StyledValue>

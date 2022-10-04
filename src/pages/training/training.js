@@ -44,6 +44,12 @@ const Training = () => {
   let bookTableArray = [];
 
   useEffect(() => {
+    const today = new Date(Date.now());
+    const year = today.getFullYear();
+    setEndYear(new Date(`${year}`, 11, 31));
+  }, []);
+
+  useEffect(() => {
     if (startDate && endDate) {
       const start = new Date(startDate);
       const end = new Date(endDate);
