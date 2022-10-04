@@ -48,7 +48,22 @@
   }
 }
 
+.myTrainingHeader {
+  padding: 18px 0 18px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
 
+  color: #ffffff;
+
+  background: #b1b5c2;
+  box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
+}
 
 .timerSection {
   @media screen and (min-width: 768px) {

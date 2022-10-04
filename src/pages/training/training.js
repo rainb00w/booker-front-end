@@ -126,34 +126,28 @@ const Training = () => {
       <div className={s.gridContainer}>
         <div>{isLoading && <p>In process...</p>}</div>
         <div className={s.gridItem1}>
-          <div className={s.timerSection}>
-            <div>
-              <Timer selectedDate={endYear} title={yearTitle} />
+          {isEmptyTraining ? (
+            <>
+            <h3 className={s.myTrainingHeader}>Моє тренування </h3>
+                 <div>
+              <SelectBooksStyled>
+                <Select
+                  defaultValue={{ value: null, label: 'Оберіть книгу' }}
+                  options={selectedOptions}
+                  placeholder="Choose books from the library"
+                  closeMenuOnSelect={true}
+                  onChange={handleSelectBook}
+                />
+                <button
+                  disabled={disable}
+                  className="selectBooksButton"
+                  onClick={addBookToSelected}
+                >
+                  add
+                </button>
+              </SelectBooksStyled>
             </div>
             <div>
-              <Timer selectedDate={endDate} title={trainingTitle} />
-            </div>
-          </div>
-
-          <div>
-            <SelectBooksStyled>
-              <Select
-                defaultValue={{ value: null, label: 'Оберіть книгу' }}
-                options={selectedOptions}
-                placeholder="Choose books from the library"
-                closeMenuOnSelect={true}
-                onChange={handleSelectBook}
-              />
-              <button
-                disabled={disable}
-                className="selectBooksButton"
-                onClick={addBookToSelected}
-              >
-                add
-              </button>
-            </SelectBooksStyled>
-          </div>
-          <div>
             <Formik initialValues={{ startDate: new Date() }}>
               {({ values, setFieldValue }) => (
                 <div className="row clearfix">
@@ -206,6 +200,21 @@ const Training = () => {
               )}
             </Formik>
           </div>
+            </>
+       
+
+          ) : (
+            <div className={s.timerSection}>
+              <div>
+                <Timer selectedDate={endYear} title={yearTitle} />
+              </div>
+              <div>
+                <Timer selectedDate={endDate} title={trainingTitle} />
+              </div>
+            </div>
+          )}
+
+       
 
           {booksArrayToSend && (
             <div>
@@ -237,7 +246,6 @@ const Training = () => {
           <ChartTraning />
         </div>
 
-       
         <div className={s.gridItem4}>
           <h2 className={s.resultsHeader}>Результати</h2>
           <SendPageForm />
