@@ -14,7 +14,7 @@ import ChartTraning from 'components/Chart/ChartTraning';
 import BookTableTraining from 'components/bookTableTraining/bookTableTraining';
 import BookMobileTableTraining from 'components/bookTableTraining/bookMobileTableTraining';
 import MyGoal from 'components/MyGoal';
-import SelectBooksStyled from 'components/SelectBooks/SelectBooksStyled';
+import SelectBooksStyled from '../../components/SelectBooks/SelectBooksStyled';
 import Timer from 'components/Timer/Timer';
 import convertMs from 'components/Timer/convertMs';
 
