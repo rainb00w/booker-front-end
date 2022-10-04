@@ -41,7 +41,7 @@ const Login = () => {
     if (query.token) {
       const { name, token, avatar } = query;
       console.log('useEffect', name, token, avatar );
-      dispatch(googleLogIn(token, name, avatar));
+      dispatch(googleLogIn({token, name, avatar}));
     }
   });
 
