@@ -25,6 +25,7 @@ const style = {
 const Header = () => {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   const isLoggedInName = useSelector(authSelectors.getUsername);
+  const googleAvatar = useSelector(authSelectors.googleAvatar);
 
   const [user, setUser] = useState(isLoggedInName);
 
@@ -32,6 +33,8 @@ const Header = () => {
   const changeLanguage = language => {
     i18n.changeLanguage(language);
   };
+
+  console.log('USER', user, 'googleAvatar', googleAvatar);
 
   const userLogo = user ? user[0] : 'U';
   const dispatch = useDispatch();

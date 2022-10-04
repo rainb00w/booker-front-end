@@ -15,7 +15,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     googleLogIn(state, action) {
-      console.log('auth slice', action.payload)
+      // console.log('auth slice', action.payload)
      state.token = action?.payload.token;
      state.name = action?.payload.name;
      state.avatarGoogle = action?.payload.avatar;
