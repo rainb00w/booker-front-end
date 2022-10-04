@@ -9,7 +9,7 @@ const SelectBooksFirstStyled = styled.div`
 
   .css-b62m3t-container {
     @media screen and (min-width: 768px) {
-      width: 482px;
+      width: 483px;
       height: 42px;
     }
 
@@ -44,12 +44,8 @@ const SelectBooksFirstStyled = styled.div`
   }
   .selectBooksButton:disabled,
   button[disabled] {
-    cursor: pointer;
     width: 172px;
-    color: #c2bfc7;
     height: 42px;
-    background:  #B1B5C2;
-    border: 1px solid #c2bfc7;
 
     margin-top: 36px;
 

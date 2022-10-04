@@ -5,9 +5,9 @@ import { BrowserRouter } from 'react-router-dom';
 import { store } from './redux/store';
 import { Provider } from 'react-redux';
 
+import '/node_modules/modern-normalize/modern-normalize.css';
 import './i18n';
 import './index.scss';
-import '/node_modules/modern-normalize/modern-normalize.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
