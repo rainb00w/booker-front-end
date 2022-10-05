@@ -89,6 +89,10 @@
 
 }
 
+.button_exit:hover {
+    color:#FF6B08
+}
+
 .nav{
     display: flex;
     align-items: center;
@@ -107,6 +111,10 @@
     margin-right: 5px;
     background-color: #F5F7FA;
     border-radius: 50%;
+}
+
+.link:hover {
+    background-color: #E0E5EB;
 }
 
 .active_link {
@@ -249,3 +257,4 @@ border-radius: 0%;
         width: 572px;
     }
 }
+
