@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import s from './bookTableTraining.module.css';
 import icons from './symbol-defs.svg';
 import Tooltip from '@mui/material/Tooltip';
+import { useTranslation } from 'react-i18next';
 
 export default function BookTableTraining({
   booksList,
@@ -12,6 +13,7 @@ export default function BookTableTraining({
   const handleDelete = e => {
     onClick(e.currentTarget.id);
   };
+  const { t } = useTranslation();
 
   return (
     <>
@@ -19,15 +21,15 @@ export default function BookTableTraining({
         <table className={s.table}>
           <thead className={s.thead}>
             <tr className={s.tr}>
-              <th className={s.topic}>Book title</th>
+              <th className={s.topic}>   {t('book_title')}</th>
               <th className={s.topic} width="25%">
-                Author
+          {t('book_author')}
               </th>
               <th className={s.topic} width="15%">
-                Year
-              </th>
+            {t('book_year')}
+              </th> 
               <th className={s.topic} width="20%">
-                Pages
+            {t('book_pages')}
               </th>
             </tr>
           </thead>

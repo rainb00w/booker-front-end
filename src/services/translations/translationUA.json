@@ -77,5 +77,9 @@
   "btnNewTraining": "Новe тренування",
   "btn_back": "Назад",
   "modal3_notification": "Вітаю! Ще одна книга прочитана.",
-  "btnDone": "Готово"
+  "btnDone": "Готово",
+  "didnt_receive_an_email": "Не отримали листа для верифікації акаунта? Спробуйте ще",
+  "Repeat_Verify": "Повторити авторизацію",
+  "Click_if_you_forgot_your_password": "Натисніть якщо ви забули пароль:",
+  "Forgot_Password": "Забув пароль"
 }

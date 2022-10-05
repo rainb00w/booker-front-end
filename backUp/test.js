@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import BookAddForm from '../../components/bookAdd/bookAddForm';
 import BookTable from '../../components/bookTable/bookTable';
 import BookTableMobile from 'components/bookTable/bookMobileTable';
 import BtnMyTraining from 'components/BtnLibrary/btnMyTraining';
+import AddBookBtnMobile from '../../components/addBookBtnMobile/addBookBtnMobile';
 // import RatingBook from 'components/RatingBook';
 import { useMediaQuery } from 'react-responsive';
 import s from './library.module.css';
@@ -10,20 +11,34 @@ import { useGetAllBooksQuery } from 'redux/books/booksApi';
 import Info from '../../components/EmptyLibrary/EmptyLibrary';
 
 const Library = () => {
+  const [showAdd, setShowAdd] = useState(false);
   const mobile = useMediaQuery({ query: '(max-width: 767px)' });
   const { data } = useGetAllBooksQuery();
+  const handleClickAdd = () => {
+    setShowAdd(true);
+  };
+  const handleClickClose = () => {
+    setShowAdd(false);
+  };
   return (
     <>
-      {!data?.payload.books.length > 0 ? (
+      {data?.payload.books.length > 0 ? (
         <div className={s.section}>
-          <BookAddForm />
-          <Info />
+          {mobile && <AddBookBtnMobile handleClick={handleClickAdd} />}
+          <BookAddForm handleClickClose={handleClickClose} showAdd={showAdd} />
+          {mobile ? <BookTableMobile /> : <BookTable />}
+          <BtnMyTraining />
         </div>
       ) : (
         <div className={s.section}>
-          <BookAddForm />
-          {mobile ? <BookTableMobile /> : <BookTable />}
-          <BtnMyTraining />
+          {mobile && (
+            <>
+              <AddBookBtnMobile handleClick={handleClickAdd} />
+              <BookTableMobile />
+            </>
+          )}
+          <BookAddForm handleClickClose={handleClickClose} showAdd={showAdd} />
+          <Info />
         </div>
       )}
     </>
@@ -31,41 +46,3 @@ const Library = () => {
 };
 
 export default Library;
-
-
-
-
-
-dispatch(authOperations.register({ name, email, password }))
-.then(answer => {
-const { data, response } = answer.payload
-
-if (data) {
-    resetForm({ values: "" });
-    setErrName("");
-    setErrEmail("");
-    navigate('/login');
-}
-else if (response) {
-    throw response.data.message;
-}
-})
-.catch(error => {
-switch (error) {
-    case "name":
-        setErrName("User with this name is already registered");
-        setErrEmail("");
-        return 
-    case "email":
-        setErrName("");
-        setErrEmail("User with this email is already registered");
-        return
-    case "name&email":
-        setErrName("User with this name is already registered");
-        setErrEmail("User with this email is already registered");
-        return 
-    default:
-        return
-}
-})
-

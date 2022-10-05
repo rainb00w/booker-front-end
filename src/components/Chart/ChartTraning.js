@@ -2,8 +2,10 @@ import React from 'react';
 import { Line } from 'react-chartjs-2';
 import Chart from 'chart.js/auto';
 import s from './ChartTraning.module.css';
+import { useTranslation } from 'react-i18next';
 
 const ChartTraning = () => {
+  const { t } = useTranslation();
   const data = {
     labels: ['', '', '', '', '', '', ''], //!! Поки що для прикладу
     datasets: [
@@ -51,17 +53,17 @@ const ChartTraning = () => {
       <div className={s.modalBox}>
         <div className={s.chartBox}>
           <p className={s.title}>
-            Кількість сторінок / день
+           {t('amontOfPages_day')}
             <span className={s.planedPages}>34</span>
           </p>
           <div className={s.lineBox}>
             <ul className={s.lineList}>
-              <li className={s.lineItem}>План</li>
-              <li className={s.lineItem}>Факт</li>
+              <li className={s.lineItem}>{t('plan')}</li>    
+              <li className={s.lineItem}>  {t('act')}</li>  
             </ul>
           </div>
           <Line options={options} data={data} />
-          <p className={s.chartValue}>Час</p>
+          <p className={s.chartValue}> {t('time')}</p>   
         </div>
       </div>
     </>

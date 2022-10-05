@@ -6,6 +6,7 @@ import { registrationValidationSchema } from 'services/yupValidationSchema';
 import RegistrationText from '../../RegistrationText';
 import svgPath from 'services/svgPath';
 import styles from '../login/login.module.css';
+import { useTranslation } from 'react-i18next';
 
 import { authOperations } from '../../../redux/auth';
 import { useDispatch } from 'react-redux';
@@ -30,6 +31,7 @@ const Registration = () => {
   const [errName, setErrName] = useState('');
   const [errEmail, setErrEmail] = useState('');
   const [modal, setModal] = useState(true);
+  const { t } = useTranslation();
   const location = useLocation();
   useEffect(() => {
     location.state === 'modal' ? setModal(false) : setModal(true);
@@ -120,7 +122,7 @@ const Registration = () => {
                     </div>
                   </a>
                   <p className={styles.label__title}>
-                    Name
+                  {t('name')}
                     <span className={styles.label__star}>*</span>
                     {errName && (
                       <span className={styles.error}>{errName}</span>
@@ -141,7 +143,7 @@ const Registration = () => {
                     <span className={styles.default__count}></span>
                   )}
                   <p className={styles.label__title}>
-                    Email
+                  {t('email')}
                     <span className={styles.label__star}>*</span>
                     {errEmail && (
                       <span className={styles.error}>* {errEmail}</span>
@@ -162,7 +164,7 @@ const Registration = () => {
                     <span className={styles.default__count}></span>
                   )}
                   <p className={styles.label__title}>
-                    Password
+                  {t('password')}
                     <span className={styles.label__star}>*</span>
                   </p>
                   <input
@@ -180,7 +182,7 @@ const Registration = () => {
                     <span className={styles.default__count}></span>
                   )}
                   <p className={styles.label__title}>
-                    Confirm password
+                  {t('confirmPassword')}
                     <span className={styles.label__star}>*</span>
                   </p>
                   <input
@@ -198,15 +200,15 @@ const Registration = () => {
                     <span className={styles.default__count}></span>
                   )}
                   <button className={styles.form__button} type="submit">
-                    Register
+                  {t('register')}
                   </button>
                 </form>
               )}
             </Formik>
             <p className={styles.auth__describe}>
-              Already have an account?
+            {t('alreadyHaveAnAccount')}
               <Link className={styles.authforgot__link} to="/">
-                Login
+              {t('logIn')}
               </Link>
             </p>
           </div>

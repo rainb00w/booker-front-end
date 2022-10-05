@@ -6,12 +6,13 @@ import {
   useGetAllBooksQuery,
   useDeleteBookMutation,
 } from 'redux/books/booksApi';
+import { useTranslation } from 'react-i18next';
 
 export default function BookTable() {
   const { data } = useGetAllBooksQuery();
   const [deleteContact, { isLoading: isDeleting }] = useDeleteBookMutation();
-
-  console.log(data);
+  const { t, i18n } = useTranslation();
+  // console.log(data);
   const status = e => {
     const status = data?.payload.books.some(book => book.status === e);
     return status;
@@ -22,24 +23,24 @@ export default function BookTable() {
       <section className={s.section}>
         {status('haveRead') && (
           <div className={s.table}>
-            <h3 className={s.title}>Already read</h3>
+            <h3 className={s.title}>  {t('alreadyRead')}</h3>
             <table className={s.subTable}>
               <thead className={s.head}>
                 <tr>
                   <th className={s.topic} width="30%">
-                    Book title
+                  {t('book_title')}
                   </th>
                   <th className={s.topic} width="25%">
-                    Author
+                      {t('book_author')}
                   </th>
                   <th className={s.topic} width="10%">
-                    Year
+                     {t('book_year')}
                   </th>
                   <th className={s.topic} width="10%">
-                    Pages
+                      {t('book_pages')}
                   </th>
                   <th className={s.topic} width="25%">
-                    Rating
+                   {t('book_rating')}
                   </th>
                 </tr>
               </thead>
@@ -113,7 +114,7 @@ export default function BookTable() {
                             </svg>
                           )}
                           <button type="button" className={s.btn}>
-                            Resume
+                             {t('resume')}
                           </button>
                         </td>
                       </tr>
@@ -126,21 +127,21 @@ export default function BookTable() {
 
         {status('reading') && (
           <div className={s.table}>
-            <h3 className={s.title}>Reading now</h3>
+            <h3 className={s.title}> {t('readingNow')}</h3>   
             <table className={s.subTable}>
               <thead className={s.head}>
                 <tr>
                   <th className={s.topic} width="55%">
-                    Book title
+                    {t('book_title')}
                   </th>
                   <th className={s.topic} width="25%">
-                    Author
+                       {t('book_author')} 
                   </th>
                   <th className={s.topic} width="10%">
-                    Year
+                      {t('book_year')} 
                   </th>
                   <th className={s.topic} width="10%">
-                    Pages
+                     {t('book_pages')}
                   </th>
                 </tr>
               </thead>
@@ -167,21 +168,21 @@ export default function BookTable() {
         )}
         {status('toRead') && (
           <div className={s.table}>
-            <h3 className={s.title}>Going to read</h3>
+            <h3 className={s.title}> {t('goingToRead')} </h3>   
             <table className={s.subTable}>
               <thead className={s.head}>
                 <tr>
                   <th className={s.topic} width="55%">
-                    Book title
+                       {t('book_title')}
                   </th>
                   <th className={s.topic} width="25%">
-                    Author
+                        {t('book_author')}
                   </th>
                   <th className={s.topic} width="10%">
-                    Year
+                        {t('book_year')} 
                   </th>
                   <th className={s.topic} width="5%">
-                    Pages
+                       {t('book_pages')}
                   </th>
                   <th className={s.topic} width="5%"></th>
                 </tr>

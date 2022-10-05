@@ -1,9 +1,10 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-
+import { useTranslation } from 'react-i18next';
 import s from './statisticsList.module.css';
 
 const SendPageForm = ({ startDate = null }) => {
+  const { t } = useTranslation();
   Date.prototype.yyyymmdd = function () {
     let mm = this.getMonth() + 1; // getMonth() is zero-based
     let dd = this.getDate();
@@ -45,7 +46,7 @@ const SendPageForm = ({ startDate = null }) => {
     <form onSubmit={formik.handleSubmit} className={s.formResults}>
       <div className={s.inputs}>
         <label className={s.inputsLabel}>
-          Дата
+          {t('date')}
           {formik.errors.dateInput && formik.touched.dateInput ? (
             <div>{formik.errors.dateInput}</div>
           ) : null}
@@ -58,7 +59,7 @@ const SendPageForm = ({ startDate = null }) => {
           />
         </label>
         <label className={s.inputsLabel}>
-          Кількість сторінок
+           {t('amountOfPages_results')}
           {formik.errors.pageInput && formik.touched.pageInput ? (
             <div>{formik.errors.pageInput}</div>
           ) : null}
@@ -72,7 +73,7 @@ const SendPageForm = ({ startDate = null }) => {
         </label>
       </div>
       <button className={s.addResultBtn} type="submit">
-        Додати результат
+           {t('addResult')}
       </button>
     </form>
   );

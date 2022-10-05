@@ -6,6 +6,7 @@ import AuthModal from '../../authModal/authModal';
 import RepeatVerify from '../repeatVerify/repeatVerify';
 import getPhrases from '../../phrases/getPhrases';
 import LoginPhrase from './loginPhrase';
+import { useTranslation } from 'react-i18next';
 
 import { Formik } from 'formik';
 import { loginValidationSchema } from 'services/yupValidationSchema';
@@ -24,6 +25,7 @@ const Login = () => {
   const [err, setErr] = useState('');
   const [modal, setModal] = useState(false);
   const [phrase, setPhrase] = useState(getPhrases());
+  const { t } = useTranslation();
 
   const [verifyModal, setVerifyModal] = useState(false);
   const [inputType, setInputType] = useState('password');
@@ -120,7 +122,7 @@ const Login = () => {
               }) => (
                 <form onSubmit={handleSubmit}>
                   <p className={styles.label__title}>
-                    Email
+                  {t('email')}
                     <span className={styles.label__star}>*</span>
                     {err && <span className={styles.error}>{err}</span>}
                   </p>
@@ -140,7 +142,7 @@ const Login = () => {
                   )}
                   <label className={styles.label_password}>
                     <p className={styles.label__title}>
-                      Password
+                    {t('password')}
                       <span className={styles.label__star}>*</span>
                     </p>
                     <input
@@ -175,16 +177,16 @@ const Login = () => {
                     )}
                   </label>
                   <button className={styles.form__button} type="submit">
-                    Login
+                  {t('login')}
                   </button>
                 </form>
               )}
             </Formik>
             <Link className={styles.auth__link} to="/register">
-              Register
+            {t('register')}
             </Link>
             <p className={styles.auth__verify}>
-              Didnt receive an email to verify your account? Try to send again:
+            {t('didnt_receive_an_email')}
               <button
                 className={styles.button__verify}
                 type="button"
@@ -192,13 +194,13 @@ const Login = () => {
                   modalSwitch();
                 }}
               >
-                Repeat Verify
+                   {t('Repeat_Verify')}
               </button>
             </p>
             <p className={styles.auth__verify}>
-              Click if you forgot your password:
+            {t('Click_if_you_forgot_your_password')}
               <Link className={styles.authforgot__link} to="/changePassword">
-                Forgot Password
+              {t('Forgot_Password')}
               </Link>
             </p>
           </div>

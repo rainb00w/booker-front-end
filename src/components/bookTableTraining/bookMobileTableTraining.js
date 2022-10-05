@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import s from './bookTableTraining.module.css';
 import icons from './symbol-defs.svg';
+import { useTranslation } from 'react-i18next';
 
 export default function BookMobileTableTraining({
   booksList,
@@ -13,6 +14,8 @@ export default function BookMobileTableTraining({
     onClick(e.currentTarget.id);
   };
 
+  const { t } = useTranslation();
+  
   return (
     <>
       <section className={s.section}>
@@ -49,14 +52,14 @@ export default function BookMobileTableTraining({
                   )}
                 </p>
                 <p className={s.subtitle}>
-                  <span className={s.topic}>Author:</span> {author}
+                  <span className={s.topic}>   {t('book_author')}:</span> {author}
                 </p>
                 <p className={s.subtitle}>
-                  <span className={s.topic}>Year:</span>
+                  <span className={s.topic}> {t('book_year')}:</span>
                   {year}
                 </p>
                 <p className={s.subtitle}>
-                  <span className={s.topic}>Pages:</span>
+                  <span className={s.topic}> {t('book_pages')}:</span>
                   {pages}
                 </p>
               </div>

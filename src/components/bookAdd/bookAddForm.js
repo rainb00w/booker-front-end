@@ -5,9 +5,11 @@ import svgPath from 'services/svgPath';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useAddBookMutation } from 'redux/books/booksApi';
+import { useTranslation } from 'react-i18next';
 
 const BookAddForm = ({ handleClickClose, showAdd }) => {
   const [addBook, { isLoading }] = useAddBookMutation();
+  const { t, i18n } = useTranslation();
 
   const formik = useFormik({
     initialValues: {
@@ -67,7 +69,7 @@ const BookAddForm = ({ handleClickClose, showAdd }) => {
           className={s.form}
         >
           <label htmlFor="title" className={s.label}>
-            Book title *
+          {t('bookTitle')} *
             <input
               id="title"
               name="title"
@@ -82,7 +84,7 @@ const BookAddForm = ({ handleClickClose, showAdd }) => {
             ) : null}
           </label>
           <label htmlFor="author" className={s.label}>
-            Author *
+          {t('author')} *
             <input
               id="author"
               name="author"
@@ -97,7 +99,7 @@ const BookAddForm = ({ handleClickClose, showAdd }) => {
             ) : null}
           </label>
           <label htmlFor="year" className={s.label}>
-            Publication date
+            {t('publicationDate')}
             <input
               id="year"
               name="year"
@@ -112,7 +114,7 @@ const BookAddForm = ({ handleClickClose, showAdd }) => {
             ) : null}
           </label>
           <label htmlFor="pages" className={s.label}>
-            Amount of pages *
+          {t('amountOfPages')} *
             <input
               id="pages"
               name="pages"
@@ -131,7 +133,7 @@ const BookAddForm = ({ handleClickClose, showAdd }) => {
             className={s.btn}
             // onClick={() => window.location.reload(false)}
           >
-            Add
+            {t('btnAdd')}
           </button>
         </form>
         {isLoading && <p>Is Adding</p>}
