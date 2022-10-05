@@ -1,4 +1,26 @@
+.backBtn{
+  display: none;
+}
+.formCont {
+  padding-top: 20px;
+}
 @media screen and (min-width: 320px) and (max-width: 767px) {
+  .backBtn {
+      display: block;
+      width: 25px;
+      height: 15px;
+      margin-bottom: 32px;
+    }
+  .formCont {
+    width: 100%;
+    z-index: 120;
+    background: #F6F7FB;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
   .form {
     width: 280px;
     display: flex;
@@ -22,6 +44,10 @@
     margin: 0 auto;
     display: block;
   }
+
+    .formHidden {
+      display: none;
+    }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1279px) {
@@ -131,3 +157,12 @@
   border: 1px solid #242a37;
   cursor: pointer;
 }
+
+.inputTitle,
+.inputAuthor,
+.inputDate,
+.inputPages {
+  padding-left: 10px;
+}
+
+
