@@ -9,7 +9,7 @@
 
 @media screen and (min-width: 768px) {
     .myGoalMainBox {
-        width: 704px;
+        width: 768px;
         height: 105px;
         display: flex;
         align-items: center;
