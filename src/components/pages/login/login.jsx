@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import Media from 'react-media';
 import AuthModal from '../../authModal/authModal';
 import RepeatVerify from '../repeatVerify/repeatVerify';
-import getPhrases from '../../phrases/getPhrases';
+//  import getPhrases from '../../phrases/getPhrases';
 import LoginPhrase from './loginPhrase';
 import { useTranslation } from 'react-i18next';
 
@@ -24,8 +24,9 @@ const Login = () => {
   const dispatch = useDispatch();
   const [err, setErr] = useState('');
   const [modal, setModal] = useState(false);
-  const [phrase, setPhrase] = useState(getPhrases());
+  // const [phrase, setPhrase] = useState(getPhrases());
   const { t } = useTranslation();
+
 
   const [verifyModal, setVerifyModal] = useState(false);
   const [inputType, setInputType] = useState('password');
@@ -209,7 +210,7 @@ const Login = () => {
           <svg className={styles.svg__qutation}>
             <use href={svgPath.quatation + '#quatation'}></use>
           </svg>
-          <LoginPhrase phrase={phrase} />
+          <LoginPhrase  />
         </div>
       </section>
     </>

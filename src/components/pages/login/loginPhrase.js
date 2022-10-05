@@ -1,11 +1,17 @@
 import styles from './login.module.css';
+import { useTranslation } from 'react-i18next';
 
-const loginPhrase = ({ phrase }) => {
+const loginPhrase = ( ) => {
+
+  const { t } = useTranslation();
+  const index = Math.floor(Math.random() * 10) + 1;
+  // console.log('phrase', phrase);
   return (
     <>
-      <p className={styles.quote}>{phrase.text}</p>
+   
+       <p className={styles.quote}>{t(`phrase_text_${index}`)}</p>
       <hr className={styles.hr} />
-      <h2 className={styles.author}>{phrase.author}</h2>
+      <h2 className={styles.author}>{t(`phrase_author_${index}`)}</h2> 
     </>
   );
 };
