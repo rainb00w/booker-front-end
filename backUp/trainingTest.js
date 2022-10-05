@@ -15,7 +15,7 @@ const Training = () => {
   const [startTraining, setStartTraining] = useState(false);
 
   const trainingData = useGetAllTrainingsQuery();
-  console.log(trainingData);
+  // console.log(trainingData);
 
   const { data } = useGetAllBooksQuery();
   const booksOptions = data?.payload.books;
