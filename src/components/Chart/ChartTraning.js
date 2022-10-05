@@ -79,7 +79,6 @@ const ChartTraning = ({ trainingData }) => {
   datesArray.forEach((item, index) => {
     if (isArrayNotEmpty(normalizedResults)) {
       const foundValue = normalizedResults.find(result => result.date === item)
-      console.log(foundValue)
       if (foundValue) {
         resultData[index] = foundValue.pages;
       } else {

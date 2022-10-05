@@ -354,11 +354,9 @@ const Training = () => {
               )}
             </div>
 
-            {trainingData?.data?.results?.length > 0 && (
-              <div className={s.gridItem3}>
-                <ChartTraning trainingData={trainingData.data} />
-              </div>
-            )}
+            <div className={s.gridItem3}>
+              <ChartTraning trainingData={trainingData.data} />
+            </div>
 
             <div className={s.gridItem4}>
               <h2 className={s.resultsHeader}> {t('results')}</h2>
