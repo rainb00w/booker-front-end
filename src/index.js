@@ -12,7 +12,7 @@ import './index.scss';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter basename="/booker-front-end">
+    <BrowserRouter >
       <Provider store={store}>
         <Suspense fallback={<div>Loading...</div>}>
           <App />

@@ -1,7 +1,6 @@
 {
   "name": "booker-front-end",
   "version": "0.1.0",
-  "homepage": "https://rainb00w.github.io/booker-front-end/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.4",
@@ -51,7 +50,7 @@
     "eject": "react-scripts eject",
     "lint:js": "eslint src/**/*.{js,jsx}",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "netlify deploy -p"
   },
   "browserslist": {
     "production": [
