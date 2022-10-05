@@ -4,9 +4,8 @@ import BookTable from '../../components/bookTable/bookTable';
 import BookTableMobile from 'components/bookTable/bookMobileTable';
 import BtnMyTraining from 'components/BtnLibrary/btnMyTraining';
 import AddBookBtnMobile from '../../components/addBookBtnMobile/addBookBtnMobile';
-// import RatingBook from 'components/RatingBook';
 import { useMediaQuery } from 'react-responsive';
-import s from './library.module.css';
+
 import { useGetAllBooksQuery } from 'redux/books/booksApi';
 import Info from '../../components/EmptyLibrary/EmptyLibrary';
 
@@ -23,14 +22,14 @@ const Library = () => {
   return (
     <>
       {data?.payload.books.length > 0 ? (
-        <div className={s.section}>
+        <div>
           {mobile && <AddBookBtnMobile handleClick={handleClickAdd} />}
           <BookAddForm handleClickClose={handleClickClose} showAdd={showAdd} />
           {mobile ? <BookTableMobile /> : <BookTable />}
           <BtnMyTraining />
         </div>
       ) : (
-        <div className={s.section}>
+        <div>
           {mobile && (
             <>
               <AddBookBtnMobile handleClick={handleClickAdd} />
