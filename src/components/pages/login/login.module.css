@@ -356,7 +356,7 @@ position: relative;
 
 .svg__eyeOffCont{
     position: absolute;
-    top: 40px;
+    top: 40%;
     right: 10px;
     stroke: #898F9F;
 }
