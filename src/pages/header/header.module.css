@@ -79,6 +79,7 @@
 }
 
 .button_exit{
+  width: 55px;
     border: none;
     border-bottom: 1px solid #242A37 ;
     background-color: transparent;
