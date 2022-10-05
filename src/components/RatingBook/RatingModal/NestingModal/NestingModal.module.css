@@ -1,0 +1,22 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(43, 43, 43, 0.1);
+    width: 100vw;
+    height: 100vh;
+    z-index: 999;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.container {
+    position: absolute;
+    margin: 0 auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background: white;
+    box-shadow: 10px 10px 20px rgba(9, 30, 63, 0.2);
+}
