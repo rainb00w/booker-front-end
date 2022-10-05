@@ -1,6 +1,7 @@
 body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
+  background-color: #F6F7FB;
 }
 
 * {
@@ -31,7 +32,8 @@ h4,
 h5,
 h6,
 p,
-li {
+li,
+ol {
   margin: 0px;
   padding: 0px;
 }

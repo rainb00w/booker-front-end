@@ -25,25 +25,23 @@ import sprite from '../../img/sprite.svg';
 const DatePickerTrainingStyled = styled.div`
   @media screen and (min-width: 768px) {
     display: flex;
-    justify-content: space-evenly;
-    margin-top: 30px;
+    gap: 40px;
   }
 
   @media screen and (min-width: 1280px) {
     display: flex;
     justify-content: center;
-    margin-top: 25px;
   }
 
   .datePickerWrapper {
     position: relative;
-
-    @media screen and (min-width: 1280px) {
-      &:not(:first-child) {
-        margin-left: 45px;
+    @media screen and (max-width: 767px) {
+      &:first-of-type {
+        margin-bottom: 20px;
       }
     }
   }
+
   .datePickerIcon {
     position: absolute;
     left: 17px;
@@ -51,6 +49,7 @@ const DatePickerTrainingStyled = styled.div`
     width: 17px;
     height: 17px;
   }
+
   .datePickerIconPolygon {
     position: absolute;
     right: 18px;
@@ -58,26 +57,44 @@ const DatePickerTrainingStyled = styled.div`
     width: 13px;
     height: 7px;
   }
-  .datePickerTraining {
-    font-size: 14px;
-    line-height: 2.71;
-
-    color: black;
-
-    padding-left: 47px;
-    width: 270px;
-    height: 42px;
-    margin-bottom: 20px;
-    border: 1px solid black;
-
-    @media screen and (min-width: 768px) {
-      width: 250px;
-    }
-    .datePicker .datePickerTraining {
-      background-color: black;
-    }
-  }
 `;
+
+const applicationStyles = {
+  control: (provided) => ({
+    ...provided,
+    width: 280,
+    height: 42,
+    marginBottom: 32,
+    borderRadius: 0,
+    cursor: 'pointer',
+    '@media screen and (min-width: 768px)': {
+      width: 483,
+      marginBottom: 0,
+    },
+    '@media screen and (min-width: 1280px)': {
+      width: 715,
+    },
+  }),
+  singleValue: (provided) => ({
+    ...provided,
+    color: '#A6ABB9',
+  }),
+  dropdownIndicator: (provided) => ({
+    ...provided,
+    fill: '#242A37',
+    padding: 12,
+  })
+};
+
+const DropdownIndicator = props => {
+  return (
+    <components.DropdownIndicator {...props}>
+      <svg width='13px' height='7px' className="datePickerIconPolygon">
+        <use href={sprite + '#icon-polygon'} />
+      </svg>
+    </components.DropdownIndicator>
+  );
+};
 
 const Training = () => {
   const { data } = useGetAllBooksQuery();
@@ -201,33 +218,14 @@ const Training = () => {
         <div>{isLoading && <p>In process...</p>}</div>
         <div className={s.gridItem1}>
           {isEmptyTraining ? (
-            <>
+            <div className={s.myTrainingContainer}>
               <h3 className={s.myTrainingHeader}>Моє тренування </h3>
-              <div>
-                <SelectBooksFirstStyled>
-                  <Select
-                    defaultValue={{ value: null, label: 'Оберіть книгу' }}
-                    options={selectedOptions}
-                    placeholder="Choose books from the library"
-                    closeMenuOnSelect={true}
-                    onChange={handleSelectBook}
-                  />
-                  <button
-                    disabled={disable}
-                    className="selectBooksButton"
-                    onClick={addBookToSelected}
-                  >
-                    add
-                  </button>
-                </SelectBooksFirstStyled>
-              </div>
-
-              <div>
+              <div className={s.datePicker_wrapper}>
                 <DatePickerTrainingStyled className="datePicker">
                   <div className="datePickerWrapper">
                     <DatePicker
-                      className="datePickerTraining"
-                      placeholderText="start"
+                      className={s.datePicker}
+                      placeholderText="Start"
                       dateFormat="dd.MM.yyyy"
                       selected={startDate}
                       onChange={handleStartSelect}
@@ -245,9 +243,9 @@ const Training = () => {
                   </div>
                   <div className="datePickerWrapper">
                     <DatePicker
-                      className="datePickerTraining"
+                      className={s.datePicker}
                       dateFormat="dd.MM.yyyy"
-                      placeholderText="finish"
+                      placeholderText="Finish"
                       selected={endDate}
                       onChange={handleEndSelect}
                       selectsEnd
@@ -264,9 +262,29 @@ const Training = () => {
                   </div>
                 </DatePickerTrainingStyled>
               </div>
-            </>
+              <div className={s.select_container}>
+                <SelectBooksFirstStyled>
+                  <Select
+                    defaultValue={{ value: null, label: 'Оберіть книгу' }}
+                    options={selectedOptions}
+                    placeholder="Choose books from the library"
+                    closeMenuOnSelect={true}
+                    onChange={handleSelectBook}
+                    styles={applicationStyles}
+                    components={{ DropdownIndicator }}
+                  />
+                  <button
+                    disabled={disable}
+                    className={s.selectButton}
+                    onClick={addBookToSelected}
+                  >
+                    add
+                  </button>
+                </SelectBooksFirstStyled>
+              </div>
+            </div>
           ) : (
-            <div className={s.timerSection}>
+            <div className={s.gridItem5}>
               <div>
                 <Timer selectedDate={endYear} title={yearTitle} />
               </div>
@@ -277,7 +295,7 @@ const Training = () => {
           )}
 
           {booksArrayToSend && (
-            <div>
+            <div className={s.myTrainingContainer}>
               <BookTableTraining
                 booksList={booksArrayToSend}
                 isEmptyTraining={isEmptyTraining}
@@ -289,7 +307,7 @@ const Training = () => {
                 isEmptyTraining={isEmptyTraining}
               />
               {isEmptyTraining && <button
-                className={s.startTraingButton}
+                className={s.startTrainingButton}
                 onClick={() => startTraining()}
               >
                 Почати тренування
@@ -321,8 +339,8 @@ const Training = () => {
 export default Training;
 
 {
-  /* 
-    startDate={}  
+  /*
+    startDate={}
   {booksThatNotSelected?.map(element => (
           <div key={element._id}>
             <input

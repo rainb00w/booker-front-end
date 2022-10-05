@@ -61,10 +61,10 @@ const Header = () => {
   }, [LINCK_ID]);
 
   return (
-    <>
+    <div className={s.main_wrapper}>
       <div className="main_container">
         {/* кнопки не удалял, чтобы можно было на формулы посмотреть
-      
+
       <button onClick={() => changeLanguage('en')}>EN</button>
       <button onClick={() => changeLanguage('ua')}>UA</button>
       <div> {t('text')} </div> */}
@@ -147,7 +147,7 @@ const Header = () => {
           </Modal>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

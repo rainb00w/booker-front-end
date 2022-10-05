@@ -68,7 +68,7 @@ export default function CustomizedSwitches({ onChangeLanguage }) {
     <FormGroup>
       <Stack direction="row" spacing={1} alignItems="center">
         <Typography>
-          <span className={s.swithText}>{lang ? 'UA' : 'EN'}</span>
+          <span className={s.switchText}>{lang ? 'UA' : 'EN'}</span>
         </Typography>
         <AntSwitch
           inputProps={{ 'aria-label': 'ant design' }}
