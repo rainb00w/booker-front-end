@@ -16,7 +16,7 @@ const SendPageForm = ({ startDate = null }) => {
     ].join('-');
   };
 
-  console.log(new Date(startDate).yyyymmdd(), 'Дата початку тренування');
+  // console.log(new Date(), 'Дата початку тренування');
 
   const formik = useFormik({
     initialValues: {
@@ -37,7 +37,11 @@ const SendPageForm = ({ startDate = null }) => {
         .required('Введіть кількість сторінок'),
     }),
     onSubmit: ({ dateInput, pageInput }, { resetForm }) => {
-      console.log({ date: dateInput, pages: pageInput });
+      console.log({
+        date: dateInput,
+        time: new Date(),
+        pages: pageInput,
+      });
       resetForm();
     },
   });
@@ -59,7 +63,7 @@ const SendPageForm = ({ startDate = null }) => {
           />
         </label>
         <label className={s.inputsLabel}>
-           {t('amountOfPages_results')}
+          {t('amountOfPages_results')}
           {formik.errors.pageInput && formik.touched.pageInput ? (
             <div>{formik.errors.pageInput}</div>
           ) : null}
@@ -73,7 +77,7 @@ const SendPageForm = ({ startDate = null }) => {
         </label>
       </div>
       <button className={s.addResultBtn} type="submit">
-           {t('addResult')}
+        {t('addResult')}
       </button>
     </form>
   );
