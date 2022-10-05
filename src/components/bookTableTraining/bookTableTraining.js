@@ -15,7 +15,7 @@ export default function BookTableTraining({
   };
   const { t } = useTranslation();
 
-  console.log(booksList.length);
+
 
   return (
     <>
