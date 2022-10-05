@@ -31,10 +31,11 @@ export const trainingApi = createApi({
       }),
       invalidatesTags: ['Training'],
     }),
-    deleteTraining: builder.mutation({
-      query: id => ({
-        url: `/${id}`,
-        method: 'DELETE',
+    updateTraining: builder.mutation({
+      query: ({date, pages}) => ({
+        url: `/`,
+        method: 'PATCH',
+        body: {date, pages },
       }),
       invalidatesTags: ['Training'],
     }),
@@ -44,5 +45,5 @@ export const trainingApi = createApi({
 export const {
   useGetAllTrainingsQuery,
   useAddTrainingMutation,
-  useDeleteTrainingMutation,
+  useUpdateTrainingMutation,
 } = trainingApi;
