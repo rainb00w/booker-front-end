@@ -94,10 +94,11 @@ const Header = () => {
               {statistic && (
                 <nav className={s.nav}>
                   <NavLink
+                    to="/"
+                    end
                     className={({ isActive }) =>
                       isActive ? s.active_link : s.link
                     }
-                    to="/"
                   >
                     <Tooltip title="library">
                       <img src={library} alt="library" />
@@ -108,7 +109,7 @@ const Header = () => {
                     className={({ isActive }) =>
                       isActive ? s.active_link : s.link
                     }
-                    to="/training"
+                    to="training"
                   >
                     <Tooltip title="training">
                       <img src={home} alt="home" />

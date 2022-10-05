@@ -13,8 +13,6 @@ import Statistics from './pages/statistics/statistics';
 import PrivateRoute from './components/routes/privateRoute';
 import PublicRoute from './components/routes/publicRoute';
 
-
-
 // const Header = lazy(() => import('./pages/header'));
 // const Library = lazy(() => import('./pages/library/library'));
 // const Statistics = lazy(() => import('./pages/statistics/statistics'));
@@ -22,79 +20,77 @@ import PublicRoute from './components/routes/publicRoute';
 
 function App() {
   return (
-  <>
-    <Header />
-      <div className="main_container"> 
-      <Suspense fallback="Load...">
-        <Routes>
-          {/* <Route path="/" element={<Library />} /> */}
+    <>
+      <Header />
+      <div className="main_container">
+        <Suspense fallback="Load...">
+          <Routes>
+            {/* <Route path="/" element={<Library />} /> */}
 
-          <Route
-            path="/"
-            element={
-              <PrivateRoute>
-                <Library />
-              </PrivateRoute>
-            }
-          />
+            <Route
+              path="/"
+              element={
+                <PrivateRoute>
+                  <Library />
+                </PrivateRoute>
+              }
+            />
 
-          <Route
-            path="/statistics"
-            element={
-              <PrivateRoute>
-                <Statistics />
-              </PrivateRoute>
-            }
-          />
+            <Route
+              path="/statistics"
+              element={
+                <PrivateRoute>
+                  <Statistics />
+                </PrivateRoute>
+              }
+            />
 
-          <Route
-            path="/training"
-            element={
-              <PrivateRoute>
-                <Training />
-              </PrivateRoute>
-            }
-          />
+            <Route
+              path="/training"
+              element={
+                <PrivateRoute>
+                  <Training />
+                </PrivateRoute>
+              }
+            />
 
-          <Route
-            path="/login"
-            element={
-              <PublicRoute restricted>
-                <LoginPage />
-              </PublicRoute>
-            }
-          />
+            <Route
+              path="/login"
+              element={
+                <PublicRoute restricted>
+                  <LoginPage />
+                </PublicRoute>
+              }
+            />
 
-          <Route
-            path="/register"
-            element={
-              <PublicRoute restricted>
-                <RegistrationPage />
-              </PublicRoute>
-            }
-          />
+            <Route
+              path="/register"
+              element={
+                <PublicRoute restricted>
+                  <RegistrationPage />
+                </PublicRoute>
+              }
+            />
 
-          <Route
-            path="/changePassword"
-            element={
-              <PublicRoute restricted>
-                <ChangePasswordPage />
-              </PublicRoute>
-            }
-          />
+            <Route
+              path="/changePassword"
+              element={
+                <PublicRoute restricted>
+                  <ChangePasswordPage />
+                </PublicRoute>
+              }
+            />
 
-          {/* 
+            {/* 
           <Route exact path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegistrationPage />} /> */}
-          {/* <Route path="/statistics" element={<Statistics />} /> */}
-          {/* <Route path="/training" element={<Training />} /> */}
-          <Route path="*" element={<p>There is nothing here: 404!</p>} />
-        </Routes>
-      </Suspense>
-    </div>
-  </>
-   
-    
+            {/* <Route path="/statistics" element={<Statistics />} /> */}
+            {/* <Route path="/training" element={<Training />} /> */}
+            <Route path="*" element={<p>There is nothing here: 404!</p>} />
+          </Routes>
+        </Suspense>
+      </div>
+    </>
   );
 }
 

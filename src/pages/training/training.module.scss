@@ -1,6 +1,6 @@
 .main_container {
- margin-left: auto;
-  margin-right: auto; 
+  margin-left: auto;
+  margin-right: auto;
 
   @media screen and (min-width: 768px) {
     body {
@@ -14,11 +14,10 @@
       overflow-x: hidden;
     }
     max-width: 1280px;
-  } 
+  }
 }
 
 .gridContainer {
-  
   @media screen and (max-width: 1279px) {
     display: flex;
     flex-direction: column;
@@ -36,9 +35,9 @@
 }
 
 .gridItem1 {
-  margin-bottom: 32px;
+  margin-bottom: 20px;
   @media screen and (min-width: 768px) {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
   }
   @media screen and (min-width: 1280px) {
     grid-area: headmain;
@@ -81,15 +80,25 @@
   }
   @media screen and (min-width: 1280px) {
     width: 288px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     grid-area: sidebar;
   }
 }
 
 .gridItem5 {
+  
   @media screen and (min-width: 768px) and (max-width: 1279px) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
     width: 704px;
     padding: 28px 96px 32px 96px;
+  }
+  @media screen and (min-width: 1280px)  {
+    display: flex;
+  align-items: center;
+  justify-content: center;
+    margin: 20px 0 0 0;
   }
 }
 
@@ -100,11 +109,11 @@
   @media screen and (min-width: 768px) {
     width: 768px;
   }
-    @media screen and (min-width: 1280px) {
-      width: 928px;
-      margin-top: 40px;
-      margin-right: 32px;
-    }
+  @media screen and (min-width: 1280px) {
+    width: 928px;
+    margin-top: 40px;
+    margin-right: 32px;
+  }
 }
 
 .myTrainingHeader {
@@ -172,13 +181,13 @@
 }
 
 .selectButton:hover {
-  border: 1px solid #F25137;
+  border: 1px solid #f25137;
 }
 
 .selectButton:disabled {
-  color: #898F9F;
+  color: #898f9f;
   background-color: transparent;
-  border: 1px solid #898F9F;
+  border: 1px solid #898f9f;
   cursor: initial;
 }
 
@@ -198,7 +207,7 @@
   font-weight: 500;
   font-size: 14px;
   line-height: 1.21;
-  color: #A6ABB9;
+  color: #a6abb9;
   background: #f6f7fb;
   border: 1px solid #a6abb9;
   cursor: pointer;
@@ -252,7 +261,7 @@
   content: ' ';
   height: 1px;
   width: 100%;
-  background: #E0E5EB;
+  background: #e0e5eb;
 }
 
 .statisticsHeader::before {
@@ -303,6 +312,120 @@
     font-size: 16px;
     line-height: 1.25;
     font-weight: 600;
+  }
+}
+
+.profileMainLoader {
+  margin: 50px 0 0 0 ;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.profileMainLoader .loader {
+  position: relative;
+  margin: 0px auto;
+  width: 100px;
+  height: 100px;
+}
+.profileMainLoader .loader:before {
+  content: '';
+  display: block;
+  padding-top: 100%;
+}
+
+.circular_loader {
+  -webkit-animation: rotate 2s linear infinite;
+  animation: rotate 2s linear infinite;
+  height: 100%;
+  -webkit-transform-origin: center center;
+  -ms-transform-origin: center center;
+  transform-origin: center center;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: auto;
+}
+
+.loader_path {
+  stroke-dasharray: 150, 200;
+  stroke-dashoffset: -10;
+  -webkit-animation: dash 1.5s ease-in-out infinite,
+    color 6s ease-in-out infinite;
+  animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+  stroke-linecap: round;
+}
+
+@-webkit-keyframes rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124;
+  }
+}
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124;
+  }
+}
+@-webkit-keyframes color {
+  0% {
+    stroke: #ff6b08;
+  }
+  40% {
+    stroke: #ff6b08;
+  }
+  66% {
+    stroke: #ff6b08;
+  }
+  80%,
+  90% {
+    stroke: #ff6b08;
+  }
+}
+@keyframes color {
+  0% {
+    stroke: #ff6b08;
+  }
+  40% {
+    stroke: #ff6b08;
+  }
+  66% {
+    stroke: #ff6b08;
+  }
+  80%,
+  90% {
+    stroke: #ff6b08;
   }
 }
 

@@ -13,12 +13,13 @@
     }
   .formCont {
     width: 100%;
+    height: 100%;
     z-index: 120;
     background: #F6F7FB;
     position: absolute;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     flex-wrap: nowrap;
   }
   .form {

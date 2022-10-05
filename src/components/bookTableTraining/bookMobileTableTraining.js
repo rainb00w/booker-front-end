@@ -15,58 +15,90 @@ export default function BookMobileTableTraining({
   };
 
   const { t } = useTranslation();
-  
+
   return (
     <>
-      <section className={s.section}>
-        <ul className={s.booksList}>
-          {booksList.map(({ _id, author, pages, title, year, status }) => (
-            <li key={_id} className={s.booksListItem}>
-              {(status === 'toRead' ||
-                status === 'reading' ||
-                isEmptyTraining) && (
-                <svg width={22} height={17} className={s.bookIcon}>
-                  <use href={`${icons}#white_book`}></use>
-                </svg>
-              )}
-              {status === 'readed' && !isEmptyTraining && (
-                <svg width={22} height={17} className={s.bookIcon}>
-                  <use href={`${icons}#yellow_book`}></use>
-                </svg>
-              )}
+      {booksList.length === 0 && (
+        <section className={s.sectionEmpty}>
+          <ul className={s.booksListEmpty}>
+            <li className={s.booksListItem}>
+              <svg width={22} height={17} className={s.bookIcon}>
+                <use href={`${icons}#white_book`}></use>
+              </svg>
+
               <div className={s.mobileContainer}>
                 <p className={s.subtitle1}>
-                  <span className={s.titleMobile}>{title}</span>
-
-                  {isEmptyTraining && (
-                    <button
-                      id={_id}
-                      type="button"
-                      className={s.btnDelete}
-                      onClick={handleDelete}
-                    >
-                      <svg width={22} height={17} className={s.bookIcon}>
-                        <use href={`${icons}#icon-delete`}></use>
-                      </svg>
-                    </button>
-                  )}
+                  <span className={s.titleMobile}>...</span>
                 </p>
                 <p className={s.subtitle}>
-                  <span className={s.topic}>   {t('book_author')}:</span> {author}
+                  <span className={s.topic}> {t('book_author')}:</span> ...
                 </p>
                 <p className={s.subtitle}>
                   <span className={s.topic}> {t('book_year')}:</span>
-                  {year}
+                  ...
                 </p>
                 <p className={s.subtitle}>
                   <span className={s.topic}> {t('book_pages')}:</span>
-                  {pages}
+                  ...
                 </p>
               </div>
             </li>
-          ))}
-        </ul>
-      </section>
+          </ul>
+        </section>
+      )}
+
+      {booksList.length !== 0 && (
+        <section className={s.section}>
+          <ul className={s.booksList}>
+            {booksList.map(({ _id, author, pages, title, year, status }) => (
+              <li key={_id} className={s.booksListItem}>
+                {(status === 'toRead' ||
+                  status === 'reading' ||
+                  isEmptyTraining) && (
+                  <svg width={22} height={17} className={s.bookIcon}>
+                    <use href={`${icons}#white_book`}></use>
+                  </svg>
+                )}
+                {status === 'readed' && !isEmptyTraining && (
+                  <svg width={22} height={17} className={s.bookIcon}>
+                    <use href={`${icons}#yellow_book`}></use>
+                  </svg>
+                )}
+                <div className={s.mobileContainer}>
+                  <p className={s.subtitle1}>
+                    <span className={s.titleMobile}>{title}</span>
+
+                    {isEmptyTraining && (
+                      <button
+                        id={_id}
+                        type="button"
+                        className={s.btnDelete}
+                        onClick={handleDelete}
+                      >
+                        <svg width={22} height={17} className={s.bookIcon}>
+                          <use href={`${icons}#icon-delete`}></use>
+                        </svg>
+                      </button>
+                    )}
+                  </p>
+                  <p className={s.subtitle}>
+                    <span className={s.topic}> {t('book_author')}:</span>{' '}
+                    {author}
+                  </p>
+                  <p className={s.subtitle}>
+                    <span className={s.topic}> {t('book_year')}:</span>
+                    {year}
+                  </p>
+                  <p className={s.subtitle}>
+                    <span className={s.topic}> {t('book_pages')}:</span>
+                    {pages}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
     </>
   );
 }
