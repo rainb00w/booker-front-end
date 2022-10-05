@@ -22,6 +22,7 @@ import Timer from 'components/Timer/Timer';
 import convertMs from 'components/Timer/convertMs';
 import FormikControl from 'components/FormikControl';
 import sprite from '../../img/sprite.svg';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const DatePickerTrainingStyled = styled.div`
   @media screen and (min-width: 768px) {
@@ -202,7 +203,7 @@ const Training = () => {
 
     addTraining(array)
       .unwrap()
-      .catch(error => console.error('rejected', error));
+      .catch(error =>  Notify.success(error.data.message))
 
     // .then(payload => console.log('fulfilled', payload))
   };
@@ -354,9 +355,14 @@ const Training = () => {
               )}
             </div>
 
+            {/* {trainingData?.data?.results?.length > 0 && (
+              
+            )} */}
             <div className={s.gridItem3}>
-              <ChartTraning trainingData={trainingData.data} />
-            </div>
+                <ChartTraning trainingData={trainingData.data} />
+              </div>
+
+      
 
             <div className={s.gridItem4}>
               <h2 className={s.resultsHeader}> {t('results')}</h2>
