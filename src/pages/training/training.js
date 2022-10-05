@@ -284,7 +284,7 @@ const Training = () => {
               </div>
             </div>
           ) : (
-            <div className={s.timerSection}>
+            <div className={s.gridItem5}>
               <div>
                 <Timer selectedDate={endYear} title={yearTitle} />
               </div>
@@ -307,7 +307,7 @@ const Training = () => {
                 isEmptyTraining={isEmptyTraining}
               />
               {isEmptyTraining && <button
-                className={s.startTraingButton}
+                className={s.startTrainingButton}
                 onClick={() => startTraining()}
               >
                 Почати тренування
