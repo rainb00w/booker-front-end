@@ -104,7 +104,7 @@ const Training = () => {
   const trainingData = useGetAllTrainingsQuery();
   // trainingData это объект, данные доступны  => trainingData.data
 
-  // console.log('DATA', data.payload.books);
+ console.log('DATA', trainingData.data);
   const sendToStatisticStartDate = trainingData?.data?.startDate;
   const sendToStatisticResults = trainingData?.data?.results
   // console.log('startDate', trainingData.data.startDate ,'array', trainingData.data.results );
@@ -325,7 +325,7 @@ const Training = () => {
         </div>
 
         <div className={s.gridItem3}>
-          <ChartTraning />
+          <ChartTraning trainingData={trainingData.data}/>
         </div>
 
         <div className={s.gridItem4}>
