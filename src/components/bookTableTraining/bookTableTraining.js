@@ -15,25 +15,35 @@ export default function BookTableTraining({
   };
   const { t } = useTranslation();
 
+  console.log(booksList.length);
+
   return (
     <>
       <section className={s.sectionTable}>
         <table className={s.table}>
           <thead className={s.thead}>
             <tr className={s.tr}>
-              <th className={s.topic}>   {t('book_title')}</th>
+              <th className={s.topic}> {t('book_title')}</th>
               <th className={s.topic} width="25%">
-          {t('book_author')}
+                {t('book_author')}
               </th>
               <th className={s.topic} width="15%">
-            {t('book_year')}
-              </th> 
+                {t('book_year')}
+              </th>
               <th className={s.topic} width="20%">
-            {t('book_pages')}
+                {t('book_pages')}
               </th>
             </tr>
           </thead>
         </table>
+        {booksList.length === 0 && (
+          <div className={s.containerEmpty}>
+            <svg width={22} height={17} className={s.bookIcon}>
+              <use href={`${icons}#white_book`}></use>
+            </svg>
+            <span className={s.spanEmpty}>...</span>
+          </div>
+        )}
         <div className={s.container}>
           <table className={s.table}>
             <tbody className={s.tbody}>
