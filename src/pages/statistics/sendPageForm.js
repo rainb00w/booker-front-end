@@ -1,10 +1,12 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useTranslation } from 'react-i18next';
+import { useUpdateTrainingMutation } from '../../redux/books/trainingApi';
 import s from './statisticsList.module.css';
 
 const SendPageForm = ({ startDate = null }) => {
   const { t } = useTranslation();
+  const [updateTraining] = useUpdateTrainingMutation();
   Date.prototype.yyyymmdd = function () {
     let mm = this.getMonth() + 1; // getMonth() is zero-based
     let dd = this.getDate();
@@ -34,14 +36,14 @@ const SendPageForm = ({ startDate = null }) => {
         .max(999, 'Забагато сторінок')
         .required('Введіть кількість сторінок'),
     }),
-    onSubmit: ({ dateInput, pageInput }, { resetForm }) => {
+    onSubmit: async ({ dateInput, pageInput }, { resetForm }) => {
       let dateToSend = new Date();
       const year = dateInput.toString().slice(0, 4);
       const month = dateInput.toString().slice(5, 7);
       const day = dateInput.toString().slice(8, 10);
       dateToSend.setFullYear(year, month - 1, day);
-      console.log({
-        time: dateToSend,
+      await updateTraining({
+        date: dateToSend,
         pages: pageInput,
       });
       resetForm();
