@@ -217,7 +217,7 @@ const Training = () => {
 
   return (
     <>
-    <div className={s.main_container}> 
+    <div className={s.main_container}>
       <div className={s.gridContainer}>
         <div>{isLoading && <p>In process...</p>}</div>
         <div className={s.gridItem1}>
@@ -314,7 +314,7 @@ const Training = () => {
                 className={s.startTrainingButton}
                 onClick={() => startTraining()}
               >
-              
+
                 {t('startTraning')}
               </button>}
             </div>
@@ -325,15 +325,15 @@ const Training = () => {
           <MyGoal days={daysNumber} books={booksNumber} />
         </div>
 
-        <div className={s.gridItem3}>
-          <ChartTraning trainingData={trainingData.data}/>
-        </div>
+        {trainingData.data.results.length > 0 && (<div className={s.gridItem3}>
+             <ChartTraning trainingData={trainingData.data} />
+        </div>)}
 
         <div className={s.gridItem4}>
-          <h2 className={s.resultsHeader}> {t('results')}</h2>   
+          <h2 className={s.resultsHeader}> {t('results')}</h2>
           <SendPageForm startDate={sendToStatisticStartDate}/>
 
-          <h2 className={s.statisticsHeader}> {t('statistics')}</h2>   
+          <h2 className={s.statisticsHeader}> {t('statistics')}</h2>
           <StatisticsList results={sendToStatisticResults} />
         </div>
       </div>
