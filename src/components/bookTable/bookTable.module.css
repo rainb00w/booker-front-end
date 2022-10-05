@@ -161,10 +161,17 @@
   font-size: 14px;
   line-height: 1.21;
   color: #ffffff;
-  background: #6d7a8d;
+  background-color: #6d7a8d;
+  border: none;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
   cursor: pointer;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+.btn:hover,
+.btn:focus {
+  background-color: #898f9f;
+}
+
 .btnDelete {
   background-color: inherit;
   border: 0;
