@@ -27,13 +27,13 @@ const Header = () => {
   const isLoggedInName = useSelector(authSelectors.getUsername);
   const googleAvatar = useSelector(authSelectors.getGoogleAvatar);
 
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState(isLoggedInName);
 
   useEffect(() => {
-    if (!user) {
+    if (!user || user !== isLoggedInName) {
       setUser(isLoggedInName);
     }
-  }, [user]);
+  });
 
   const { t, i18n } = useTranslation();
   const changeLanguage = language => {
