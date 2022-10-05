@@ -248,7 +248,7 @@ const Registration = () => {
                     )}
                   </label>
                   <button className={styles.form__button} type="submit">
-                  {t('register')}
+                  {t('signUp')}
                   </button>
                 </form>
               )}

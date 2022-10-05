@@ -4,6 +4,7 @@
   "password": "Password",
   "login": "Login",
   "register": "Register",
+  "signUp": "Sign Up",
   "name": "Name",
   "confirmPassword": "Confirm password",
   "alreadyHaveAnAccount": "Already have an account?",
