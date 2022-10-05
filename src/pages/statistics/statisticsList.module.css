@@ -57,7 +57,7 @@
 }
 
 .addResultBtn:hover {
-  background-color: #D15807;
+  background-color: #d15807;
 }
 
 .resultsHeader,
@@ -76,11 +76,12 @@
   margin-bottom: 4px;
   font-weight: 700;
 }
-.statisticsHeader::after, .statisticsHeader::before {
+.statisticsHeader::after,
+.statisticsHeader::before {
   content: ' ';
   height: 1px;
   width: 72px;
-  background: #E0E5EB;
+  background: #e0e5eb;
 }
 .statisticsHeader::before {
   margin-right: 4px;
@@ -129,6 +130,31 @@ input[type='number']:focus {
   appearance: none;
   -moz-appearance: textfield;
 }
+/* убираем  календарика */
+input[type='date']::-webkit-calendar-picker-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  height: auto;
+  color: transparent;
+  background: transparent;
+}
+
+.inputDate {
+  position: relative;
+}
+.inputDate:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 15px;
+  right: 5px;
+  border: 5px solid transparent;
+  border-top: 10px solid #242a37;
+}
 
 @media screen and (min-width: 768px) and (max-width: 1279px) {
   .container {
@@ -176,7 +202,7 @@ input[type='number']:focus {
 }
 @media screen and (min-width: 1280px) {
   .container {
-      width: 288px;
-      padding: 20px 24px 22px 24px;
-    }
+    width: 288px;
+    padding: 20px 24px 22px 24px;
+  }
 }
