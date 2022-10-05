@@ -69,7 +69,7 @@ const BookAddForm = ({ handleClickClose, showAdd }) => {
           className={s.form}
         >
           <label htmlFor="title" className={s.label}>
-          {t('bookTitle')} *
+            {t('bookTitle')} *
             <input
               id="title"
               name="title"
@@ -84,7 +84,7 @@ const BookAddForm = ({ handleClickClose, showAdd }) => {
             ) : null}
           </label>
           <label htmlFor="author" className={s.label}>
-          {t('author')} *
+            {t('author')} *
             <input
               id="author"
               name="author"
@@ -114,7 +114,7 @@ const BookAddForm = ({ handleClickClose, showAdd }) => {
             ) : null}
           </label>
           <label htmlFor="pages" className={s.label}>
-          {t('amountOfPages')} *
+            {t('amountOfPages')} *
             <input
               id="pages"
               name="pages"
