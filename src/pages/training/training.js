@@ -217,6 +217,7 @@ const Training = () => {
 
   return (
     <>
+    <div className={s.main_container}> 
       <div className={s.gridContainer}>
         <div>{isLoading && <p>In process...</p>}</div>
         <div className={s.gridItem1}>
@@ -335,6 +336,7 @@ const Training = () => {
           <h2 className={s.statisticsHeader}> {t('statistics')}</h2>   
           <StatisticsList results={sendToStatisticResults} />
         </div>
+      </div>
       </div>
     </>
   );
