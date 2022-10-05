@@ -325,7 +325,7 @@ const Training = () => {
           <MyGoal days={daysNumber} books={booksNumber} />
         </div>
 
-        {trainingData.data.results.length > 0 && (<div className={s.gridItem3}>
+        {trainingData?.data?.results?.length > 0 && (<div className={s.gridItem3}>
              <ChartTraning trainingData={trainingData.data} />
         </div>)}
 
