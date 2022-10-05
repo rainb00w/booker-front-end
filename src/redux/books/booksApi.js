@@ -44,7 +44,7 @@ export const booksApi = createApi({
       query: ({ id, resume, rating }) => ({
         url: `/resume/${id}`,
         method: 'PUT',
-        body: { id, resume: resume, rating: rating },
+        body: { resume, rating },
       }),
       invalidatesTags: ['Books'],
     }),

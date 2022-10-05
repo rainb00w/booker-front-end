@@ -8,10 +8,12 @@ import { useUpdateBookResumeMutation } from 'redux/books/booksApi';
 const RatingBook = ({ toggleModal, id, resume, rating }) => {
   const [ratingValue, setRatingValue] = useState(rating);
 
+  console.log(ratingValue);
+
   const [updateBookResume] = useUpdateBookResumeMutation();
 
   const onSave = ({ resume }) => {
-    updateBookResume({ id, ratingValue, resume });
+    updateBookResume({id, rating: ratingValue, resume });
   };
 
   return (
