@@ -118,6 +118,34 @@ const ChartTraning = ({ trainingData }) => {
     ],
   };
 
+  const emptyData = {
+    labels: [, , , , ], // масив дат для кожного дня тренування
+    datasets: [
+      {
+        label: t('plan'),
+        fill: false,
+        lineTension: 0.3,
+        borderColor: '#091e3f',
+        pointBackgroundColor: '#091e3f',
+        pointHoverRadius: 10,
+        pointRadius: 8,
+        PointHitRadius: 10,
+        data: [0, 0, 0, 0, 0], // масив планових значень прочитаних сторінок для кожного дня тренування
+      },
+      {
+        label: t('act'),
+        fill: false,
+        lineTension: 0.3,
+        borderColor: '#ff6b08',
+        pointBackgroundColor: '#ff6b08',
+        pointHoverRadius: 10,
+        pointRadius: 8,
+        PointHitRadius: 10,
+        data: [0, 0, 0, 0, 0], // масив значень кількості прочитаних сторінок для кожного дня тренування
+      },
+    ],
+  };
+
   return (
     <>
       <div className={s.modalBox}>
@@ -132,7 +160,7 @@ const ChartTraning = ({ trainingData }) => {
               <li className={s.lineItem}>  {t('act')}</li>
             </ul>
           </div>
-          <Line options={createOptions(normalizedResults, maxPoint, planData.length)} data={data} />
+          <Line options={createOptions(normalizedResults, maxPoint, planData.length)} data={isArrayNotEmpty(books) ? data : emptyData } />
           <p className={s.chartValue}> {t('time')}</p>
         </div>
       </div>
