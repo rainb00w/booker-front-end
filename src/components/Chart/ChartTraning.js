@@ -48,9 +48,16 @@ function isArrayNotEmpty(array) {
   else return false;
 }
 
-const ChartTraning = ({ trainingData }) => {
+const ChartTraning = ({ trainingData = {
+  startDate: new Date(),
+  finishDate: new Date(),
+  books: [],
+  results: []
+} }) => {
   const { startDate, finishDate, books, results } = trainingData;
   const { t } = useTranslation();
+  console.log(finishDate)
+  console.log(startDate)
   const duration = Date.parse(finishDate) - Date.parse(startDate);
   const totalDays = Math.ceil(duration / (1000 * 3600 * 24));
   const totalBooksPages = books.reduce((acc, item) => acc + item.pages, 0);
