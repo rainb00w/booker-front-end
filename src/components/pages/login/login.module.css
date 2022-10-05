@@ -326,6 +326,8 @@
             rgba(9, 30, 63, 0.8),
             rgba(9, 30, 63, 0.8)),
         url("../../../img/background3.jpg");
+
+        width: 40%;
     }
 
     .form__button {
@@ -338,6 +340,11 @@
 
     .registr__form {
         padding: 90px 75px;
+    }
+
+    .log__text,
+    .registration__text {
+        width: 60%;
     }
 
     .log__text {
