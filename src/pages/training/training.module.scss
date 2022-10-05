@@ -51,14 +51,25 @@
 .gridItem4 {
   font-family: Montserrat;
   width: 280px;
-  background-color: #ffffff;
   padding: 20px 20px 22px 20px;
+  margin-bottom: 32px;
+  background-color: #ffffff;
+  box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
   @media screen and (min-width: 768px) {
     width: 704px;
+    margin-bottom: 53px;
   }
   @media screen and (min-width: 1280px) {
     width: 288px;
+    margin-bottom: 40px;
     grid-area: sidebar;
+  }
+}
+
+.gridItem5 {
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    width: 704px;
+    padding: 28px 96px 32px 96px;
   }
 }
 
@@ -180,72 +191,66 @@
   border: 1px solid #a6abb9;
 }
 
-@media screen and (min-width: 768px) and (max-width: 1279px) {
-  .gridItem5 {
-    width: 704px;
-    padding: 28px 96px 32px 96px;
-  }
-}
-
 .resultsHeader,
 .statisticsHeader {
   text-transform: uppercase;
   font-size: 12px;
   line-height: 1.25;
-  font-weight: 600;
   color: #242a37;
   text-align: center;
   margin-bottom: 12px;
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    font-size: 14px;
+    line-height: 1.21;
+  }
+}
+
+.resultsHeader {
+  font-weight: 600;
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    margin-bottom: 27px;
+  }
 }
 
 .statisticsHeader {
   display: flex;
+  justify-content: center;
   align-items: center;
   margin-bottom: 4px;
   font-weight: 700;
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    justify-content: flex-start;
+    margin-bottom: 6px;
+  }
 }
 
 .statisticsHeader::after,
 .statisticsHeader::before {
   content: ' ';
   height: 1px;
-  width: 72px;
+  width: 100%;
   background: #E0E5EB;
 }
 
 .statisticsHeader::before {
   margin-right: 4px;
-}
 
-.statisticsHeader::after {
-  margin-left: 4px;
-}
-
-@media screen and (min-width: 768px) and (max-width: 1279px) {
-  .resultsHeader,
-  .statisticsHeader {
-    font-size: 14px;
-    line-height: 1.21;
-  }
-
-  .statisticsHeader::before {
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
     width: 0;
     height: 0;
     margin: 0;
   }
+}
 
-  .statisticsHeader::after {
+.statisticsHeader::after {
+  margin-left: 4px;
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
     width: 128px;
     margin-left: 8px;
-  }
-
-  .resultsHeader {
-    margin-bottom: 27px;
-  }
-
-  .statisticsHeader {
-    font-weight: 700;
-    margin-bottom: 6px;
   }
 }
 
