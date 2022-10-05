@@ -57,6 +57,7 @@ const Login = () => {
   };
 
   const modalSwitch = () => setVerifyModal(!verifyModal);
+  
   const handleClickShowIcon = () => {
     setInputType(inputType === 'password' ? 'text' : 'password');
   };
@@ -195,7 +196,7 @@ const Login = () => {
                   modalSwitch();
                 }}
               >
-                   {t('Repeat_Verify')}
+                  {t('Repeat_Verify')}
               </button>
             </p>
             <p className={styles.auth__verify}>

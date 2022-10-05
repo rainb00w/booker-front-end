@@ -4,7 +4,9 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Formik } from 'formik';
 import { registrationValidationSchema } from 'services/yupValidationSchema';
 import RegistrationText from '../../RegistrationText';
+
 import svgPath from 'services/svgPath';
+import classNames from 'classnames';
 import styles from '../login/login.module.css';
 import { useTranslation } from 'react-i18next';
 
@@ -33,15 +35,27 @@ const Registration = () => {
   const [modal, setModal] = useState(true);
   const { t } = useTranslation();
   const location = useLocation();
+  const [passwordType, setPasswordType] = useState('password');
+  const [confirmType, setConfirmType] = useState('password');
+
   useEffect(() => {
     location.state === 'modal' ? setModal(false) : setModal(true);
   }, []);
+
   const modalBtnRegisterClick = () => {
     setModal(false);
   };
 
   const modalBtnLoginClick = () => {
     navigate('/login', { state: 'modal' });
+  };
+
+  const handleClickShowIconPassword = () => {
+    setPasswordType(passwordType === 'password' ? 'text' : 'password');
+  };
+
+  const handleClickShowIconConfirmPassword = () => {
+    setConfirmType(confirmType === 'password' ? 'text' : 'password');
   };
 
   return (
@@ -163,42 +177,76 @@ const Registration = () => {
                   ) : (
                     <span className={styles.default__count}></span>
                   )}
-                  <p className={styles.label__title}>
-                  {t('password')}
-                    <span className={styles.label__star}>*</span>
-                  </p>
-                  <input
-                    className={styles.input}
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                    value={values.password}
-                    onBlur={handleBlur}
-                    onChange={handleChange}
-                  />
-                  {errors.password && touched.password ? (
-                    <p className={styles.warning}>{errors.password}</p>
-                  ) : (
-                    <span className={styles.default__count}></span>
-                  )}
-                  <p className={styles.label__title}>
-                  {t('confirmPassword')}
-                    <span className={styles.label__star}>*</span>
-                  </p>
-                  <input
-                    className={styles.input}
-                    type="password"
-                    placeholder="Password"
-                    name="confirmPassword"
-                    value={values.confirmPassword}
-                    onBlur={handleBlur}
-                    onChange={handleChange}
-                  />
-                  {errors.confirmPassword && touched.confirmPassword ? (
-                    <p className={styles.warning}>{errors.confirmPassword}</p>
-                  ) : (
-                    <span className={styles.default__count}></span>
-                  )}
+                  <label className={styles.label_password}>
+                    <p className={styles.label__title}>
+                    {t('password')}
+                      <span className={styles.label__star}>*</span>
+                    </p>
+                    <input
+                      className={styles.input}
+                      type={passwordType}
+                      placeholder="Password"
+                      name="password"
+                      value={values.password}
+                      onBlur={handleBlur}
+                      onChange={handleChange}
+                    />
+                    <span
+                      onClick={handleClickShowIconPassword}
+                      className={
+                        passwordType === 'text'
+                          ? classNames(
+                            styles.svg__eyeOffCont,
+                            styles.svg__eyeOffContActive
+                          )
+                          : styles.svg__eyeOffCont
+                      }
+                    >
+                      <svg className={styles.svg__eyeOff}>
+                        <use href={svgPath.eyeOff + '#eyeOff'}></use>
+                      </svg>
+                    </span>
+                    {errors.password && touched.password ? (
+                      <p className={styles.warning}>{errors.password}</p>
+                    ) : (
+                      <span className={styles.default__count}></span>
+                    )}
+                  </label>
+                  <label className={styles.label_password}>
+                    <p className={styles.label__title}>
+                    {t('confirmPassword')}
+                      <span className={styles.label__star}>*</span>
+                    </p>
+                    <input
+                      className={styles.input}
+                      type={confirmType}
+                      placeholder="Password"
+                      name="confirmPassword"
+                      value={values.confirmPassword}
+                      onBlur={handleBlur}
+                      onChange={handleChange}
+                    />
+                    <span
+                      onClick={handleClickShowIconConfirmPassword}
+                      className={
+                        confirmType === 'text'
+                          ? classNames(
+                            styles.svg__eyeOffCont,
+                            styles.svg__eyeOffContActive
+                          )
+                          : styles.svg__eyeOffCont
+                      }
+                    >
+                      <svg className={styles.svg__eyeOff}>
+                        <use href={svgPath.eyeOff + '#eyeOff'}></use>
+                      </svg>
+                    </span>
+                    {errors.confirmPassword && touched.confirmPassword ? (
+                      <p className={styles.warning}>{errors.confirmPassword}</p>
+                    ) : (
+                      <span className={styles.default__count}></span>
+                    )}
+                  </label>
                   <button className={styles.form__button} type="submit">
                   {t('register')}
                   </button>
