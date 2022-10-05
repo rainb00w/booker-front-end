@@ -109,17 +109,32 @@
     width: 33px;
     height: 33px;
     margin-right: 5px;
-    background-color: #F5F7FA;
     border-radius: 50%;
 }
 
 .link:hover {
-    background-color: #E0E5EB;
+    background-color: #F5F7FA;
 }
 
 .active_link {
     composes: link;
-    background-color: transparent;
+display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 33px;
+    height: 33px;
+    margin-right: 5px;
+    background-color: #F5F7FA;
+    border-radius: 50%;
+
+
+
+
+background-color: #E0E5EB;
+
+
+
+    /* background-color: transparent; */
 }
 
 .line{

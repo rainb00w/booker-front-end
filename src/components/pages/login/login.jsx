@@ -27,7 +27,6 @@ const Login = () => {
   // const [phrase, setPhrase] = useState(getPhrases());
   const { t } = useTranslation();
 
-
   const [verifyModal, setVerifyModal] = useState(false);
   const [inputType, setInputType] = useState('password');
   const location = useLocation();
@@ -44,7 +43,7 @@ const Login = () => {
     if (query.token) {
       const { name, token, avatar } = query;
       // console.log('useEffect', name, token, avatar );
-      dispatch(googleLogIn({token, name, avatar}));
+      dispatch(googleLogIn({ token, name, avatar }));
     }
   });
 
@@ -57,7 +56,7 @@ const Login = () => {
   };
 
   const modalSwitch = () => setVerifyModal(!verifyModal);
-  
+
   const handleClickShowIcon = () => {
     setInputType(inputType === 'password' ? 'text' : 'password');
   };
@@ -124,7 +123,7 @@ const Login = () => {
               }) => (
                 <form onSubmit={handleSubmit}>
                   <p className={styles.label__title}>
-                  {t('email')}
+                    {t('email')}
                     <span className={styles.label__star}>*</span>
                     {err && <span className={styles.error}>{err}</span>}
                   </p>
@@ -144,7 +143,7 @@ const Login = () => {
                   )}
                   <label className={styles.label_password}>
                     <p className={styles.label__title}>
-                    {t('password')}
+                      {t('password')}
                       <span className={styles.label__star}>*</span>
                     </p>
                     <input
@@ -179,16 +178,16 @@ const Login = () => {
                     )}
                   </label>
                   <button className={styles.form__button} type="submit">
-                  {t('login')}
+                    {t('login')}
                   </button>
                 </form>
               )}
             </Formik>
             <Link className={styles.auth__link} to="/register">
-            {t('register')}
+              {t('register')}
             </Link>
             <p className={styles.auth__verify}>
-            {t('didnt_receive_an_email')}
+              {t('didnt_receive_an_email')}
               <button
                 className={styles.button__verify}
                 type="button"
@@ -196,13 +195,13 @@ const Login = () => {
                   modalSwitch();
                 }}
               >
-                  {t('Repeat_Verify')}
+                {t('Repeat_Verify')}
               </button>
             </p>
             <p className={styles.auth__verify}>
-            {t('Click_if_you_forgot_your_password')}
+              {t('Click_if_you_forgot_your_password')}
               <Link className={styles.authforgot__link} to="/changePassword">
-              {t('Forgot_Password')}
+                {t('Forgot_Password')}
               </Link>
             </p>
           </div>
@@ -211,7 +210,7 @@ const Login = () => {
           <svg className={styles.svg__qutation}>
             <use href={svgPath.quatation + '#quatation'}></use>
           </svg>
-          <LoginPhrase  />
+          <LoginPhrase />
         </div>
       </section>
     </>

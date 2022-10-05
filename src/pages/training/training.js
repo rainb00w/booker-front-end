@@ -22,6 +22,7 @@ import Timer from 'components/Timer/Timer';
 import convertMs from 'components/Timer/convertMs';
 import FormikControl from 'components/FormikControl';
 import sprite from '../../img/sprite.svg';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const DatePickerTrainingStyled = styled.div`
   @media screen and (min-width: 768px) {
@@ -61,7 +62,7 @@ const DatePickerTrainingStyled = styled.div`
 `;
 
 const applicationStyles = {
-  control: (provided) => ({
+  control: provided => ({
     ...provided,
     width: 280,
     height: 42,
@@ -76,21 +77,21 @@ const applicationStyles = {
       width: 715,
     },
   }),
-  singleValue: (provided) => ({
+  singleValue: provided => ({
     ...provided,
     color: '#A6ABB9',
   }),
-  dropdownIndicator: (provided) => ({
+  dropdownIndicator: provided => ({
     ...provided,
     fill: '#242A37',
     padding: 12,
-  })
+  }),
 };
 
 const DropdownIndicator = props => {
   return (
     <components.DropdownIndicator {...props}>
-      <svg width='13px' height='7px' className="datePickerIconPolygon">
+      <svg width="13px" height="7px" className="datePickerIconPolygon">
         <use href={sprite + '#icon-polygon'} />
       </svg>
     </components.DropdownIndicator>
@@ -102,22 +103,17 @@ const Training = () => {
   // тут получаем все Книги
 
   const trainingData = useGetAllTrainingsQuery();
+  const { isLoading } = useGetAllTrainingsQuery();
   // trainingData это объект, данные доступны  => trainingData.data
 
- console.log('DATA', trainingData.data);
+  //  console.log('DATA', trainingData.data);
   const sendToStatisticStartDate = trainingData?.data?.startDate;
-  const sendToStatisticResults = trainingData?.data?.results
+  const sendToStatisticResults = trainingData?.data?.results;
   // console.log('startDate', trainingData.data.startDate ,'array', trainingData.data.results );
-
-
-  let isEmptyTraining = false;
-  if (trainingData?.data === undefined) {
-    isEmptyTraining = true;
-  }
 
   const [selectedBook, setSelectedBook] = useState(null);
   const [booksArrayToSend, setBooksArrayToSend] = useState([]);
-  const [addTraining, { isLoading }] = useAddTrainingMutation();
+  const [addTraining] = useAddTrainingMutation();
 
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -126,12 +122,13 @@ const Training = () => {
   const [endYear, setEndYear] = useState(new Date(2022, 11, 31));
   const { t } = useTranslation();
   let bookTableArray = [];
+  let isEmptyTraining = false;
+  let booksNumbeFromBack = 0;
 
-  useEffect(() => {
-    const today = new Date(Date.now());
-    const year = today.getFullYear();
-    setEndYear(new Date(`${year}`, 11, 31));
-  }, []);
+  if (trainingData?.data === undefined) {
+    isEmptyTraining = true;
+  } else {
+  }
 
   useEffect(() => {
     if (startDate && endDate) {
@@ -140,9 +137,18 @@ const Training = () => {
       const deltaTime = end.valueOf() - start.valueOf();
       const deltaTimeObj = convertMs(deltaTime);
       setDaysNumber(deltaTimeObj.days);
-      console.log(deltaTimeObj.days);
     }
   }, [startDate, endDate]);
+
+  const oneDay = 24 * 60 * 60 * 1000;
+  const trainingDayEnd = new Date(trainingData?.data?.finishDate);
+  const nowDate = new Date();
+
+  const daysLeftFromBackEnd = Math.round(
+    Math.abs((trainingDayEnd - nowDate) / oneDay) - 1
+  );
+
+  //  console.log(trainingData?.data.books.length);
 
   const incomeBooks = data?.payload?.books;
   const booksThatHaveReadingStatus = incomeBooks?.filter(
@@ -157,8 +163,9 @@ const Training = () => {
 
   if (booksThatHaveReadingStatus?.length > 0) {
     bookTableArray = booksThatHaveReadingStatus;
+    booksNumbeFromBack = booksThatHaveReadingStatus?.length;
   } else {
-    bookTableArray = incomeBooks;
+    bookTableArray = booksArrayToSend;
   }
 
   const addBookToSelected = () => {
@@ -173,6 +180,8 @@ const Training = () => {
     el => !booksArrayToSend.includes(el)
   );
 
+  const booksNumber = booksArrayToSend?.length;
+
   const selectedOptions = booksThatNotSelected?.map(({ title, _id }) => ({
     value: { _id },
     label: title,
@@ -185,8 +194,6 @@ const Training = () => {
     setBooksArrayToSend(newBooksArrayToSend);
   };
 
-  let booksNumber = booksArrayToSend?.length;
-
   const startTraining = () => {
     const array = {
       startDate: startDate.toISOString(),
@@ -196,7 +203,7 @@ const Training = () => {
 
     addTraining(array)
       .unwrap()
-      .catch(error => console.error('rejected', error));
+      .catch(error =>  Notify.success(error.data.message))
 
     // .then(payload => console.log('fulfilled', payload))
   };
@@ -214,130 +221,159 @@ const Training = () => {
     setEndDate(value);
   };
 
-
   return (
     <>
-    <div className={s.main_container}>
-      <div className={s.gridContainer}>
-        <div>{isLoading && <p>In process...</p>}</div>
-        <div className={s.gridItem1}>
-          {isEmptyTraining ? (
-            <div className={s.myTrainingContainer}>
-              <h3 className={s.myTrainingHeader}>   {t('myTraining')}</h3>
-              <div className={s.datePicker_wrapper}>
-                <DatePickerTrainingStyled className="datePicker">
-                  <div className="datePickerWrapper">
-                    <DatePicker
-                      className={s.datePicker}
-                      placeholderText="Start"
-                      dateFormat="dd.MM.yyyy"
-                      selected={startDate}
-                      onChange={handleStartSelect}
-                      selectsStart
-                      minDate={today}
-                      startDate={startDate}
-                      endDate={endDate}
-                    />
-                    <svg className="datePickerIcon">
-                      <use href={sprite + '#icon-calendar'} />
-                    </svg>
-                    <svg className="datePickerIconPolygon">
-                      <use href={sprite + '#icon-polygon'} />
-                    </svg>
+      {isLoading ? (
+        <div className={s.profileMainLoader}>
+          <div className={s.loader}>
+            <svg className={s.circular_loader} viewBox="25 25 50 50">
+              <circle
+                className={s.loader_path}
+                cx="50"
+                cy="50"
+                r="20"
+                fill="none"
+                stroke="#70c542"
+                strokeWidth="2"
+              />
+            </svg>
+          </div>
+        </div>
+      ) : (
+        <div className={s.main_container}>
+          <div className={s.gridContainer}>
+            <div className={s.gridItem1}>
+              {isEmptyTraining ? (
+                <div className={s.myTrainingContainer}>
+                  <h3 className={s.myTrainingHeader}> {t('myTraining')}</h3>
+                  <div className={s.datePicker_wrapper}>
+                    <DatePickerTrainingStyled className="datePicker">
+                      <div className="datePickerWrapper">
+                        <DatePicker
+                          className={s.datePicker}
+                          placeholderText="Start"
+                          dateFormat="dd.MM.yyyy"
+                          selected={startDate}
+                          onChange={handleStartSelect}
+                          selectsStart
+                          minDate={today}
+                          startDate={startDate}
+                          endDate={endDate}
+                        />
+                        <svg className="datePickerIcon">
+                          <use href={sprite + '#icon-calendar'} />
+                        </svg>
+                        <svg className="datePickerIconPolygon">
+                          <use href={sprite + '#icon-polygon'} />
+                        </svg>
+                      </div>
+                      <div className="datePickerWrapper">
+                        <DatePicker
+                          className={s.datePicker}
+                          dateFormat="dd.MM.yyyy"
+                          placeholderText="Finish"
+                          selected={endDate}
+                          onChange={handleEndSelect}
+                          selectsEnd
+                          startDate={startDate}
+                          endDate={endDate}
+                          minDate={startDate}
+                        />
+                        <svg className="datePickerIcon">
+                          <use href={sprite + '#icon-calendar'} />
+                        </svg>
+                        <svg className="datePickerIconPolygon">
+                          <use href={sprite + '#icon-polygon'} />
+                        </svg>
+                      </div>
+                    </DatePickerTrainingStyled>
                   </div>
-                  <div className="datePickerWrapper">
-                    <DatePicker
-                      className={s.datePicker}
-                      dateFormat="dd.MM.yyyy"
-                      placeholderText="Finish"
-                      selected={endDate}
-                      onChange={handleEndSelect}
-                      selectsEnd
-                      startDate={startDate}
-                      endDate={endDate}
-                      minDate={startDate}
-                    />
-                    <svg className="datePickerIcon">
-                      <use href={sprite + '#icon-calendar'} />
-                    </svg>
-                    <svg className="datePickerIconPolygon">
-                      <use href={sprite + '#icon-polygon'} />
-                    </svg>
+                  <div className={s.select_container}>
+                    <SelectBooksFirstStyled>
+                      <Select
+                        defaultValue={{ value: null, label: t('chooseBooks') }}
+                        options={selectedOptions}
+                        placeholder="Choose books from the library"
+                        closeMenuOnSelect={true}
+                        onChange={handleSelectBook}
+                        styles={applicationStyles}
+                        components={{ DropdownIndicator }}
+                      />
+                      <button
+                        disabled={disable}
+                        className={s.selectButton}
+                        onClick={addBookToSelected}
+                      >
+                        {t('btnAdd')}
+                      </button>
+                    </SelectBooksFirstStyled>
                   </div>
-                </DatePickerTrainingStyled>
-              </div>
-              <div className={s.select_container}>
-                <SelectBooksFirstStyled>
-                  <Select
-                    defaultValue={{ value: null, label: t('chooseBooks') }}
-                    options={selectedOptions}
-                    placeholder="Choose books from the library"
-                    closeMenuOnSelect={true}
-                    onChange={handleSelectBook}
-                    styles={applicationStyles}
-                    components={{ DropdownIndicator }}
+                </div>
+              ) : (
+                <div className={s.gridItem5}>
+                  <div>
+                    <Timer selectedDate={endYear} title={yearTitle} />
+                  </div>
+                  <div>
+                    <Timer
+                      selectedDate={trainingDayEnd}
+                      title={trainingTitle}
+                    />
+                  </div>
+                </div>
+              )}
+
+              {bookTableArray && (
+                <div className={s.myTrainingContainer}>
+                  <BookTableTraining
+                    booksList={bookTableArray}
+                    isEmptyTraining={isEmptyTraining}
+                    onClick={removeItem}
                   />
-                  <button
-                    disabled={disable}
-                    className={s.selectButton}
-                    onClick={addBookToSelected}
-                  >
-                       {t('btnAdd')}
-                  </button>
-                </SelectBooksFirstStyled>
-              </div>
+                  <BookMobileTableTraining
+                    booksList={bookTableArray}
+                    onClick={removeItem}
+                    isEmptyTraining={isEmptyTraining}
+                  />
+                  {isEmptyTraining && (
+                    <button
+                      className={s.startTrainingButton}
+                      onClick={() => startTraining()}
+                    >
+                      {t('startTraning')}
+                    </button>
+                  )}
+                </div>
+              )}
             </div>
-          ) : (
-            <div className={s.gridItem5}>
-              <div>
-                <Timer selectedDate={endYear} title={yearTitle} />
-              </div>
-              <div>
-                <Timer selectedDate={endDate} title={trainingTitle} />
-              </div>
+
+            <div className={s.gridItem2}>
+              {isEmptyTraining ? (
+                <MyGoal days={daysNumber} books={booksNumber} />
+              ) : (
+                <MyGoal days={daysLeftFromBackEnd} books={booksNumbeFromBack} />
+              )}
             </div>
-          )}
 
-          {booksArrayToSend && (
-            <div className={s.myTrainingContainer}>
-              <BookTableTraining
-                booksList={booksArrayToSend}
-                isEmptyTraining={isEmptyTraining}
-                onClick={removeItem}
-              />
-              <BookMobileTableTraining
-                booksList={booksArrayToSend}
-                onClick={removeItem}
-                isEmptyTraining={isEmptyTraining}
-              />
-              {isEmptyTraining && <button
-                className={s.startTrainingButton}
-                onClick={() => startTraining()}
-              >
+            {/* {trainingData?.data?.results?.length > 0 && (
+              
+            )} */}
+            <div className={s.gridItem3}>
+                <ChartTraning trainingData={trainingData.data} />
+              </div>
 
-                {t('startTraning')}
-              </button>}
+      
+
+            <div className={s.gridItem4}>
+              <h2 className={s.resultsHeader}> {t('results')}</h2>
+              <SendPageForm startDate={sendToStatisticStartDate} />
+
+              <h2 className={s.statisticsHeader}> {t('statistics')}</h2>
+              <StatisticsList results={sendToStatisticResults} />
             </div>
-          )}
+          </div>
         </div>
-
-        <div className={s.gridItem2}>
-          <MyGoal days={daysNumber} books={booksNumber} />
-        </div>
-
-        {trainingData?.data?.results?.length > 0 && (<div className={s.gridItem3}>
-             <ChartTraning trainingData={trainingData.data} />
-        </div>)}
-
-        <div className={s.gridItem4}>
-          <h2 className={s.resultsHeader}> {t('results')}</h2>
-          <SendPageForm startDate={sendToStatisticStartDate}/>
-
-          <h2 className={s.statisticsHeader}> {t('statistics')}</h2>
-          <StatisticsList results={sendToStatisticResults} />
-        </div>
-      </div>
-      </div>
+      )}
     </>
   );
 };

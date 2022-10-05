@@ -52,6 +52,13 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
 export default function CustomizedSwitches({ onChangeLanguage }) {
   const [lang, setLang] = React.useState(false);
 
+  React.useEffect(() => {
+    const lang = localStorage.getItem('i18nextLng');
+    if (lang === 'ua') {
+      setLang(true);
+    }
+  });
+
   const handleChange = event => {
     if (event.target.checked) {
       onChangeLanguage('ua');
@@ -74,6 +81,7 @@ export default function CustomizedSwitches({ onChangeLanguage }) {
           inputProps={{ 'aria-label': 'ant design' }}
           onChange={handleChange}
           name="checkedA"
+          defaultChecked={localStorage.getItem('i18nextLng') === 'ua' && true}
         />
       </Stack>
     </FormGroup>
