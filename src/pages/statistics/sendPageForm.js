@@ -16,8 +16,6 @@ const SendPageForm = ({ startDate = null }) => {
     ].join('-');
   };
 
-  // console.log(new Date(), 'Дата початку тренування');
-
   const formik = useFormik({
     initialValues: {
       dateInput: new Date().yyyymmdd(),
@@ -28,8 +26,8 @@ const SendPageForm = ({ startDate = null }) => {
         .min(
           new Date(startDate).yyyymmdd(),
           'Ви не можете ввести дату до початку тренування'
-        ) // тут треба потестить
-        .max(new Date().yyyymmdd(), 'Ви не можете ввести дату в майбутньому'), // максимальна дата - це сьогодні
+        )
+        .max(new Date().yyyymmdd(), 'Ви не можете ввести дату в майбутньому'),
       pageInput: Yup.number()
         .positive('Введіть корректну кількість сторінок')
         .integer('К-ть сторінок має бути ціла')
@@ -37,9 +35,13 @@ const SendPageForm = ({ startDate = null }) => {
         .required('Введіть кількість сторінок'),
     }),
     onSubmit: ({ dateInput, pageInput }, { resetForm }) => {
+      let dateToSend = new Date();
+      const year = dateInput.toString().slice(0, 4);
+      const month = dateInput.toString().slice(5, 7);
+      const day = dateInput.toString().slice(8, 10);
+      dateToSend.setFullYear(year, month - 1, day);
       console.log({
-        date: dateInput,
-        time: new Date(),
+        time: dateToSend,
         pages: pageInput,
       });
       resetForm();
