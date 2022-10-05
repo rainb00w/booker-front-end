@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import s from './bookTable.module.css';
 import icons from './symbol-defs.svg';
@@ -7,7 +7,8 @@ import {
   useDeleteBookMutation,
 } from 'redux/books/booksApi';
 import { useTranslation } from 'react-i18next';
-
+import RatingBook from 'components/RatingBook';
+import NestingModal from 'components/RatingBook/RatingModal/NestingModal/NestingModal';
 
 export default function BookTableMobile() {
   const { data } = useGetAllBooksQuery();
@@ -18,12 +19,18 @@ export default function BookTableMobile() {
   };
   const { t } = useTranslation();
 
+  const [showModal, setShowModal] = useState(false);
+
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
+
   return (
     <>
       <section className={s.section}>
         {status('haveRead') && (
           <div className={s.table}>
-            <h3 className={s.title}>   {t('alreadyRead')}</h3>
+            <h3 className={s.title}> {t('alreadyRead')}</h3>
             <ul className={s.table}>
               {data?.payload.books.map(
                 ({ _id, author, pages, title, year, status, rating, resume }) =>
@@ -36,18 +43,19 @@ export default function BookTableMobile() {
                         {title}
                       </p>
                       <p className={s.subtitle}>
-                        <span className={s.topic}>{t('book_author')}:</span> {author}
+                        <span className={s.topic}>{t('book_author')}:</span>{' '}
+                        {author}
                       </p>
                       <p className={s.subtitle}>
-                        <span className={s.topic}> {t('book_year')}:</span>   
+                        <span className={s.topic}> {t('book_year')}:</span>
                         {year}
                       </p>
                       <p className={s.subtitle}>
-                        <span className={s.topic}>{t('book_pages')}:</span>    
+                        <span className={s.topic}>{t('book_pages')}:</span>
                         {pages}
                       </p>
                       <p className={s.subtitle}>
-                        <span className={s.topic}> {t('book_rating')}:</span>   
+                        <span className={s.topic}> {t('book_rating')}:</span>
                         {rating >= 1 ? (
                           <svg width={17} height={17}>
                             <use href={`${icons}#yellow_star`}></use>
@@ -94,9 +102,24 @@ export default function BookTableMobile() {
                           </svg>
                         )}
                       </p>
-                      <button type="button" className={s.btn}>
-                       {t('resume')}
+                      <button
+                        type="button"
+                        id={_id}
+                        className={s.btn}
+                        onClick={toggleModal}
+                      >
+                        {t('resume')}
                       </button>
+                      {showModal && (
+                        <NestingModal onClose={toggleModal}>
+                          <RatingBook
+                            toggleModal={toggleModal}
+                            id={_id}
+                            resume={resume}
+                            rating={rating}
+                          />
+                        </NestingModal>
+                      )}
                     </li>
                   )
               )}
@@ -105,7 +128,7 @@ export default function BookTableMobile() {
         )}
         {status('reading') && (
           <div className={s.table}>
-            <h3 className={s.title}> {t('readingNow')}</h3>   
+            <h3 className={s.title}> {t('readingNow')}</h3>
             <ul className={s.table}>
               {data?.payload.books.map(
                 ({ _id, author, pages, title, year, status, rating }) =>
@@ -118,7 +141,8 @@ export default function BookTableMobile() {
                         {title}
                       </p>
                       <p className={s.subtitle}>
-                        <span className={s.topic}>{t('book_author')}:</span> {author}
+                        <span className={s.topic}>{t('book_author')}:</span>{' '}
+                        {author}
                       </p>
                       <p className={s.subtitle}>
                         <span className={s.topic}>{t('book_year')}:</span>
@@ -136,7 +160,7 @@ export default function BookTableMobile() {
         )}
         {status('toRead') && (
           <div className={s.table}>
-            <h3 className={s.title}>   {t('goingToRead')}</h3>
+            <h3 className={s.title}> {t('goingToRead')}</h3>
             <ul className={s.table}>
               {data?.payload.books.map(
                 ({ _id, author, pages, title, year, status }) =>
@@ -160,7 +184,8 @@ export default function BookTableMobile() {
                         </button>
                       </p>
                       <p className={s.subtitle}>
-                        <span className={s.topic}>{t('book_author')}:</span> {author}
+                        <span className={s.topic}>{t('book_author')}:</span>{' '}
+                        {author}
                       </p>
                       <p className={s.subtitle}>
                         <span className={s.topic}>{t('book_year')}:</span>

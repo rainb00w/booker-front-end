@@ -6,6 +6,7 @@ import { useMediaQuery } from 'react-responsive';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import s from './EmptyLibrary.module.css';
+import { useTranslation } from 'react-i18next';
 const style = {
   position: 'absolute',
   top: '28%',
@@ -19,6 +20,7 @@ const Info = () => {
   const mobile = useMediaQuery({ query: '(max-width: 767px)' });
   const [openInfo, setOpenInfo] = useState(true);
   const handleCloseInfo = () => setOpenInfo(false);
+  const { t, i18n } = useTranslation();
   return (
     <>
       {mobile ? (
@@ -26,25 +28,25 @@ const Info = () => {
           <Box sx={style} className={s.modalInfo}>
             <div className={s.blok_info}>
               <div>
-                <h2 className={s.title}>Крок 1.</h2>
+                <h2 className={s.title}>{t('step1')}</h2>
                 <h3 className={s.subtitle}>
                   <img src={library} alt="library" />
-                  Створіть особисту бібліотеку
+                  {t('step1_title')}
                 </h3>
                 <p className={s.text}>
                   <img src={vector} alt="vector" />
-                  Додайте до неї книжки, які маєте намір прочитати.
+                  {t('step1_text')}
                 </p>
               </div>
               <div>
-                <h2 className={s.title}>Крок 2.</h2>
+                <h2 className={s.title}>{t('step2')}</h2>
                 <h3 className={s.subtitle}>
                   <img src={flag} alt="flag" />
-                  Сформуйте своє перше тренування
+                  {t('step2_title')}
                 </h3>
                 <p className={s.text}>
                   <img src={vector} alt="vector" />
-                  Визначте ціль, оберіть період, розпочинайте тренування.
+                  {t('step2_text')}
                 </p>
               </div>
             </div>
@@ -60,26 +62,26 @@ const Info = () => {
       ) : (
         <div className={s.blok_info}>
           <div>
-            <h2 className={s.title}>Крок 1.</h2>
+            <h2 className={s.title}>{t('step1')}</h2>
             <h3 className={s.subtitle}>
               <img src={library} alt="library" />
-              Створіть особисту бібліотеку
+              {t('step1_title')}
             </h3>
             <p className={s.text}>
               <img src={vector} alt="vector" />
-              Додайте до неї книжки, які маєте намір прочитати.
+              {t('step1_text')}
             </p>
           </div>
 
           <div>
-            <h2 className={s.title}>Крок 2.</h2>
+            <h2 className={s.title}>{t('step2')}</h2>
             <h3 className={s.subtitle}>
               <img src={flag} alt="flag" />
-              Сформуйте своє перше тренування
+              {t('step2_title')}
             </h3>
             <p className={s.text}>
               <img src={vector} alt="vector" />
-              Визначте ціль, оберіть період, розпочинайте тренування.
+              {t('step1_text')}
             </p>
           </div>
         </div>

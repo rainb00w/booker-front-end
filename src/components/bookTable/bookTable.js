@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import s from './bookTable.module.css';
 import icons from './symbol-defs.svg';
@@ -7,6 +7,8 @@ import {
   useDeleteBookMutation,
 } from 'redux/books/booksApi';
 import { useTranslation } from 'react-i18next';
+import RatingBook from 'components/RatingBook';
+import NestingModal from 'components/RatingBook/RatingModal/NestingModal/NestingModal';
 
 export default function BookTable() {
   const { data } = useGetAllBooksQuery();
@@ -18,29 +20,35 @@ export default function BookTable() {
     return status;
   };
 
+  const [showModal, setShowModal] = useState(false);
+
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
+
   return (
     <>
       <section className={s.section}>
         {status('haveRead') && (
           <div className={s.table}>
-            <h3 className={s.title}>  {t('alreadyRead')}</h3>
+            <h3 className={s.title}> {t('alreadyRead')}</h3>
             <table className={s.subTable}>
               <thead className={s.head}>
                 <tr>
                   <th className={s.topic} width="30%">
-                  {t('book_title')}
+                    {t('book_title')}
                   </th>
                   <th className={s.topic} width="25%">
-                      {t('book_author')}
+                    {t('book_author')}
                   </th>
                   <th className={s.topic} width="10%">
-                     {t('book_year')}
+                    {t('book_year')}
                   </th>
                   <th className={s.topic} width="10%">
-                      {t('book_pages')}
+                    {t('book_pages')}
                   </th>
                   <th className={s.topic} width="25%">
-                   {t('book_rating')}
+                    {t('book_rating')}
                   </th>
                 </tr>
               </thead>
@@ -113,9 +121,24 @@ export default function BookTable() {
                               <use href={`${icons}#white_star`}></use>
                             </svg>
                           )}
-                          <button type="button" className={s.btn}>
-                             {t('resume')}
+                          <button
+                            type="button"
+                            id={_id}
+                            className={s.btn}
+                            onClick={toggleModal}
+                          >
+                            {t('resume')}
                           </button>
+                          {showModal && (
+                            <NestingModal onClose={toggleModal}>
+                              <RatingBook
+                                toggleModal={toggleModal}
+                                id={_id}
+                                resume={resume}
+                                rating={rating}
+                              />
+                            </NestingModal>
+                          )}
                         </td>
                       </tr>
                     )
@@ -127,7 +150,7 @@ export default function BookTable() {
 
         {status('reading') && (
           <div className={s.table}>
-            <h3 className={s.title}> {t('readingNow')}</h3>   
+            <h3 className={s.title}> {t('readingNow')}</h3>
             <table className={s.subTable}>
               <thead className={s.head}>
                 <tr>
@@ -135,13 +158,13 @@ export default function BookTable() {
                     {t('book_title')}
                   </th>
                   <th className={s.topic} width="25%">
-                       {t('book_author')} 
+                    {t('book_author')}
                   </th>
                   <th className={s.topic} width="10%">
-                      {t('book_year')} 
+                    {t('book_year')}
                   </th>
                   <th className={s.topic} width="10%">
-                     {t('book_pages')}
+                    {t('book_pages')}
                   </th>
                 </tr>
               </thead>
@@ -168,21 +191,21 @@ export default function BookTable() {
         )}
         {status('toRead') && (
           <div className={s.table}>
-            <h3 className={s.title}> {t('goingToRead')} </h3>   
+            <h3 className={s.title}> {t('goingToRead')} </h3>
             <table className={s.subTable}>
               <thead className={s.head}>
                 <tr>
                   <th className={s.topic} width="55%">
-                       {t('book_title')}
+                    {t('book_title')}
                   </th>
                   <th className={s.topic} width="25%">
-                        {t('book_author')}
+                    {t('book_author')}
                   </th>
                   <th className={s.topic} width="10%">
-                        {t('book_year')} 
+                    {t('book_year')}
                   </th>
                   <th className={s.topic} width="5%">
-                       {t('book_pages')}
+                    {t('book_pages')}
                   </th>
                   <th className={s.topic} width="5%"></th>
                 </tr>
