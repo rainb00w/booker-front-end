@@ -22,8 +22,6 @@ import Timer from 'components/Timer/Timer';
 import convertMs from 'components/Timer/convertMs';
 import FormikControl from 'components/FormikControl';
 import sprite from '../../img/sprite.svg';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
-
 
 const DatePickerTrainingStyled = styled.div`
   @media screen and (min-width: 768px) {
@@ -121,7 +119,6 @@ const Training = () => {
   const [daysNumber, setDaysNumber] = useState(0);
   const [disable, setDisable] = useState(false);
   const [endYear, setEndYear] = useState(new Date(2022, 11, 31));
-  const [requestError, setRequestError] = useState();
   const { t } = useTranslation();
   let bookTableArray = [];
   let isEmptyTraining = false;
@@ -196,8 +193,7 @@ const Training = () => {
     setBooksArrayToSend(newBooksArrayToSend);
   };
 
-  const startTraining = e => {
- 
+  const startTraining = () => {
     const array = {
       startDate: startDate.toISOString(),
       finishDate: endDate.toISOString(),
@@ -206,22 +202,21 @@ const Training = () => {
 
     addTraining(array)
       .unwrap()
-      .catch(error =>  Notify.success(error.data.message));
+      .catch(error => console.error('rejected', error));
 
     // .then(payload => console.log('fulfilled', payload))
-   
   };
   const today = new Date();
   const yearTitle = t('yearsCountdown');
   const trainingTitle = t('goalsCountdown');
 
   const handleStartSelect = value => {
-
+    console.log(value);
     setStartDate(value);
   };
 
   const handleEndSelect = value => {
-
+    console.log(value);
     setEndDate(value);
   };
 
@@ -342,7 +337,7 @@ const Training = () => {
                   {isEmptyTraining && (
                     <button
                       className={s.startTrainingButton}
-                      onClick={startTraining}
+                      onClick={() => startTraining()}
                     >
                       {t('startTraning')}
                     </button>
