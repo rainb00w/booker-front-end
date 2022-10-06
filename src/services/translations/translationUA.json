@@ -105,5 +105,5 @@
 
   "the field contains an error": "поле містить помилку",
   "this field is required": "необхідно заповнити поле",
-  "passwords doesn't match": "паролі не збігаються"
+  "password don't match": "дані відрізняються від даних поля password"
 }
