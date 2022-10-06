@@ -19,12 +19,6 @@ export default function BookTableMobile() {
   };
   const { t } = useTranslation();
 
-  const [showModal, setShowModal] = useState(false);
-
-  const toggleModal = () => {
-    setShowModal(!showModal);
-  };
-
   return (
     <>
       <section className={s.section}>
