@@ -56,11 +56,10 @@ const ChartTraning = ({ trainingData = {
 } }) => {
   const { startDate, finishDate, books, results } = trainingData;
   const { t } = useTranslation();
-  // console.log(finishDate)
-  // console.log(startDate)
   const duration = Date.parse(finishDate) - Date.parse(startDate);
   const totalDays = Math.ceil(duration / (1000 * 3600 * 24));
   const totalBooksPages = books.reduce((acc, item) => acc + item.pages, 0);
+  const pagesToRead = Math.ceil(totalBooksPages / totalDays);
   const resultsArray = isArrayNotEmpty(results) ? results.map(result => {
     const dateCropped = result.date.slice(0, 10)
     return {
@@ -81,7 +80,7 @@ const ChartTraning = ({ trainingData = {
     return acc;
   }, {})) : [];
   for (let i = 0; i < totalDays; i += 1) {
-    planData.push(totalBooksPages / totalDays);
+    planData.push(pagesToRead);
   }
   datesArray.forEach((item, index) => {
     if (isArrayNotEmpty(normalizedResults)) {
@@ -95,7 +94,7 @@ const ChartTraning = ({ trainingData = {
         resultData[index] = 0;
       }
   });
-  const maxPoint = Math.max(...planData, ...resultData);
+  const maxPoint = isArrayNotEmpty(books) ? Math.max(...planData, ...resultData) : 10;
 
   const data = {
     labels: datesArray, // масив дат для кожного дня тренування
@@ -103,30 +102,22 @@ const ChartTraning = ({ trainingData = {
       {
         label: t('plan'),
         fill: false,
-        lineTension: 0.3,
         borderColor: '#091e3f',
         pointBackgroundColor: '#091e3f',
-        pointHoverRadius: 10,
-        pointRadius: 8,
-        PointHitRadius: 10,
         data: planData, // масив планових значень прочитаних сторінок для кожного дня тренування
       },
       {
         label: t('act'),
         fill: false,
-        lineTension: 0.3,
         borderColor: '#ff6b08',
         pointBackgroundColor: '#ff6b08',
-        pointHoverRadius: 10,
-        pointRadius: 8,
-        PointHitRadius: 10,
         data: resultData, // масив значень кількості прочитаних сторінок для кожного дня тренування
       },
     ],
   };
 
   const emptyData = {
-    labels: [, , , , ], // масив дат для кожного дня тренування
+    labels: ['', '', '', '', ''], // масив дат для кожного дня тренування
     datasets: [
       {
         label: t('plan'),
@@ -134,10 +125,8 @@ const ChartTraning = ({ trainingData = {
         lineTension: 0.3,
         borderColor: '#091e3f',
         pointBackgroundColor: '#091e3f',
-        pointHoverRadius: 10,
-        pointRadius: 8,
-        PointHitRadius: 10,
-        data: [0, 0, 0, 0, 0], // масив планових значень прочитаних сторінок для кожного дня тренування
+        pointHighlightFill: '#F5F7FA',
+        data: [10], // масив планових значень прочитаних сторінок для кожного дня тренування
       },
       {
         label: t('act'),
@@ -145,33 +134,28 @@ const ChartTraning = ({ trainingData = {
         lineTension: 0.3,
         borderColor: '#ff6b08',
         pointBackgroundColor: '#ff6b08',
-        pointHoverRadius: 10,
-        pointRadius: 8,
-        PointHitRadius: 10,
-        data: [0, 0, 0, 0, 0], // масив значень кількості прочитаних сторінок для кожного дня тренування
+        data: [5], // масив значень кількості прочитаних сторінок для кожного дня тренування
       },
     ],
   };
 
   return (
-    <>
-      <div className={s.modalBox}>
-        <div className={s.chartBox}>
-          <p className={s.title}>
-           {t('amontOfPages_day')}
-            <span className={s.planedPages}>{totalBooksPages / totalDays}</span>
-          </p>
-          <div className={s.lineBox}>
+    <div className={s.chartBox}>
+      <p className={s.title}>
+        {t('amontOfPages_day')}
+        <span className={s.planedPages}>{isNaN(pagesToRead) ? 0 : pagesToRead}</span>
+      </p>
+      {/* <div className={s.lineBox}>
             <ul className={s.lineList}>
               <li className={s.lineItem}>{t('plan')}</li>
               <li className={s.lineItem}>  {t('act')}</li>
             </ul>
-          </div>
-          <Line options={createOptions(normalizedResults, maxPoint, planData.length)} data={isArrayNotEmpty(books) ? data : emptyData } />
-          <p className={s.chartValue}> {t('time')}</p>
-        </div>
+          </div> */}
+      <div className={s.chart}>
+        <Line options={createOptions(normalizedResults, maxPoint, planData.length)} data={isArrayNotEmpty(books) ? data : emptyData} />
       </div>
-    </>
+      <p className={s.chartValue}> {t('time')}</p>
+    </div>
   );
 };
 
