@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { Formik } from 'formik';
 import { repeatVerifyValidationSchema } from 'services/yupValidationSchema';
+import { useTranslation } from 'react-i18next';
 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { RemoveScroll } from 'react-remove-scroll';
@@ -13,6 +14,7 @@ const modalRoot = document.querySelector('#modal__root');
 
 const RepeatVerify = ({ switchFunc }) => {
     const [err, setErr] = useState("");
+    const { t } = useTranslation();
 
     useEffect(() => {
     window.addEventListener('keydown', handleKeyboard);
@@ -79,7 +81,7 @@ const RepeatVerify = ({ switchFunc }) => {
                                         onChange={handleChange}
                                     />
                                     {errors.email && touched.email ?
-                                        (<p className={styles.verify__warning}>{errors.email}</p>)
+                                        (<p className={styles.verify__warning}>{t(`${errors.email}`)}</p>)
                                         : (<span className={styles.verify__default}></span>)}
                                     <button className={styles.verify__button} type="submit">
                                         Send for verify

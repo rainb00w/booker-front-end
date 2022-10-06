@@ -102,5 +102,9 @@
   "phrase_author_9": "Lion Feuchtwanger",
   "phrase_text_9": "Logic is the god of those who think.",
   "phrase_author_10": "Pierre-Simon Laplace",
-  "phrase_text_10": "What we know is not much. What we do not know is immense"
+  "phrase_text_10": "What we know is not much. What we do not know is immense",
+
+  "the field contains an error": "the field contains an error",
+  "this field is required": "this field is required",
+  "passwords doesn't match": "passwords doesn't match"
 }

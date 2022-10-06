@@ -4,6 +4,7 @@ import newPasswordAPI from 'services/newPasswordAPI';
 import { Formik } from 'formik';
 import { loginValidationSchema } from 'services/yupValidationSchema';
 import { Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import svgPath from 'services/svgPath';
@@ -14,6 +15,7 @@ const ChangePassword = () => {
   const [inputType, setInputType] = useState('password');
   const navigate = useNavigate();
   const [err, setErr] = useState('');
+  const { t } = useTranslation();
 
   const handleClickShowIcon = () => {
     setInputType(inputType === 'password' ? 'text' : 'password');
@@ -73,7 +75,7 @@ const ChangePassword = () => {
                     onChange={handleChange}
                   />
                   {errors.email && touched.email ? (
-                    <p className={styles.warning}>{errors.email}</p>
+                    <p className={styles.warning}>{t(`${errors.email}`)}</p>
                   ) : (
                     <span className={styles.default__count}></span>
                   )}
@@ -108,7 +110,7 @@ const ChangePassword = () => {
                     </span>
 
                     {errors.password && touched.password ? (
-                      <p className={styles.warning}>{errors.password}</p>
+                      <p className={styles.warning}>{t(`${errors.password}`)}</p>
                     ) : (
                       <span className={styles.default__count}></span>
                     )}

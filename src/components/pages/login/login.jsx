@@ -137,7 +137,7 @@ const Login = () => {
                     onChange={handleChange}
                   />
                   {errors.email && touched.email ? (
-                    <p className={styles.warning}>{errors.email}</p>
+                    <p className={styles.warning}>{t(`${errors.email}`)}</p>
                   ) : (
                     <span className={styles.default__count}></span>
                   )}
@@ -172,7 +172,7 @@ const Login = () => {
                     </span>
 
                     {errors.password && touched.password ? (
-                      <p className={styles.warning}>{errors.password}</p>
+                      <p className={styles.warning}>{t(`${errors.password}`)}</p>
                     ) : (
                       <span className={styles.default__count}></span>
                     )}
