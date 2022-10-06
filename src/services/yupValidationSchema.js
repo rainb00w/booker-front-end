@@ -17,14 +17,14 @@ export const registrationValidationSchema = yup.object().shape({
         .required("Required field"),
     password: yup.string()
         .typeError("Will be a string")
-        .min(5)
-        .max(30)
+        .min(5, "the field contains an error")
+        .max(30, "the field contains an error")
         .matches(/^(?!\-|\.)[0-9a-zA-Z\*\!\@\#\$\%\^\&\(\)\{\}\[\]\:\;\<\>,\.\?\/\~_\+\-\=\|\\]{5,30}$/, 'Is not in correct format')
         .required("Required field"),
     confirmPassword: yup.string()
         .typeError("Will be a string")
-        .min(5)
-        .max(30)
+        .min(5, "the field contains an error")
+        .max(30, "the field contains an error")
         .matches(/^(?!\-|\.)[0-9a-zA-Z\*\!\@\#\$\%\^\&\(\)\{\}\[\]\:\;\<\>,\.\?\/\~_\+\-\=\|\\]{5,30}$/, 'Is not in correct format')
         .oneOf([yup.ref('password')], "Passwords doesn't match")
         .required("Required field")
@@ -41,8 +41,8 @@ export const loginValidationSchema = yup.object().shape({
         .required("Required field"),
     password: yup.string()
         .typeError("Will be a string")
-        .min(5)
-        .max(30)
+        .min(5, "the field contains an error")
+        .max(30, "the field contains an error")
         .matches(/^(?!\-|\.)[0-9a-zA-Z\*\!\@\#\$\%\^\&\(\)\{\}\[\]\:\;\<\>,\.\?\/\~_\+\-\=\|\\]{5,30}$/, 'Is not in correct format')
         .required("Required field"),
 });

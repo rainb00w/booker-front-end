@@ -136,7 +136,7 @@ const Registration = () => {
                     </div>
                   </a>
                   <p className={styles.label__title}>
-                  {t('name')}
+                    {t('name')}
                     <span className={styles.label__star}>*</span>
                     {errName && (
                       <span className={styles.error}>{errName}</span>
@@ -157,10 +157,10 @@ const Registration = () => {
                     <span className={styles.default__count}></span>
                   )}
                   <p className={styles.label__title}>
-                  {t('email')}
+                    {t('email')}
                     <span className={styles.label__star}>*</span>
                     {errEmail && (
-                      <span className={styles.error}>* {errEmail}</span>
+                      <span className={styles.error}>{errEmail}</span>
                     )}
                   </p>
                   <input
