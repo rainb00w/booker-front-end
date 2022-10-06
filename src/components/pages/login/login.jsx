@@ -195,7 +195,7 @@ const Login = () => {
               )}
             </Formik>
             <Link className={styles.auth__link} to="/register">
-              {t('register')}
+              {t('signUp')}
             </Link>
             <p className={styles.auth__verify}>
               {t('didnt_receive_an_email')}
