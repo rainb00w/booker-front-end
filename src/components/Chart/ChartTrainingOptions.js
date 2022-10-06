@@ -3,12 +3,30 @@ export const createOptions = (normalizeResults, maxPoint, labelsQuantity) => ({
   maintainAspectRatio: false,
   plugins: {
     legend: {
-      display: false,
+      position: 'top',
+      onClick: null,
+      labels: {
+        padding: 15,
+        usePointStyle: true,
+        font: {
+          family: 'Montserrat',
+          size: 12,
+          weight: 600,
+          lineHeight: 1.25,
+        },
+        generateLabels: chart => {
+          const data = chart.data;
+          return data.datasets.map(dataset => ({
+            text: dataset.label,
+            fillStyle: dataset.borderColor,
+            fontColor: '#091E3F',
+          }));
+        },
+      },
     },
   },
   layout: {
     autoPadding: true,
-    padding: 0,
   },
   scales: {
     x: {
@@ -29,6 +47,7 @@ export const createOptions = (normalizeResults, maxPoint, labelsQuantity) => ({
         display: false,
         color: '#000000',
       },
+      // offset: true,
     },
     y: {
       min: 0,
@@ -45,8 +64,8 @@ export const createOptions = (normalizeResults, maxPoint, labelsQuantity) => ({
   },
   elements: {
     point: {
-      radius: 6,
-      hoverRadius: 12,
+      radius: 5,
+      hoverRadius: 10,
       borderWidth: 0,
       hoverBorderWidth: 0,
     },
