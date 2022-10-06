@@ -154,6 +154,9 @@ const Training = () => {
     book => book.status === 'reading'
   );
 
+  const booksLeft = booksThatHaveReadingStatus?.length;
+
+  console.log(booksLeft);
   const handleSelectBook = selectedOption => {
     const { value } = selectedOption;
     setDisable(false);
@@ -348,9 +351,9 @@ const Training = () => {
 
             <div className={s.gridItem2}>
               {isEmptyTraining ? (
-                <MyGoal days={daysNumber} books={booksNumber} booksLeft={booksLeft} />
+                <MyGoal days={daysNumber} books={booksNumber}  />
               ) : (
-                <MyGoal days={daysLeftFromBackEnd} books={booksNumbeFromBack} />
+                <MyGoal days={daysLeftFromBackEnd} books={booksNumbeFromBack} booksLeft={booksLeft}/>
               )}
             </div>
 

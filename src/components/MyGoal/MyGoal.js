@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useGetAllTrainingsQuery } from 'redux/books/trainingApi';
 import s from './MyGoal.module.css';
 
-const MyGoal = ({ days, books, booksLeft }) => {
+const MyGoal = ({ days, books, booksLeft = 0}) => {
   const { t } = useTranslation();
 
   const trainingData = useGetAllTrainingsQuery();
@@ -68,7 +68,7 @@ const MyGoal = ({ days, books, booksLeft }) => {
               <li className={s.myGoalStatsListItem_training}>
                 <span className={s.myGoalStatsDigitBox_training}>
                   <p className={s.myGoalStatsDigit_training_accent}>
-                    {/* {booksLeft} */} 0
+                    {booksLeft} 
                   </p>
                 </span>
                 <span className={s.myGoalStatsText}>
