@@ -106,5 +106,5 @@
 
   "the field contains an error": "the field contains an error",
   "this field is required": "this field is required",
-  "passwords doesn't match": "passwords doesn't match"
+  "password don't match": "password don't match"
 }

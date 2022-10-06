@@ -26,7 +26,7 @@ export const registrationValidationSchema = yup.object().shape({
         .min(5, "the field contains an error")
         .max(30, "the field contains an error")
         .matches(/^(?!\-|\.)[0-9a-zA-Z\*\!\@\#\$\%\^\&\(\)\{\}\[\]\:\;\<\>,\.\?\/\~_\+\-\=\|\\]{5,30}$/, 'the field contains an error')
-        .oneOf([yup.ref('password')], "passwords doesn't match")
+        .oneOf([yup.ref('password')], "password don't match")
         .required("this field is required")
 });
 
