@@ -6,7 +6,7 @@ import s from './RatingBookWrapper.module.css';
 
 export default function RatingBookWrapper({ id, resume = '', rating = 0 }) {
   const [showModal, setShowModal] = useState(false);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const toggleModal = () => {
     setShowModal(!showModal);
   };
