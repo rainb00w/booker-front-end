@@ -124,7 +124,7 @@ const Training = () => {
 
   if (trainingData?.data === undefined) {
     isEmptyTraining = true;
-  } 
+  }
 
   useEffect(() => {
     if (startDate && endDate) {
@@ -178,7 +178,7 @@ const Training = () => {
     el => !booksArrayToSend.includes(el)
   );
 
-   const booksNumber = booksArrayToSend?.length;
+  const booksNumber = booksArrayToSend?.length;
 
   const selectedOptions = booksThatNotSelected?.map(({ title, _id }) => ({
     value: { _id },
@@ -201,7 +201,7 @@ const Training = () => {
 
     addTraining(array)
       .unwrap()
-      .catch(error =>  Notify.success(error.data.message))
+      .catch(error => Notify.success(error.data.message));
 
     // .then(payload => console.log('fulfilled', payload))
   };
@@ -345,23 +345,30 @@ const Training = () => {
               )}
             </div>
 
-            {/* <div className={s.gridItem2}>
+            <div className={s.gridItem2}>
               {isEmptyTraining ? (
-                <MyGoal days={daysNumber} books={booksNumber}  />
+                <>
+                  <MyGoal
+                    days={daysNumber}
+                    books={booksNumber}
+                    isTrainigEmpty={isEmptyTraining}
+                  />
+                </>
               ) : (
-                <MyGoal days={daysLeftFromBackEnd} books={booksNumbeFromBack} />
+                <>
+                  <MyGoal
+                    days={daysLeftFromBackEnd}
+                    books={booksNumbeFromBack}
+                    booksLeft={booksLeft}
+                    isTrainigEmpty={isEmptyTraining}
+                  />
+                </>
               )}
-            </div> */}
+            </div>
 
-           
-            {/* {trainingData?.data?.results?.length > 0 && (
-              
-            )} */}
             <div className={s.gridItem3}>
-                <ChartTraning trainingData={trainingData.data} />
-              </div>
-
-      
+              <ChartTraning trainingData={trainingData.data} />
+            </div>
 
             <div className={s.gridItem4}>
               <h2 className={s.resultsHeader}> {t('results')}</h2>
