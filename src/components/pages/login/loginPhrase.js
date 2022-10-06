@@ -5,7 +5,6 @@ const loginPhrase = ( ) => {
 
   const { t } = useTranslation();
   const index = Math.floor(Math.random() * 10) + 1;
-  // console.log('phrase', phrase);
   return (
     <>
    
