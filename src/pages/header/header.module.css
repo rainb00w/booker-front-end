@@ -73,6 +73,18 @@
 
 }
 
+ @media screen and (max-width: 480px) {
+    .button_mobile {
+        margin-left: 5px;
+        margin-right: 5px;
+    width: 25px;
+height: 25px;}
+       
+
+ }
+
+
+
 .blok_user {
     display: none;
 
@@ -93,6 +105,33 @@
     color:#FF6B08
 }
 
+.button_exitIcon {
+    display: none;
+}
+
+ @media screen and (max-width: 480px) {
+.button_exit {
+    display: none;
+}
+
+.button_exitIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+        background-color: transparent;
+            cursor: pointer;
+            padding: 0;
+            border: none;
+}
+
+.exitIcon {
+    fill: #A6ABB9;
+}
+
+ }
+
+
+
 .nav{
     display: flex;
     align-items: center;
@@ -111,6 +150,14 @@
     margin-right: 5px;
     border-radius: 50%;
 }
+
+ @media screen and (max-width: 480px) {
+    .link {
+        width: 25px;
+            height: 25px;
+     }
+
+ }
 
 .link:hover {
     background-color: #F5F7FA;
