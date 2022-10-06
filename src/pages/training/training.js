@@ -5,9 +5,8 @@ import { useGetAllTrainingsQuery } from 'redux/books/trainingApi';
 import s from './training.module.scss';
 
 import { useTranslation } from 'react-i18next';
-import DateView from 'react-datepicker';
+
 import styled from 'styled-components';
-import { Formik, Form } from 'formik';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Select, { components } from 'react-select';
@@ -20,7 +19,7 @@ import MyGoal from 'components/MyGoal';
 import SelectBooksFirstStyled from 'components/SelectBooks/SelectBooksFirstStyled';
 import Timer from 'components/Timer/Timer';
 import convertMs from 'components/Timer/convertMs';
-import FormikControl from 'components/FormikControl';
+
 import sprite from '../../img/sprite.svg';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
@@ -212,12 +211,12 @@ const Training = () => {
   const trainingTitle = t('goalsCountdown');
 
   const handleStartSelect = value => {
-    console.log(value);
+    // console.log(value);
     setStartDate(value);
   };
 
   const handleEndSelect = value => {
-    console.log(value);
+    // console.log(value);
     setEndDate(value);
   };
 
