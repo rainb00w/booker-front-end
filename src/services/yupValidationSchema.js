@@ -4,47 +4,47 @@ import * as yup from 'yup';
 export const registrationValidationSchema = yup.object().shape({
     name: yup.string()
         .typeError("Will be a string")
-        .min(3)
-        .max(100)
-        .matches( /^[a-zA-Z0-9][0-9a-zA-Z\*\!\@\#\$\%\^\&\(\)\{\}\[\]\:\;\<\>,\.\?\/\~_\+\-\=\|\\\ ]{2,99}$/, 'Is not in correct format')
-        .required("Required field"),
+        .min(3, "the field contains an error")
+        .max(100, "the field contains an error")
+        .matches( /^[a-zA-Z0-9][0-9a-zA-Z\*\!\@\#\$\%\^\&\(\)\{\}\[\]\:\;\<\>,\.\?\/\~_\+\-\=\|\\\ ]{2,99}$/, 'the field contains an error')
+        .required("this field is required"),
     email: yup.string()
         .typeError("Will be a string")
-        .email()
-        .matches( /^(?!-)([\w\.\!#\$%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]{2,})+@(([\w\.\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]{1,56})+\.)+[\w]{2,}(?!-)$/ , 'Is not in correct format')
-        .min(10)
-        .max(63)
-        .required("Required field"),
+        .email("the field contains an error")
+        .matches( /^(?!-)([\w\.\!#\$%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]{2,})+@(([\w\.\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]{1,56})+\.)+[\w]{2,}(?!-)$/ , 'the field contains an error')
+        .min(10, "the field contains an error")
+        .max(63, "the field contains an error")
+        .required("this field is required"),
     password: yup.string()
         .typeError("Will be a string")
         .min(5, "the field contains an error")
         .max(30, "the field contains an error")
-        .matches(/^(?!\-|\.)[0-9a-zA-Z\*\!\@\#\$\%\^\&\(\)\{\}\[\]\:\;\<\>,\.\?\/\~_\+\-\=\|\\]{5,30}$/, 'Is not in correct format')
-        .required("Required field"),
+        .matches(/^(?!\-|\.)[0-9a-zA-Z\*\!\@\#\$\%\^\&\(\)\{\}\[\]\:\;\<\>,\.\?\/\~_\+\-\=\|\\]{5,30}$/, 'the field contains an error')
+        .required("this field is required"),
     confirmPassword: yup.string()
         .typeError("Will be a string")
         .min(5, "the field contains an error")
         .max(30, "the field contains an error")
-        .matches(/^(?!\-|\.)[0-9a-zA-Z\*\!\@\#\$\%\^\&\(\)\{\}\[\]\:\;\<\>,\.\?\/\~_\+\-\=\|\\]{5,30}$/, 'Is not in correct format')
-        .oneOf([yup.ref('password')], "Passwords doesn't match")
-        .required("Required field")
+        .matches(/^(?!\-|\.)[0-9a-zA-Z\*\!\@\#\$\%\^\&\(\)\{\}\[\]\:\;\<\>,\.\?\/\~_\+\-\=\|\\]{5,30}$/, 'the field contains an error')
+        .oneOf([yup.ref('password')], "passwords doesn't match")
+        .required("this field is required")
 });
 
 
 export const loginValidationSchema = yup.object().shape({
     email: yup.string()
         .typeError("Will be a string")
-        .email()
+        .email("the field contains an error")
         .matches( /^(?!-)([\w\.\!#\$%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]{2,})+@(([\w\.\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]{1,56})+\.)+[\w]{2,}(?!-)$/ , 'Is not in correct format')
-        .min(10)
-        .max(63)
-        .required("Required field"),
+        .min(10, "the field contains an error")
+        .max(63, "the field contains an error")
+        .required("this field is required"),
     password: yup.string()
         .typeError("Will be a string")
         .min(5, "the field contains an error")
         .max(30, "the field contains an error")
         .matches(/^(?!\-|\.)[0-9a-zA-Z\*\!\@\#\$\%\^\&\(\)\{\}\[\]\:\;\<\>,\.\?\/\~_\+\-\=\|\\]{5,30}$/, 'Is not in correct format')
-        .required("Required field"),
+        .required("this field is required"),
 });
 
 
@@ -53,8 +53,8 @@ export const repeatVerifyValidationSchema = yup.object().shape({
             .typeError("Will be a string")
             .email()
             .matches( /^(?!-)([\w\.\!#\$%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]{2,})+@(([\w\.\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]{1,56})+\.)+[\w]{2,}(?!-)$/ , 'Is not in correct format')
-            .min(10)
-            .max(63)
-            .required("Required field")
+            .min(10, "the field contains an error")
+            .max(63, "the field contains an error")
+            .required("this field is required")
 });
 

@@ -152,7 +152,7 @@ const Registration = () => {
                     onChange={handleChange}
                   />
                   {errors.name && touched.name ? (
-                    <p className={styles.warning}>{errors.name}</p>
+                    <p className={styles.warning}>{t(`${errors.name}`)}</p>
                   ) : (
                     <span className={styles.default__count}></span>
                   )}
@@ -173,7 +173,7 @@ const Registration = () => {
                     onChange={handleChange}
                   />
                   {errors.email && touched.email ? (
-                    <p className={styles.warning}>{errors.email}</p>
+                    <p className={styles.warning}>{t(`${errors.email}`)}</p>
                   ) : (
                     <span className={styles.default__count}></span>
                   )}
@@ -207,7 +207,7 @@ const Registration = () => {
                       </svg>
                     </span>
                     {errors.password && touched.password ? (
-                      <p className={styles.warning}>{errors.password}</p>
+                      <p className={styles.warning}>{t(`${errors.password}`)}</p>
                     ) : (
                       <span className={styles.default__count}></span>
                     )}
@@ -242,7 +242,7 @@ const Registration = () => {
                       </svg>
                     </span>
                     {errors.confirmPassword && touched.confirmPassword ? (
-                      <p className={styles.warning}>{errors.confirmPassword}</p>
+                      <p className={styles.warning}>{t(`${errors.confirmPassword}`)}</p>
                     ) : (
                       <span className={styles.default__count}></span>
                     )}
