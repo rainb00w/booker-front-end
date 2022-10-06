@@ -26,37 +26,39 @@ const Info = () => {
       {mobile ? (
         <Modal open={openInfo} onClose={handleCloseInfo}>
           <Box sx={style} className={s.modalInfo}>
-            <div className={s.blok_info}>
-              <div>
-                <h2 className={s.title}>{t('step1')}</h2>
-                <h3 className={s.subtitle}>
-                  <img src={library} alt="library" />
-                  {t('step1_title')}
-                </h3>
-                <p className={s.text}>
-                  <img src={vector} alt="vector" />
-                  {t('step1_text')}
-                </p>
+            <div className={s.blok_infoCont}>
+              <div className={s.blok_info}>
+                <div>
+                  <h2 className={s.title}>{t('step1')}</h2>
+                  <h3 className={s.subtitle}>
+                    <img src={library} alt="library" />
+                    {t('step1_title')}
+                  </h3>
+                  <p className={s.text}>
+                    <img src={vector} alt="vector" />
+                    {t('step1_text')}
+                  </p>
+                </div>
+                <div>
+                  <h2 className={s.title}>{t('step2')}</h2>
+                  <h3 className={s.subtitle}>
+                    <img src={flag} alt="flag" />
+                    {t('step2_title')}
+                  </h3>
+                  <p className={s.text}>
+                    <img src={vector} alt="vector" />
+                    {t('step2_text')}
+                  </p>
+                </div>
               </div>
-              <div>
-                <h2 className={s.title}>{t('step2')}</h2>
-                <h3 className={s.subtitle}>
-                  <img src={flag} alt="flag" />
-                  {t('step2_title')}
-                </h3>
-                <p className={s.text}>
-                  <img src={vector} alt="vector" />
-                  {t('step2_text')}
-                </p>
-              </div>
+              <button
+                className={s.btn_info}
+                type="button"
+                onClick={handleCloseInfo}
+              >
+                Ok
+              </button>
             </div>
-            <button
-              className={s.btn_info}
-              type="button"
-              onClick={handleCloseInfo}
-            >
-              Ok
-            </button>
           </Box>
         </Modal>
       ) : (
