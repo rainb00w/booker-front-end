@@ -17,7 +17,6 @@ import AuthModal from '../../authModal/authModal';
 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-
 Notify.init({
   timeout: 3000,
   success: {
@@ -39,14 +38,19 @@ const Registration = () => {
   const [confirmType, setConfirmType] = useState('password');
 
   useEffect(() => {
-    location.state === 'modal' ? setModal(false) : setModal(true);
+    const hide = localStorage.getItem('AuthModal');
+    location.state === 'modal' || hide === 'hide'
+      ? setModal(false)
+      : setModal(true);
   }, []);
 
   const modalBtnRegisterClick = () => {
     setModal(false);
+    localStorage.setItem('AuthModal', 'hide');
   };
 
   const modalBtnLoginClick = () => {
+    localStorage.setItem('AuthModal', 'hide');
     navigate('/login', { state: 'modal' });
   };
 
@@ -82,12 +86,13 @@ const Registration = () => {
                       resetForm({ values: '' });
                       setErrName('');
                       setErrEmail('');
-                      Notify.success('You have successfully registered. A confirmation email has been sent to you!');
+                      Notify.success(
+                        'You have successfully registered. A confirmation email has been sent to you!'
+                      );
                       setTimeout(() => {
                         navigate('/login');
-                      }, 2000)
-                    }
-                    else if (response) {
+                      }, 2000);
+                    } else if (response) {
                       throw response.data.message;
                     }
                   })
@@ -179,7 +184,7 @@ const Registration = () => {
                   )}
                   <label className={styles.label_password}>
                     <p className={styles.label__title}>
-                    {t('password')}
+                      {t('password')}
                       <span className={styles.label__star}>*</span>
                     </p>
                     <input
@@ -197,9 +202,9 @@ const Registration = () => {
                       className={
                         passwordType === 'text'
                           ? classNames(
-                            styles.svg__eyeOffCont,
-                            styles.svg__eyeOffContActive
-                          )
+                              styles.svg__eyeOffCont,
+                              styles.svg__eyeOffContActive
+                            )
                           : styles.svg__eyeOffCont
                       }
                     >
@@ -208,14 +213,16 @@ const Registration = () => {
                       </svg>
                     </span>
                     {errors.password && touched.password ? (
-                      <p className={styles.warning}>{t(`${errors.password}`)}</p>
+                      <p className={styles.warning}>
+                        {t(`${errors.password}`)}
+                      </p>
                     ) : (
                       <span className={styles.default__count}></span>
                     )}
                   </label>
                   <label className={styles.label_password}>
                     <p className={styles.label__title}>
-                    {t('confirmPassword')}
+                      {t('confirmPassword')}
                       <span className={styles.label__star}>*</span>
                     </p>
                     <input
@@ -233,9 +240,9 @@ const Registration = () => {
                       className={
                         confirmType === 'text'
                           ? classNames(
-                            styles.svg__eyeOffCont,
-                            styles.svg__eyeOffContActive
-                          )
+                              styles.svg__eyeOffCont,
+                              styles.svg__eyeOffContActive
+                            )
                           : styles.svg__eyeOffCont
                       }
                     >
@@ -244,21 +251,23 @@ const Registration = () => {
                       </svg>
                     </span>
                     {errors.confirmPassword && touched.confirmPassword ? (
-                      <p className={styles.warning}>{t(`${errors.confirmPassword}`)}</p>
+                      <p className={styles.warning}>
+                        {t(`${errors.confirmPassword}`)}
+                      </p>
                     ) : (
                       <span className={styles.default__count}></span>
                     )}
                   </label>
                   <button className={styles.form__button} type="submit">
-                  {t('signUp')}
+                    {t('signUp')}
                   </button>
                 </form>
               )}
             </Formik>
             <p className={styles.auth__describe}>
-            {t('alreadyHaveAnAccount')}
+              {t('alreadyHaveAnAccount')}
               <Link className={styles.authforgot__link} to="/">
-              {t('logIn')}
+                {t('logIn')}
               </Link>
             </p>
           </div>
@@ -278,11 +287,7 @@ const Registration = () => {
           </Media>
         )}
         <Media queries={{ tablet: '(min-width: 768px)' }}>
-          {
-            matches => (
-              matches.tablet && <RegistrationText />
-            )
-          }
+          {matches => matches.tablet && <RegistrationText />}
         </Media>
       </section>
     </>
