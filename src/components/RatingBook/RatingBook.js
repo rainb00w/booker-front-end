@@ -5,20 +5,24 @@ import ChooseRating from './ChooseRating/ChooseRating';
 import s from './RatingBook.module.css';
 import { useUpdateBookResumeMutation } from 'redux/books/booksApi';
 
-const RatingBook = ({ toggleModal, id, resume, rating }) => {
+const RatingBook = ({ toggleModal, id, resume = '', rating = 5 }) => {
   const [ratingValue, setRatingValue] = useState(rating);
 
   const [updateBookResume] = useUpdateBookResumeMutation();
 
-  const onSave = ({ resume }) => {
-    updateBookResume({id, rating: ratingValue, resume });
+  const onSave = ({ resume, rating }) => {
+    updateBookResume({ id, rating, resume });
+    toggleModal();
   };
 
   return (
     <Formik
-      initialValues={{ resume: resume }}
+      initialValues={{ resume: resume, rating: rating }}
       validationSchema={schemaValidChooseRating}
-      onSubmit={onSave}
+      onSubmit={({ resume, rating }, { resetForm }) => {
+        onSave({ rating, resume });
+        resetForm({values: ''});
+      }}
     >
       {({ touched, errors }) => (
         <Form>
