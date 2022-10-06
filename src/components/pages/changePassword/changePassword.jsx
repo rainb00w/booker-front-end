@@ -89,6 +89,7 @@ const ChangePassword = () => {
                       type={inputType}
                       placeholder="Password"
                       name="password"
+                      maxLength="30"
                       value={values.password}
                       onBlur={handleBlur}
                       onChange={handleChange}
