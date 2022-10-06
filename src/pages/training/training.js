@@ -158,8 +158,8 @@ const Training = () => {
     book => book.status === 'reading'
   );
 
-  // console.log(trainingData.data);
-  const booksLeft = booksThatHaveReadingStatus?.length;
+  // console.log('trining data books', trainingData?.data?.books);
+  const booksLeft = trainingData?.data?.books.length;
 
   const handleSelectBook = selectedOption => {
     const { value } = selectedOption;
@@ -167,12 +167,21 @@ const Training = () => {
     setSelectedBook(value);
   };
 
-  if (booksThatHaveReadingStatus?.length > 0) {
-    bookTableArray = booksThatHaveReadingStatus;
-    booksNumbeFromBack = booksThatHaveReadingStatus?.length;
-  } else {
+  if (isEmptyTraining) {
     bookTableArray = booksArrayToSend;
+    // console.log('Нет тренировки выводим список книг со статусом toRead');
+  } else {
+    bookTableArray = trainingData?.data?.books;
+    booksNumbeFromBack = trainingData?.data?.books.length;
+    // console.log('Тренировка есть выводим книги с traning ');
   }
+
+  // if (booksThatHaveReadingStatus?.length > 0) {
+  //   bookTableArray = booksThatHaveReadingStatus;
+  //   booksNumbeFromBack = booksThatHaveReadingStatus?.length;
+  // } else {
+  //   bookTableArray = booksArrayToSend;
+  // }
 
   const addBookToSelected = () => {
     setDisable(true);
