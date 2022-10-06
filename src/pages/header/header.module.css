@@ -219,6 +219,16 @@ border-radius: 0%;
 
 /* ** MEDIA ** */
 
+@media screen and (min-width: 350px) {
+    .header {
+        width: 350px;
+    }
+
+    .header_l {
+        width: 350px;
+    }
+}
+
 @media screen and (min-width: 480px) {
     .header {
         width: 480px;
