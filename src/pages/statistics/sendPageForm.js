@@ -29,7 +29,7 @@ const SendPageForm = ({ startDate = null }) => {
           new Date(startDate).yyyymmdd(),
           'Ви не можете ввести дату до початку тренування'
         )
-        .max(new Date().yyyymmdd(), 'Ви не можете ввести дату в майбутньому'),
+        .max(new Date().yyyymmdd(), 'Ви не можете ввести цю дату'),
       pageInput: Yup.number()
         .positive('Введіть корректну кількість сторінок')
         .integer('К-ть сторінок має бути ціла')
@@ -55,9 +55,7 @@ const SendPageForm = ({ startDate = null }) => {
       <div className={s.inputs}>
         <label className={s.inputsLabel}>
           {t('date')}
-          {formik.errors.dateInput && formik.touched.dateInput ? (
-            <div>{formik.errors.dateInput}</div>
-          ) : null}
+
           <input
             className={s.inputDate}
             type="date"
@@ -65,12 +63,13 @@ const SendPageForm = ({ startDate = null }) => {
             onChange={formik.handleChange}
             value={formik.values.dateInput}
           />
+          {formik.errors.dateInput && formik.touched.dateInput ? (
+            <div>{formik.errors.dateInput}</div>
+          ) : null}
         </label>
         <label className={s.inputsLabel}>
           {t('amountOfPages_results')}
-          {formik.errors.pageInput && formik.touched.pageInput ? (
-            <div>{formik.errors.pageInput}</div>
-          ) : null}
+
           <input
             className={s.inputPage}
             type="number"
@@ -78,6 +77,9 @@ const SendPageForm = ({ startDate = null }) => {
             onChange={formik.handleChange}
             value={formik.values.pageInput}
           />
+          {formik.errors.pageInput && formik.touched.pageInput ? (
+            <div>{formik.errors.pageInput}</div>
+          ) : null}
         </label>
       </div>
       <button className={s.addResultBtn} type="submit">
