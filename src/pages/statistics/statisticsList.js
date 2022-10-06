@@ -38,7 +38,7 @@ const StatisticsList = () => {
       id: _id,
     });
   });
-  const visibleRows = rows.slice(0, 5);
+  const visibleRows = rows.slice(-5);
 
   console.log(rows);
   return (
