@@ -19,13 +19,6 @@ const StatisticsList = () => {
     return [(hh > 9 ? '' : '0') + hh, (mm > 9 ? '' : '0') + mm, '00'].join(':');
   };
 
-  // const rows = [
-  //   { date: '10.10.2019', time: '08:08:00', pages: 32 },
-  //   { date: '11.10.2019', time: '09:08:00', pages: 154 },
-  //   { date: '12.10.2019', time: '10:08:00', pages: 7 },
-  //   { date: '13.10.2019', time: '11:08:00', pages: 12 },
-  //   { date: '14.10.2019', time: '12:08:00', pages: 21 },
-  // ];
   const getAllTrainings = useGetAllTrainingsQuery();
   const { results = [] } = getAllTrainings.data;
   console.log(results, 'results');
