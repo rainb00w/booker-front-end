@@ -187,6 +187,7 @@ const Registration = () => {
                       type={passwordType}
                       placeholder="Password"
                       name="password"
+                      maxLength="30"
                       value={values.password}
                       onBlur={handleBlur}
                       onChange={handleChange}
@@ -222,6 +223,7 @@ const Registration = () => {
                       type={confirmType}
                       placeholder="Password"
                       name="confirmPassword"
+                      maxLength="30"
                       value={values.confirmPassword}
                       onBlur={handleBlur}
                       onChange={handleChange}
