@@ -154,6 +154,8 @@ const Training = () => {
     book => book.status === 'reading'
   );
 
+  const booksLeft = booksThatHaveReadingStatus?.length;
+
   const handleSelectBook = selectedOption => {
     const { value } = selectedOption;
     setDisable(false);
