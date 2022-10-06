@@ -124,7 +124,7 @@ const ChangePassword = () => {
               )}
             </Formik>
             <Link className={styles.auth__link} to="/login">
-              {t('logIn')}
+              {t('login')}
             </Link>
           </div>
         </div>

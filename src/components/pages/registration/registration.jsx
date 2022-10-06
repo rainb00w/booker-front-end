@@ -267,7 +267,7 @@ const Registration = () => {
             <p className={styles.auth__describe}>
               {t('alreadyHaveAnAccount')}
               <Link className={styles.loginauth__link} to="/">
-                {t('logIn')}
+                {t('login')}
               </Link>
             </p>
           </div>
