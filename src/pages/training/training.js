@@ -126,8 +126,7 @@ const Training = () => {
 
   if (trainingData?.data === undefined) {
     isEmptyTraining = true;
-  } else {
-  }
+  } 
 
   useEffect(() => {
     if (startDate && endDate) {
@@ -156,7 +155,6 @@ const Training = () => {
 
   const booksLeft = booksThatHaveReadingStatus?.length;
 
-  console.log(booksLeft);
   const handleSelectBook = selectedOption => {
     const { value } = selectedOption;
     setDisable(false);
@@ -182,7 +180,7 @@ const Training = () => {
     el => !booksArrayToSend.includes(el)
   );
 
-  const booksNumber = booksArrayToSend?.length;
+   const booksNumber = booksArrayToSend?.length;
 
   const selectedOptions = booksThatNotSelected?.map(({ title, _id }) => ({
     value: { _id },
@@ -353,7 +351,7 @@ const Training = () => {
               {isEmptyTraining ? (
                 <MyGoal days={daysNumber} books={booksNumber}  />
               ) : (
-                <MyGoal days={daysLeftFromBackEnd} books={booksNumbeFromBack} booksLeft={booksLeft}/>
+                <MyGoal days={daysLeftFromBackEnd} books={booksNumbeFromBack} />
               )}
             </div>
 
