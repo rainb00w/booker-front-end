@@ -114,5 +114,10 @@
   "this email is not verified": "this email is not verified",
   "this email is not registred": "this email is not registred",
   "this email has already been verified": "this email has already been verified",
-  "user is not found": "user is not found"
+  "user is not found": "user is not found",
+
+  "changePassword": "Change password",
+  "verify_phrase": "Please enter the email of the account you want to verify",
+  "email_verify": "Email for verify",
+  "send_verify": "Send"
 }
