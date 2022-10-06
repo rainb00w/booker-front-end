@@ -5,14 +5,16 @@ import icons from './symbol-defs.svg';
 import {
   useGetAllBooksQuery,
   useDeleteBookMutation,
+  useUpdateBookResumeMutation
 } from 'redux/books/booksApi';
 import { useTranslation } from 'react-i18next';
 import RatingBookWrapper from 'components/RatingBookWrapper';
-import NestingModal from 'components/RatingBook/RatingModal/NestingModal/NestingModal';
+import ChooseRating from 'components/RatingBook/ChooseRating/ChooseRating';
 
 export default function BookTableMobile() {
   const { data } = useGetAllBooksQuery();
   const [deleteContact, { isLoading: isDeleting }] = useDeleteBookMutation();
+  const [updateBookResume] = useUpdateBookResumeMutation();
   const status = e => {
     const status = data?.payload.books.some(book => book.status === e);
     return status;
@@ -27,8 +29,9 @@ export default function BookTableMobile() {
             <h3 className={s.title}> {t('alreadyRead')}</h3>
             <ul className={s.table}>
               {data?.payload.books.map(
-                ({ _id, author, pages, title, year, status, rating, resume }) =>
-                  status === 'haveRead' && (
+                ({ _id, author, pages, title, year, status, rating, resume }) => {
+                  const [ratingValue, setRatingValue] = useState(rating);
+                  if (status === 'haveRead') return (
                     <li key={_id} className={s.item}>
                       <p className={s.subtitle}>
                         <svg width={22} height={17} className={s.img}>
@@ -50,51 +53,14 @@ export default function BookTableMobile() {
                       </p>
                       <p className={s.subtitle}>
                         <span className={s.topic}> {t('book_rating')}:</span>
-                        {rating >= 1 ? (
-                          <svg width={17} height={17}>
-                            <use href={`${icons}#yellow_star`}></use>
-                          </svg>
-                        ) : (
-                          <svg width={17} height={17}>
-                            <use href={`${icons}#white_star`}></use>
-                          </svg>
-                        )}
-                        {rating >= 2 ? (
-                          <svg width={17} height={17}>
-                            <use href={`${icons}#yellow_star`}></use>
-                          </svg>
-                        ) : (
-                          <svg width={17} height={17}>
-                            <use href={`${icons}#white_star`}></use>
-                          </svg>
-                        )}
-                        {rating >= 3 ? (
-                          <svg width={17} height={17}>
-                            <use href={`${icons}#yellow_star`}></use>
-                          </svg>
-                        ) : (
-                          <svg width={17} height={17}>
-                            <use href={`${icons}#white_star`}></use>
-                          </svg>
-                        )}
-                        {rating >= 4 ? (
-                          <svg width={17} height={17}>
-                            <use href={`${icons}#yellow_star`}></use>
-                          </svg>
-                        ) : (
-                          <svg width={17} height={17}>
-                            <use href={`${icons}#white_star`}></use>
-                          </svg>
-                        )}
-                        {rating >= 5 ? (
-                          <svg width={17} height={17}>
-                            <use href={`${icons}#yellow_star`}></use>
-                          </svg>
-                        ) : (
-                          <svg width={17} height={17}>
-                            <use href={`${icons}#white_star`}></use>
-                          </svg>
-                        )}
+                        <ChooseRating
+                          setRating={async(event, newValue) => {
+                            setRatingValue(newValue);
+                            await updateBookResume({ id: _id, rating });
+                          }}
+                          rating={ratingValue}
+                          name="rating"
+                        />
                       </p>
                       <RatingBookWrapper
                         id={_id}
@@ -103,6 +69,7 @@ export default function BookTableMobile() {
                       />
                     </li>
                   )
+                }
               )}
             </ul>
           </div>
