@@ -147,10 +147,18 @@ const Training = () => {
   //  console.log(trainingData?.data.books.length);
 
   const incomeBooks = data?.payload?.books;
+
+  const booksThatHaveToReadStatus = incomeBooks?.filter(
+    book => book.status === 'toRead'
+  );
+
+  console.log('booksThatHaveToReadStatus', booksThatHaveToReadStatus);
+  
   const booksThatHaveReadingStatus = incomeBooks?.filter(
     book => book.status === 'reading'
   );
 
+  console.log(trainingData.data);
   const booksLeft = booksThatHaveReadingStatus?.length;
 
   const handleSelectBook = selectedOption => {
@@ -168,13 +176,13 @@ const Training = () => {
 
   const addBookToSelected = () => {
     setDisable(true);
-    const addBooksArray = incomeBooks.filter(
+    const addBooksArray = booksThatHaveToReadStatus.filter(
       book => book._id === selectedBook._id
     );
     setBooksArrayToSend([...booksArrayToSend].concat(addBooksArray));
   };
 
-  const booksThatNotSelected = incomeBooks?.filter(
+  const booksThatNotSelected = booksThatHaveToReadStatus?.filter(
     el => !booksArrayToSend.includes(el)
   );
 
@@ -269,11 +277,11 @@ const Training = () => {
                         <DatePicker
                           className={s.datePicker}
                           dateFormat="dd.MM.yyyy"
-                          placeholderText="Finish"
+                          placeholder="Finish"
                           selected={endDate}
                           onChange={handleEndSelect}
                           selectsEnd
-                          startDate={startDate}
+                          // startDate={startDate}
                           endDate={endDate}
                           minDate={startDate}
                         />
