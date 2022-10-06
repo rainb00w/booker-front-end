@@ -36,7 +36,10 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    location.state === 'modal' ? setModal(false) : setModal(true);
+    const hide = localStorage.getItem('AuthModal');
+    location.state === 'modal' || hide === 'hide'
+      ? setModal(false)
+      : setModal(true);
   }, []);
 
   useEffect(() => {
@@ -48,10 +51,12 @@ const Login = () => {
   });
 
   const modalBtnRegisterClick = () => {
+    localStorage.setItem('AuthModal', 'hide');
     navigate('/register', { state: 'modal' });
   };
 
   const modalBtnLoginClick = () => {
+    localStorage.setItem('AuthModal', 'hide');
     setModal(false);
   };
 
@@ -125,7 +130,7 @@ const Login = () => {
                   <p className={styles.label__title}>
                     {t('email')}
                     <span className={styles.label__star}>*</span>
-                    {err && <span className={styles.error}>{err}</span>}
+                    {err && <span className={styles.error}>{t(`${err}`)}</span>}
                   </p>
                   <input
                     className={styles.input}
@@ -145,12 +150,16 @@ const Login = () => {
                     <p className={styles.label__title}>
                       {t('password')}
                       <span className={styles.label__star}>*</span>
+                      {err && (
+                        <span className={styles.error}>{t(`${err}`)}</span>
+                      )}
                     </p>
                     <input
                       className={styles.input}
                       type={inputType}
                       placeholder="Password"
                       name="password"
+                      maxLength="30"
                       value={values.password}
                       onBlur={handleBlur}
                       onChange={handleChange}
@@ -172,7 +181,9 @@ const Login = () => {
                     </span>
 
                     {errors.password && touched.password ? (
-                      <p className={styles.warning}>{t(`${errors.password}`)}</p>
+                      <p className={styles.warning}>
+                        {t(`${errors.password}`)}
+                      </p>
                     ) : (
                       <span className={styles.default__count}></span>
                     )}

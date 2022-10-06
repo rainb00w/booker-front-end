@@ -106,5 +106,18 @@
 
   "the field contains an error": "the field contains an error",
   "this field is required": "this field is required",
-  "passwords doesn't match": "passwords doesn't match"
+  "password don't match": "password don't match",
+
+  "this name is already taken, choose other": "this name is already taken, choose other",
+  "this email is already taken, choose other": "this email is already taken, choose other",
+  "email or password is incorrect": "email or password is incorrect",
+  "this email is not verified": "this email is not verified",
+  "this email is not registred": "this email is not registred",
+  "this email has already been verified": "this email has already been verified",
+  "user is not found": "user is not found",
+
+  "changePassword": "Change password",
+  "verify_phrase": "Please enter the email of the account you want to verify",
+  "email_verify": "Email for verify",
+  "send_verify": "Send"
 }

@@ -3,6 +3,7 @@
   "email": "Електронна адреса",
   "password": "Пароль",
   "login": "Вхід",
+  "register": "Реєстрація",
   "signUp": "Зареєструватися",
   "name": "Ім’я",
   "confirmPassword": "Підтвердити пароль",
@@ -105,5 +106,18 @@
 
   "the field contains an error": "поле містить помилку",
   "this field is required": "необхідно заповнити поле",
-  "passwords doesn't match": "паролі не збігаються"
+  "password don't match": "дані відрізняються від даних поля password",
+
+  "this name is already taken, choose other": "дане ім'я вже зайняте, оберіть інше",
+  "this email is already taken, choose other": "дана електронна адреса вже зайнята, оберіть іншу",
+  "email or password is incorrect": "невірна електронна адреса або пароль",
+  "this email is not verified": "електронна адреса не верифікована",
+  "this email is not registred": "електронна адреса не зареєстрована",
+  "this email has already been verified": "електронна адреса вже верифікована",
+  "user is not found": "користувач не знайдений",
+
+  "changePassword": "Зміна пароля",
+  "verify_phrase": "Введіть адресу електронної пошти облікового запису, який потрібно підтвердити",
+  "email_verify": "Пошта для повторної верифікації",
+  "send_verify": "Надіслати"
 }
