@@ -99,8 +99,6 @@ const DropdownIndicator = props => {
 
 const Training = () => {
   const { data } = useGetAllBooksQuery();
-  // тут получаем все Книги
-
   const trainingData = useGetAllTrainingsQuery();
   const { isLoading } = useGetAllTrainingsQuery();
   // trainingData это объект, данные доступны  => trainingData.data
@@ -347,14 +345,15 @@ const Training = () => {
               )}
             </div>
 
-            <div className={s.gridItem2}>
+            {/* <div className={s.gridItem2}>
               {isEmptyTraining ? (
                 <MyGoal days={daysNumber} books={booksNumber}  />
               ) : (
                 <MyGoal days={daysLeftFromBackEnd} books={booksNumbeFromBack} />
               )}
-            </div>
+            </div> */}
 
+           
             {/* {trainingData?.data?.results?.length > 0 && (
               
             )} */}
