@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import newPasswordAPI from 'services/newPasswordAPI';
+import LoginPhrase from '../login/loginPhrase';
 import { Formik } from 'formik';
 import { loginValidationSchema } from 'services/yupValidationSchema';
 import { Link, useNavigate } from 'react-router-dom';
@@ -131,12 +132,7 @@ const ChangePassword = () => {
           <svg className={styles.svg__qutation}>
             <use href={svgPath.quatation + '#quatation'}></use>
           </svg>
-          <p className={styles.quote}>
-            Books are the ships of thoughts, wandering through the waves of
-            time.
-          </p>
-          <hr className={styles.hr} />
-          <h2 className={styles.author}>Francis Bacon</h2>
+          <LoginPhrase />
         </div>
       </section>
     </>
