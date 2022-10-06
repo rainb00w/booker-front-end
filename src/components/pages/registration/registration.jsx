@@ -94,19 +94,19 @@ const Registration = () => {
                   .catch(error => {
                     switch (error) {
                       case 'name':
-                        setErrName('User with this name is already registered');
+                        setErrName('this name is already taken, choose other');
                         setErrEmail('');
                         return;
                       case 'email':
                         setErrName('');
                         setErrEmail(
-                          'User with this email is already registered'
+                          'this email is already taken, choose other'
                         );
                         return;
                       case 'name&email':
-                        setErrName('User with this name is already registered');
+                        setErrName('this name is already taken, choose other');
                         setErrEmail(
-                          'User with this email is already registered'
+                          'this email is already taken, choose other'
                         );
                         return;
                       default:
@@ -139,7 +139,7 @@ const Registration = () => {
                     {t('name')}
                     <span className={styles.label__star}>*</span>
                     {errName && (
-                      <span className={styles.error}>{errName}</span>
+                      <span className={styles.error}>{t(`${errName}`)}</span>
                     )}
                   </p>
                   <input
@@ -160,7 +160,7 @@ const Registration = () => {
                     {t('email')}
                     <span className={styles.label__star}>*</span>
                     {errEmail && (
-                      <span className={styles.error}>{errEmail}</span>
+                      <span className={styles.error}>{t(`${errEmail}`)}</span>
                     )}
                   </p>
                   <input
