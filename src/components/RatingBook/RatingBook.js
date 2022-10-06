@@ -2,38 +2,34 @@ import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import schemaValidChooseRating from '../../services/schemaValidChooseRating';
 import ChooseRating from './ChooseRating/ChooseRating';
-import s from './RatingBook.module.css';
+import { useTranslation } from 'react-i18next';
 import { useUpdateBookResumeMutation } from 'redux/books/booksApi';
+import s from './RatingBook.module.css';
 
-const RatingBook = ({ toggleModal, id, resume = '', rating = 5 }) => {
+const RatingBook = ({ toggleModal, id, resume = '', rating = 0 }) => {
   const [ratingValue, setRatingValue] = useState(rating);
-
+  const { t } = useTranslation();
   const [updateBookResume] = useUpdateBookResumeMutation();
-
-  const onSave = ({ resume, rating }) => {
-    updateBookResume({ id, rating, resume });
-    toggleModal();
-  };
 
   return (
     <Formik
       initialValues={{ resume: resume, rating: rating }}
       validationSchema={schemaValidChooseRating}
-      onSubmit={({ resume, rating }, { resetForm }) => {
-        onSave({ rating, resume });
-        resetForm({values: ''});
+      onSubmit={async({ resume, rating }) => {
+        await updateBookResume({ id, rating: ratingValue, resume })
+        toggleModal();
       }}
     >
       {({ touched, errors }) => (
         <Form>
           <div className={s.container}>
-            <h2 className={s.title}>Обрати рейтинг книги</h2>
+            <h2 className={s.title}>{t('chooseRating')}</h2>
             <ChooseRating
               setRating={setRatingValue}
               rating={rating}
               name="rating"
             />
-            <h2 className={s.title}>Резюме</h2>
+            <h2 className={s.title}>{t('resumeRating')}</h2>
             <Field
               as="textarea"
               placeholder="..."
@@ -50,10 +46,10 @@ const RatingBook = ({ toggleModal, id, resume = '', rating = 5 }) => {
             />
             <div className={s.centered}>
               <button type="button" className={s.btnBack} onClick={toggleModal}>
-                Назад
+                {t('btnBack')}
               </button>
               <button type="submit" className={s.btnSave}>
-                Зберегти
+                {t('btnSave')}
               </button>
             </div>
           </div>
