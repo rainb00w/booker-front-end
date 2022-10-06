@@ -30,20 +30,25 @@ const StatisticsList = () => {
   const { results = [] } = getAllTrainings.data;
   console.log(results, 'results');
   let rows = [];
-  results.forEach(element => {
+  results.forEach(({ date, pages, _id }) => {
     rows.push({
-      date: new Date(element.date).yyyymmdd(),
-      time: new Date(element.date).hhmmss(),
-      pages: element.pages,
-      id: element._id,
+      date: new Date(date).yyyymmdd(),
+      time: new Date(date).hhmmss(),
+      pages,
+      id: _id,
     });
   });
+  const visibleRows = rows.slice(0, 5);
 
   console.log(rows);
   return (
     <ul className={s.statisticsList}>
-      {rows.map(row => (
-        <StatisticsRow key={row.id} row={row} className={s.statisticsList} />
+      {visibleRows.map(row => (
+        <StatisticsRow
+          key={visibleRows.id}
+          row={row}
+          className={s.statisticsList}
+        />
       ))}
     </ul>
   );
