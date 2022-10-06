@@ -153,7 +153,7 @@ const Training = () => {
   );
 
   console.log('booksThatHaveToReadStatus', booksThatHaveToReadStatus);
-  
+
   const booksThatHaveReadingStatus = incomeBooks?.filter(
     book => book.status === 'reading'
   );
@@ -374,17 +374,20 @@ const Training = () => {
               )}
             </div>
 
-            <div className={s.gridItem3}>
-              <ChartTraning trainingData={trainingData.data} />
-            </div>
+            {!isEmptyTraining && (
+              <>
+                <div className={s.gridItem3}>
+                  <ChartTraning trainingData={trainingData.data} />
+                </div>
+                <div className={s.gridItem4}>
+                  <h2 className={s.resultsHeader}> {t('results')}</h2>
+                  <SendPageForm startDate={sendToStatisticStartDate} />
 
-            <div className={s.gridItem4}>
-              <h2 className={s.resultsHeader}> {t('results')}</h2>
-              <SendPageForm startDate={sendToStatisticStartDate} />
-
-              <h2 className={s.statisticsHeader}> {t('statistics')}</h2>
-              <StatisticsList results={sendToStatisticResults} />
-            </div>
+                  <h2 className={s.statisticsHeader}> {t('statistics')}</h2>
+                  <StatisticsList results={sendToStatisticResults} />
+                </div>
+              </>
+            )}
           </div>
         </div>
       )}
