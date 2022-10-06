@@ -55,7 +55,7 @@ export default function BookTableTraining({
                         <use href={`${icons}#white_book`}></use>
                       </svg>
                     )}
-                    {status === 'readed' && !isEmptyTraining && (
+                    {status === 'haveRead' && !isEmptyTraining && (
                       <svg width={22} height={17} className={s.bookIcon}>
                         <use href={`${icons}#yellow_book`}></use>
                       </svg>
