@@ -1,12 +1,23 @@
 import { useTranslation } from 'react-i18next';
+import { useGetAllTrainingsQuery } from 'redux/books/trainingApi';
 import s from './MyGoal.module.css';
 
-const MyGoal = ({ days, books }) => {
+const MyGoal = ({ days, books, booksLeft }) => {
   const { t } = useTranslation();
+
+  const trainingData = useGetAllTrainingsQuery();
+
+  let isEmptyTraining = false;
+
+
+  if (trainingData?.data === undefined) {
+    isEmptyTraining = true;
+  };
 
   return (
     <>
-      <div className={s.myGoalMainBox}>
+      {isEmptyTraining ? (
+        <div className={s.myGoalMainBox}>
         <div className={s.myGoalHeadingBox}>
           <h3 className={s.myGoalHeading}>  {t('myGoals')}  </h3>   
         </div>
@@ -27,6 +38,47 @@ const MyGoal = ({ days, books }) => {
           </ul>
         </div>
       </div>
+      ) : (
+          <div className={s.myGoalMainBox_training}>
+          <div className={s.myGoalHeadingBox_training}>
+            <h3 className={s.myGoalHeading}>
+              {t('myGoals')}
+            </h3>
+          </div>
+          <div className={s.statsBox_traning}>
+            <ul className={s.myGoalStatsList_training}>
+              <li className={s.myGoalStatsListItem_training}>
+                <span className={s.myGoalStatsDigitBox_training}>
+                  <p className={s.myGoalStatsDigit_training}>
+                    {books}
+                  </p>
+                </span>
+                <span className={s.myGoalStatsText}>
+                  {t('amountOfBooks')}
+                </span>
+              </li>
+              <li className={s.myGoalStatsListItem_training}>
+                <span className={s.myGoalStatsDigitBox_training}>
+                  <p className={s.myGoalStatsDigit_training}>{days}</p>
+                </span>
+                <span className={s.myGoalStatsText}>
+                  {t('amountOfDays')}
+                </span>
+              </li>
+              <li className={s.myGoalStatsListItem_training}>
+                <span className={s.myGoalStatsDigitBox_training}>
+                  <p className={s.myGoalStatsDigit_training_accent}>
+                    {/* {booksLeft} */} 0
+                  </p>
+                </span>
+                <span className={s.myGoalStatsText}>
+                  {t('booksLeft')}
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      )}
     </>
   );
 };

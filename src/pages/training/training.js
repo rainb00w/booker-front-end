@@ -349,7 +349,7 @@ const Training = () => {
 
             <div className={s.gridItem2}>
               {isEmptyTraining ? (
-                <MyGoal days={daysNumber} books={booksNumber} />
+                <MyGoal days={daysNumber} books={booksNumber} booksLeft={booksLeft} />
               ) : (
                 <MyGoal days={daysLeftFromBackEnd} books={booksNumbeFromBack} />
               )}
