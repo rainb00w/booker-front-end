@@ -40,14 +40,14 @@ const BookAddForm = ({ handleClickClose, showAdd }) => {
         .max(4, 'Must be no more than 4 characters')
         .required('Pages is required'),
     }),
-    onSubmit: ({ title, author, year, pages }, { resetForm }) => {
+    onSubmit: async ({ title, author, year, pages }, { resetForm }) => {
       addBook({
         title,
         author,
         year,
         pages,
-      }).then(resetForm({ values: '' }));
-      // resetForm({ values: '' });
+      });
+      resetForm();
     },
   });
 
@@ -62,10 +62,7 @@ const BookAddForm = ({ handleClickClose, showAdd }) => {
           </svg>
         </span>
         <form
-          onSubmit={() => {
-            formik.handleSubmit();
-            handleClickClose();
-          }}
+          onSubmit={formik.handleSubmit}
           className={s.form}
         >
           <label htmlFor="title" className={s.label}>
@@ -106,7 +103,7 @@ const BookAddForm = ({ handleClickClose, showAdd }) => {
               type="text"
               placeholder="..."
               onChange={formik.handleChange}
-              value={formik.values.date}
+              value={formik.values.year}
               className={s.inputDate}
             />
             {formik.errors.year && formik.touched.year ? (
