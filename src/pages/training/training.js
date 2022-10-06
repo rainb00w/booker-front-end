@@ -152,13 +152,13 @@ const Training = () => {
     book => book.status === 'toRead'
   );
 
-  console.log('booksThatHaveToReadStatus', booksThatHaveToReadStatus);
+  // console.log('booksThatHaveToReadStatus', booksThatHaveToReadStatus);
 
   const booksThatHaveReadingStatus = incomeBooks?.filter(
     book => book.status === 'reading'
   );
 
-  console.log(trainingData.data);
+  // console.log(trainingData.data);
   const booksLeft = booksThatHaveReadingStatus?.length;
 
   const handleSelectBook = selectedOption => {
