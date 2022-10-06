@@ -37,10 +37,10 @@
 
 .verify__label {
     text-align: left;
-        font-size: 14px;
-        color: #898F9F;
-        margin: 0;
-        margin-bottom: 8px;
+    font-size: 14px;
+    color: #898F9F;
+    margin: 0;
+    margin-bottom: 8px;
 }
 
 .verify__input {
@@ -69,6 +69,10 @@
 .verify__warning {
     margin-left: 5px;
     margin-bottom: 10px;
+}
+
+.verify__error {
+    margin-left: 5px;
 }
 
 .verify__default {

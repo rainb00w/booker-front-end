@@ -37,7 +37,9 @@ const RepeatVerify = ({ switchFunc }) => {
             <div className={styles.verify__overlay} onClick={handleClick}>
                 <div className={styles.verify__modal}>
                     <div className={styles.verify__container}>
-                        <h2 className={styles.verify__title}>Please enter the email of the account you want to verify</h2>
+                        <h2 className={styles.verify__title}>
+                            {t('verify_phrase')}
+                        </h2>
                         <Formik
                             initialValues={{
                                 email: '',
@@ -68,7 +70,7 @@ const RepeatVerify = ({ switchFunc }) => {
                             }) => (
                                 <form onSubmit={handleSubmit}>
                                     <p className={styles.verify__label}>
-                                        Email for verify
+                                        {t('email_verify')}
                                         {err && <span className={styles.verify__error}>{t(`${err}`)}</span>}
                                     </p>
                                     <input
@@ -84,7 +86,7 @@ const RepeatVerify = ({ switchFunc }) => {
                                         (<p className={styles.verify__warning}>{t(`${errors.email}`)}</p>)
                                         : (<span className={styles.verify__default}></span>)}
                                     <button className={styles.verify__button} type="submit">
-                                        Send for verify
+                                        {t('send_verify')}
                                     </button>
                                 </form>
                             )}
