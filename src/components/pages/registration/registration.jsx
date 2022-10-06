@@ -266,8 +266,8 @@ const Registration = () => {
             </Formik>
             <p className={styles.auth__describe}>
               {t('alreadyHaveAnAccount')}
-              <Link className={styles.authforgot__link} to="/">
-                {t('logIn')}
+              <Link className={styles.loginauth__link} to="/">
+                {t('login')}
               </Link>
             </p>
           </div>
