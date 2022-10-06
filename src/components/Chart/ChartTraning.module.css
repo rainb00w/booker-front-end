@@ -1,132 +1,140 @@
 .chartBox {
-    position: relative;
-    padding: 14px 22px;
-    background-color: white;
-    width: 100%;
-    height: 75%;
+  position: relative;
+  width: 280px;
+  height: 290px;
+  padding: 20px 10px;
+  background-color: #FFFFFF;
+  box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.25);
 }
 
 @media screen and (min-width: 768px) {
-    .chartBox {
-        padding: 25px 35px;
-        height: 90%;
-    }
-}
-
-.title {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    text-transform: uppercase;
-    margin-bottom: 24px;
-    color: #242A37;
-}
-
-.planedPages {
-    font-family: 'Montserrat';
-    font-weight: 600;
-    font-size: 12px; 
-    text-transform: uppercase;
-    text-align: center;
-    width: 25px;
-    height: 25px;
-    padding: 6px 8px;
-    margin-left: 8px;
-    color: #242A37;
-    background-color: #F5F7FA;
-}
-
-.lineList {
-    font-family: 'Montserrat';
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 2.5;
-    text-transform: uppercase;
-    color: #091E3F;
-}
-
-.chartValue {
-    display: flex;
-    justify-content: flex-end;
-    position: relative;
-    bottom: 15px;
-    right: 12px;
-    font-family: 'Montserrat';
-    font-weight: 600;
-    font-size: 12px;
-    text-transform: uppercase;
-    color: #091E3F;
-}
-
-.lineBox {
-    position: absolute;
-    height: auto;
-    right: 10px;
-    top: 100px;
-}
-
-@media screen and (min-width: 768px) {
-    .lineBox {
-            right: 0px;
-            top: 130px;
-        }
-}
-
-.lineList {
-    padding: 0px;
-    margin: 0px;
-    text-align: right;
-}
-
-.lineItem {
-    width: 50px;
-    height: 30px;
-    margin-right: 11px;
-    background-color: rgba(245, 247, 250, 0.85);
-    box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
-    text-align: center;
-    color: #ff6b08;
-
-}
-
-@media screen and (min-width: 768px) {
-    .lineItem {
-        margin-right: 45px;
-    }
-}
-
-.lineItem:not(:last-child) {
-    margin-bottom: 10px;
-    color: #242a37;
-}
-
-.avaregePgesPerDay {
-    width: 25px;
-    height: 25px;
-    padding: 4px;
-    background: #f6f7fb;
-}
-
-.modalBox {
-    background-color: white;
-    box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.25);
-}
-.modalBox {
-    width: 280px;
-    height: 290px;
-}
-
-
-@media screen and (min-width: 768px) {
-    .modalBox {
-        width: 704px;
-        height: 340px;
-    }
+  .chartBox {
+    width: 704px;
+    height: 340px;
+    padding: 30px 35px;
+  }
 }
 
 @media screen and (min-width: 1280px) {
-    .modalBox {
-        width: 928px;
-    }
+  .chartBox {
+    width: 928px;
+    padding: 32px 77px 32px 40px;
+  }
+}
+
+.title {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  color: #242A37;
+}
+
+.planedPages {
+  font-family: 'Montserrat';
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  text-align: center;
+  width: 25px;
+  height: 25px;
+  padding: 6px 8px;
+  margin-left: 8px;
+  color: #242A37;
+  background-color: #F5F7FA;
+}
+
+.chart {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  margin-top: -8px;
+}
+
+@media screen and (min-width: 768px) {
+  .chart {
+    height: 255px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .chart {
+    height: 215px;
+  }
+}
+
+.chartValue {
+  /* display: flex; */
+  /* justify-content: flex-end; */
+  /* position: relative; */
+  /* top: -8px; */
+  /* right: 12px; */
+  margin-top: -8px;
+  margin-right: 10px;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  font-size: 12px;
+  text-align: right;
+  text-transform: uppercase;
+  color: #091E3F;
+}
+
+.lineList {
+  font-family: 'Montserrat';
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 2.5;
+  text-transform: uppercase;
+  color: #091E3F;
+}
+
+.lineBox {
+  position: absolute;
+  height: auto;
+  right: 10px;
+  top: 100px;
+}
+
+@media screen and (min-width: 768px) {
+  .lineBox {
+    right: 0px;
+    top: 130px;
+  }
+}
+
+.lineList {
+  padding: 0px;
+  margin: 0px;
+  text-align: right;
+}
+
+.lineItem {
+  width: 50px;
+  height: 30px;
+  margin-right: 11px;
+  background-color: rgba(245, 247, 250, 0.85);
+  box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
+  text-align: center;
+  color: #ff6b08;
+
+}
+
+@media screen and (min-width: 768px) {
+  .lineItem {
+    margin-right: 45px;
+  }
+}
+
+.lineItem:not(:last-child) {
+  margin-bottom: 10px;
+  color: #242a37;
+}
+
+.avaregePgesPerDay {
+  width: 25px;
+  height: 25px;
+  padding: 4px;
+  background: #f6f7fb;
 }
