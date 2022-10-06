@@ -63,7 +63,7 @@ const ChangePassword = () => {
                     <p className={styles.label__title}>
                     Email
                     <span className={styles.label__star}>*</span>
-                    {err && <span className={styles.error}>{err}</span>}
+                    {err && <span className={styles.error}>{t(`${err}`)}</span>}
                   </p>
                   <input
                     className={styles.input}

@@ -69,7 +69,7 @@ const RepeatVerify = ({ switchFunc }) => {
                                 <form onSubmit={handleSubmit}>
                                     <p className={styles.verify__label}>
                                         Email for verify
-                                        {err && <span className={styles.verify__error}>* {err}</span>}
+                                        {err && <span className={styles.verify__error}>{t(`${err}`)}</span>}
                                     </p>
                                     <input
                                         className={styles.verify__input}
