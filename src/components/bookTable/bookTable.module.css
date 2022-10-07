@@ -75,9 +75,6 @@
     height: 62px;
   }
 
-  .table + .table {
-    margin-top: 32px;
-  }
   .img {
     margin-left: 20px;
     margin-right: 18px;
@@ -95,6 +92,9 @@
     max-width: 1280px;
     width: calc(100% - 2 * 16px);
     margin-bottom: 50px;
+  }
+  .table + .table {
+    margin-top: 32px;
   }
   .title {
     margin: 0 0 24px 0;
