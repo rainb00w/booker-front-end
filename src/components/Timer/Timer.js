@@ -26,8 +26,6 @@ const Timer = ({ selectedDate, title, openModal }) => {
   };
 
   const intervalId = useRef(null);
-  // console.log(intervalId);
-  
   // const deltaTime = Object.values(selectedDate)[0] - time;
   const deltaTime = selectedDate - time;
   const timeLeft = convertMs(deltaTime);
@@ -71,17 +69,15 @@ const Timer = ({ selectedDate, title, openModal }) => {
           <StyledSpan>{t('mins')}</StyledSpan>
         </StyledItem>
 
-          <StyledItem>
-            <StyledValue>
-              <StyledSeparator>:</StyledSeparator>
-              {timeLeft.seconds}
-            </StyledValue>
-            <StyledSpan>сек</StyledSpan>
-          </StyledItem>
-        </StyledContainer>
-      </StyledTimerWrapper>
-      //  {open && <ModalFinish onClose={handleExit} />}  
-    </>
+        <StyledItem>
+          <StyledValue>
+            <StyledSeparator>:</StyledSeparator>
+            {timeLeft.seconds}
+          </StyledValue>
+          <StyledSpan>{t('secs')}</StyledSpan>
+        </StyledItem>
+      </StyledContainer>
+    </StyledTimerWrapper>
   );
 };
 export default Timer;
