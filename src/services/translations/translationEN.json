@@ -120,6 +120,9 @@
   "verify_phrase": "Please enter the email of the account you want to verify",
   "email_verify": "Email for verify",
   "send_verify": "Send",
+  "notify_phrase1": "Check your mailbox and follow to the library page",
+  "notify_phrase2": "We re-sent the letter to your mail to activate your profile",
+  "notify_phrase3": "To confirm the password change, follow the link that we sent you by mail",
 
   "training_object_not_found": "Training information not found",
   "no_books_by_ids": "No books found by ids",

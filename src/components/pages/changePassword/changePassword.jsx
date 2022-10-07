@@ -40,7 +40,7 @@ const ChangePassword = () => {
                   setErr("")
                   newPasswordAPI(email, password)
                     .then(() => {
-                      Notify.success('To confirm the password change, follow the link that we sent you by mail.');
+                      Notify.success(t('notify_phrase3'));
                       setTimeout(() => {
                         navigate('/login');
                       }, 2000); 

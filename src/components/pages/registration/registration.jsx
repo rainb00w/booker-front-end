@@ -94,7 +94,7 @@ const Registration = () => {
                       setErrName('');
                       setErrEmail('');
                       Notify.success(
-                        'You have successfully registered. A confirmation email has been sent to you!'
+                        t(`notify_phrase1`)
                       );
                       setTimeout(() => {
                         navigate('/login');
