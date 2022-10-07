@@ -12,27 +12,27 @@ import convertMs from './convertMs';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTrainingState } from 'redux/auth/auth-slice';
 
-const Timer = ({ selectedDate, title }) => {
+const Timer = ({ selectedDate, title, openModal }) => {
   const [time, setTime] = useState(() => Date.now());
-  const dispatch = useDispatch();
 
+  const dispatch = useDispatch();
 
   const intervalId = useRef(null);
   // const deltaTime = Object.values(selectedDate)[0] - time;
   const deltaTime = selectedDate - time;
   const timeLeft = convertMs(deltaTime);
 
-
- if (deltaTime <= 0 ) {
-  dispatch(setTrainingState(true));
- }
+  if (deltaTime <= 0) {
+    openModal();
+    // dispatch(setTrainingState(true));
+  }
 
   useEffect(() => {
     if (intervalId.current === null) {
       intervalId.current = setInterval(() => {
         setTime(Date.now());
       }, 1000);
-  
+
       return;
     }
 
