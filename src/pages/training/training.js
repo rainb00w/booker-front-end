@@ -3,7 +3,7 @@ import { useGetAllBooksQuery } from 'redux/books/booksApi';
 import { useAddTrainingMutation } from 'redux/books/trainingApi';
 import { useGetAllTrainingsQuery } from 'redux/books/trainingApi';
 import s from './training.module.scss';
-import ModalFinish from 'components/ModalFinish/ModalFinish';
+// import ModalFinish from 'components/ModalFinish/ModalFinish';
 
 import { useTranslation } from 'react-i18next';
 
@@ -165,7 +165,7 @@ const Training = () => {
 
   const [selectedBook, setSelectedBook] = useState(null);
   const [booksArrayToSend, setBooksArrayToSend] = useState([]);
-  const [open, setOpen] = useState(true);
+  // const [open, setOpen] = useState(true);
   const [addTraining] = useAddTrainingMutation();
 
   const [startDate, setStartDate] = useState(initialState.startDate);
@@ -178,19 +178,28 @@ const Training = () => {
   let isEmptyTraining = false;
   let booksNumbeFromBack = 0;
 
+  const oneDay = 24 * 60 * 60 * 1000;
+  const trainingDayEnd = new Date(trainingData?.data?.finishDate);
+  const nowDate = new Date();
+
+  let daysLeftFromBackEnd = Math.ceil(
+    Math.abs((trainingDayEnd - nowDate) / oneDay) - 1
+  );
+
   if (trainingData?.data === undefined) {
     isEmptyTraining = true;
   }
 
   if (trainingStatus) {
     isEmptyTraining = true;
+    daysLeftFromBackEnd = 0;
   }
+  // const handleOpen = () => setOpen(true);
 
-  const handleOpen = () => setOpen(true);
-  const handleExit = () => {
-    dispatch(setTrainingState(true));
-    setOpen(false);
-  };
+  // const handleExit = () => {
+  //   dispatch(setTrainingState(true));
+  //   setOpen(false);
+  // };
 
   useEffect(() => {
     if (startDate && endDate) {
@@ -201,14 +210,6 @@ const Training = () => {
       setDaysNumber(deltaTimeObj.days);
     }
   }, [startDate, endDate]);
-
-  const oneDay = 24 * 60 * 60 * 1000;
-  const trainingDayEnd = new Date(trainingData?.data?.finishDate);
-  const nowDate = new Date();
-
-  const daysLeftFromBackEnd = Math.ceil(
-    Math.abs((trainingDayEnd - nowDate) / oneDay) - 1
-  );
 
   //  console.log(trainingData?.data.books.length);
 
@@ -271,7 +272,7 @@ const Training = () => {
       books: booksArrayToSend.map(element => ({ _id: element._id })),
     };
 
-    console.log(array)
+    // console.log(array)
 
     dispatch(setTrainingState(false));
     addTraining(array)
@@ -285,12 +286,10 @@ const Training = () => {
   const trainingTitle = t('goalsCountdown');
 
   const handleStartSelect = value => {
-
     setStartDate(value);
   };
 
   const handleEndSelect = value => {
-
     // const convertedTime = value.setHours(12,4 ,5 4)
     // console.log(convertedTime);
 
@@ -402,7 +401,6 @@ const Training = () => {
                     <Timer
                       selectedDate={trainingDayEnd}
                       title={trainingTitle}
-                      openModal={handleOpen}
                     />
                   </div>
                 </div>
@@ -471,7 +469,7 @@ const Training = () => {
         </div>
       )}
 
-      {open && <ModalFinish onClose={handleExit} />}
+      {/* {open && <ModalFinish onClose={handleExit} />} */}
     </>
   );
 };
