@@ -5,6 +5,7 @@ import icons from './symbol-defs.svg';
 import {
   useGetAllBooksQuery,
   useDeleteBookMutation,
+  useUpdateBookResumeMutation
 } from 'redux/books/booksApi';
 import { useTranslation } from 'react-i18next';
 import RatingBookWrapper from 'components/RatingBookWrapper';
@@ -13,6 +14,7 @@ import ChooseRating from 'components/RatingBook/ChooseRating/ChooseRating';
 export default function BookTable() {
   const { data } = useGetAllBooksQuery();
   const [deleteContact, { isLoading: isDeleting }] = useDeleteBookMutation();
+  const [updateBookResume] = useUpdateBookResumeMutation();
   const { t, i18n } = useTranslation();
   // console.log(data);
   const status = e => {
@@ -74,7 +76,7 @@ export default function BookTable() {
                           <ChooseRating
                             setRating={async (event, newValue) => {
                               setRatingValue(newValue);
-                              await updateBookResume({ id: _id, rating });
+                              await updateBookResume({ id: _id, rating: newValue });
                             }}
                             rating={ratingValue}
                             name="rating"

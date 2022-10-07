@@ -56,7 +56,7 @@ export default function BookTableMobile() {
                         <ChooseRating
                           setRating={async(event, newValue) => {
                             setRatingValue(newValue);
-                            await updateBookResume({ id: _id, rating });
+                            await updateBookResume({ id: _id, rating: newValue });
                           }}
                           rating={ratingValue}
                           name="rating"
