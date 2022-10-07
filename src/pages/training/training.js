@@ -23,7 +23,28 @@ import convertMs from 'components/Timer/convertMs';
 import sprite from '../../img/sprite.svg';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
+const MyTrainingStyled = styled.div`
+  @media screen and (min-width: 768px) {
+    margin-bottom: 40px;
+  }
 
+  @media screen and (min-width: 1280px) {
+    margin-bottom: 25px;
+  }
+
+  .trainingTitle {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.9;
+    padding: 11px 47px;
+    text-align: center;
+    margin-bottom: 20px;
+
+    color: red;
+    background: red;
+    box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
+  }
+`;
 
 const DatePickerTrainingStyled = styled.div`
   @media screen and (min-width: 768px) {
@@ -205,7 +226,6 @@ const Training = () => {
 
   const addBookToSelected = () => {
     setDisable(true);
-    setSelectPlaceHolder(null)
     const addBooksArray = booksThatHaveToReadStatus.filter(
       book => book._id === selectedBook._id
     );
@@ -272,10 +292,7 @@ const Training = () => {
     setSelectedBook(value);
   };
 
-  const [selectPlaceHolderOption, setSelectPlaceHolderOption] = useState(null);
-
-  // console.log('234234', selectPlaceHolderOption);
-  // console.log('selectPlaceHolder', selectPlaceHolder)
+  console.log('selectPlaceHolder', selectPlaceHolder)
 
   return (
     <>
@@ -353,11 +370,11 @@ const Training = () => {
                         // }}
                         // value={selectPlaceHolder}
                         
-                       defaultValue={selectPlaceHolderOption}
+                  
                         options={selectedOptions}
                         placeholder={t('chooseBooks')}
                         closeMenuOnSelect={true}
-                        onChange={setSelectPlaceHolderOption}  
+                        onChange={handleSelectBook} clear 
                         styles={applicationStyles}
                         components={{ DropdownIndicator }}
                       />
