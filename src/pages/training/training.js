@@ -119,12 +119,9 @@ const applicationStyles = {
       width: 715,
     },
   }),
-  
-
 
   singleValue: (provided, state) => {
-    return { ...provided,
-      color: '#A6ABB9', };
+    return { ...provided, color: '#A6ABB9' };
   },
 
   dropdownIndicator: provided => ({
@@ -145,8 +142,8 @@ const DropdownIndicator = props => {
 };
 
 const initialState = {
-  startDate: "",
-  endDate: "",
+  startDate: '',
+  endDate: '',
 };
 
 const Training = () => {
@@ -159,7 +156,6 @@ const Training = () => {
   const sendToStatisticStartDate = trainingData?.data?.startDate;
   const sendToStatisticResults = trainingData?.data?.results;
   // console.log('startDate', trainingData.data.startDate ,'array', trainingData.data.results );
-
 
   const [selectedBook, setSelectedBook] = useState(null);
   const [booksArrayToSend, setBooksArrayToSend] = useState([]);
@@ -213,7 +209,6 @@ const Training = () => {
 
   // console.log('trining data books', trainingData?.data?.books);
   const booksLeft = trainingData?.data?.books.length;
-
 
   if (isEmptyTraining) {
     bookTableArray = booksArrayToSend;
@@ -277,22 +272,13 @@ const Training = () => {
     setEndDate(value);
   };
 
-  
-  const [selectPlaceHolder, setSelectPlaceHolder] = useState(null);
-
-
-
-// console.log('selectedBook', selectedBook)
-
+  // console.log('selectedBook', selectedBook)
 
   const handleSelectBook = selectedOption => {
     const { value, label } = selectedOption;
-    setSelectPlaceHolder(label);
     setDisable(false);
     setSelectedBook(value);
   };
-
-  console.log('selectPlaceHolder', selectPlaceHolder)
 
   return (
     <>
@@ -348,7 +334,7 @@ const Training = () => {
                           selected={endDate}
                           onChange={handleEndSelect}
                           selectsEnd
-                          // startDate={startDate}
+                          startDate={startDate}
                           endDate={endDate}
                           minDate={startDate}
                         />
@@ -364,17 +350,11 @@ const Training = () => {
                   <div className={s.select_container}>
                     <SelectBooksFirstStyled>
                       <Select
-                        // defaultValue={{
-                        //   value: selectPlaceHolder,
-                        //   label: t('chooseBooks'),
-                        // }}
-                        // value={selectPlaceHolder}
-                        
-                  
                         options={selectedOptions}
                         placeholder={t('chooseBooks')}
                         closeMenuOnSelect={true}
-                        onChange={handleSelectBook} clear 
+                        onChange={handleSelectBook}
+                        clear
                         styles={applicationStyles}
                         components={{ DropdownIndicator }}
                       />

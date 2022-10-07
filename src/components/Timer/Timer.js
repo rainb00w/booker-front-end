@@ -12,12 +12,17 @@ import convertMs from './convertMs';
 
 const Timer = ({ selectedDate, title }) => {
   const [time, setTime] = useState(() => Date.now());
-  // console.log(selectedDate);
 
   const intervalId = useRef(null);
   // const deltaTime = Object.values(selectedDate)[0] - time;
   const deltaTime = selectedDate - time;
   const timeLeft = convertMs(deltaTime);
+
+
+ if (deltaTime === 0 ) {
+  console.log(deltaTime);
+  console.log(finished);
+ }
 
   useEffect(() => {
     if (intervalId.current === null) {
