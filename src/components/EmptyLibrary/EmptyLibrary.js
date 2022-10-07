@@ -83,7 +83,7 @@ const Info = () => {
             </h3>
             <p className={s.text}>
               <img src={vector} alt="vector" />
-              {t('step1_text')}
+              {t('step2_text')}
             </p>
           </div>
         </div>
