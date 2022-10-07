@@ -134,7 +134,7 @@ const BookAddForm = ({ handleClickClose, showAdd }) => {
             {t('btnAdd')}
           </button>
         </form>
-        {isLoading && <p>Is Adding</p>}
+        {isLoading && <p>...</p>}
       </div>
     </div>
   );
