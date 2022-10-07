@@ -85,7 +85,7 @@ export default function BookTable() {
                             className={s.button}
                             id={_id}
                             resume={resume}
-                            rating={rating}
+                            rating={ratingValue}
                           />
                         </td>
                       </tr>
