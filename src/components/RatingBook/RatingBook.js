@@ -15,7 +15,7 @@ const RatingBook = ({ toggleModal, id, resume = '', rating = 0 }) => {
     <Formik
       initialValues={{ resume: resume, rating: rating }}
       validationSchema={schemaValidChooseRating}
-      onSubmit={async({ resume, rating }) => {
+      onSubmit={async({ resume }) => {
         await updateBookResume({ id, rating: ratingValue, resume })
         toggleModal();
       }}
