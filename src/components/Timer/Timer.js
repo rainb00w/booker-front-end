@@ -11,11 +11,19 @@ import { useState, useEffect, useRef } from 'react';
 import convertMs from './convertMs';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTrainingState } from 'redux/auth/auth-slice';
+import ModalFinish from 'components/ModalFinish/ModalFinish.js';
 
 const Timer = ({ selectedDate, title, openModal }) => {
   const [time, setTime] = useState(() => Date.now());
 
   const dispatch = useDispatch();
+
+  const [open, setOpen] = useState(false);
+
+  const handleExit = () => {
+    setOpen(false);
+    // dispatch(setTrainingState(true));
+  };
 
   const intervalId = useRef(null);
   // const deltaTime = Object.values(selectedDate)[0] - time;
@@ -23,8 +31,9 @@ const Timer = ({ selectedDate, title, openModal }) => {
   const timeLeft = convertMs(deltaTime);
 
   if (deltaTime <= 0) {
-    openModal();
-    // dispatch(setTrainingState(true));
+    // clearInterval(intervalId);
+    // setOpen(true);
+    dispatch(setTrainingState(true));
   }
 
   useEffect(() => {
@@ -32,47 +41,46 @@ const Timer = ({ selectedDate, title, openModal }) => {
       intervalId.current = setInterval(() => {
         setTime(Date.now());
       }, 1000);
-
-      return;
     }
-
-    return clearInterval(intervalId);
   }, []);
 
   return (
-    <StyledTimerWrapper>
-      <TimerTitle>{title}</TimerTitle>
-      <StyledContainer>
-        <StyledItem>
-          <StyledValue>{timeLeft.days}</StyledValue>
-          <StyledSpan>дн</StyledSpan>
-        </StyledItem>
+    <>
+      <StyledTimerWrapper>
+        <TimerTitle>{title}</TimerTitle>
+        <StyledContainer>
+          <StyledItem>
+            <StyledValue>{timeLeft.days}</StyledValue>
+            <StyledSpan>дн</StyledSpan>
+          </StyledItem>
 
-        <StyledItem>
-          <StyledValue>
-            <StyledSeparator>:</StyledSeparator>
-            {timeLeft.hours}
-          </StyledValue>
-          <StyledSpan>год</StyledSpan>
-        </StyledItem>
+          <StyledItem>
+            <StyledValue>
+              <StyledSeparator>:</StyledSeparator>
+              {timeLeft.hours}
+            </StyledValue>
+            <StyledSpan>год</StyledSpan>
+          </StyledItem>
 
-        <StyledItem>
-          <StyledValue>
-            <StyledSeparator>:</StyledSeparator>
-            {timeLeft.minutes}
-          </StyledValue>
-          <StyledSpan>хв</StyledSpan>
-        </StyledItem>
+          <StyledItem>
+            <StyledValue>
+              <StyledSeparator>:</StyledSeparator>
+              {timeLeft.minutes}
+            </StyledValue>
+            <StyledSpan>хв</StyledSpan>
+          </StyledItem>
 
-        <StyledItem>
-          <StyledValue>
-            <StyledSeparator>:</StyledSeparator>
-            {timeLeft.seconds}
-          </StyledValue>
-          <StyledSpan>сек</StyledSpan>
-        </StyledItem>
-      </StyledContainer>
-    </StyledTimerWrapper>
+          <StyledItem>
+            <StyledValue>
+              <StyledSeparator>:</StyledSeparator>
+              {timeLeft.seconds}
+            </StyledValue>
+            <StyledSpan>сек</StyledSpan>
+          </StyledItem>
+        </StyledContainer>
+      </StyledTimerWrapper>
+      {/* {open && <ModalFinish onClose={handleExit} />}  */}
+    </>
   );
 };
 export default Timer;
