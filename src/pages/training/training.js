@@ -172,7 +172,7 @@ const Training = () => {
   const [endDate, setEndDate] = useState(initialState.endDate);
   const [daysNumber, setDaysNumber] = useState(0);
   const [disable, setDisable] = useState(false);
-  const [endYear, setEndYear] = useState(new Date(2022, 11, 31));
+  const [endYear, setEndYear] = useState(new Date(2023, 0, 1));
   const { t } = useTranslation();
   let bookTableArray = [];
   let isEmptyTraining = false;
