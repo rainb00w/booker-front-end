@@ -11,12 +11,12 @@ import { useState, useEffect, useRef } from 'react';
 import convertMs from './convertMs';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTrainingState } from 'redux/auth/auth-slice';
-import ModalFinish from 'components/ModalFinish/ModalFinish.js';
+import { useTranslation } from 'react-i18next';
 
 const Timer = ({ selectedDate, title, openModal }) => {
   const [time, setTime] = useState(() => Date.now());
-
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const [open, setOpen] = useState(false);
 
@@ -47,30 +47,29 @@ const Timer = ({ selectedDate, title, openModal }) => {
   }, []);
 
   return (
-    <>
-      <StyledTimerWrapper>
-        <TimerTitle>{title}</TimerTitle>
-        <StyledContainer>
-          <StyledItem>
-            <StyledValue>{timeLeft.days}</StyledValue>
-            <StyledSpan>дн</StyledSpan>
-          </StyledItem>
+    <StyledTimerWrapper>
+      <TimerTitle>{title}</TimerTitle>
+      <StyledContainer>
+        <StyledItem>
+          <StyledValue>{timeLeft.days}</StyledValue>
+          <StyledSpan>{t('days')}</StyledSpan>
+        </StyledItem>
 
-          <StyledItem>
-            <StyledValue>
-              <StyledSeparator>:</StyledSeparator>
-              {timeLeft.hours}
-            </StyledValue>
-            <StyledSpan>год</StyledSpan>
-          </StyledItem>
+        <StyledItem>
+          <StyledValue>
+            <StyledSeparator>:</StyledSeparator>
+            {timeLeft.hours}
+          </StyledValue>
+          <StyledSpan>{t('hrs')}</StyledSpan>
+        </StyledItem>
 
-          <StyledItem>
-            <StyledValue>
-              <StyledSeparator>:</StyledSeparator>
-              {timeLeft.minutes}
-            </StyledValue>
-            <StyledSpan>хв</StyledSpan>
-          </StyledItem>
+        <StyledItem>
+          <StyledValue>
+            <StyledSeparator>:</StyledSeparator>
+            {timeLeft.minutes}
+          </StyledValue>
+          <StyledSpan>{t('mins')}</StyledSpan>
+        </StyledItem>
 
           <StyledItem>
             <StyledValue>
@@ -81,7 +80,7 @@ const Timer = ({ selectedDate, title, openModal }) => {
           </StyledItem>
         </StyledContainer>
       </StyledTimerWrapper>
-       {open && <ModalFinish onClose={handleExit} />}  
+      //  {open && <ModalFinish onClose={handleExit} />}  
     </>
   );
 };

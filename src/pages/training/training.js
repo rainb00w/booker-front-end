@@ -275,7 +275,7 @@ const Training = () => {
       books: booksArrayToSend.map(element => ({ _id: element._id })),
     };
 
-    console.log(array)
+    // console.log(array)
 
     dispatch(setTrainingState(false));
     addTraining(array)
