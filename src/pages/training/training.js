@@ -178,25 +178,6 @@ const Training = () => {
   let isEmptyTraining = false;
   let booksNumbeFromBack = 0;
 
-
-
-  // const handleOpen = () => setOpen(true);
-
-  // const handleExit = () => {
-  //   dispatch(setTrainingState(true));
-  //   setOpen(false);
-  // };
-
-  useEffect(() => {
-    if (startDate && endDate) {
-      const start = new Date(startDate);
-      const end = new Date(endDate);
-      const deltaTime = end.valueOf() - start.valueOf();
-      const deltaTimeObj = convertMs(deltaTime);
-      setDaysNumber(deltaTimeObj.days);
-    }
-  }, [startDate, endDate]);
-
   const oneDay = 24 * 60 * 60 * 1000;
   const trainingDayEnd = new Date(trainingData?.data?.finishDate);
   const nowDate = new Date();
@@ -213,6 +194,22 @@ const Training = () => {
     isEmptyTraining = true;
     daysLeftFromBackEnd = 0;
   }
+  // const handleOpen = () => setOpen(true);
+
+  // const handleExit = () => {
+  //   dispatch(setTrainingState(true));
+  //   setOpen(false);
+  // };
+
+  useEffect(() => {
+    if (startDate && endDate) {
+      const start = new Date(startDate);
+      const end = new Date(endDate);
+      const deltaTime = end.valueOf() - start.valueOf();
+      const deltaTimeObj = convertMs(deltaTime);
+      setDaysNumber(deltaTimeObj.days);
+    }
+  }, [startDate, endDate]);
 
   //  console.log(trainingData?.data.books.length);
 
@@ -289,12 +286,10 @@ const Training = () => {
   const trainingTitle = t('goalsCountdown');
 
   const handleStartSelect = value => {
-
     setStartDate(value);
   };
 
   const handleEndSelect = value => {
-
     // const convertedTime = value.setHours(12,4 ,5 4)
     // console.log(convertedTime);
 
@@ -406,7 +401,6 @@ const Training = () => {
                     <Timer
                       selectedDate={trainingDayEnd}
                       title={trainingTitle}
-
                     />
                   </div>
                 </div>
