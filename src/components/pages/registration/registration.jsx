@@ -71,6 +71,7 @@ const Registration = () => {
   return (
     <>
       <section className={styles.section}>
+        <div className={styles.left__block}>
         <div className={styles.registr__form}>
           <div className={styles.form__border}>
             <Formik
@@ -283,6 +284,7 @@ const Registration = () => {
               </Link>
             </p>
           </div>
+          </div>
         </div>
         {modal && (
           <Media queries={{ small: '(max-width: 768px)' }}>
@@ -299,7 +301,10 @@ const Registration = () => {
           </Media>
         )}
         <Media queries={{ tablet: '(min-width: 768px)' }}>
-          {matches => matches.tablet && <RegistrationText />}
+          {matches => matches.tablet &&
+            <div className={styles.right__block}>
+              <RegistrationText />
+            </div>}
         </Media>
       </section>
     </>

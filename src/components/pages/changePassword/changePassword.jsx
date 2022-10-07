@@ -24,7 +24,8 @@ const ChangePassword = () => {
 
   return (
     <>
-        <section className={styles.section}>
+      <section className={styles.section}>
+        <div className={styles.left__block}>
             <div className={styles.login__form}>
                 <div className={styles.form__border}>
                     <h2 className={styles.subtitle}>{t('changePassword')}</h2>
@@ -127,12 +128,15 @@ const ChangePassword = () => {
               {t('login')}
             </Link>
           </div>
+          </div>
         </div>
-        <div className={styles.log__text}>
-          <svg className={styles.svg__qutation}>
-            <use href={svgPath.quatation + '#quatation'}></use>
-          </svg>
-          <LoginPhrase />
+        <div className={styles.right__block}>
+          <div className={styles.log__text}>
+            <svg className={styles.svg__qutation}>
+              <use href={svgPath.quatation + '#quatation'}></use>
+            </svg>
+            <LoginPhrase />
+          </div>
         </div>
       </section>
     </>

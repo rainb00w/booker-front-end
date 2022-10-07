@@ -7,7 +7,6 @@ import { TextField } from './Login.styled';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import AuthModal from '../../authModal/authModal';
 import RepeatVerify from '../repeatVerify/repeatVerify';
-//  import getPhrases from '../../phrases/getPhrases';
 import LoginPhrase from './loginPhrase';
 import { useTranslation } from 'react-i18next';
 
@@ -27,7 +26,6 @@ const Login = () => {
   const dispatch = useDispatch();
   const [err, setErr] = useState('');
   const [modal, setModal] = useState(false);
-  // const [phrase, setPhrase] = useState(getPhrases());
   const { t } = useTranslation();
 
   const [verifyModal, setVerifyModal] = useState(false);
@@ -53,7 +51,6 @@ const Login = () => {
   useEffect(() => {
     if (query.token) {
       const { name, token, avatar } = query;
-      // console.log('useEffect', name, token, avatar );
       dispatch(googleLogIn({ token, name, avatar }));
     }
   });
@@ -91,6 +88,7 @@ const Login = () => {
         </Media>
       )}
       <section className={styles.section}>
+        <div className={styles.left__block}>
         <div className={styles.login__form}>
           <div className={styles.form__border}>
             <a
@@ -226,12 +224,15 @@ const Login = () => {
               </Link>
             </p>
           </div>
+          </div>
         </div>
-        <div className={styles.log__text}>
-          <svg className={styles.svg__qutation}>
-            <use href={svgPath.quatation + '#quatation'}></use>
-          </svg>
-          <LoginPhrase />
+        <div className={styles.right__block}>
+          <div className={styles.log__text}>
+            <svg className={styles.svg__qutation}>
+              <use href={svgPath.quatation + '#quatation'}></use>
+            </svg>
+            <LoginPhrase />
+          </div>
         </div>
       </section>
     </>
