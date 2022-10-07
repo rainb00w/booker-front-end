@@ -182,24 +182,7 @@ const Training = () => {
   const trainingDayEnd = new Date(trainingData?.data?.finishDate);
   const nowDate = new Date();
 
-  let daysLeftFromBackEnd = Math.ceil(
-    Math.abs((trainingDayEnd - nowDate) / oneDay) - 1
-  );
 
-  if (trainingData?.data === undefined) {
-    isEmptyTraining = true;
-  }
-
-  if (trainingStatus) {
-    isEmptyTraining = true;
-    daysLeftFromBackEnd = 0;
-  }
-  // const handleOpen = () => setOpen(true);
-
-  // const handleExit = () => {
-  //   dispatch(setTrainingState(true));
-  //   setOpen(false);
-  // };
 
   useEffect(() => {
     if (startDate && endDate) {
@@ -209,7 +192,29 @@ const Training = () => {
       const deltaTimeObj = convertMs(deltaTime);
       setDaysNumber(deltaTimeObj.days);
     }
+
+
   }, [startDate, endDate]);
+
+
+  
+  let daysLeftFromBackEnd = Math.ceil(
+    Math.abs((trainingDayEnd - nowDate) / oneDay) - 1
+  );
+
+
+  if (trainingData?.data === undefined) {
+    isEmptyTraining = true;
+  }
+
+  if (trainingStatus) {
+    isEmptyTraining = true;
+  }
+
+
+
+
+
 
   //  console.log(trainingData?.data.books.length);
 
@@ -264,23 +269,22 @@ const Training = () => {
   };
 
   const startTraining = () => {
-    // console.log('start date', startDate)
-    // console.log('end date', endDate);
+   
     const array = {
       startDate: startDate,
       finishDate: endDate,
       books: booksArrayToSend.map(element => ({ _id: element._id })),
     };
-
-    // console.log(array)
-
+    setStartDate(null);
+    setEndDate(null);
     dispatch(setTrainingState(false));
     addTraining(array)
       .unwrap()
       .catch(error => Notify.success(error.data.message));
 
-    // .then(payload => console.log('fulfilled', payload))
+
   };
+
   const today = new Date();
   const yearTitle = t('yearsCountdown');
   const trainingTitle = t('goalsCountdown');

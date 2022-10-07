@@ -8,7 +8,7 @@ import { useAddBookMutation } from 'redux/books/booksApi';
 import { useTranslation } from 'react-i18next';
 
 const BookAddForm = ({ handleClickClose, showAdd }) => {
-  const [addBook, { isLoading }] = useAddBookMutation();
+  const [addBook, { isLoading, error }] = useAddBookMutation();
   const { t, i18n } = useTranslation();
 
   const formik = useFormik({
