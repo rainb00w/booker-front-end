@@ -396,6 +396,9 @@
     .log__text {
         padding: 205px 167px 0px;
 
+        box-sizing: content-box;
+        width: 500px;
+
         margin: 0;
         margin-right: auto;
     }
