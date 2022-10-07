@@ -15,7 +15,6 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     googleLogIn(state, action) {
-      // console.log('auth slice', action.payload)
      state.token = action?.payload.token;
      state.name = action?.payload.name;
      state.avatarGoogle = action?.payload.avatar;
@@ -26,9 +25,7 @@ const authSlice = createSlice({
   },
   extraReducers: {
     [authOperations.register.fulfilled](state, action) {
-      // state.user = action.payload.user;
-      // state.token = action.payload.token;
-      // state.isLoggedIn = true;
+
     },
     [authOperations.logIn.pending](state) {
       state.loginError = null;
