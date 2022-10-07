@@ -50,7 +50,7 @@ const RepeatVerify = ({ switchFunc }) => {
                                 const { email } = values;
                                 verifyAPI(email)
                                     .then(() => {
-                                        Notify.success('To activate your profile, follow the link that we sent to your email.');
+                                        Notify.success(t('notify_phrase2'));
                                         switchFunc();
                                     })
                                     .catch(err => {

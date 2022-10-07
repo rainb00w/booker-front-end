@@ -65,8 +65,10 @@
     margin-bottom: 40px;
   }
   @media screen and (min-width: 1280px) {
-    grid-area: main;
+    margin-top: 80px;
     margin-right: 32px;
+
+    grid-area: main;
   }
 }
 
@@ -82,24 +84,26 @@
     margin-bottom: 53px;
   }
   @media screen and (min-width: 1280px) {
-    width: 288px;
+    margin-top: 80px;
     margin-bottom: 20px;
+
     grid-area: sidebar;
+    width: 288px;
   }
 }
 
 .gridItem5 {
   margin: 0 0 20px 0;
   @media screen and (min-width: 768px) and (max-width: 1279px) {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 0 20px 0;
-  }
-  @media screen and (min-width: 1280px)  {
     display: flex;
-  align-items: center;
-  justify-content: center;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 20px 0;
+  }
+  @media screen and (min-width: 1280px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 20px 0 0 0;
   }
 }
@@ -319,10 +323,10 @@
 }
 
 .profileMainLoader {
-  margin: 50px 0 0 0 ;
-display: flex;
-align-items: center;
-justify-content: center;
+  margin: 50px 0 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .profileMainLoader .loader {
@@ -431,4 +435,3 @@ justify-content: center;
     stroke: #ff6b08;
   }
 }
-

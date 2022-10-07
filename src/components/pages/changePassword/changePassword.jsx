@@ -24,7 +24,8 @@ const ChangePassword = () => {
 
   return (
     <>
-        <section className={styles.section}>
+      <section className={styles.section}>
+        <div className={styles.left__block}>
             <div className={styles.login__form}>
                 <div className={styles.form__border}>
                     <h2 className={styles.subtitle}>{t('changePassword')}</h2>
@@ -39,7 +40,7 @@ const ChangePassword = () => {
                   setErr("")
                   newPasswordAPI(email, password)
                     .then(() => {
-                      Notify.success('To confirm the password change, follow the link that we sent you by mail.');
+                      Notify.success(t('notify_phrase3'));
                       setTimeout(() => {
                         navigate('/login');
                       }, 2000); 
@@ -127,12 +128,15 @@ const ChangePassword = () => {
               {t('login')}
             </Link>
           </div>
+          </div>
         </div>
-        <div className={styles.log__text}>
-          <svg className={styles.svg__qutation}>
-            <use href={svgPath.quatation + '#quatation'}></use>
-          </svg>
-          <LoginPhrase />
+        <div className={styles.right__block}>
+          <div className={styles.log__text}>
+            <svg className={styles.svg__qutation}>
+              <use href={svgPath.quatation + '#quatation'}></use>
+            </svg>
+            <LoginPhrase />
+          </div>
         </div>
       </section>
     </>

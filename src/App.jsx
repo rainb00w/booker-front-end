@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Notify } from 'notiflix';
 
+import MainContainer from 'pages/mainContainer/MainContainer';
 import LoginPage from './pages/login/loginPage';
 import RegistrationPage from './pages/registration/registrationPage';
 import ChangePasswordPage from 'pages/changePassword/changePasswordPage';
@@ -22,10 +23,16 @@ function App() {
   return (
     <>
       <Header />
-      <div className="main_container">
+      <div className='main_container'>
         <Suspense fallback="Load...">
           <Routes>
             {/* <Route path="/" element={<Library />} /> */}
+
+            <Route path="/" element={
+                <PrivateRoute>
+                  <MainContainer />
+                </PrivateRoute>
+              }>
 
             <Route
               path="/"
@@ -52,7 +59,9 @@ function App() {
                   <Training />
                 </PrivateRoute>
               }
-            />
+              />
+              
+            </Route>
 
             <Route
               path="/login"

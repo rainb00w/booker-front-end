@@ -1,5 +1,8 @@
 .registration__text {
   padding: 32px 25px 40px;
+
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .title {
@@ -81,5 +84,8 @@
 @media screen and (min-width: 1280px) {
   .registration__text {
     padding: 180px 127px 180px;
+
+    margin: 0;
+    margin-right: auto;
   }
 }
