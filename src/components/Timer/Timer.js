@@ -19,9 +19,9 @@ const Timer = ({ selectedDate, title }) => {
   const timeLeft = convertMs(deltaTime);
 
 
- if (deltaTime === 0 ) {
-  console.log(deltaTime);
-  console.log(finished);
+ if (deltaTime <= 0 ) {
+  // console.log(deltaTime);
+  // console.log('finished');
  }
 
   useEffect(() => {
@@ -29,8 +29,10 @@ const Timer = ({ selectedDate, title }) => {
       intervalId.current = setInterval(() => {
         setTime(Date.now());
       }, 1000);
+  
       return;
     }
+
     return clearInterval(intervalId);
   }, []);
 

@@ -252,6 +252,8 @@ const Training = () => {
       books: booksArrayToSend.map(element => ({ _id: element._id })),
     };
 
+    console.log(array);
+    
     addTraining(array)
       .unwrap()
       .catch(error => Notify.success(error.data.message));
