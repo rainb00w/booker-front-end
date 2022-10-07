@@ -3,6 +3,7 @@ import { useGetAllBooksQuery } from 'redux/books/booksApi';
 import { useAddTrainingMutation } from 'redux/books/trainingApi';
 import { useGetAllTrainingsQuery } from 'redux/books/trainingApi';
 import s from './training.module.scss';
+import ModalFinish from 'components/ModalFinish/ModalFinish';
 
 import { useTranslation } from 'react-i18next';
 
@@ -20,7 +21,6 @@ import SelectBooksFirstStyled from 'components/SelectBooks/SelectBooksFirstStyle
 import Timer from 'components/Timer/Timer';
 import convertMs from 'components/Timer/convertMs';
 import { setTrainingState } from 'redux/auth/auth-slice';
-
 
 import { useDispatch, useSelector } from 'react-redux';
 import { authSelectors } from '../../redux/auth';
@@ -158,7 +158,6 @@ const Training = () => {
   const dispatch = useDispatch();
   // trainingData это объект, данные доступны  => trainingData.data
 
-
   //  console.log('DATA', trainingData.data);
   const sendToStatisticStartDate = trainingData?.data?.startDate;
   const sendToStatisticResults = trainingData?.data?.results;
@@ -166,6 +165,7 @@ const Training = () => {
 
   const [selectedBook, setSelectedBook] = useState(null);
   const [booksArrayToSend, setBooksArrayToSend] = useState([]);
+  const [open, setOpen] = useState(true);
   const [addTraining] = useAddTrainingMutation();
 
   const [startDate, setStartDate] = useState(initialState.startDate);
@@ -185,6 +185,12 @@ const Training = () => {
   if (trainingStatus) {
     isEmptyTraining = true;
   }
+
+  const handleOpen = () => setOpen(true);
+  const handleExit = () => {
+    dispatch(setTrainingState(true));
+    setOpen(false);
+  };
 
   useEffect(() => {
     if (startDate && endDate) {
@@ -389,6 +395,7 @@ const Training = () => {
                     <Timer
                       selectedDate={trainingDayEnd}
                       title={trainingTitle}
+                      openModal={handleOpen}
                     />
                   </div>
                 </div>
@@ -456,6 +463,8 @@ const Training = () => {
           </div>
         </div>
       )}
+
+      {open && <ModalFinish onClose={handleExit} />}
     </>
   );
 };
