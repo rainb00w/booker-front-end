@@ -18,11 +18,14 @@
 }
 
 .gridContainer {
+  padding-bottom: 40px;
+
   @media screen and (max-width: 1279px) {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding-bottom: 0;
   }
   @media screen and (min-width: 1280px) {
     display: grid;
