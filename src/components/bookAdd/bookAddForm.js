@@ -6,6 +6,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useAddBookMutation } from 'redux/books/booksApi';
 import { useTranslation } from 'react-i18next';
+import { SpinnerCircular } from 'spinners-react';
 
 const BookAddForm = ({ handleClickClose, showAdd }) => {
   const [addBook, { isLoading, error }] = useAddBookMutation();
@@ -44,12 +45,20 @@ const BookAddForm = ({ handleClickClose, showAdd }) => {
         .required('Pages is required'),
     }),
     onSubmit: async ({ title, author, year, pages }, { resetForm }) => {
-      await addBook({
-        title,
-        author,
-        year,
-        pages,
-      });
+      if (year === '') {
+        await addBook({
+          title,
+          author,
+          pages,
+        });
+      } else {
+        await addBook({
+          title,
+          author,
+          year,
+          pages,
+        });
+      }
       resetForm();
       handleClickClose();
     },
@@ -136,7 +145,7 @@ const BookAddForm = ({ handleClickClose, showAdd }) => {
             {t('btnAdd')}
           </button>
         </form>
-        {isLoading && <p>...</p>}
+        {isLoading && <SpinnerCircular className={s.spinner} />}
       </div>
     </div>
   );
