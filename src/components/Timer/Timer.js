@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setTrainingState } from 'redux/auth/auth-slice';
 import { useTranslation } from 'react-i18next';
 
-const Timer = ({ selectedDate, title }) => {
+const Timer = ({ selectedDate, title, openModal }) => {
   const [time, setTime] = useState(() => Date.now());
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -23,10 +23,10 @@ const Timer = ({ selectedDate, title }) => {
   const deltaTime = selectedDate - time;
   const timeLeft = convertMs(deltaTime);
 
-
- if (deltaTime <= 0 ) {
-  dispatch(setTrainingState(true));
- }
+  if (deltaTime <= 0) {
+    openModal();
+    // dispatch(setTrainingState(true));
+  }
 
   useEffect(() => {
     if (intervalId.current === null) {
