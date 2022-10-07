@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useId } from 'react';
 import queryString from 'query-string';
 import classNames from 'classnames';
 import Media from 'react-media';
 import { IconButton, InputAdornment, OutlinedInput, FormControl, InputLabel } from '@mui/material';
+import { TextField } from './Login.styled';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import AuthModal from '../../authModal/authModal';
 import RepeatVerify from '../repeatVerify/repeatVerify';
@@ -36,6 +37,11 @@ const Login = () => {
 
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   const navigate = useNavigate();
+
+  const id = useId();
+  const [showPassword, setShowPassword] = useState(false);
+  const handleClickShowPassword = () => setShowPassword(!showPassword);
+  const handleMouseDownPassword = () => setShowPassword(!showPassword);
 
   useEffect(() => {
     const hide = localStorage.getItem('AuthModal');
@@ -156,52 +162,39 @@ const Login = () => {
                         <span className={styles.error}>{t(`${err}`)}</span>
                       )}
                     </p>
-                    <input
-                      className={styles.input}
-                      type={inputType}
-                      placeholder="Password"
-                      name="password"
-                      maxLength="30"
-                      value={values.password}
+                    <TextField
+                      required
+                      fullWidth
+                      autoComplete='new-password'
+                      type={showPassword ? 'text' : 'password'}
+                      name='password'
+                      maxLength={30}
+                      id={id + 'password'}
+                      placeholder='Password'
                       onBlur={handleBlur}
                       onChange={handleChange}
+                      value={values.password}
+                      InputProps={{
+                        outline: {
+                          "&&&:before": {
+                            borderBottom: "none"
+                          },
+                          "&&:after": {
+                            borderBottom: "none"
+                          }
+                        },
+                        endAdornment: <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                            onMouseDown={handleMouseDownPassword}
+                            edge="end"
+                          >
+                            {showPassword ? <Visibility /> : <VisibilityOff />}
+                          </IconButton>
+                        </InputAdornment>,
+                      }}
                     />
-                    <span
-                      onClick={handleClickShowIcon}
-                      className={
-                        inputType === 'text'
-                          ? classNames(
-                              styles.svg__eyeOffCont,
-                              styles.svg__eyeOffContActive
-                            )
-                          : styles.svg__eyeOffCont
-                      }
-                    >
-                    <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowIcon}
-                  edge="end"
-                >
-                  {values.password ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-                      </InputAdornment>
-                    </span>
-                    {/* <span
-                      onClick={handleClickShowIcon}
-                      className={
-                        inputType === 'text'
-                          ? classNames(
-                              styles.svg__eyeOffCont,
-                              styles.svg__eyeOffContActive
-                            )
-                          : styles.svg__eyeOffCont
-                      }
-                    >
-                      <svg className={styles.svg__eyeOff}>
-                        <use href={svgPath.eyeOff + '#eyeOff'}></use>
-                      </svg>
-                    </span> */}
                     {errors.password && touched.password ? (
                       <p className={styles.warning}>
                         {t(`${errors.password}`)}
