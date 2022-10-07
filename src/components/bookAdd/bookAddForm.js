@@ -44,13 +44,14 @@ const BookAddForm = ({ handleClickClose, showAdd }) => {
         .required('Pages is required'),
     }),
     onSubmit: async ({ title, author, year, pages }, { resetForm }) => {
-      addBook({
+      await addBook({
         title,
         author,
         year,
         pages,
       });
       resetForm();
+      handleClickClose();
     },
   });
 
@@ -65,7 +66,7 @@ const BookAddForm = ({ handleClickClose, showAdd }) => {
           </svg>
         </span>
         <form onSubmit={formik.handleSubmit} className={s.form}>
-          <label htmlFor="title" className={s.labelTitle}>
+          <label htmlFor="title" className={s.label}>
             {t('bookTitle')} *
             <input
               id="title"

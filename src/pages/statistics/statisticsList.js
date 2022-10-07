@@ -21,7 +21,7 @@ const StatisticsList = () => {
 
   const getAllTrainings = useGetAllTrainingsQuery();
   const { results = [] } = getAllTrainings.data;
-  // console.log(results, 'results');
+
   let rows = [];
   results.forEach(({ date, pages, _id }) => {
     rows.push({
@@ -33,7 +33,6 @@ const StatisticsList = () => {
   });
   const visibleRows = rows.slice(-5);
 
-  // console.log(rows);
   return (
     <ul className={s.statisticsList}>
       {visibleRows.map(row => (

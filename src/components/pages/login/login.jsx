@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import queryString from 'query-string';
 import classNames from 'classnames';
 import Media from 'react-media';
+import { IconButton, InputAdornment, OutlinedInput, FormControl, InputLabel } from '@mui/material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import AuthModal from '../../authModal/authModal';
 import RepeatVerify from '../repeatVerify/repeatVerify';
 //  import getPhrases from '../../phrases/getPhrases';
@@ -36,7 +38,10 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    location.state === 'modal' ? setModal(false) : setModal(true);
+    const hide = localStorage.getItem('AuthModal');
+    location.state === 'modal' || hide === 'hide'
+      ? setModal(false)
+      : setModal(true);
   }, []);
 
   useEffect(() => {
@@ -48,10 +53,12 @@ const Login = () => {
   });
 
   const modalBtnRegisterClick = () => {
+    localStorage.setItem('AuthModal', 'hide');
     navigate('/register', { state: 'modal' });
   };
 
   const modalBtnLoginClick = () => {
+    localStorage.setItem('AuthModal', 'hide');
     setModal(false);
   };
 
@@ -145,7 +152,9 @@ const Login = () => {
                     <p className={styles.label__title}>
                       {t('password')}
                       <span className={styles.label__star}>*</span>
-                      {err && <span className={styles.error}>{t(`${err}`)}</span>}
+                      {err && (
+                        <span className={styles.error}>{t(`${err}`)}</span>
+                      )}
                     </p>
                     <input
                       className={styles.input}
@@ -168,13 +177,35 @@ const Login = () => {
                           : styles.svg__eyeOffCont
                       }
                     >
+                    <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowIcon}
+                  edge="end"
+                >
+                  {values.password ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+                      </InputAdornment>
+                    </span>
+                    {/* <span
+                      onClick={handleClickShowIcon}
+                      className={
+                        inputType === 'text'
+                          ? classNames(
+                              styles.svg__eyeOffCont,
+                              styles.svg__eyeOffContActive
+                            )
+                          : styles.svg__eyeOffCont
+                      }
+                    >
                       <svg className={styles.svg__eyeOff}>
                         <use href={svgPath.eyeOff + '#eyeOff'}></use>
                       </svg>
-                    </span>
-
+                    </span> */}
                     {errors.password && touched.password ? (
-                      <p className={styles.warning}>{t(`${errors.password}`)}</p>
+                      <p className={styles.warning}>
+                        {t(`${errors.password}`)}
+                      </p>
                     ) : (
                       <span className={styles.default__count}></span>
                     )}
@@ -186,7 +217,7 @@ const Login = () => {
               )}
             </Formik>
             <Link className={styles.auth__link} to="/register">
-              {t('register')}
+              {t('signUp')}
             </Link>
             <p className={styles.auth__verify}>
               {t('didnt_receive_an_email')}

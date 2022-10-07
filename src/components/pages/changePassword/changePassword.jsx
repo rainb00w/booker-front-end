@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import newPasswordAPI from 'services/newPasswordAPI';
+import LoginPhrase from '../login/loginPhrase';
 import { Formik } from 'formik';
 import { loginValidationSchema } from 'services/yupValidationSchema';
 import { Link, useNavigate } from 'react-router-dom';
@@ -26,7 +27,7 @@ const ChangePassword = () => {
         <section className={styles.section}>
             <div className={styles.login__form}>
                 <div className={styles.form__border}>
-                    <h2 className={styles.subtitle}>Change password</h2>
+                    <h2 className={styles.subtitle}>{t('changePassword')}</h2>
             <Formik
                 initialValues={{
                     email: '',
@@ -61,7 +62,7 @@ const ChangePassword = () => {
                 }) => (
                 <form onSubmit={handleSubmit}>
                     <p className={styles.label__title}>
-                    Email
+                    {t('email')}
                     <span className={styles.label__star}>*</span>
                     {err && <span className={styles.error}>{t(`${err}`)}</span>}
                   </p>
@@ -81,7 +82,7 @@ const ChangePassword = () => {
                   )}
                   <label className={styles.label_password}>
                     <p className={styles.label__title}>
-                      Password
+                      {t('password')}
                       <span className={styles.label__star}>*</span>
                     </p>
                     <input
@@ -117,13 +118,13 @@ const ChangePassword = () => {
                     )}
                   </label>
                   <button className={styles.form__button} type="submit">
-                        Change Password
+                    {t('changePassword')}
                   </button>
                 </form>
               )}
             </Formik>
             <Link className={styles.auth__link} to="/login">
-              Login
+              {t('login')}
             </Link>
           </div>
         </div>
@@ -131,12 +132,7 @@ const ChangePassword = () => {
           <svg className={styles.svg__qutation}>
             <use href={svgPath.quatation + '#quatation'}></use>
           </svg>
-          <p className={styles.quote}>
-            Books are the ships of thoughts, wandering through the waves of
-            time.
-          </p>
-          <hr className={styles.hr} />
-          <h2 className={styles.author}>Francis Bacon</h2>
+          <LoginPhrase />
         </div>
       </section>
     </>

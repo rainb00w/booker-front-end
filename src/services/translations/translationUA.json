@@ -3,6 +3,7 @@
   "email": "Електронна адреса",
   "password": "Пароль",
   "login": "Вхід",
+  "register": "Реєстрація",
   "signUp": "Зареєструватися",
   "name": "Ім’я",
   "confirmPassword": "Підтвердити пароль",
@@ -113,5 +114,10 @@
   "this email is not verified": "електронна адреса не верифікована",
   "this email is not registred": "електронна адреса не зареєстрована",
   "this email has already been verified": "електронна адреса вже верифікована",
-  "user is not found": "користувач не знайдений"
+  "user is not found": "користувач не знайдений",
+
+  "changePassword": "Зміна пароля",
+  "verify_phrase": "Введіть адресу електронної пошти облікового запису, який потрібно підтвердити",
+  "email_verify": "Пошта для повторної верифікації",
+  "send_verify": "Надіслати"
 }

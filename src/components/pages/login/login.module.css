@@ -135,7 +135,8 @@
 }
 
 .auth__link,
-.authforgot__link {
+.authforgot__link,
+.loginauth__link {
     display: inline-block;
     text-align: center;
     font-size: 13px;
@@ -143,9 +144,11 @@
     text-decoration: underline;
 }
 
-.authforgot__link {
+.loginauth__link {
     margin-left: 5px;
 }
+
+
 
 .button__verify {
     display: inline-block;
@@ -206,7 +209,7 @@
 .subtitle {
     font-weight: 500;
     font-size: 20px;
-    color: #242A37;
+    color: #fff;
     margin: 0;
     margin-bottom: 14px;
 }
@@ -276,6 +279,10 @@
     .warning,
     .default__count {
         margin-bottom: 22px;
+    }
+
+    .subtitle {
+        color: #242A37;
     }
 
 
@@ -356,9 +363,9 @@ position: relative;
 
 .svg__eyeOffCont{
     position: absolute;
-    top: 40%;
-    right: 10px;
-    stroke: #898F9F;
+    top: 50%;
+    right: 15px;
+    /* stroke: #898F9F; */
 }
 
 .svg__eyeOffCont:hover,

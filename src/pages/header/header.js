@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import LangSwitch from '../../components/langSwitch/langSwitch';
 import Tooltip from '@mui/material/Tooltip';
+import icons from './exit.svg';
 
 import s from './header.module.css';
 import home from '../../img/icon_home.svg';
@@ -128,6 +129,16 @@ const Header = () => {
                 onClick={handleOpen}
               >
                 {t('logout')}
+              </button>
+
+              <button
+                className={s.button_exitIcon}
+                type="button"
+                onClick={handleOpen}
+              >
+                <svg width={24} height={24} className={s.exitIcon}>
+                  <use href={`${icons}#icon-exit`}></use>
+                </svg>
               </button>
             </div>
           )}
