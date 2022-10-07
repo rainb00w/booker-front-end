@@ -35,12 +35,13 @@ const Registration = () => {
   const [modal, setModal] = useState(true);
   const { t } = useTranslation();
   const location = useLocation();
-  const [passwordType, setPasswordType] = useState('password');
-  const [confirmType, setConfirmType] = useState('password');
   const id = useId();
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
   const handleClickShowPassword = () => setShowPassword(!showPassword);
   const handleMouseDownPassword = () => setShowPassword(!showPassword);
+  const handleClickShowConfirm = () => setShowConfirm(!showConfirm);
+  const handleMouseDownConfirm = () => setShowConfirm(!showConfirm);
 
 
   useEffect(() => {
@@ -60,13 +61,6 @@ const Registration = () => {
     navigate('/login', { state: 'modal' });
   };
 
-  const handleClickShowIconPassword = () => {
-    setPasswordType(passwordType === 'password' ? 'text' : 'password');
-  };
-
-  const handleClickShowIconConfirmPassword = () => {
-    setConfirmType(confirmType === 'password' ? 'text' : 'password');
-  };
 
   return (
     <>
@@ -239,7 +233,7 @@ const Registration = () => {
                       required
                       fullWidth
                       autoComplete='new-password'
-                      type={showPassword ? 'text' : 'password'}
+                      type={showConfirm ? 'text' : 'password'}
                       name='confirmPassword'
                       inputProps={{ maxLength: 30 }}
                       id={id + 'password'}
@@ -254,11 +248,11 @@ const Registration = () => {
                         endAdornment: <InputAdornment position="end">
                           <IconButton
                             aria-label="toggle password visibility"
-                            onClick={handleClickShowPassword}
-                            onMouseDown={handleMouseDownPassword}
+                            onClick={handleClickShowConfirm}
+                            onMouseDown={handleMouseDownConfirm}
                             edge="end"
                           >
-                            {showPassword ? <Visibility /> : <VisibilityOff />}
+                            {showConfirm ? <Visibility /> : <VisibilityOff />}
                           </IconButton>
                         </InputAdornment>,
                       }}
