@@ -2,10 +2,13 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useTranslation } from 'react-i18next';
 import { useUpdateTrainingMutation } from '../../redux/books/trainingApi';
+import { useDispatch, useSelector } from 'react-redux';
+import { setTrainingState } from 'redux/auth/auth-slice';
 import s from './statisticsList.module.css';
 
 const SendPageForm = ({ startDate = null }) => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
   const [updateTraining, { error }] = useUpdateTrainingMutation();
 
   console.log(error);
@@ -51,6 +54,10 @@ const SendPageForm = ({ startDate = null }) => {
       updateTraining({
         date: dateToSend,
         pages: pageInput,
+      }).then(info => {
+        if (info.data.completed) {
+          dispatch(setTrainingState(true));
+        }
       });
       if (error) {
         console.log('erere');

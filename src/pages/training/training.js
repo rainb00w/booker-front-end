@@ -178,13 +178,7 @@ const Training = () => {
   let isEmptyTraining = false;
   let booksNumbeFromBack = 0;
 
-  if (trainingData?.data === undefined) {
-    isEmptyTraining = true;
-  }
 
-  if (trainingStatus) {
-    isEmptyTraining = true;
-  }
 
   // const handleOpen = () => setOpen(true);
 
@@ -207,9 +201,18 @@ const Training = () => {
   const trainingDayEnd = new Date(trainingData?.data?.finishDate);
   const nowDate = new Date();
 
-  const daysLeftFromBackEnd = Math.ceil(
+  let daysLeftFromBackEnd = Math.ceil(
     Math.abs((trainingDayEnd - nowDate) / oneDay) - 1
   );
+
+  if (trainingData?.data === undefined) {
+    isEmptyTraining = true;
+  }
+
+  if (trainingStatus) {
+    isEmptyTraining = true;
+    daysLeftFromBackEnd = 0;
+  }
 
   //  console.log(trainingData?.data.books.length);
 
@@ -403,6 +406,7 @@ const Training = () => {
                     <Timer
                       selectedDate={trainingDayEnd}
                       title={trainingTitle}
+
                     />
                   </div>
                 </div>
