@@ -5,13 +5,16 @@ import icons from './symbol-defs.svg';
 import {
   useGetAllBooksQuery,
   useDeleteBookMutation,
+  useUpdateBookResumeMutation
 } from 'redux/books/booksApi';
 import { useTranslation } from 'react-i18next';
 import RatingBookWrapper from 'components/RatingBookWrapper';
+import ChooseRating from 'components/RatingBook/ChooseRating/ChooseRating';
 
 export default function BookTable() {
   const { data } = useGetAllBooksQuery();
   const [deleteContact, { isLoading: isDeleting }] = useDeleteBookMutation();
+  const [updateBookResume] = useUpdateBookResumeMutation();
   const { t, i18n } = useTranslation();
   // console.log(data);
   const status = e => {
@@ -56,8 +59,9 @@ export default function BookTable() {
                     status,
                     rating = 0,
                     resume,
-                  }) =>
-                    status === 'haveRead' && (
+                  }) => {
+                    const [ratingValue, setRatingValue] = useState(rating);
+                    if (status === 'haveRead') return (
                       <tr key={_id} className={s.item}>
                         <td className={s.subtitle}>
                           <svg width={22} height={17} className={s.img}>
@@ -69,59 +73,24 @@ export default function BookTable() {
                         <td className={s.subtitle}>{year}</td>
                         <td className={s.subtitle}>{pages}</td>
                         <td className={s.subtitle}>
-                          {rating >= 1 ? (
-                            <svg width={17} height={17}>
-                              <use href={`${icons}#yellow_star`}></use>
-                            </svg>
-                          ) : (
-                            <svg width={17} height={17}>
-                              <use href={`${icons}#white_star`}></use>
-                            </svg>
-                          )}
-                          {rating >= 2 ? (
-                            <svg width={17} height={17}>
-                              <use href={`${icons}#yellow_star`}></use>
-                            </svg>
-                          ) : (
-                            <svg width={17} height={17}>
-                              <use href={`${icons}#white_star`}></use>
-                            </svg>
-                          )}
-                          {rating >= 3 ? (
-                            <svg width={17} height={17}>
-                              <use href={`${icons}#yellow_star`}></use>
-                            </svg>
-                          ) : (
-                            <svg width={17} height={17}>
-                              <use href={`${icons}#white_star`}></use>
-                            </svg>
-                          )}
-                          {rating >= 4 ? (
-                            <svg width={17} height={17}>
-                              <use href={`${icons}#yellow_star`}></use>
-                            </svg>
-                          ) : (
-                            <svg width={17} height={17}>
-                              <use href={`${icons}#white_star`}></use>
-                            </svg>
-                          )}
-                          {rating >= 5 ? (
-                            <svg width={17} height={17}>
-                              <use href={`${icons}#yellow_star`}></use>
-                            </svg>
-                          ) : (
-                            <svg width={17} height={17}>
-                              <use href={`${icons}#white_star`}></use>
-                            </svg>
-                          )}
+                          <ChooseRating
+                            setRating={async (newValue) => {
+                              setRatingValue(newValue);
+                              await updateBookResume({ id: _id, rating: newValue });
+                            }}
+                            rating={ratingValue}
+                            name="rating"
+                          />
                           <RatingBookWrapper
+                            className={s.button}
                             id={_id}
                             resume={resume}
-                            rating={rating}
+                            rating={ratingValue}
                           />
                         </td>
                       </tr>
                     )
+                  }
                 )}
               </tbody>
             </table>
