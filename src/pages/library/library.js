@@ -25,7 +25,11 @@ const Library = () => {
         <div>
           {mobile && <AddBookBtnMobile handleClick={handleClickAdd} />}
           <BookAddForm handleClickClose={handleClickClose} showAdd={showAdd} />
-          {mobile ? <BookTableMobile /> : <BookTable />}
+          {mobile ? (
+            <div>{!showAdd && <BookTableMobile />}</div>
+          ) : (
+            <BookTable />
+          )}
           <BtnMyTraining />
         </div>
       ) : (
