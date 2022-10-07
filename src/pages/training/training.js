@@ -3,7 +3,7 @@ import { useGetAllBooksQuery } from 'redux/books/booksApi';
 import { useAddTrainingMutation } from 'redux/books/trainingApi';
 import { useGetAllTrainingsQuery } from 'redux/books/trainingApi';
 import s from './training.module.scss';
-import ModalFinish from 'components/ModalFinish/ModalFinish';
+// import ModalFinish from 'components/ModalFinish/ModalFinish';
 
 import { useTranslation } from 'react-i18next';
 
@@ -165,7 +165,7 @@ const Training = () => {
 
   const [selectedBook, setSelectedBook] = useState(null);
   const [booksArrayToSend, setBooksArrayToSend] = useState([]);
-  const [open, setOpen] = useState(true);
+  // const [open, setOpen] = useState(true);
   const [addTraining] = useAddTrainingMutation();
 
   const [startDate, setStartDate] = useState(initialState.startDate);
@@ -186,11 +186,12 @@ const Training = () => {
     isEmptyTraining = true;
   }
 
-  const handleOpen = () => setOpen(true);
-  const handleExit = () => {
-    dispatch(setTrainingState(true));
-    setOpen(false);
-  };
+  // const handleOpen = () => setOpen(true);
+
+  // const handleExit = () => {
+  //   dispatch(setTrainingState(true));
+  //   setOpen(false);
+  // };
 
   useEffect(() => {
     if (startDate && endDate) {
@@ -402,7 +403,6 @@ const Training = () => {
                     <Timer
                       selectedDate={trainingDayEnd}
                       title={trainingTitle}
-                      openModal={handleOpen}
                     />
                   </div>
                 </div>
@@ -471,7 +471,7 @@ const Training = () => {
         </div>
       )}
 
-      {open && <ModalFinish onClose={handleExit} />}
+      {/* {open && <ModalFinish onClose={handleExit} />} */}
     </>
   );
 };

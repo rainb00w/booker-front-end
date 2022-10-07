@@ -18,14 +18,22 @@ const Timer = ({ selectedDate, title, openModal }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
+  const [open, setOpen] = useState(false);
+
+  const handleExit = () => {
+    setOpen(false);
+    // dispatch(setTrainingState(true));
+  };
+
   const intervalId = useRef(null);
   // const deltaTime = Object.values(selectedDate)[0] - time;
   const deltaTime = selectedDate - time;
   const timeLeft = convertMs(deltaTime);
 
   if (deltaTime <= 0) {
-    openModal();
-    // dispatch(setTrainingState(true));
+    // clearInterval(intervalId);
+    // setOpen(true);
+    dispatch(setTrainingState(true));
   }
 
   useEffect(() => {
@@ -33,11 +41,7 @@ const Timer = ({ selectedDate, title, openModal }) => {
       intervalId.current = setInterval(() => {
         setTime(Date.now());
       }, 1000);
-
-      return;
     }
-
-    return clearInterval(intervalId);
   }, []);
 
   return (
