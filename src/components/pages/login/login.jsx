@@ -64,6 +64,10 @@ const Login = () => {
 
   const modalSwitch = () => setVerifyModal(!verifyModal);
 
+  const disableChange = (event) => {
+    event.preventDefault();
+  };
+
   return (
     <>
       {verifyModal && <RepeatVerify switchFunc={modalSwitch} />}
@@ -83,141 +87,144 @@ const Login = () => {
       )}
       <section className={styles.section}>
         <div className={styles.left__block}>
-        <div className={styles.login__form}>
-          <div className={styles.form__border}>
-            <a
-              className={styles.google__auth}
-              href="https://booker-back-end.herokuapp.com/api/user/google"
-            >
-              <div className={styles.google__container}>
-                <svg className={styles.svg__google}>
-                  <use href={svgPath.google + '#google'}></use>
-                </svg>
-                <p className={styles.google__text}>Google</p>
-              </div>
-            </a>
-            <Formik
-              initialValues={{
-                email: '',
-                password: '',
-              }}
-              validationSchema={loginValidationSchema}
-              onSubmit={(values, { resetForm }) => {
-                const { email, password } = values;
-                dispatch(authOperations.logIn({ email, password }))
-                  .then(answer => {
-                    const { response } = answer.payload;
-                    if (response) {
-                      throw response.data.message;
-                    }
-                  })
-                  .catch(error => {
-                    setErr(error);
-                  });
+          <div className={styles.login__form}>
+            <div className={styles.form__border}>
+              <a
+                className={styles.google__auth}
+                href="https://booker-back-end.herokuapp.com/api/user/google"
+              >
+                <div className={styles.google__container}>
+                  <svg className={styles.svg__google}>
+                    <use href={svgPath.google + '#google'}></use>
+                  </svg>
+                  <p className={styles.google__text}>Google</p>
+                </div>
+              </a>
+              <Formik
+                initialValues={{
+                  email: '',
+                  password: '',
+                }}
+                validationSchema={loginValidationSchema}
+                onSubmit={(values, { resetForm }) => {
+                  const { email, password } = values;
+                  dispatch(authOperations.logIn({ email, password }))
+                    .then(answer => {
+                      const { response } = answer.payload;
+                      if (response) {
+                        throw response.data.message;
+                      }
+                    })
+                    .catch(error => {
+                      setErr(error);
+                    });
 
-                resetForm({ values: '' });
-              }}
-            >
-              {({
-                values,
-                errors,
-                touched,
-                handleBlur,
-                handleChange,
-                handleSubmit,
-              }) => (
-                <form onSubmit={handleSubmit}>
-                  <p className={styles.label__title}>
-                    {t('email')}
-                    <span className={styles.label__star}>*</span>
-                    {err && <span className={styles.error}>{t(`${err}`)}</span>}
-                  </p>
-                  <input
-                    className={styles.input}
-                    type="email"
-                    placeholder="your@email.com"
-                    name="email"
-                    value={values.email}
-                    onBlur={handleBlur}
-                    onChange={handleChange}
-                  />
-                  {errors.email && touched.email ? (
-                    <p className={styles.warning}>{t(`${errors.email}`)}</p>
-                  ) : (
-                    <span className={styles.default__count}></span>
-                  )}
-                  <label className={styles.label_password}>
+                  resetForm({ values: '' });
+                }}
+              >
+                {({
+                  values,
+                  errors,
+                  touched,
+                  handleBlur,
+                  handleChange,
+                  handleSubmit,
+                }) => (
+                  <form onSubmit={handleSubmit}>
                     <p className={styles.label__title}>
-                      {t('password')}
+                      {t('email')}
                       <span className={styles.label__star}>*</span>
-                      {err && (
-                        <span className={styles.error}>{t(`${err}`)}</span>
-                      )}
+                      {err && <span className={styles.error}>{t(`${err}`)}</span>}
                     </p>
-                    <TextField
-                      required
-                      fullWidth
-                      autoComplete='new-password'
-                      type={showPassword ? 'text' : 'password'}
-                      name='password'
-                      inputProps={{ maxLength: 30 }}
-                      id={id + 'password'}
-                      placeholder='Password'
+                    <input
+                      className={styles.input}
+                      type="email"
+                      placeholder="your@email.com"
+                      name="email"
+                      value={values.email}
                       onBlur={handleBlur}
                       onChange={handleChange}
-                      value={values.password}
-                      variant='standard'
-                      InputProps={{
-                        style: {fontFamily: "'Montserrat', sans-serif",},
-                        disableUnderline: true,
-                        endAdornment: <InputAdornment position="end">
-                          <IconButton
-                            aria-label="toggle password visibility"
-                            onClick={handleClickShowPassword}
-                            onMouseDown={handleMouseDownPassword}
-                            edge="end"
-                          >
-                            {showPassword ? <Visibility /> : <VisibilityOff />}
-                          </IconButton>
-                        </InputAdornment>,
-                      }}
                     />
-                    {errors.password && touched.password ? (
-                      <p className={styles.warning}>
-                        {t(`${errors.password}`)}
-                      </p>
+                    {errors.email && touched.email ? (
+                      <p className={styles.warning}>{t(`${errors.email}`)}</p>
                     ) : (
                       <span className={styles.default__count}></span>
                     )}
-                  </label>
-                  <button className={styles.form__button} type="submit">
-                    {t('login')}
-                  </button>
-                </form>
-              )}
-            </Formik>
-            <Link className={styles.auth__link} to="/register">
-              {t('signUp')}
-            </Link>
-            <p className={styles.auth__verify}>
-              {t('didnt_receive_an_email')}
-              <button
-                className={styles.button__verify}
-                type="button"
-                onClick={() => {
-                  modalSwitch();
-                }}
-              >
-                {t('Repeat_Verify')}
-              </button>
-            </p>
-            <p className={styles.auth__verify}>
-              {t('Click_if_you_forgot_your_password')}
-              <Link className={styles.authforgot__link} to="/changePassword">
-                {t('Forgot_Password')}
+                    <label className={styles.label_password}>
+                      <p className={styles.label__title}>
+                        {t('password')}
+                        <span className={styles.label__star}>*</span>
+                        {err && (
+                          <span className={styles.error}>{t(`${err}`)}</span>
+                        )}
+                      </p>
+                      <TextField
+                        required
+                        fullWidth
+                        autoComplete='new-password'
+                        type={showPassword ? 'text' : 'password'}
+                        name='password'
+                        inputProps={{ maxLength: 30 }}
+                        id={id + 'password'}
+                        placeholder='Password'
+                        onBlur={handleBlur}
+                        onChange={handleChange}
+                        onCut={disableChange}
+                        onCopy={disableChange}
+                        onPaste={disableChange}
+                        value={values.password}
+                        variant='standard'
+                        InputProps={{
+                          style: { fontFamily: "'Montserrat', sans-serif", },
+                          disableUnderline: true,
+                          endAdornment: <InputAdornment position="end">
+                            <IconButton
+                              aria-label="toggle password visibility"
+                              onClick={handleClickShowPassword}
+                              onMouseDown={handleMouseDownPassword}
+                              edge="end"
+                            >
+                              {showPassword ? <Visibility sx={{ color: '#FF6B08' }} /> : <VisibilityOff />}
+                            </IconButton>
+                          </InputAdornment>,
+                        }}
+                      />
+                      {errors.password && touched.password ? (
+                        <p className={styles.warning}>
+                          {t(`${errors.password}`)}
+                        </p>
+                      ) : (
+                        <span className={styles.default__count}></span>
+                      )}
+                    </label>
+                    <button className={styles.form__button} type="submit">
+                      {t('login')}
+                    </button>
+                  </form>
+                )}
+              </Formik>
+              <Link className={styles.auth__link} to="/register">
+                {t('signUp')}
               </Link>
-            </p>
-          </div>
+              <p className={styles.auth__verify}>
+                {t('didnt_receive_an_email')}
+                <button
+                  className={styles.button__verify}
+                  type="button"
+                  onClick={() => {
+                    modalSwitch();
+                  }}
+                >
+                  {t('Repeat_Verify')}
+                </button>
+              </p>
+              <p className={styles.auth__verify}>
+                {t('Click_if_you_forgot_your_password')}
+                <Link className={styles.authforgot__link} to="/changePassword">
+                  {t('Forgot_Password')}
+                </Link>
+              </p>
+            </div>
           </div>
         </div>
         <div className={styles.right__block}>
