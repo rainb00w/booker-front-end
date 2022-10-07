@@ -265,7 +265,7 @@ const Training = () => {
       books: booksArrayToSend.map(element => ({ _id: element._id })),
     };
 
-    console.log(array)
+    // console.log(array)
 
     dispatch(setTrainingState(false));
     addTraining(array)
@@ -284,7 +284,7 @@ const Training = () => {
   };
 
   const handleEndSelect = value => {
-    
+
     // const convertedTime = value.setHours(12,4 ,5 4)
     // console.log(convertedTime);
 
