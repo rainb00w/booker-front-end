@@ -257,11 +257,15 @@ const Training = () => {
   };
 
   const startTraining = () => {
+    // console.log('start date', startDate)
+    // console.log('end date', endDate);
     const array = {
-      startDate: startDate.toISOString(),
-      finishDate: endDate.toISOString(),
+      startDate: startDate,
+      finishDate: endDate,
       books: booksArrayToSend.map(element => ({ _id: element._id })),
     };
+
+    console.log(array)
 
     dispatch(setTrainingState(false));
     addTraining(array)
@@ -275,12 +279,15 @@ const Training = () => {
   const trainingTitle = t('goalsCountdown');
 
   const handleStartSelect = value => {
-    // console.log(value);
+
     setStartDate(value);
   };
 
   const handleEndSelect = value => {
-    // console.log(value);
+    
+    // const convertedTime = value.setHours(12,4 ,5 4)
+    // console.log(convertedTime);
+
     setEndDate(value);
   };
 

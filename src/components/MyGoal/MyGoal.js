@@ -6,6 +6,11 @@ const MyGoal = ({ days, books, booksLeft, isTrainigEmpty }) => {
   // console.log(days, books,booksLeft, isTrainigEmpty )
   const { t } = useTranslation();
 
+// console.log(days);
+  if (days < 0) {
+    days = 0;
+  }
+
   return (
     <>
       {isTrainigEmpty ? (
@@ -27,7 +32,7 @@ const MyGoal = ({ days, books, booksLeft, isTrainigEmpty }) => {
 
               <li className={s.myGoalStatsListItem}>
                 <span className={s.myGoalStatsDigitBox}>
-                  <p className={s.myGoalStatsDigit}>{days === -1 ? 0 : days}</p>
+                  <p className={s.myGoalStatsDigit}>{days}</p>
                 </span>
                 <span className={s.myGoalStatsText}>{t('amountOfDays')}</span>
               </li>
