@@ -4,7 +4,7 @@ import NestingModal from 'components/RatingBook/RatingModal/NestingModal/Nesting
 import { useTranslation } from 'react-i18next';
 import s from './RatingBookWrapper.module.css';
 
-export default function RatingBookWrapper({ id, resume = '', rating = 0 }) {
+export default function RatingBookWrapper({ id, resume = '', rating = 0, setValue }) {
   const [showModal, setShowModal] = useState(false);
   const { t } = useTranslation();
   const toggleModal = () => {
@@ -26,6 +26,7 @@ export default function RatingBookWrapper({ id, resume = '', rating = 0 }) {
           resume={resume}
           rating={rating}
           toggleModal={toggleModal}
+          setValue={setValue}
         />
       </NestingModal>)}
     </>

@@ -6,17 +6,20 @@ import { useTranslation } from 'react-i18next';
 import { useUpdateBookResumeMutation } from 'redux/books/booksApi';
 import s from './RatingBook.module.css';
 
-const RatingBook = ({ toggleModal, id, resume = '', rating = 0 }) => {
+const RatingBook = ({ toggleModal, id, resume = '', rating = 0, setValue }) => {
   const [ratingValue, setRatingValue] = useState(rating);
   const { t } = useTranslation();
   const [updateBookResume] = useUpdateBookResumeMutation();
 
   return (
     <Formik
-      initialValues={{ resume: resume, rating: rating }}
+      initialValues={{ resume: resume }}
       validationSchema={schemaValidChooseRating}
-      onSubmit={async({ resume }) => {
-        await updateBookResume({ id, rating: ratingValue, resume })
+      onSubmit={async ({ resume }) => {
+        if (ratingValue < 1) await updateBookResume({ id, resume });
+        if (resume === '') await updateBookResume({ id, rating: ratingValue });
+        if (ratingValue >= 1 && resume.length > 0) await updateBookResume({ id, rating: ratingValue, resume });
+        setValue(ratingValue);
         toggleModal();
       }}
     >

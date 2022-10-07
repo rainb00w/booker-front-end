@@ -86,6 +86,7 @@ export default function BookTable() {
                             id={_id}
                             resume={resume}
                             rating={rating}
+                            setValue={setRatingValue}
                           />
                         </td>
                       </tr>

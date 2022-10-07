@@ -66,6 +66,7 @@ export default function BookTableMobile() {
                         id={_id}
                         resume={resume}
                         rating={rating}
+                        setValue={setRatingValue}
                       />
                     </li>
                   )

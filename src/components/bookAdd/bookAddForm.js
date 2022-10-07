@@ -66,7 +66,7 @@ const BookAddForm = ({ handleClickClose, showAdd }) => {
           </svg>
         </span>
         <form onSubmit={formik.handleSubmit} className={s.form}>
-          <label htmlFor="title" className={s.label}>
+          <label htmlFor="title" className={s.labelTitle}>
             {t('bookTitle')} *
             <input
               id="title"
