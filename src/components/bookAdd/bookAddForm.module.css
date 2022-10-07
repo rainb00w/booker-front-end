@@ -59,6 +59,9 @@
     width: 704px;
     margin-bottom: 40px;
   }
+  .wrapper {
+    display: flex;
+  }
   .labelTitle {
     max-width: 768px;
     width: 704px;
@@ -94,6 +97,9 @@
     justify-content: flex-start;
     width: calc(100% - 2 * 16px);
     margin-bottom: 80px;
+  }
+  .wrapper {
+    display: flex;
   }
   .labelTitle {
     width: 350px;
@@ -136,6 +142,7 @@
   font-size: 14px;
   line-height: 1.21;
   color: #898f9f;
+  height: 100px;
 }
 
 .inputTitle {
