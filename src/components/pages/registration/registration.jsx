@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useId } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-
+import { IconButton, InputAdornment } from '@mui/material';
+import { TextField } from '../login/Login.styled';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Formik } from 'formik';
 import { registrationValidationSchema } from 'services/yupValidationSchema';
 import RegistrationText from '../../RegistrationText';
 
 import svgPath from 'services/svgPath';
-import classNames from 'classnames';
 import styles from '../login/login.module.css';
 import { useTranslation } from 'react-i18next';
 
@@ -36,6 +37,11 @@ const Registration = () => {
   const location = useLocation();
   const [passwordType, setPasswordType] = useState('password');
   const [confirmType, setConfirmType] = useState('password');
+  const id = useId();
+  const [showPassword, setShowPassword] = useState(false);
+  const handleClickShowPassword = () => setShowPassword(!showPassword);
+  const handleMouseDownPassword = () => setShowPassword(!showPassword);
+
 
   useEffect(() => {
     const hide = localStorage.getItem('AuthModal');
@@ -187,31 +193,34 @@ const Registration = () => {
                       {t('password')}
                       <span className={styles.label__star}>*</span>
                     </p>
-                    <input
-                      className={styles.input}
-                      type={passwordType}
-                      placeholder="Password"
-                      name="password"
-                      maxLength="30"
-                      value={values.password}
+                    <TextField
+                      required
+                      fullWidth
+                      autoComplete='new-password'
+                      type={showPassword ? 'text' : 'password'}
+                      name='password'
+                      maxLength={30}
+                      id={id + 'password'}
+                      placeholder='Password'
                       onBlur={handleBlur}
                       onChange={handleChange}
+                      value={values.password}
+                      variant='standard'
+                      InputProps={{
+                        style: { fontFamily: "'Montserrat', sans-serif", },
+                        disableUnderline: true,
+                        endAdornment: <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                            onMouseDown={handleMouseDownPassword}
+                            edge="end"
+                          >
+                            {showPassword ? <Visibility /> : <VisibilityOff />}
+                          </IconButton>
+                        </InputAdornment>,
+                      }}
                     />
-                    <span
-                      onClick={handleClickShowIconPassword}
-                      className={
-                        passwordType === 'text'
-                          ? classNames(
-                              styles.svg__eyeOffCont,
-                              styles.svg__eyeOffContActive
-                            )
-                          : styles.svg__eyeOffCont
-                      }
-                    >
-                      <svg className={styles.svg__eyeOff}>
-                        <use href={svgPath.eyeOff + '#eyeOff'}></use>
-                      </svg>
-                    </span>
                     {errors.password && touched.password ? (
                       <p className={styles.warning}>
                         {t(`${errors.password}`)}
@@ -225,31 +234,34 @@ const Registration = () => {
                       {t('confirmPassword')}
                       <span className={styles.label__star}>*</span>
                     </p>
-                    <input
-                      className={styles.input}
-                      type={confirmType}
-                      placeholder="Password"
-                      name="confirmPassword"
-                      maxLength="30"
-                      value={values.confirmPassword}
+                    <TextField
+                      required
+                      fullWidth
+                      autoComplete='new-password'
+                      type={showPassword ? 'text' : 'password'}
+                      name='confirmPassword'
+                      maxLength={30}
+                      id={id + 'password'}
+                      placeholder='Password'
                       onBlur={handleBlur}
                       onChange={handleChange}
+                      value={values.confirmPassword}
+                      variant='standard'
+                      InputProps={{
+                        style: { fontFamily: "'Montserrat', sans-serif", },
+                        disableUnderline: true,
+                        endAdornment: <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                            onMouseDown={handleMouseDownPassword}
+                            edge="end"
+                          >
+                            {showPassword ? <Visibility /> : <VisibilityOff />}
+                          </IconButton>
+                        </InputAdornment>,
+                      }}
                     />
-                    <span
-                      onClick={handleClickShowIconConfirmPassword}
-                      className={
-                        confirmType === 'text'
-                          ? classNames(
-                              styles.svg__eyeOffCont,
-                              styles.svg__eyeOffContActive
-                            )
-                          : styles.svg__eyeOffCont
-                      }
-                    >
-                      <svg className={styles.svg__eyeOff}>
-                        <use href={svgPath.eyeOff + '#eyeOff'}></use>
-                      </svg>
-                    </span>
                     {errors.confirmPassword && touched.confirmPassword ? (
                       <p className={styles.warning}>
                         {t(`${errors.confirmPassword}`)}

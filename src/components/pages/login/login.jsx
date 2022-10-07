@@ -2,7 +2,7 @@ import React, { useState, useEffect, useId } from 'react';
 import queryString from 'query-string';
 import classNames from 'classnames';
 import Media from 'react-media';
-import { IconButton, InputAdornment, OutlinedInput, FormControl, InputLabel } from '@mui/material';
+import { IconButton, InputAdornment } from '@mui/material';
 import { TextField } from './Login.styled';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import AuthModal from '../../authModal/authModal';
