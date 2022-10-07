@@ -5,7 +5,7 @@ import icons from './symbol-defs.svg';
 import {
   useGetAllBooksQuery,
   useDeleteBookMutation,
-  useUpdateBookResumeMutation
+  useUpdateBookResumeMutation,
 } from 'redux/books/booksApi';
 import { useTranslation } from 'react-i18next';
 import RatingBookWrapper from 'components/RatingBookWrapper';
@@ -29,46 +29,60 @@ export default function BookTableMobile() {
             <h3 className={s.title}> {t('alreadyRead')}</h3>
             <ul className={s.table}>
               {data?.payload.books.map(
-                ({ _id, author, pages, title, year, status, rating, resume }) => {
+                ({
+                  _id,
+                  author,
+                  pages,
+                  title,
+                  year,
+                  status,
+                  rating,
+                  resume,
+                }) => {
                   const [ratingValue, setRatingValue] = useState(rating);
-                  if (status === 'haveRead') return (
-                    <li key={_id} className={s.item}>
-                      <p className={s.subtitle}>
-                        <svg width={22} height={17} className={s.img}>
-                          <use href={`${icons}#white_book`}></use>
-                        </svg>
-                        {title}
-                      </p>
-                      <p className={s.subtitle}>
-                        <span className={s.topic}>{t('book_author')}:</span>{' '}
-                        {author}
-                      </p>
-                      <p className={s.subtitle}>
-                        <span className={s.topic}> {t('book_year')}:</span>
-                        {year}
-                      </p>
-                      <p className={s.subtitle}>
-                        <span className={s.topic}>{t('book_pages')}:</span>
-                        {pages}
-                      </p>
-                      <p className={s.subtitle}>
-                        <span className={s.topic}> {t('book_rating')}:</span>
-                        <ChooseRating
-                          setRating={async(newValue) => {
-                            setRatingValue(newValue);
-                            await updateBookResume({ id: _id, rating: newValue });
-                          }}
+                  if (status === 'haveRead')
+                    return (
+                      <li key={_id} className={s.item}>
+                        <p className={s.subtitle}>
+                          <svg width={22} height={17} className={s.img}>
+                            <use href={`${icons}#white_book`}></use>
+                          </svg>
+                          {title}
+                        </p>
+                        <p className={s.subtitle}>
+                          <span className={s.topic}>{t('book_author')}:</span>
+                          {author}
+                        </p>
+                        <p className={s.subtitle}>
+                          <span className={s.topic}> {t('book_year')}:</span>
+                          {year}
+                        </p>
+                        <p className={s.subtitle}>
+                          <span className={s.topic}>{t('book_pages')}:</span>
+                          {pages}
+                        </p>
+                        <p className={s.subtitle}>
+                          <span className={s.topic}> {t('book_rating')}:</span>
+                          <ChooseRating
+                            setRating={async newValue => {
+                              setRatingValue(newValue);
+                              await updateBookResume({
+                                id: _id,
+                                rating: newValue,
+                              });
+                            }}
+                            rating={ratingValue}
+                            name="rating"
+                            className={s.rating}
+                          />
+                        </p>
+                        <RatingBookWrapper
+                          id={_id}
+                          resume={resume}
                           rating={ratingValue}
-                          name="rating"
                         />
-                      </p>
-                      <RatingBookWrapper
-                        id={_id}
-                        resume={resume}
-                        rating={ratingValue}
-                      />
-                    </li>
-                  )
+                      </li>
+                    );
                 }
               )}
             </ul>
@@ -89,7 +103,7 @@ export default function BookTableMobile() {
                         {title}
                       </p>
                       <p className={s.subtitle}>
-                        <span className={s.topic}>{t('book_author')}:</span>{' '}
+                        <span className={s.topic}>{t('book_author')}:</span>
                         {author}
                       </p>
                       <p className={s.subtitle}>
@@ -132,7 +146,7 @@ export default function BookTableMobile() {
                         </button>
                       </p>
                       <p className={s.subtitle}>
-                        <span className={s.topic}>{t('book_author')}:</span>{' '}
+                        <span className={s.topic}>{t('book_author')}:</span>
                         {author}
                       </p>
                       <p className={s.subtitle}>
