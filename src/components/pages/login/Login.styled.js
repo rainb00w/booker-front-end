@@ -6,11 +6,14 @@ export const TextField = styled(MuiTextField)((props) => ({
   minWidth: 280,
   height: 42,
   marginBottom: 10,
+  fontFamily: "'Montserrat', sans-serif",
+  color: '#707375',
   background: '#F5F7FA',
   boxShadow: 'inset 0px 1px 2px rgba(29, 29, 27, 0.15)',
   outline: 'none',
   border: 'none',
-  '&:: placeholder': {
+  '& ::placeholder': {
+    fontFamily: "'Montserrat', sans-serif",
     fontWeight: 400,
     fontSize: 14,
     lineHeight: 1.21,
@@ -18,17 +21,14 @@ export const TextField = styled(MuiTextField)((props) => ({
   },
   '& label': {
     display: 'none',
-    // textAlign: 'left',
-    // fontSize: 14,
-    // color: '#FFFFFF',
-    // margin: 0,
-    // marginBottom: 8,
   },
   '& .MuiInputAdornment-root': {
     backgroundColor: '#F5F7FA',
+    fontFamily: "'Montserrat', sans-serif",
   },
   '& input.MuiInputBaseInput.MuiInputBase-input.MuiOutlinedInput-input.MuiInputBase-inputAdornedEnd.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input': {
     backgroundColor: 'transparent',
+    fontFamily: "'Montserrat', sans-serif",
     height: 42,
     padding: 0,
   },
@@ -48,7 +48,7 @@ export const TextField = styled(MuiTextField)((props) => ({
     outline: 'none',
   },
   '& .MuiInputBase-formControl': {
-    marginTop: '-10px',
+    marginTop: '-7px',
     padding: 0,
   },
   '& .MuiOutlinedInputBase-root.MuiOutlinedInput-notchedOutline.css-1d3z3hw-MuiOutlinedInput-notchedOutline': {

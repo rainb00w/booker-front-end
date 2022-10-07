@@ -176,14 +176,8 @@ const Login = () => {
                       value={values.password}
                       variant='standard'
                       InputProps={{
-                        outline: {
-                          "&&&:before": {
-                            borderBottom: "none"
-                          },
-                          "&&:after": {
-                            borderBottom: "none"
-                          }
-                        },
+                        style: {fontFamily: "'Montserrat', sans-serif",},
+                        disableUnderline: true,
                         endAdornment: <InputAdornment position="end">
                           <IconButton
                             aria-label="toggle password visibility"
