@@ -206,3 +206,11 @@ input[type='date']::-webkit-calendar-picker-indicator {
     padding: 20px 24px 22px 24px;
   }
 }
+
+.backEndError{
+  margin: 0 0 5px 0;
+  
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.25;
+}

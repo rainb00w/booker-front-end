@@ -6,7 +6,10 @@ import s from './statisticsList.module.css';
 
 const SendPageForm = ({ startDate = null }) => {
   const { t } = useTranslation();
-  const [updateTraining] = useUpdateTrainingMutation();
+  const [updateTraining, { error }] = useUpdateTrainingMutation();
+
+  console.log(error);
+
   const now = new Date();
   const today = Date.parse(now) + 3600 * 1000;
   const yesterday = now.setDate(now.getDate() - 1);
@@ -32,24 +35,26 @@ const SendPageForm = ({ startDate = null }) => {
           new Date(startDate).yyyymmdd(),
           'Ви не можете ввести дату до початку тренування'
         )
-        .max(new Date(today).yyyymmdd(), 'Ви не можете ввести цю дату')
-      ,
+        .max(new Date(today).yyyymmdd(), 'Ви не можете ввести цю дату'),
       pageInput: Yup.number()
         .positive('Введіть корректну кількість сторінок')
         .integer('К-ть сторінок має бути ціла')
         .max(999, 'Забагато сторінок')
         .required('Введіть кількість сторінок'),
     }),
-    onSubmit: async ({ dateInput, pageInput }, { resetForm }) => {
+    onSubmit: ({ dateInput, pageInput }, { resetForm }) => {
       let dateToSend = new Date();
       const year = dateInput.toString().slice(0, 4);
       const month = dateInput.toString().slice(5, 7);
       const day = dateInput.toString().slice(8, 10);
       dateToSend.setFullYear(year, month - 1, day);
-      await updateTraining({
+      updateTraining({
         date: dateToSend,
         pages: pageInput,
       });
+      if (error) {
+        console.log('erere');
+      }
       resetForm();
     },
   });
@@ -83,11 +88,14 @@ const SendPageForm = ({ startDate = null }) => {
             onChange={formik.handleChange}
             value={formik.values.pageInput}
           />
+
           {formik.errors.pageInput && formik.touched.pageInput ? (
             <div>{formik.errors.pageInput}</div>
           ) : null}
         </label>
+    
       </div>
+      {error && <div className={s.backEndError} ><p>{error.data.message}</p></div>}
       <button className={s.addResultBtn} type="submit">
         {t('addResult')}
       </button>
