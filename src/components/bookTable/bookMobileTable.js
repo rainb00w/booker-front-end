@@ -54,7 +54,7 @@ export default function BookTableMobile() {
                       <p className={s.subtitle}>
                         <span className={s.topic}> {t('book_rating')}:</span>
                         <ChooseRating
-                          setRating={async(event, newValue) => {
+                          setRating={async(newValue) => {
                             setRatingValue(newValue);
                             await updateBookResume({ id: _id, rating: newValue });
                           }}

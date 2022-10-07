@@ -74,7 +74,7 @@ export default function BookTable() {
                         <td className={s.subtitle}>{pages}</td>
                         <td className={s.subtitle}>
                           <ChooseRating
-                            setRating={async (event, newValue) => {
+                            setRating={async (newValue) => {
                               setRatingValue(newValue);
                               await updateBookResume({ id: _id, rating: newValue });
                             }}
@@ -82,6 +82,7 @@ export default function BookTable() {
                             name="rating"
                           />
                           <RatingBookWrapper
+                            className={s.button}
                             id={_id}
                             resume={resume}
                             rating={rating}
