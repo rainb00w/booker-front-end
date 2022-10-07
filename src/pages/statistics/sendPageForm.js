@@ -7,6 +7,9 @@ import s from './statisticsList.module.css';
 const SendPageForm = ({ startDate = null }) => {
   const { t } = useTranslation();
   const [updateTraining] = useUpdateTrainingMutation();
+  const now = new Date();
+  const today = Date.parse(now) + 3600 * 1000;
+  const yesterday = now.setDate(now.getDate() - 1);
   Date.prototype.yyyymmdd = function () {
     let mm = this.getMonth() + 1; // getMonth() is zero-based
     let dd = this.getDate();
@@ -29,7 +32,8 @@ const SendPageForm = ({ startDate = null }) => {
           new Date(startDate).yyyymmdd(),
           'Ви не можете ввести дату до початку тренування'
         )
-        .max(new Date().yyyymmdd(), 'Ви не можете ввести цю дату'),
+        .max(new Date(today).yyyymmdd(), 'Ви не можете ввести цю дату')
+      ,
       pageInput: Yup.number()
         .positive('Введіть корректну кількість сторінок')
         .integer('К-ть сторінок має бути ціла')
@@ -60,6 +64,8 @@ const SendPageForm = ({ startDate = null }) => {
             className={s.inputDate}
             type="date"
             name="dateInput"
+            max={new Date(today).yyyymmdd()}
+            min={new Date(yesterday).yyyymmdd()}
             onChange={formik.handleChange}
             value={formik.values.dateInput}
           />
