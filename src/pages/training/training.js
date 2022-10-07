@@ -19,7 +19,11 @@ import MyGoal from 'components/MyGoal';
 import SelectBooksFirstStyled from 'components/SelectBooks/SelectBooksFirstStyled';
 import Timer from 'components/Timer/Timer';
 import convertMs from 'components/Timer/convertMs';
+import { setTrainingState } from 'redux/auth/auth-slice';
 
+
+import { useDispatch, useSelector } from 'react-redux';
+import { authSelectors } from '../../redux/auth';
 import sprite from '../../img/sprite.svg';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
@@ -150,7 +154,10 @@ const Training = () => {
   const { data } = useGetAllBooksQuery();
   const trainingData = useGetAllTrainingsQuery();
   const { isLoading } = useGetAllTrainingsQuery();
+  const trainingStatus = useSelector(authSelectors.getTrainingStatus);
+  const dispatch = useDispatch();
   // trainingData это объект, данные доступны  => trainingData.data
+
 
   //  console.log('DATA', trainingData.data);
   const sendToStatisticStartDate = trainingData?.data?.startDate;
@@ -172,6 +179,10 @@ const Training = () => {
   let booksNumbeFromBack = 0;
 
   if (trainingData?.data === undefined) {
+    isEmptyTraining = true;
+  }
+
+  if (trainingStatus) {
     isEmptyTraining = true;
   }
 
@@ -252,8 +263,7 @@ const Training = () => {
       books: booksArrayToSend.map(element => ({ _id: element._id })),
     };
 
-    console.log(array);
-    
+    dispatch(setTrainingState(false));
     addTraining(array)
       .unwrap()
       .catch(error => Notify.success(error.data.message));

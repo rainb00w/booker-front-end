@@ -9,9 +9,13 @@ import {
 } from './Timer.style.js';
 import { useState, useEffect, useRef } from 'react';
 import convertMs from './convertMs';
+import { useDispatch, useSelector } from 'react-redux';
+import { setTrainingState } from 'redux/auth/auth-slice';
 
 const Timer = ({ selectedDate, title }) => {
   const [time, setTime] = useState(() => Date.now());
+  const dispatch = useDispatch();
+
 
   const intervalId = useRef(null);
   // const deltaTime = Object.values(selectedDate)[0] - time;
@@ -20,8 +24,7 @@ const Timer = ({ selectedDate, title }) => {
 
 
  if (deltaTime <= 0 ) {
-  // console.log(deltaTime);
-  // console.log('finished');
+  dispatch(setTrainingState(true));
  }
 
   useEffect(() => {

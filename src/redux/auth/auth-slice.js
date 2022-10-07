@@ -25,7 +25,7 @@ const authSlice = createSlice({
      state.loginError = null;
     },
     setTrainingState(state, action) {
-      console.log(state, action.payload);
+      state.trainingFinished = action.payload;
     }
   },
   extraReducers: {
