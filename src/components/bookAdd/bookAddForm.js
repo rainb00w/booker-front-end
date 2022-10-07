@@ -81,51 +81,53 @@ const BookAddForm = ({ handleClickClose, showAdd }) => {
               <div className={s.message}>{formik.errors.title}</div>
             ) : null}
           </label>
-          <label htmlFor="author" className={s.labelAuthor}>
-            {t('author')} *
-            <input
-              id="author"
-              name="author"
-              type="text"
-              placeholder="..."
-              onChange={formik.handleChange}
-              value={formik.values.author}
-              className={s.inputAuthor}
-            />
-            {formik.errors.author && formik.touched.author ? (
-              <div className={s.message}>{formik.errors.author}</div>
-            ) : null}
-          </label>
-          <label htmlFor="year" className={s.labelDate}>
-            {t('publicationDate')}
-            <input
-              id="year"
-              name="year"
-              type="text"
-              placeholder="..."
-              onChange={formik.handleChange}
-              value={formik.values.year}
-              className={s.inputDate}
-            />
-            {formik.errors.year && formik.touched.year ? (
-              <div className={s.message}>{formik.errors.year}</div>
-            ) : null}
-          </label>
-          <label htmlFor="pages" className={s.labelPages}>
-            {t('amountOfPages')} *
-            <input
-              id="pages"
-              name="pages"
-              type="text"
-              placeholder="..."
-              onChange={formik.handleChange}
-              value={formik.values.pages}
-              className={s.inputPages}
-            />
-            {formik.errors.pages && formik.touched.pages ? (
-              <div className={s.message}>{formik.errors.pages}</div>
-            ) : null}
-          </label>
+          <div className={s.wrapper}>
+            <label htmlFor="author" className={s.labelAuthor}>
+              {t('author')} *
+              <input
+                id="author"
+                name="author"
+                type="text"
+                placeholder="..."
+                onChange={formik.handleChange}
+                value={formik.values.author}
+                className={s.inputAuthor}
+              />
+              {formik.errors.author && formik.touched.author ? (
+                <div className={s.message}>{formik.errors.author}</div>
+              ) : null}
+            </label>
+            <label htmlFor="year" className={s.labelDate}>
+              {t('publicationDate')}
+              <input
+                id="year"
+                name="year"
+                type="text"
+                placeholder="..."
+                onChange={formik.handleChange}
+                value={formik.values.year}
+                className={s.inputDate}
+              />
+              {formik.errors.year && formik.touched.year ? (
+                <div className={s.message}>{formik.errors.year}</div>
+              ) : null}
+            </label>
+            <label htmlFor="pages" className={s.labelPages}>
+              {t('amountOfPages')} *
+              <input
+                id="pages"
+                name="pages"
+                type="text"
+                placeholder="..."
+                onChange={formik.handleChange}
+                value={formik.values.pages}
+                className={s.inputPages}
+              />
+              {formik.errors.pages && formik.touched.pages ? (
+                <div className={s.message}>{formik.errors.pages}</div>
+              ) : null}
+            </label>
+          </div>
           <button
             type="submit"
             className={s.btn}

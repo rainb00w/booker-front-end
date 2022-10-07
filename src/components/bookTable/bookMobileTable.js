@@ -54,55 +54,43 @@ export default function BookTableMobile() {
                           <svg width={17} height={17}>
                             <use href={`${icons}#yellow_star`}></use>
                           </svg>
-                        ) : (
-                          <svg width={17} height={17}>
-                            <use href={`${icons}#white_star`}></use>
-                          </svg>
-                        )}
-                        {rating >= 2 ? (
-                          <svg width={17} height={17}>
-                            <use href={`${icons}#yellow_star`}></use>
-                          </svg>
-                        ) : (
-                          <svg width={17} height={17}>
-                            <use href={`${icons}#white_star`}></use>
-                          </svg>
-                        )}
-                        {rating >= 3 ? (
-                          <svg width={17} height={17}>
-                            <use href={`${icons}#yellow_star`}></use>
-                          </svg>
-                        ) : (
-                          <svg width={17} height={17}>
-                            <use href={`${icons}#white_star`}></use>
-                          </svg>
-                        )}
-                        {rating >= 4 ? (
-                          <svg width={17} height={17}>
-                            <use href={`${icons}#yellow_star`}></use>
-                          </svg>
-                        ) : (
-                          <svg width={17} height={17}>
-                            <use href={`${icons}#white_star`}></use>
-                          </svg>
-                        )}
-                        {rating >= 5 ? (
-                          <svg width={17} height={17}>
-                            <use href={`${icons}#yellow_star`}></use>
-                          </svg>
-                        ) : (
-                          <svg width={17} height={17}>
-                            <use href={`${icons}#white_star`}></use>
-                          </svg>
-                        )}
-                      </p>
-                      <RatingBookWrapper
-                        id={_id}
-                        resume={resume}
-                        rating={rating}
-                      />
-                    </li>
-                  )
+                          <span>{title}</span>
+                        </p>
+                        <p className={s.subtitle}>
+                          <span className={s.topic}>{t('book_author')}:</span>
+                          {author}
+                        </p>
+                        <p className={s.subtitle}>
+                          <span className={s.topic}> {t('book_year')}:</span>
+                          {year}
+                        </p>
+                        <p className={s.subtitle}>
+                          <span className={s.topic}>{t('book_pages')}:</span>
+                          {pages}
+                        </p>
+                        <p className={s.subtitleRating}>
+                          <span className={s.topic}> {t('book_rating')}:</span>
+                          <ChooseRating
+                            setRating={async newValue => {
+                              setRatingValue(newValue);
+                              await updateBookResume({
+                                id: _id,
+                                rating: newValue,
+                              });
+                            }}
+                            rating={ratingValue}
+                            name="rating"
+                            className={s.rating}
+                          />
+                        </p>
+                        <RatingBookWrapper
+                          id={_id}
+                          resume={resume}
+                          rating={ratingValue}
+                        />
+                      </li>
+                    );
+                }
               )}
             </ul>
           </div>
