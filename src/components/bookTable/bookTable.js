@@ -207,7 +207,7 @@ export default function BookTable() {
                           <td className={s.subtitle}>{author}</td>
                           <td className={s.subtitle}>{year}</td>
                           <td className={s.subtitle}>{pages}</td>
-                          <td className={s.subtitle}>
+                          <td className={s.subtitleRating}>
                             <ChooseRating
                               setRating={async newValue => {
                                 setRatingValue(newValue);

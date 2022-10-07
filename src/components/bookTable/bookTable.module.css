@@ -28,6 +28,11 @@
     margin-bottom: 32px;
     margin-left: 36px;
   }
+  .subtitleRating {
+    display: flex;
+    margin-bottom: 32px;
+    margin-left: 36px;
+  }
   .img {
     margin-left: 0;
     margin-right: 14px;
@@ -64,9 +69,11 @@
   .title {
     margin: 0 0 24px 0;
   }
-  .subtitle:last-child {
+  .subtitleRating {
     display: flex;
-    align-items: baseline;
+    text-align: center;
+    align-items: center;
+    height: 60px;
   }
 
   .head {
@@ -107,11 +114,13 @@
     width: 100%;
     border-spacing: 0 10px;
   }
-  .subtitle:last-child {
+  .subtitleRating {
     display: flex;
-    margin-top: auto;
-    margin-bottom: auto;
+    text-align: center;
+    align-items: center;
+    height: 60px;
   }
+
   .head {
     width: 100%;
   }

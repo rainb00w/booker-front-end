@@ -47,7 +47,7 @@ export default function BookTableMobile() {
                           <svg width={22} height={17} className={s.img}>
                             <use href={`${icons}#white_book`}></use>
                           </svg>
-                          {title}
+                          <span>{title}</span>
                         </p>
                         <p className={s.subtitle}>
                           <span className={s.topic}>{t('book_author')}:</span>
@@ -61,7 +61,7 @@ export default function BookTableMobile() {
                           <span className={s.topic}>{t('book_pages')}:</span>
                           {pages}
                         </p>
-                        <p className={s.subtitle}>
+                        <p className={s.subtitleRating}>
                           <span className={s.topic}> {t('book_rating')}:</span>
                           <ChooseRating
                             setRating={async newValue => {
