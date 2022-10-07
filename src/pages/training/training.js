@@ -200,7 +200,7 @@ const Training = () => {
   const trainingDayEnd = new Date(trainingData?.data?.finishDate);
   const nowDate = new Date();
 
-  const daysLeftFromBackEnd = Math.round(
+  const daysLeftFromBackEnd = Math.ceil(
     Math.abs((trainingDayEnd - nowDate) / oneDay) - 1
   );
 
