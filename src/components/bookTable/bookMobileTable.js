@@ -65,8 +65,7 @@ export default function BookTableMobile() {
                       <RatingBookWrapper
                         id={_id}
                         resume={resume}
-                        rating={rating}
-                        setValue={setRatingValue}
+                        rating={ratingValue}
                       />
                     </li>
                   )
