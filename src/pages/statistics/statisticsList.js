@@ -2,7 +2,8 @@ import React from 'react';
 import StatisticsRow from './StatisticsRow';
 import s from './statisticsList.module.css';
 import { useGetAllTrainingsQuery } from '../../redux/books/trainingApi';
-const StatisticsList = () => {
+
+const StatisticsList = results => {
   Date.prototype.yyyymmdd = function () {
     let mm = this.getMonth() + 1; // getMonth() is zero-based
     let dd = this.getDate();
@@ -19,11 +20,9 @@ const StatisticsList = () => {
     return [(hh > 9 ? '' : '0') + hh, (mm > 9 ? '' : '0') + mm, '00'].join(':');
   };
 
-  const getAllTrainings = useGetAllTrainingsQuery();
-  const { results = [] } = getAllTrainings.data;
-
   let rows = [];
-  results.forEach(({ date, pages, _id }) => {
+
+  results.results.forEach(({ date, pages, _id }) => {
     rows.push({
       date: new Date(date).yyyymmdd(),
       time: new Date(date).hhmmss(),
@@ -33,11 +32,13 @@ const StatisticsList = () => {
   });
   const visibleRows = rows.slice(-5);
 
+ 
+
   return (
     <ul className={s.statisticsList}>
       {visibleRows.map(row => (
         <StatisticsRow
-          key={visibleRows.id}
+          key={row.id}
           row={row}
           className={s.statisticsList}
         />
