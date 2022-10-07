@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useId } from 'react';
 import queryString from 'query-string';
-import classNames from 'classnames';
 import Media from 'react-media';
 import { IconButton, InputAdornment } from '@mui/material';
 import { TextField } from './Login.styled';
@@ -14,13 +13,14 @@ import { Formik } from 'formik';
 import { loginValidationSchema } from 'services/yupValidationSchema';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
+import { authOperations } from '../../../redux/auth';
+import { useDispatch } from 'react-redux';
+
+import { googleLogIn } from 'redux/auth/auth-slice';
+
 import svgPath from 'services/svgPath';
 import styles from './login.module.css';
 
-import { authOperations, authSelectors } from '../../../redux/auth';
-import { useDispatch, useSelector } from 'react-redux';
-
-import { googleLogIn } from 'redux/auth/auth-slice';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -29,11 +29,8 @@ const Login = () => {
   const { t } = useTranslation();
 
   const [verifyModal, setVerifyModal] = useState(false);
-  const [inputType, setInputType] = useState('password');
   const location = useLocation();
   const query = queryString.parse(location.search);
-
-  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   const navigate = useNavigate();
 
   const id = useId();
@@ -67,9 +64,6 @@ const Login = () => {
 
   const modalSwitch = () => setVerifyModal(!verifyModal);
 
-  const handleClickShowIcon = () => {
-    setInputType(inputType === 'password' ? 'text' : 'password');
-  };
   return (
     <>
       {verifyModal && <RepeatVerify switchFunc={modalSwitch} />}
@@ -166,7 +160,7 @@ const Login = () => {
                       autoComplete='new-password'
                       type={showPassword ? 'text' : 'password'}
                       name='password'
-                      maxLength={30}
+                      inputProps={{ maxLength: 30 }}
                       id={id + 'password'}
                       placeholder='Password'
                       onBlur={handleBlur}
