@@ -100,33 +100,28 @@ export default function BookTable() {
                             <svg width={17} height={17}>
                               <use href={`${icons}#yellow_star`}></use>
                             </svg>
-                            {title}
-                          </td>
-                          <td className={s.subtitle}>{author}</td>
-                          <td className={s.subtitle}>{year}</td>
-                          <td className={s.subtitle}>{pages}</td>
-                          <td className={s.subtitleRating}>
-                            <ChooseRating
-                              setRating={async newValue => {
-                                setRatingValue(newValue);
-                                await updateBookResume({
-                                  id: _id,
-                                  rating: newValue,
-                                });
-                              }}
-                              rating={ratingValue}
-                              name="rating"
-                            />
-                            <RatingBookWrapper
-                              className={s.button}
-                              id={_id}
-                              resume={resume}
-                              rating={ratingValue}
-                            />
-                          </td>
-                        </tr>
-                      );
-                  }
+                          ) : (
+                            <svg width={17} height={17}>
+                              <use href={`${icons}#white_star`}></use>
+                            </svg>
+                          )}
+                          {rating >= 5 ? (
+                            <svg width={17} height={17}>
+                              <use href={`${icons}#yellow_star`}></use>
+                            </svg>
+                          ) : (
+                            <svg width={17} height={17}>
+                              <use href={`${icons}#white_star`}></use>
+                            </svg>
+                          )}
+                          <RatingBookWrapper
+                            id={_id}
+                            resume={resume}
+                            rating={rating}
+                          />
+                        </td>
+                      </tr>
+                    )
                 )}
               </tbody>
             </table>
