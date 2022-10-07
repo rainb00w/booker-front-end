@@ -43,6 +43,10 @@ export const TextField = styled(MuiTextField)((props) => ({
     border: 'none',
     outline: 'none',
   },
+  '& .MuiOutlinedInput': {
+    border: 'none',
+    outline: 'none',
+  },
   '& .MuiInputBase-formControl': {
     marginTop: '-10px',
     padding: 0,

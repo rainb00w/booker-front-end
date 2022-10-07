@@ -174,6 +174,7 @@ const Login = () => {
                       onBlur={handleBlur}
                       onChange={handleChange}
                       value={values.password}
+                      variant='standard'
                       InputProps={{
                         outline: {
                           "&&&:before": {
