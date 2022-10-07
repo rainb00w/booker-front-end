@@ -6,7 +6,6 @@ export const trainingApi = createApi({
     baseUrl: 'https://booker-back-end.herokuapp.com/api/training',
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
-      // console.log('TOKEN', token);
       if (token) {
         headers.set('authorization', `Bearer ${token}`);
       }
