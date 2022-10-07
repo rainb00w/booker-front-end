@@ -200,7 +200,7 @@ const Registration = () => {
                       autoComplete='new-password'
                       type={showPassword ? 'text' : 'password'}
                       name='password'
-                      maxLength={30}
+                      inputProps={{ maxLength: 30 }}
                       id={id + 'password'}
                       placeholder='Password'
                       onBlur={handleBlur}
@@ -241,7 +241,7 @@ const Registration = () => {
                       autoComplete='new-password'
                       type={showPassword ? 'text' : 'password'}
                       name='confirmPassword'
-                      maxLength={30}
+                      inputProps={{ maxLength: 30 }}
                       id={id + 'password'}
                       placeholder='Password'
                       onBlur={handleBlur}
