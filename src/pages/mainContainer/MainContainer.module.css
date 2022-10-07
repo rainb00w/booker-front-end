@@ -1,0 +1,16 @@
+.main_container {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media screen and (min-width: 768px) {
+    .main_container {
+        max-width: 768px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .main_container {
+        max-width: 1280px;
+    }
+}
