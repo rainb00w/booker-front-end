@@ -119,5 +119,17 @@
   "changePassword": "Change password",
   "verify_phrase": "Please enter the email of the account you want to verify",
   "email_verify": "Email for verify",
-  "send_verify": "Send"
+  "send_verify": "Send",
+
+  "training_object_not_found": "Training information not found",
+  "no_books_by_ids": "No books found by ids",
+  "books_already_read": "Chosen book have already been read",
+  "incorrect_start_date": "Incorrect training start date",
+  "incorrect_period": "Training period should be greater than 1 day and must not exceed 31 days",
+  "training_in_progress": "Training is in progress. Try again after completing current training",
+  "training_complete": "Training is completed",
+  "precede_start": "Results date may not precede training start date",
+  "greater_finish": "Results date is greater than training finish date",
+  "today_yesterday": "Results date should be today or yesterday",
+  "exceed_count": "Provided pages count exceeds number of unread pages"
 }
