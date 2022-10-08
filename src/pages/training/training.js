@@ -152,37 +152,58 @@ const initialState = {
 
 const Training = () => {
   const dispatch = useDispatch();
-  const [startDate, setStartDate] = useState(initialState.startDate);
-  const [endDate, setEndDate] = useState(initialState.endDate);
-  const [daysNumber, setDaysNumber] = useState(0);
-  const [disable, setDisable] = useState(false);
-  const [endYear, setEndYear] = useState(new Date(2023, 0, 1));
   const { t } = useTranslation();
 
-  const { data } = useGetAllBooksQuery();
-
-  const trainingData = useGetAllTrainingsQuery();
-  const { isLoading } = useGetAllTrainingsQuery();
-
+  const [addTraining] = useAddTrainingMutation();
   const trainingStatus = useSelector(authSelectors.getTrainingStatus);
 
+  const nowDate = new Date();
+  const [startDate, setStartDate] = useState(initialState.startDate);
+  const [endDate, setEndDate] = useState(initialState.endDate);
+  const [endYear, setEndYear] = useState(new Date(2023, 0, 1));
 
-  //  console.log('DATA', trainingData.data);
-  const sendToStatisticStartDate = trainingData?.data?.startDate;
-  const sendToStatisticResults = trainingData?.data?.results;
+  const [daysNumber, setDaysNumber] = useState(0);
+  const [disable, setDisable] = useState(false);
+
+  const { data } = useGetAllBooksQuery();
+  const incomeBooks = data?.payload?.books;
+  const booksThatHaveToReadStatus = incomeBooks?.filter(
+    book => book.status === 'toRead'
+  );
+
+  const { currentData, isLoading, isError, refetch } =
+    useGetAllTrainingsQuery();
+  //  console.log(currentData)
+  const finishDateFromTraining = new Date(currentData?.finishDate);
+  const startDateFromTraining = new Date(currentData?.startDate);
+  const booksLeftFromTraining = currentData?.books.length;
+  const resultsFromTraining = currentData?.results;
+
+
+  if (!currentData?.completed && (finishDateFromTraining > nowDate )) {
+    dispatch(setTrainingState('true'));
+  } 
+
+  if (currentData?.completed) {
+    dispatch(setTrainingState('false'));
+  }
+
+
+  let bookTableArray = [];
+  let booksNumbeFromBack = 0;
 
   const [selectedBook, setSelectedBook] = useState(null);
   const [booksArrayToSend, setBooksArrayToSend] = useState([]);
-  // const [open, setOpen] = useState(true);
-  const [addTraining] = useAddTrainingMutation();
 
-  let bookTableArray = [];
-  let isEmptyTraining = false;
-  let booksNumbeFromBack = 0;
+  if (!trainingStatus) {
+    bookTableArray = booksArrayToSend;
+  } else {
+    bookTableArray = currentData?.books;
+    booksNumbeFromBack = currentData?.books.length;
+  }
 
   const oneDay = 24 * 60 * 60 * 1000;
-  const trainingDayEnd = new Date(trainingData?.data?.finishDate);
-  const nowDate = new Date();
+  const trainingDayEnd = new Date(currentData?.finishDate);
 
   useEffect(() => {
     if (startDate && endDate) {
@@ -197,38 +218,6 @@ const Training = () => {
   let daysLeftFromBackEnd = Math.ceil(
     Math.abs((trainingDayEnd - nowDate) / oneDay) - 1
   );
-
-  if (trainingData?.data === undefined) {
-    isEmptyTraining = true;
-  }
-
-  if (trainingStatus) {
-    isEmptyTraining = true;
-  }
-
-  const incomeBooks = data?.payload?.books;
-
-  const booksThatHaveToReadStatus = incomeBooks?.filter(
-    book => book.status === 'toRead'
-  );
-
-  // console.log('booksThatHaveToReadStatus', booksThatHaveToReadStatus);
-
-  const booksThatHaveReadingStatus = incomeBooks?.filter(
-    book => book.status === 'reading'
-  );
-
-  // console.log('trining data books', trainingData?.data?.books);
-  const booksLeft = trainingData?.data?.books.length;
-
-  if (isEmptyTraining) {
-    bookTableArray = booksArrayToSend;
-    // console.log('Нет тренировки выводим список книг со статусом toRead');
-  } else {
-    bookTableArray = trainingData?.data?.books;
-    booksNumbeFromBack = trainingData?.data?.books.length;
-    // console.log('Тренировка есть выводим книги с traning ');
-  }
 
   const addBookToSelected = () => {
     setDisable(true);
@@ -268,7 +257,7 @@ const Training = () => {
       .then(
         setStartDate(initialState.startDate),
         setEndDate(initialState.endDate),
-        dispatch(setTrainingState(false))
+        dispatch(setTrainingState('true'))
       )
       .catch(error => Notify.success(error.data.message));
   };
@@ -312,7 +301,7 @@ const Training = () => {
         <div className={s.main_container}>
           <div className={s.gridContainer}>
             <div className={s.gridItem1}>
-              {isEmptyTraining ? (
+              {!trainingStatus ? (
                 <div className={s.myTrainingContainer}>
                   <h3 className={s.myTrainingHeader}> {t('myTraining')}</h3>
                   <div className={s.datePicker_wrapper}>
@@ -396,33 +385,36 @@ const Training = () => {
                 <div className={s.myTrainingContainer}>
                   <BookTableTraining
                     booksList={bookTableArray}
-                    isEmptyTraining={isEmptyTraining}
+                    isEmptyTraining={!trainingStatus}
                     onClick={removeItem}
                   />
                   <BookMobileTableTraining
                     booksList={bookTableArray}
                     onClick={removeItem}
-                    isEmptyTraining={isEmptyTraining}
+                    isEmptyTraining={!trainingStatus}
                   />
-                  {isEmptyTraining && (
-                    <button
-                      className={s.startTrainingButton}
-                      onClick={() => startTraining()}
-                    >
-                      {t('startTraning')}
-                    </button>
+
+                  {!trainingStatus && (
+                    <>
+                      <button
+                        className={s.startTrainingButton}
+                        onClick={() => startTraining()}
+                      >
+                        {t('startTraning')}
+                      </button>
+                    </>
                   )}
                 </div>
               )}
             </div>
 
             <div className={s.gridItem2}>
-              {isEmptyTraining ? (
+              {!trainingStatus ? (
                 <>
                   <MyGoal
                     days={daysNumber}
                     books={booksNumber}
-                    isTrainigEmpty={isEmptyTraining}
+                    isTrainigEmpty={trainingStatus}
                   />
                 </>
               ) : (
@@ -430,24 +422,27 @@ const Training = () => {
                   <MyGoal
                     days={daysLeftFromBackEnd}
                     books={booksNumbeFromBack}
-                    booksLeft={booksLeft}
-                    isTrainigEmpty={isEmptyTraining}
+                    booksLeft={booksLeftFromTraining}
+                    isTrainigEmpty={trainingStatus}
                   />
                 </>
               )}
             </div>
 
-            {!isEmptyTraining && (
+            {trainingStatus && (
               <>
                 <div className={s.gridItem3}>
-                  <ChartTraning trainingData={trainingData.data} />
+                  <ChartTraning trainingData={currentData} />
                 </div>
                 <div className={s.gridItem4}>
                   <h2 className={s.resultsHeader}> {t('results')}</h2>
-                  <SendPageForm startDate={sendToStatisticStartDate} />
+                  <SendPageForm
+                    startDate={startDateFromTraining}
+                    refetchFucntion={refetch}
+                  />
 
                   <h2 className={s.statisticsHeader}> {t('statistics')}</h2>
-                  <StatisticsList results={sendToStatisticResults} />
+                  <StatisticsList results={resultsFromTraining} />
                 </div>
               </>
             )}
