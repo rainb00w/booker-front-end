@@ -33,7 +33,7 @@ const Timer = ({ selectedDate, title, openModal }) => {
   if (deltaTime <= 0) {
     // clearInterval(intervalId);
     // setOpen(true);
-    dispatch(setTrainingState(true));
+    dispatch(setTrainingState('false'));
   }
 
   useEffect(() => {
