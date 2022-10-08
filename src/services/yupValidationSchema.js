@@ -11,7 +11,6 @@ export const registrationValidationSchema = yup.object().shape({
     email: yup.string()
         .typeError("Will be a string")
         .email("the field contains an error")
-        .matches( /^(?!-)([\w\.\!#\$%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]{2,})+@(([\w\.\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]{1,56})+\.)+[\w]{2,}(?!-)$/ , 'the field contains an error')
         .min(10, "the field contains an error")
         .max(63, "the field contains an error")
         .required("this field is required"),
@@ -35,7 +34,6 @@ export const loginValidationSchema = yup.object().shape({
     email: yup.string()
         .typeError("Will be a string")
         .email("the field contains an error")
-        .matches( /^(?!-)([\w\.\!#\$%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]{2,})+@(([\w\.\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]{1,56})+\.)+[\w]{2,}(?!-)$/ , 'Is not in correct format')
         .min(10, "the field contains an error")
         .max(63, "the field contains an error")
         .required("this field is required"),
@@ -51,8 +49,7 @@ export const loginValidationSchema = yup.object().shape({
 export const repeatVerifyValidationSchema = yup.object().shape({
     email: yup.string()
             .typeError("Will be a string")
-            .email()
-            .matches( /^(?!-)([\w\.\!#\$%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]{2,})+@(([\w\.\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]{1,56})+\.)+[\w]{2,}(?!-)$/ , 'Is not in correct format')
+            .email("the field contains an error")
             .min(10, "the field contains an error")
             .max(63, "the field contains an error")
             .required("this field is required")
