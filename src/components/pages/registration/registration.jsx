@@ -125,6 +125,7 @@ const Registration = () => {
                   )}
                 </p>
                 <input
+                  style={{border: errName && '1px solid #F25137'}}
                   className={styles.input}
                   type="text"
                   placeholder="Name"
@@ -146,6 +147,7 @@ const Registration = () => {
                   )}
                 </p>
                 <input
+                  style={{border: errEmail && '1px solid #F25137'}}
                   className={styles.input}
                   type="email"
                   placeholder="your@email.com"
