@@ -1,11 +1,9 @@
 import React, { useEffect, useState, Suspense } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import Box from '@mui/material/Box';
+import { Box, Tooltip } from '@mui/material';
 import Modal from '@mui/material/Modal';
 import LangSwitch from '../../components/langSwitch/langSwitch';
-import Tooltip from '@mui/material/Tooltip';
 import icons from './exit.svg';
-
 import s from './header.module.css';
 import home from '../../img/icon_home.svg';
 import library from '../../img/icon_library.svg';
@@ -101,7 +99,7 @@ const Header = () => {
                       isActive ? s.active_link : s.link
                     }
                   >
-                    <Tooltip title="library">
+                    <Tooltip title={t("library")}>
                       <img src={library} alt="library" />
                     </Tooltip>
                   </NavLink>
@@ -112,7 +110,7 @@ const Header = () => {
                     }
                     to="training"
                   >
-                    <Tooltip title="training">
+                    <Tooltip title={t("training")}>
                       <img src={home} alt="home" />
                     </Tooltip>
                   </NavLink>
