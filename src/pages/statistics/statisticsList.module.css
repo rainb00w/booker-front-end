@@ -151,6 +151,7 @@ input[type='date']::-webkit-calendar-picker-indicator {
   height: auto;
   color: transparent;
   background: transparent;
+  cursor: pointer;
 }
 
 .inputsLabelDate {

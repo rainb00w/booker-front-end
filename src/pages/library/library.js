@@ -22,7 +22,7 @@ const Library = () => {
   return (
     <>
       {data?.payload.books.length > 0 ? (
-        <div>
+        <div style={{paddingBottom: mobile ? '100px' : '40px'}}>
           {mobile && (
             <div>
               {!showAdd && <AddBookBtnMobile handleClick={handleClickAdd} />}

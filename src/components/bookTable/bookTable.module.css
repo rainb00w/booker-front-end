@@ -2,7 +2,7 @@
   .section {
     padding-top: 20px;
     width: 280px;
-    margin-bottom: 40px;
+    margin-bottom: 28px;
   }
   .table + .table {
     margin-top: 20px;
@@ -57,7 +57,7 @@
   .section {
     max-width: 768px;
     width: calc(100% - 2 * 32px);
-    margin-bottom: 50px;
+    margin-bottom: 40px;
   }
   .subTable {
     width: 100%;
@@ -102,7 +102,7 @@
   .section {
     max-width: 1280px;
     width: calc(100% - 2 * 16px);
-    margin-bottom: 50px;
+    margin-bottom: 40px;
   }
   .table + .table {
     margin-top: 32px;
