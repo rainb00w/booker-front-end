@@ -30,7 +30,7 @@ const BookAddForm = ({ handleClickClose, showAdd }) => {
         .max(50, 'Author name should be less than 50')
         .matches(/^[^\s-]/, 'Name should not start from space or dash')
         .matches(
-          /^[a-zA-Zа-яА-ЯіІїЇєЄ]+(([' -][a-zA-Zа-яА-ЯіІїЇєЄ])?[a-zA-Zа-яА-ЯіІїЇєЄ]*)*$/,
+          /^[a-zA-Zа-яА-ЯіІїЇєЄ]+(([' -][a-zA-Zа-яА-ЯіІїЇєЄ.])?[a-zA-Zа-яА-ЯіІїЇєЄ.]*)*$/,
           'THIS FIELD CANNOT CONTAIN NUMBERS'
         )
         .required('Author is required'),
