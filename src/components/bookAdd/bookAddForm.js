@@ -7,6 +7,7 @@ import * as Yup from 'yup';
 import { useAddBookMutation } from 'redux/books/booksApi';
 import { useTranslation } from 'react-i18next';
 import { SpinnerCircular } from 'spinners-react';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const BookAddForm = ({ handleClickClose, showAdd }) => {
   const [addBook, { isLoading, error }] = useAddBookMutation();
@@ -50,14 +51,26 @@ const BookAddForm = ({ handleClickClose, showAdd }) => {
           title,
           author,
           pages,
-        });
+        })
+          .then(() => {
+            Notify.success(t('book__add__message1'));
+          })
+          .catch(error => {
+            Notify.error(t('book__add__message2'));
+          });
       } else {
         await addBook({
           title,
           author,
           year,
           pages,
-        });
+        })
+          .then(() => {
+            Notify.success(t('book__add__message1'));
+          })
+          .catch(error => {
+            Notify.error(t('book__add__message2'));
+          });
       }
       resetForm();
       handleClickClose();

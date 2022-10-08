@@ -154,5 +154,8 @@
   "book_err_pages1": "Pages should be a number",
   "book_err_pages2": "Too short",
   "book_err_pages3": "Must be no more than 4 characters long",
-  "book_err_pages4": "Pages is required"
+  "book_err_pages4": "Pages is required",
+
+  "book__add__message1": "Successful operation",
+  "book__add__message2": "Missing required fields or the field did not pass validation"
 }

@@ -8,7 +8,7 @@ import {
 } from 'redux/books/booksApi';
 import { useTranslation } from 'react-i18next';
 import RatingBookWrapper from 'components/RatingBookWrapper';
-import NestingModal from 'components/RatingBook/RatingModal/NestingModal/NestingModal';
+// import NestingModal from 'components/RatingBook/RatingModal/NestingModal/NestingModal';
 
 export default function BookTableMobile() {
   const { data } = useGetAllBooksQuery();
@@ -34,19 +34,19 @@ export default function BookTableMobile() {
                         <svg width={22} height={17} className={s.img}>
                           <use href={`${icons}#white_book`}></use>
                         </svg>
-                        {title}
+                        <span className={s.meaningTitle}>{title}</span>
                       </p>
                       <p className={s.subtitle}>
-                        <span className={s.topic}>{t('book_author')}:</span>{' '}
-                        {author}
+                        <span className={s.topic}>{t('book_author')}:</span>
+                        <span className={s.meaning}>{author}</span>
                       </p>
                       <p className={s.subtitle}>
                         <span className={s.topic}> {t('book_year')}:</span>
-                        {year}
+                        <span className={s.meaning}>{year}</span>
                       </p>
                       <p className={s.subtitle}>
                         <span className={s.topic}>{t('book_pages')}:</span>
-                        {pages}
+                        <span className={s.meaning}>{pages}</span>
                       </p>
                       <p className={s.subtitle}>
                         <span className={s.topic}> {t('book_rating')}:</span>
@@ -119,19 +119,19 @@ export default function BookTableMobile() {
                         <svg width={22} height={17} className={s.img}>
                           <use href={`${icons}#yellow_book`}></use>
                         </svg>
-                        {title}
+                        <span className={s.meaningTitle}>{title}</span>
                       </p>
                       <p className={s.subtitle}>
-                        <span className={s.topic}>{t('book_author')}:</span>{' '}
-                        {author}
+                        <span className={s.topic}>{t('book_author')}:</span>
+                        <span className={s.meaning}>{author}</span>
                       </p>
                       <p className={s.subtitle}>
                         <span className={s.topic}>{t('book_year')}:</span>
-                        {year}
+                        <span className={s.meaning}>{year}</span>
                       </p>
                       <p className={s.subtitle}>
                         <span className={s.topic}>{t('book_pages')}:</span>
-                        {pages}
+                        <span className={s.meaning}>{pages}</span>
                       </p>
                     </li>
                   )
@@ -151,7 +151,7 @@ export default function BookTableMobile() {
                         <svg width={22} height={17} className={s.img}>
                           <use href={`${icons}#white_book`}></use>
                         </svg>
-                        {title}
+                        <span className={s.meaningTitle}>{title}</span>
                         <button
                           className={s.btnDelete}
                           id={_id}
@@ -165,16 +165,16 @@ export default function BookTableMobile() {
                         </button>
                       </p>
                       <p className={s.subtitle}>
-                        <span className={s.topic}>{t('book_author')}:</span>{' '}
-                        {author}
+                        <span className={s.topic}>{t('book_author')}:</span>
+                        <span className={s.meaning}>{author}</span>
                       </p>
                       <p className={s.subtitle}>
                         <span className={s.topic}>{t('book_year')}:</span>
-                        {year}
+                        <span className={s.meaning}>{year}</span>
                       </p>
                       <p className={s.subtitle}>
                         <span className={s.topic}>{t('book_pages')}:</span>
-                        {pages}
+                        <span className={s.meaning}>{pages}</span>
                       </p>
                     </li>
                   )
