@@ -10,7 +10,7 @@ const getIsLogging = state => state.auth.isLogging;
 
 const getLoginError = state => state.auth.loginError;
 
-const getTrainingStatus = state => state.auth.trainingFinished;
+const getTrainingStatus = state => state.auth.trainingStatus;
 
 const authSelectors = {
   getIsLoggedIn,
