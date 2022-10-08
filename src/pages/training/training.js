@@ -188,10 +188,8 @@ const Training = () => {
     dispatch(setTrainingState('false'));
   }
 
-
   let bookTableArray = [];
   let booksNumbeFromBack = 0;
-
   const [selectedBook, setSelectedBook] = useState(null);
   const [booksArrayToSend, setBooksArrayToSend] = useState([]);
 
@@ -203,7 +201,7 @@ const Training = () => {
   }
 
   const oneDay = 24 * 60 * 60 * 1000;
-  const trainingDayEnd = new Date(currentData?.finishDate);
+
 
   useEffect(() => {
     if (startDate && endDate) {
@@ -216,7 +214,7 @@ const Training = () => {
   }, [startDate, endDate]);
 
   let daysLeftFromBackEnd = Math.ceil(
-    Math.abs((trainingDayEnd - nowDate) / oneDay) - 1
+    Math.abs((finishDateFromTraining - nowDate) / oneDay) - 1
   );
 
   const addBookToSelected = () => {
@@ -255,8 +253,6 @@ const Training = () => {
     addTraining(array)
       .unwrap()
       .then(
-        setStartDate(initialState.startDate),
-        setEndDate(initialState.endDate),
         dispatch(setTrainingState('true'))
       )
       .catch(error => Notify.success(error.data.message));
@@ -374,7 +370,7 @@ const Training = () => {
                   </div>
                   <div>
                     <Timer
-                      selectedDate={trainingDayEnd}
+                      selectedDate={finishDateFromTraining}
                       title={trainingTitle}
                     />
                   </div>
