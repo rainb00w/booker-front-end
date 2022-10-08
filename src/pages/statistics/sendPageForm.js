@@ -11,7 +11,7 @@ const SendPageForm = ({ startDate = null }) => {
   const dispatch = useDispatch();
   const [updateTraining, { error }] = useUpdateTrainingMutation();
 
-  console.log(error);
+  // console.log(error);
 
   const now = new Date();
   const today = Date.parse(now) + 3600 * 1000;
@@ -63,7 +63,7 @@ const SendPageForm = ({ startDate = null }) => {
         }
       });
       if (error) {
-        console.log('erere');
+        console.log(error);
       }
       resetForm();
     },

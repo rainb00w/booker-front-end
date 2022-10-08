@@ -151,29 +151,31 @@ const initialState = {
 };
 
 const Training = () => {
-  const { data } = useGetAllBooksQuery();
-  const trainingData = useGetAllTrainingsQuery();
-  const { isLoading } = useGetAllTrainingsQuery();
-  const trainingStatus = useSelector(authSelectors.getTrainingStatus);
   const dispatch = useDispatch();
-  // trainingData это объект, данные доступны  => trainingData.data
-
-  //  console.log('DATA', trainingData.data);
-  const sendToStatisticStartDate = trainingData?.data?.startDate;
-  const sendToStatisticResults = trainingData?.data?.results;
-  // console.log('startDate', trainingData.data.startDate ,'array', trainingData.data.results );
-
-  const [selectedBook, setSelectedBook] = useState(null);
-  const [booksArrayToSend, setBooksArrayToSend] = useState([]);
-  // const [open, setOpen] = useState(true);
-  const [addTraining] = useAddTrainingMutation();
-
   const [startDate, setStartDate] = useState(initialState.startDate);
   const [endDate, setEndDate] = useState(initialState.endDate);
   const [daysNumber, setDaysNumber] = useState(0);
   const [disable, setDisable] = useState(false);
   const [endYear, setEndYear] = useState(new Date(2023, 0, 1));
   const { t } = useTranslation();
+
+  const { data } = useGetAllBooksQuery();
+
+  const trainingData = useGetAllTrainingsQuery();
+  const { isLoading } = useGetAllTrainingsQuery();
+
+  const trainingStatus = useSelector(authSelectors.getTrainingStatus);
+
+
+  //  console.log('DATA', trainingData.data);
+  const sendToStatisticStartDate = trainingData?.data?.startDate;
+  const sendToStatisticResults = trainingData?.data?.results;
+
+  const [selectedBook, setSelectedBook] = useState(null);
+  const [booksArrayToSend, setBooksArrayToSend] = useState([]);
+  // const [open, setOpen] = useState(true);
+  const [addTraining] = useAddTrainingMutation();
+
   let bookTableArray = [];
   let isEmptyTraining = false;
   let booksNumbeFromBack = 0;
@@ -181,8 +183,6 @@ const Training = () => {
   const oneDay = 24 * 60 * 60 * 1000;
   const trainingDayEnd = new Date(trainingData?.data?.finishDate);
   const nowDate = new Date();
-
-
 
   useEffect(() => {
     if (startDate && endDate) {
@@ -192,16 +192,11 @@ const Training = () => {
       const deltaTimeObj = convertMs(deltaTime);
       setDaysNumber(deltaTimeObj.days);
     }
-
-
   }, [startDate, endDate]);
 
-
-  
   let daysLeftFromBackEnd = Math.ceil(
     Math.abs((trainingDayEnd - nowDate) / oneDay) - 1
   );
-
 
   if (trainingData?.data === undefined) {
     isEmptyTraining = true;
@@ -210,13 +205,6 @@ const Training = () => {
   if (trainingStatus) {
     isEmptyTraining = true;
   }
-
-
-
-
-
-
-  //  console.log(trainingData?.data.books.length);
 
   const incomeBooks = data?.payload?.books;
 
@@ -269,20 +257,20 @@ const Training = () => {
   };
 
   const startTraining = () => {
-   
     const array = {
       startDate: startDate,
       finishDate: endDate,
       books: booksArrayToSend.map(element => ({ _id: element._id })),
     };
-    setStartDate(null);
-    setEndDate(null);
-    dispatch(setTrainingState(false));
+
     addTraining(array)
       .unwrap()
+      .then(
+        setStartDate(initialState.startDate),
+        setEndDate(initialState.endDate),
+        dispatch(setTrainingState(false))
+      )
       .catch(error => Notify.success(error.data.message));
-
-
   };
 
   const today = new Date();
@@ -292,15 +280,9 @@ const Training = () => {
   const handleStartSelect = value => {
     setStartDate(value);
   };
-
   const handleEndSelect = value => {
-    // const convertedTime = value.setHours(12,4 ,5 4)
-    // console.log(convertedTime);
-
     setEndDate(value);
   };
-
-  // console.log('selectedBook', selectedBook)
 
   const handleSelectBook = selectedOption => {
     const { value, label } = selectedOption;
