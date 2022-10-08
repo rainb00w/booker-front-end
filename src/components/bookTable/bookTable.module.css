@@ -205,3 +205,11 @@
 li {
   list-style-type: none;
 }
+.meaning {
+  display: inline-block;
+  width: 110px;
+}
+.meaningTitle {
+  display: inline-block;
+  width: 160px;
+}
