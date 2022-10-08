@@ -2,8 +2,10 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useTranslation } from 'react-i18next';
 import { useUpdateTrainingMutation } from '../../redux/books/trainingApi';
+import { ReactComponent as Triangle } from '../../img/Triangle.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTrainingState } from 'redux/auth/auth-slice';
+
 import s from './statisticsList.module.css';
 
 const SendPageForm = ({ startDate = null }) => {
@@ -69,7 +71,7 @@ const SendPageForm = ({ startDate = null }) => {
   return (
     <form onSubmit={formik.handleSubmit} className={s.formResults}>
       <div className={s.inputs}>
-        <label className={s.inputsLabel}>
+        <label className={s.inputsLabelDate}>
           {t('date')}
 
           <input
@@ -84,8 +86,10 @@ const SendPageForm = ({ startDate = null }) => {
           {formik.errors.dateInput && formik.touched.dateInput ? (
             <div>{formik.errors.dateInput}</div>
           ) : null}
+          <Triangle className={s.triangle} />
         </label>
-        <label className={s.inputsLabel}>
+
+        <label className={s.inputsLabelPage}>
           {t('amountOfPages_results')}
 
           <input
@@ -100,9 +104,12 @@ const SendPageForm = ({ startDate = null }) => {
             <div>{formik.errors.pageInput}</div>
           ) : null}
         </label>
-    
       </div>
-      {error && <div className={s.backEndError} ><p>{error.data.message}</p></div>}
+      {error && (
+        <div className={s.backEndError}>
+          <p>{error.data.message}</p>
+        </div>
+      )}
       <button className={s.addResultBtn} type="submit">
         {t('addResult')}
       </button>
