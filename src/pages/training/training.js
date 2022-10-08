@@ -197,7 +197,7 @@ const Training = () => {
   const [booksArrayToSend, setBooksArrayToSend] = useState([]);
   const booksNumber = booksArrayToSend?.length;
 
-  console.log('first',bookTableArray )
+  console.log('first', bookTableArray);
   if (!trainingStatus) {
     bookTableArray = booksArrayToSend;
   } else {
@@ -205,7 +205,7 @@ const Training = () => {
     booksNumbeFromBack = booksFromTraining.length;
   }
 
-  console.log('second',bookTableArray )
+  console.log('second', bookTableArray);
 
   useEffect(() => {
     if (startDate && endDate) {
@@ -217,12 +217,16 @@ const Training = () => {
     }
   }, [startDate, endDate]);
 
+  let selectRef = null;
+
   const addBookToSelected = () => {
     setDisable(true);
     const addBooksArray = booksThatHaveToReadStatus.filter(
       book => book._id === selectedBook._id
     );
     setBooksArrayToSend([...booksArrayToSend].concat(addBooksArray));
+
+    selectRef.clearValue();
   };
 
   const booksThatNotSelected = booksThatHaveToReadStatus?.filter(
@@ -274,6 +278,10 @@ const Training = () => {
   };
 
   const handleSelectBook = selectedOption => {
+    if (!selectedOption) {
+      return;
+    }
+
     const { value, label } = selectedOption;
     setDisable(false);
     setSelectedBook(value);
@@ -356,6 +364,9 @@ const Training = () => {
                         clear
                         styles={applicationStyles}
                         components={{ DropdownIndicator }}
+                        ref={ref => {
+                          selectRef = ref;
+                        }}
                       />
                       <button
                         disabled={disable}
