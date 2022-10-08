@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import s from './bookTable.module.css';
 import icons from './symbol-defs.svg';
+import EllipsisText from "react-ellipsis-text";
 import {
   useGetAllBooksQuery,
   useDeleteBookMutation,
@@ -34,11 +35,15 @@ export default function BookTableMobile() {
                         <svg width={22} height={17} className={s.img}>
                           <use href={`${icons}#white_book`}></use>
                         </svg>
-                        <span className={s.meaningTitle}>{title}</span>
+                        <span className={s.meaningTitle}>
+                          <EllipsisText text={title} length={'60'} />
+                        </span>
                       </p>
                       <p className={s.subtitle}>
                         <span className={s.topic}>{t('book_author')}:</span>
-                        <span className={s.meaning}>{author}</span>
+                        <span className={s.meaning}>
+                          <EllipsisText text={author} length={'60'} />
+                        </span>
                       </p>
                       <p className={s.subtitle}>
                         <span className={s.topic}> {t('book_year')}:</span>
@@ -119,7 +124,9 @@ export default function BookTableMobile() {
                         <svg width={22} height={17} className={s.img}>
                           <use href={`${icons}#yellow_book`}></use>
                         </svg>
-                        <span className={s.meaningTitle}>{title}</span>
+                        <span className={s.meaningTitle}>
+                          <EllipsisText text={title} length={'60'} />
+                        </span>
                       </p>
                       <p className={s.subtitle}>
                         <span className={s.topic}>{t('book_author')}:</span>
@@ -151,7 +158,9 @@ export default function BookTableMobile() {
                         <svg width={22} height={17} className={s.img}>
                           <use href={`${icons}#white_book`}></use>
                         </svg>
-                        <span className={s.meaningTitle}>{title}</span>
+                        <span className={s.meaningTitle}>
+                          <EllipsisText text={title} length={'30'} />
+                        </span>
                         <button
                           className={s.btnDelete}
                           id={_id}
@@ -166,7 +175,9 @@ export default function BookTableMobile() {
                       </p>
                       <p className={s.subtitle}>
                         <span className={s.topic}>{t('book_author')}:</span>
-                        <span className={s.meaning}>{author}</span>
+                        <span className={s.meaning}>
+                          <EllipsisText text={author} length={'30'} />
+                        </span>
                       </p>
                       <p className={s.subtitle}>
                         <span className={s.topic}>{t('book_year')}:</span>
