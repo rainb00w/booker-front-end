@@ -42,6 +42,7 @@ const ChangePassword = () => {
               setErr("");
               newPasswordAPI(email, password)
                 .then(() => {
+                  resetForm({ values: '' });
                   Notify.success(t('notify_phrase3'));
                   setTimeout(() => {navigate('/login') }, 2000); 
                 })
@@ -49,7 +50,6 @@ const ChangePassword = () => {
                   const errorMessage = err.response.data.message;
                   setErr(errorMessage);
                 })
-              resetForm({ values: '' });
             }}
           >
           {({
@@ -67,6 +67,7 @@ const ChangePassword = () => {
                 {err && <span className={styles.error}>{t(`${err}`)}</span>}
               </p>
               <input
+                style={{border: err && '1px solid #F25137'}}
                 className={styles.input}
                 type="email"
                 placeholder="your@email.com"
