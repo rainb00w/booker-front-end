@@ -141,11 +141,11 @@
 
   "book_err_title1": "Book title must be at least 1 character long",
   "book_err_title2": "Book title should be less than 50 characters long",
-  "book_err_title3": "Book title should not start from space or dash",
+  "book_err_title3": "The field cannot begin with space or dash",
   "book_err_title4": "Book title is required",
   "book_err_author1": "Author's Name must be at least 1 character long",
   "book_err_author2": "Author's Name should be less than 50 characters long",
-  "book_err_author3": "Author's Name should not start from space or dash",
+  "book_err_author3": "The field cannot begin with space or dash",
   "book_err_author4": "Author's Name cannot contain numbers",
   "book_err_author5": "Author's Name is required",
   "book_err_year1": "Year should be a number",
