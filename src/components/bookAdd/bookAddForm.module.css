@@ -24,7 +24,7 @@
   }
   .form {
     background: #f6f7fb;
-    /* width: 280px; */
+    width: 280px;
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
