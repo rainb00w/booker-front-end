@@ -50,6 +50,7 @@ const RepeatVerify = ({ switchFunc }) => {
                                 const { email } = values;
                                 verifyAPI(email)
                                     .then(() => {
+                                        resetForm({ values: '' });
                                         Notify.success(t('notify_phrase2'));
                                         switchFunc();
                                     })
@@ -57,7 +58,6 @@ const RepeatVerify = ({ switchFunc }) => {
                                         const errorMessage = err.response.data.message;
                                         setErr(errorMessage);
                                     })
-                                resetForm({ values: '' });
                             }}
                         >
                             {({
@@ -74,6 +74,7 @@ const RepeatVerify = ({ switchFunc }) => {
                                         {err && <span className={styles.verify__error}>{t(`${err}`)}</span>}
                                     </p>
                                     <input
+                                        style={{border: err && '1px solid #F25137'}}
                                         className={styles.verify__input}
                                         type="email"
                                         placeholder="your@email.com"

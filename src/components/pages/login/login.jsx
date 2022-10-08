@@ -110,11 +110,13 @@ const Login = () => {
                   if (response) {
                     throw response.data.message;
                   }
+                  else {
+                    resetForm({ values: '' });
+                  }
                 })
                 .catch(error => {
                   setErr(error);
                 })
-              resetForm({ values: '' });
             }}
           >
             {({
@@ -132,6 +134,7 @@ const Login = () => {
                   {err && <span className={styles.error}>{t(`${err}`)}</span>}
                 </p>
                 <input
+                  style={{border: err && '1px solid #F25137'}}
                   className={styles.input}
                   type="email"
                   placeholder="your@email.com"
@@ -154,6 +157,7 @@ const Login = () => {
                     )}
                   </p>
                   <TextField
+                    style={{border: err && '1px solid #F25137'}}
                     required
                     fullWidth
                     autoComplete='new-password'
