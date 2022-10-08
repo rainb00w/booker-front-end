@@ -49,7 +49,7 @@ export default function BookTableMobile() {
                         <span className={s.meaning}>{pages}</span>
                       </p>
                       <p className={s.subtitle}>
-                        <span className={s.topic}> {t('book_rating')}:</span>
+                        <span className={s.topic}> {t('book_rating_mobile')}:</span>
                         {rating >= 1 ? (
                           <svg width={17} height={17}>
                             <use href={`${icons}#yellow_star`}></use>
