@@ -17,7 +17,10 @@ const SendPageForm = ({ startDate = null }) => {
       (dd > 9 ? '' : '0') + dd,
     ].join('-');
   };
-
+  console.log(startDate);
+  const d = new Date(startDate);
+  const minDate = d.setDate(d.getDate() - 1);
+  console.log(minDate);
   const formik = useFormik({
     initialValues: {
       dateInput: new Date().yyyymmdd(),
@@ -26,7 +29,7 @@ const SendPageForm = ({ startDate = null }) => {
     validationSchema: Yup.object().shape({
       dateInput: Yup.date()
         .min(
-          new Date(startDate).yyyymmdd(),
+          new Date(minDate).yyyymmdd(),
           'Ви не можете ввести дату до початку тренування'
         )
         .max(new Date().yyyymmdd(), 'Ви не можете ввести дату в майбутньому'),

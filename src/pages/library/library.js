@@ -23,7 +23,11 @@ const Library = () => {
     <>
       {data?.payload.books.length > 0 ? (
         <div>
-          {mobile && <AddBookBtnMobile handleClick={handleClickAdd} />}
+          {mobile && (
+            <div>
+              {!showAdd && <AddBookBtnMobile handleClick={handleClickAdd} />}
+            </div>
+          )}
           <BookAddForm handleClickClose={handleClickClose} showAdd={showAdd} />
           {mobile ? (
             <div>{!showAdd && <BookTableMobile />}</div>
