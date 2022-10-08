@@ -39,14 +39,14 @@ const SendPageForm = ({ startDate = null }) => {
       dateInput: Yup.date()
         .min(
           new Date(minDate).yyyymmdd(),
-          'Ви не можете ввести дату до початку тренування'
+          t('results_err1')
         )
-        .max(new Date(today).yyyymmdd(), 'Ви не можете ввести цю дату'),
+        .max(new Date(today).yyyymmdd(), t('results_err2')),
       pageInput: Yup.number()
-        .positive('Введіть корректну кількість сторінок')
-        .integer('К-ть сторінок має бути ціла')
-        .max(999, 'Забагато сторінок')
-        .required('Введіть кількість сторінок'),
+        .positive(t('results_err3'))
+        .integer(t('results_err4'))
+        .max(999, t('results_err5'))
+        .required(t('results_err6')),
     }),
     onSubmit: ({ dateInput, pageInput }, { resetForm }) => {
       let dateToSend = new Date();
@@ -103,7 +103,7 @@ const SendPageForm = ({ startDate = null }) => {
             <div>{formik.errors.pageInput}</div>
           ) : null}
         </label>
-    
+
       </div>
       {error && <div className={s.backEndError} ><p>{error.data.message}</p></div>}
       <button className={s.addResultBtn} type="submit">

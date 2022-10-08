@@ -136,5 +136,29 @@
   "precede_start": "Results date may not precede training start date",
   "greater_finish": "Results date is greater than training finish date",
   "today_yesterday": "Results date should be today or yesterday",
-  "exceed_count": "Provided pages count exceeds number of unread pages"
+  "exceed_count": "Provided pages count exceeds number of unread pages",
+
+  "book_err_title1": "Book title must be at least 1 character long",
+  "book_err_title2": "Book title should be less than 50 characters long",
+  "book_err_title3": "Book title should not start from space or dash",
+  "book_err_title4": "Book title is required",
+  "book_err_author1": "Author's Name must be at least 1 character long",
+  "book_err_author2": "Author's Name should be less than 50 characters long",
+  "book_err_author3": "Author's Name should not start from space or dash",
+  "book_err_author4": "Author's Name cannot contain numbers",
+  "book_err_author5": "Author's Name is required",
+  "book_err_year1": "Year should be a number",
+  "book_err_year2": "Books have been publishing since 1000!",
+  "book_err_year3": "Year should be less than current year",
+  "book_err_pages1": "Pages should be a number",
+  "book_err_pages2": "Too short",
+  "book_err_pages3": "Must be no more than 4 characters long",
+  "book_err_pages4": "Pages is required",
+
+  "results_err1": "You cannot enter a date earlier than Training start date",
+  "results:err2": "You cannot enter this date",
+  "results_err3": "Pages number should be positive",
+  "results_err4": "Pages number should be integer",
+  "results_err5": "Pages number should be no more than 3 characters long",
+  "results_err6": "Enter pages number"
 }
