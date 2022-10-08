@@ -137,7 +137,6 @@
   "greater_finish": "Results date is greater than training finish date",
   "today_yesterday": "Results date should be today or yesterday",
   "exceed_count": "Provided pages count exceeds number of unread pages",
-  
 
   "book_err_title1": "Book title must be at least 1 character long",
   "book_err_title2": "Book title should be less than 50 characters long",
@@ -155,7 +154,13 @@
   "book_err_pages2": "Too short",
   "book_err_pages3": "Must be no more than 4 characters long",
   "book_err_pages4": "Pages is required",
-
   "book__add__message1": "Successful operation",
-  "book__add__message2": "Missing required fields or the field did not pass validation"
+  "book__add__message2": "Missing required fields or the field did not pass validation",
+
+  "results_err1": "You cannot enter a date earlier than Training start date",
+  "results:err2": "You cannot enter this date",
+  "results_err3": "Pages number should be positive",
+  "results_err4": "Pages number should be integer",
+  "results_err5": "Pages number should be no more than 3 characters long",
+  "results_err6": "Enter pages number"
 }
