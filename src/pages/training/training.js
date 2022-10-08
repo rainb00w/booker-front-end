@@ -197,7 +197,7 @@ const Training = () => {
   const [booksArrayToSend, setBooksArrayToSend] = useState([]);
   const booksNumber = booksArrayToSend?.length;
 
-  console.log('first', bookTableArray);
+
   if (!trainingStatus) {
     bookTableArray = booksArrayToSend;
   } else {
@@ -205,7 +205,7 @@ const Training = () => {
     booksNumbeFromBack = booksFromTraining.length;
   }
 
-  console.log('second', bookTableArray);
+
 
   useEffect(() => {
     if (startDate && endDate) {
