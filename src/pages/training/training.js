@@ -178,30 +178,34 @@ const Training = () => {
   const startDateFromTraining = new Date(currentData?.startDate);
   const booksLeftFromTraining = currentData?.books.length;
   const resultsFromTraining = currentData?.results;
+  const booksFromTraining = currentData?.books;
 
-
-  if (!currentData?.completed && (finishDateFromTraining > nowDate )) {
+  if (!currentData?.completed && finishDateFromTraining > nowDate) {
     dispatch(setTrainingState('true'));
-  } 
-
+  }
   if (currentData?.completed) {
     dispatch(setTrainingState('false'));
   }
 
+  const oneDay = 24 * 60 * 60 * 1000;
   let bookTableArray = [];
   let booksNumbeFromBack = 0;
+  let daysLeftFromBackEnd = Math.ceil(
+    Math.abs((finishDateFromTraining - nowDate) / oneDay) - 1
+  );
   const [selectedBook, setSelectedBook] = useState(null);
   const [booksArrayToSend, setBooksArrayToSend] = useState([]);
+  const booksNumber = booksArrayToSend?.length;
 
+  console.log('first',bookTableArray )
   if (!trainingStatus) {
     bookTableArray = booksArrayToSend;
   } else {
-    bookTableArray = currentData?.books;
-    booksNumbeFromBack = currentData?.books.length;
+    bookTableArray = booksFromTraining;
+    booksNumbeFromBack = booksFromTraining.length;
   }
 
-  const oneDay = 24 * 60 * 60 * 1000;
-
+  console.log('second',bookTableArray )
 
   useEffect(() => {
     if (startDate && endDate) {
@@ -212,10 +216,6 @@ const Training = () => {
       setDaysNumber(deltaTimeObj.days);
     }
   }, [startDate, endDate]);
-
-  let daysLeftFromBackEnd = Math.ceil(
-    Math.abs((finishDateFromTraining - nowDate) / oneDay) - 1
-  );
 
   const addBookToSelected = () => {
     setDisable(true);
@@ -228,8 +228,6 @@ const Training = () => {
   const booksThatNotSelected = booksThatHaveToReadStatus?.filter(
     el => !booksArrayToSend.includes(el)
   );
-
-  const booksNumber = booksArrayToSend?.length;
 
   const selectedOptions = booksThatNotSelected?.map(({ title, _id }) => ({
     value: { _id },
@@ -253,10 +251,16 @@ const Training = () => {
     addTraining(array)
       .unwrap()
       .then(
-        dispatch(setTrainingState('true'))
+        dispatch(setTrainingState('true')),
+        setTimeout(() => {
+          setDaysNumber(0);
+          setBooksArrayToSend([]);
+        }, 2000)
       )
       .catch(error => Notify.success(error.data.message));
   };
+
+  // setDaysNumber(0)
 
   const today = new Date();
   const yearTitle = t('yearsCountdown');
