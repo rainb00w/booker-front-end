@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
+    "@mui/icons-material": "^5.10.6",
     "@mui/material": "^5.10.6",
     "@mui/x-date-pickers": "^5.0.3",
     "@reduxjs/toolkit": "^1.8.5",
@@ -38,6 +39,7 @@
     "react-select": "^5.4.0",
     "redux-persist": "^6.0.0",
     "sass": "^1.55.0",
+    "spinners-react": "^1.0.7",
     "styled-component": "^2.8.0",
     "styled-components": "^5.3.5",
     "web-vitals": "^2.1.4",

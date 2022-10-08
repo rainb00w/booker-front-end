@@ -3,6 +3,7 @@ import { useGetAllBooksQuery } from 'redux/books/booksApi';
 import { useAddTrainingMutation } from 'redux/books/trainingApi';
 import { useGetAllTrainingsQuery } from 'redux/books/trainingApi';
 import s from './training.module.scss';
+// import ModalFinish from 'components/ModalFinish/ModalFinish';
 
 import { useTranslation } from 'react-i18next';
 
@@ -19,30 +20,58 @@ import MyGoal from 'components/MyGoal';
 import SelectBooksFirstStyled from 'components/SelectBooks/SelectBooksFirstStyled';
 import Timer from 'components/Timer/Timer';
 import convertMs from 'components/Timer/convertMs';
+import { setTrainingState } from 'redux/auth/auth-slice';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { authSelectors } from '../../redux/auth';
 import sprite from '../../img/sprite.svg';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
+const MyTrainingStyled = styled.div`
+  @media screen and (min-width: 768px) {
+    margin-bottom: 40px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    margin-bottom: 25px;
+  }
+
+  .trainingTitle {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.9;
+    padding: 11px 47px;
+    text-align: center;
+    margin-bottom: 20px;
+
+    color: red;
+    background: red;
+    box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
+  }
+`;
 
 const DatePickerTrainingStyled = styled.div`
   @media screen and (min-width: 768px) {
     display: flex;
-    gap: 40px;
+    justify-content: space-evenly;
+    margin-top: 30px;
   }
 
   @media screen and (min-width: 1280px) {
     display: flex;
     justify-content: center;
+    margin-top: 25px;
   }
 
   .datePickerWrapper {
     position: relative;
-    @media screen and (max-width: 767px) {
-      &:first-of-type {
-        margin-bottom: 20px;
+
+    @media screen and (min-width: 1280px) {
+      &:not(:first-child) {
+        margin-left: 45px;
       }
     }
   }
-
   .datePickerIcon {
     position: absolute;
     left: 17px;
@@ -50,13 +79,31 @@ const DatePickerTrainingStyled = styled.div`
     width: 17px;
     height: 17px;
   }
-
   .datePickerIconPolygon {
     position: absolute;
     right: 18px;
     top: 17px;
     width: 13px;
     height: 7px;
+  }
+  .datePickerTraining {
+    font-size: 14px;
+    line-height: 2.71;
+
+    color: #red;
+
+    padding-left: 47px;
+    width: 270px;
+    height: 42px;
+    margin-bottom: 20px;
+    border: 1px solid red;
+
+    @media screen and (min-width: 768px) {
+      width: 250px;
+    }
+    .datePicker .datePickerTraining {
+      background-color: red;
+    }
   }
 `;
 
@@ -76,10 +123,11 @@ const applicationStyles = {
       width: 715,
     },
   }),
-  singleValue: provided => ({
-    ...provided,
-    color: '#A6ABB9',
-  }),
+
+  singleValue: (provided, state) => {
+    return { ...provided, color: '#A6ABB9' };
+  },
+
   dropdownIndicator: provided => ({
     ...provided,
     fill: '#242A37',
@@ -97,10 +145,17 @@ const DropdownIndicator = props => {
   );
 };
 
+const initialState = {
+  startDate: '',
+  endDate: '',
+};
+
 const Training = () => {
   const { data } = useGetAllBooksQuery();
   const trainingData = useGetAllTrainingsQuery();
   const { isLoading } = useGetAllTrainingsQuery();
+  const trainingStatus = useSelector(authSelectors.getTrainingStatus);
+  const dispatch = useDispatch();
   // trainingData это объект, данные доступны  => trainingData.data
 
   //  console.log('DATA', trainingData.data);
@@ -110,21 +165,24 @@ const Training = () => {
 
   const [selectedBook, setSelectedBook] = useState(null);
   const [booksArrayToSend, setBooksArrayToSend] = useState([]);
+  // const [open, setOpen] = useState(true);
   const [addTraining] = useAddTrainingMutation();
 
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(initialState.startDate);
+  const [endDate, setEndDate] = useState(initialState.endDate);
   const [daysNumber, setDaysNumber] = useState(0);
   const [disable, setDisable] = useState(false);
-  const [endYear, setEndYear] = useState(new Date(2022, 11, 31));
+  const [endYear, setEndYear] = useState(new Date(2023, 0, 1));
   const { t } = useTranslation();
   let bookTableArray = [];
   let isEmptyTraining = false;
   let booksNumbeFromBack = 0;
 
-  if (trainingData?.data === undefined) {
-    isEmptyTraining = true;
-  }
+  const oneDay = 24 * 60 * 60 * 1000;
+  const trainingDayEnd = new Date(trainingData?.data?.finishDate);
+  const nowDate = new Date();
+
+
 
   useEffect(() => {
     if (startDate && endDate) {
@@ -134,15 +192,29 @@ const Training = () => {
       const deltaTimeObj = convertMs(deltaTime);
       setDaysNumber(deltaTimeObj.days);
     }
+
+
   }, [startDate, endDate]);
 
-  const oneDay = 24 * 60 * 60 * 1000;
-  const trainingDayEnd = new Date(trainingData?.data?.finishDate);
-  const nowDate = new Date();
 
-  const daysLeftFromBackEnd = Math.round(
+  
+  let daysLeftFromBackEnd = Math.ceil(
     Math.abs((trainingDayEnd - nowDate) / oneDay) - 1
   );
+
+
+  if (trainingData?.data === undefined) {
+    isEmptyTraining = true;
+  }
+
+  if (trainingStatus) {
+    isEmptyTraining = true;
+  }
+
+
+
+
+
 
   //  console.log(trainingData?.data.books.length);
 
@@ -161,12 +233,6 @@ const Training = () => {
   // console.log('trining data books', trainingData?.data?.books);
   const booksLeft = trainingData?.data?.books.length;
 
-  const handleSelectBook = selectedOption => {
-    const { value } = selectedOption;
-    setDisable(false);
-    setSelectedBook(value);
-  };
-
   if (isEmptyTraining) {
     bookTableArray = booksArrayToSend;
     // console.log('Нет тренировки выводим список книг со статусом toRead');
@@ -175,13 +241,6 @@ const Training = () => {
     booksNumbeFromBack = trainingData?.data?.books.length;
     // console.log('Тренировка есть выводим книги с traning ');
   }
-
-  // if (booksThatHaveReadingStatus?.length > 0) {
-  //   bookTableArray = booksThatHaveReadingStatus;
-  //   booksNumbeFromBack = booksThatHaveReadingStatus?.length;
-  // } else {
-  //   bookTableArray = booksArrayToSend;
-  // }
 
   const addBookToSelected = () => {
     setDisable(true);
@@ -210,30 +269,43 @@ const Training = () => {
   };
 
   const startTraining = () => {
+   
     const array = {
-      startDate: startDate.toISOString(),
-      finishDate: endDate.toISOString(),
+      startDate: startDate,
+      finishDate: endDate,
       books: booksArrayToSend.map(element => ({ _id: element._id })),
     };
-
+    setStartDate(null);
+    setEndDate(null);
+    dispatch(setTrainingState(false));
     addTraining(array)
       .unwrap()
       .catch(error => Notify.success(error.data.message));
 
-    // .then(payload => console.log('fulfilled', payload))
+
   };
+
   const today = new Date();
   const yearTitle = t('yearsCountdown');
   const trainingTitle = t('goalsCountdown');
 
   const handleStartSelect = value => {
-    // console.log(value);
     setStartDate(value);
   };
 
   const handleEndSelect = value => {
-    // console.log(value);
+    // const convertedTime = value.setHours(12,4 ,5 4)
+    // console.log(convertedTime);
+
     setEndDate(value);
+  };
+
+  // console.log('selectedBook', selectedBook)
+
+  const handleSelectBook = selectedOption => {
+    const { value, label } = selectedOption;
+    setDisable(false);
+    setSelectedBook(value);
   };
 
   return (
@@ -266,7 +338,7 @@ const Training = () => {
                       <div className="datePickerWrapper">
                         <DatePicker
                           className={s.datePicker}
-                          placeholderText="Start"
+                          placeholderText={t('start')}
                           dateFormat="dd.MM.yyyy"
                           selected={startDate}
                           onChange={handleStartSelect}
@@ -286,11 +358,11 @@ const Training = () => {
                         <DatePicker
                           className={s.datePicker}
                           dateFormat="dd.MM.yyyy"
-                          placeholder="Finish"
+                          placeholderText={t('finish')}
                           selected={endDate}
                           onChange={handleEndSelect}
                           selectsEnd
-                          // startDate={startDate}
+                          startDate={startDate}
                           endDate={endDate}
                           minDate={startDate}
                         />
@@ -306,11 +378,11 @@ const Training = () => {
                   <div className={s.select_container}>
                     <SelectBooksFirstStyled>
                       <Select
-                        defaultValue={{ value: null, label: t('chooseBooks') }}
                         options={selectedOptions}
-                        placeholder="Choose books from the library"
+                        placeholder={t('chooseBooks')}
                         closeMenuOnSelect={true}
                         onChange={handleSelectBook}
+                        clear
                         styles={applicationStyles}
                         components={{ DropdownIndicator }}
                       />
@@ -400,6 +472,8 @@ const Training = () => {
           </div>
         </div>
       )}
+
+      {/* {open && <ModalFinish onClose={handleExit} />} */}
     </>
   );
 };

@@ -22,20 +22,25 @@
   }
   .subtitle {
     margin-bottom: 15px;
-    margin-left: 34px;
+    margin-left: 36px;
   }
   .subtitle:last-child {
     margin-bottom: 32px;
-    margin-left: 34px;
+    margin-left: 36px;
+  }
+  .subtitleRating {
+    display: flex;
+    margin-bottom: 32px;
+    margin-left: 36px;
   }
   .img {
     margin-left: 0;
-    margin-right: 15px;
+    margin-right: 14px;
   }
   .topic {
     display: inline-block;
-    width: 46px;
-    margin-right: 35px;
+    width: 60px;
+    margin-right: 20px;
   }
   .btn {
     width: 127px;
@@ -43,6 +48,9 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+  }
+  .rating {
+    display: inline-block;
   }
 }
 @media screen and (min-width: 768px) and (max-width: 1279px) {
@@ -61,6 +69,12 @@
   .title {
     margin: 0 0 24px 0;
   }
+  .subtitleRating {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    height: 60px;
+  }
 
   .head {
     width: 100%;
@@ -72,9 +86,6 @@
     height: 62px;
   }
 
-  .table + .table {
-    margin-top: 32px;
-  }
   .img {
     margin-left: 20px;
     margin-right: 18px;
@@ -93,6 +104,9 @@
     width: calc(100% - 2 * 16px);
     margin-bottom: 50px;
   }
+  .table + .table {
+    margin-top: 32px;
+  }
   .title {
     margin: 0 0 24px 0;
   }
@@ -100,6 +114,13 @@
     width: 100%;
     border-spacing: 0 10px;
   }
+  .subtitleRating {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    height: 60px;
+  }
+
   .head {
     width: 100%;
   }
@@ -118,7 +139,7 @@
     width: 130px;
     height: 40px;
     text-align: center;
-    margin-left: 60px;
+    margin-left: 40px;
   }
 }
 .section {

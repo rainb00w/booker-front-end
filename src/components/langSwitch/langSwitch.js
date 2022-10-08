@@ -74,7 +74,7 @@ export default function CustomizedSwitches({ onChangeLanguage }) {
   return (
     <FormGroup>
       <Stack direction="row" spacing={1} alignItems="center">
-        <Typography>
+        <Typography className={s.textContainer}>
           <span className={s.switchText}>{lang ? 'UA' : 'EN'}</span>
         </Typography>
         <AntSwitch
@@ -82,6 +82,7 @@ export default function CustomizedSwitches({ onChangeLanguage }) {
           onChange={handleChange}
           name="checkedA"
           defaultChecked={localStorage.getItem('i18nextLng') === 'ua' && true}
+          className={s.switch}
         />
       </Stack>
     </FormGroup>

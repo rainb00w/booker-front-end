@@ -6,9 +6,10 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useAddBookMutation } from 'redux/books/booksApi';
 import { useTranslation } from 'react-i18next';
+import { SpinnerCircular } from 'spinners-react';
 
 const BookAddForm = ({ handleClickClose, showAdd }) => {
-  const [addBook, { isLoading }] = useAddBookMutation();
+  const [addBook, { isLoading, error }] = useAddBookMutation();
   const { t, i18n } = useTranslation();
 
   const formik = useFormik({
@@ -20,33 +21,44 @@ const BookAddForm = ({ handleClickClose, showAdd }) => {
     },
     validationSchema: Yup.object().shape({
       title: Yup.string()
+        .min(1, 'Book name must be more than 1!')
         .max(50, 'Book title should be less than 50')
         .matches(/^[^\s-]/, 'Name should not start from space or dash')
         .required('Book title is required'),
       author: Yup.string()
+        .min(1, 'Author name must be more than 1!')
         .max(50, 'Author name should be less than 50')
+        .matches(/^[^\s-]/, 'Name should not start from space or dash')
         .matches(
-          /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я])?[a-zA-Zа-яА-Я]*)*$/,
-          'Author name must contain letters'
+          /^[a-zA-Zа-яА-ЯіІїЇєЄ]+(([' -][a-zA-Zа-яА-ЯіІїЇєЄ.])?[a-zA-Zа-яА-ЯіІїЇєЄ.]*)*$/,
+          'THIS FIELD CANNOT CONTAIN NUMBERS'
         )
         .required('Author is required'),
-      year: Yup.string()
+      year: Yup.number()
         .typeError('Year should be a number')
-        .min(4, 'Year must consist of 4 digits!')
-        .max(4, 'Year should be less than currentYear!'),
-      pages: Yup.string()
+        .min(1000, 'Books have been publishing since 1000!')
+        .max(2022, 'Year should be less than currentYear!'),
+      pages: Yup.number()
         .typeError('Pages should be a number')
-        .min(1, 'Too Short!')
-        .max(4, 'Must be no more than 4 characters')
+        .min(10, 'Too Short!')
+        .max(9999, 'Must be no more than 4 characters')
         .required('Pages is required'),
     }),
     onSubmit: async ({ title, author, year, pages }, { resetForm }) => {
-      await addBook({
-        title,
-        author,
-        year,
-        pages,
-      });
+      if (year === '') {
+        await addBook({
+          title,
+          author,
+          pages,
+        });
+      } else {
+        await addBook({
+          title,
+          author,
+          year,
+          pages,
+        });
+      }
       resetForm();
       handleClickClose();
     },
@@ -63,7 +75,7 @@ const BookAddForm = ({ handleClickClose, showAdd }) => {
           </svg>
         </span>
         <form onSubmit={formik.handleSubmit} className={s.form}>
-          <label htmlFor="title" className={s.label}>
+          <label htmlFor="title" className={s.labelTitle}>
             {t('bookTitle')} *
             <input
               id="title"
@@ -75,54 +87,56 @@ const BookAddForm = ({ handleClickClose, showAdd }) => {
               className={s.inputTitle}
             />
             {formik.errors.title && formik.touched.title ? (
-              <div>{formik.errors.title}</div>
+              <div className={s.message}>{formik.errors.title}</div>
             ) : null}
           </label>
-          <label htmlFor="author" className={s.label}>
-            {t('author')} *
-            <input
-              id="author"
-              name="author"
-              type="text"
-              placeholder="..."
-              onChange={formik.handleChange}
-              value={formik.values.author}
-              className={s.inputAuthor}
-            />
-            {formik.errors.author && formik.touched.author ? (
-              <div>{formik.errors.author}</div>
-            ) : null}
-          </label>
-          <label htmlFor="year" className={s.label}>
-            {t('publicationDate')}
-            <input
-              id="year"
-              name="year"
-              type="text"
-              placeholder="..."
-              onChange={formik.handleChange}
-              value={formik.values.year}
-              className={s.inputDate}
-            />
-            {formik.errors.year && formik.touched.year ? (
-              <div>{formik.errors.year}</div>
-            ) : null}
-          </label>
-          <label htmlFor="pages" className={s.label}>
-            {t('amountOfPages')} *
-            <input
-              id="pages"
-              name="pages"
-              type="text"
-              placeholder="..."
-              onChange={formik.handleChange}
-              value={formik.values.pages}
-              className={s.inputPages}
-            />
-            {formik.errors.pages && formik.touched.pages ? (
-              <div>{formik.errors.pages}</div>
-            ) : null}
-          </label>
+          <div className={s.wrapper}>
+            <label htmlFor="author" className={s.labelAuthor}>
+              {t('author')} *
+              <input
+                id="author"
+                name="author"
+                type="text"
+                placeholder="..."
+                onChange={formik.handleChange}
+                value={formik.values.author}
+                className={s.inputAuthor}
+              />
+              {formik.errors.author && formik.touched.author ? (
+                <div className={s.message}>{formik.errors.author}</div>
+              ) : null}
+            </label>
+            <label htmlFor="year" className={s.labelDate}>
+              {t('publicationDate')}
+              <input
+                id="year"
+                name="year"
+                type="text"
+                placeholder="..."
+                onChange={formik.handleChange}
+                value={formik.values.year}
+                className={s.inputDate}
+              />
+              {formik.errors.year && formik.touched.year ? (
+                <div className={s.message}>{formik.errors.year}</div>
+              ) : null}
+            </label>
+            <label htmlFor="pages" className={s.labelPages}>
+              {t('amountOfPages')} *
+              <input
+                id="pages"
+                name="pages"
+                type="text"
+                placeholder="..."
+                onChange={formik.handleChange}
+                value={formik.values.pages}
+                className={s.inputPages}
+              />
+              {formik.errors.pages && formik.touched.pages ? (
+                <div className={s.message}>{formik.errors.pages}</div>
+              ) : null}
+            </label>
+          </div>
           <button
             type="submit"
             className={s.btn}
@@ -131,7 +145,7 @@ const BookAddForm = ({ handleClickClose, showAdd }) => {
             {t('btnAdd')}
           </button>
         </form>
-        {isLoading && <p>Is Adding</p>}
+        {isLoading && <SpinnerCircular className={s.spinner} />}
       </div>
     </div>
   );

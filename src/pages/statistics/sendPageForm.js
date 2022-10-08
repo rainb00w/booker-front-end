@@ -2,11 +2,20 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useTranslation } from 'react-i18next';
 import { useUpdateTrainingMutation } from '../../redux/books/trainingApi';
+import { useDispatch, useSelector } from 'react-redux';
+import { setTrainingState } from 'redux/auth/auth-slice';
 import s from './statisticsList.module.css';
 
 const SendPageForm = ({ startDate = null }) => {
   const { t } = useTranslation();
-  const [updateTraining] = useUpdateTrainingMutation();
+  const dispatch = useDispatch();
+  const [updateTraining, { error }] = useUpdateTrainingMutation();
+
+  console.log(error);
+
+  const now = new Date();
+  const today = Date.parse(now) + 3600 * 1000;
+  const yesterday = now.setDate(now.getDate() - 1);
   Date.prototype.yyyymmdd = function () {
     let mm = this.getMonth() + 1; // getMonth() is zero-based
     let dd = this.getDate();
@@ -32,23 +41,30 @@ const SendPageForm = ({ startDate = null }) => {
           new Date(minDate).yyyymmdd(),
           'Ви не можете ввести дату до початку тренування'
         )
-        .max(new Date().yyyymmdd(), 'Ви не можете ввести дату в майбутньому'),
+        .max(new Date(today).yyyymmdd(), 'Ви не можете ввести цю дату'),
       pageInput: Yup.number()
         .positive('Введіть корректну кількість сторінок')
         .integer('К-ть сторінок має бути ціла')
         .max(999, 'Забагато сторінок')
         .required('Введіть кількість сторінок'),
     }),
-    onSubmit: async ({ dateInput, pageInput }, { resetForm }) => {
+    onSubmit: ({ dateInput, pageInput }, { resetForm }) => {
       let dateToSend = new Date();
       const year = dateInput.toString().slice(0, 4);
       const month = dateInput.toString().slice(5, 7);
       const day = dateInput.toString().slice(8, 10);
       dateToSend.setFullYear(year, month - 1, day);
-      await updateTraining({
+      updateTraining({
         date: dateToSend,
         pages: pageInput,
+      }).then(info => {
+        if (info.data.completed) {
+          dispatch(setTrainingState(true));
+        }
       });
+      if (error) {
+        console.log('erere');
+      }
       resetForm();
     },
   });
@@ -58,22 +74,23 @@ const SendPageForm = ({ startDate = null }) => {
       <div className={s.inputs}>
         <label className={s.inputsLabel}>
           {t('date')}
-          {formik.errors.dateInput && formik.touched.dateInput ? (
-            <div>{formik.errors.dateInput}</div>
-          ) : null}
+
           <input
             className={s.inputDate}
             type="date"
             name="dateInput"
+            max={new Date(today).yyyymmdd()}
+            min={new Date(yesterday).yyyymmdd()}
             onChange={formik.handleChange}
             value={formik.values.dateInput}
           />
+          {formik.errors.dateInput && formik.touched.dateInput ? (
+            <div>{formik.errors.dateInput}</div>
+          ) : null}
         </label>
         <label className={s.inputsLabel}>
           {t('amountOfPages_results')}
-          {formik.errors.pageInput && formik.touched.pageInput ? (
-            <div>{formik.errors.pageInput}</div>
-          ) : null}
+
           <input
             className={s.inputPage}
             type="number"
@@ -81,8 +98,14 @@ const SendPageForm = ({ startDate = null }) => {
             onChange={formik.handleChange}
             value={formik.values.pageInput}
           />
+
+          {formik.errors.pageInput && formik.touched.pageInput ? (
+            <div>{formik.errors.pageInput}</div>
+          ) : null}
         </label>
+    
       </div>
+      {error && <div className={s.backEndError} ><p>{error.data.message}</p></div>}
       <button className={s.addResultBtn} type="submit">
         {t('addResult')}
       </button>

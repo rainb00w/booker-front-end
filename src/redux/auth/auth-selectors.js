@@ -10,6 +10,8 @@ const getIsLogging = state => state.auth.isLogging;
 
 const getLoginError = state => state.auth.loginError;
 
+const getTrainingStatus = state => state.auth.trainingFinished;
+
 const authSelectors = {
   getIsLoggedIn,
   getUsername,
@@ -17,5 +19,6 @@ const authSelectors = {
   getIsLogging,
   getLoginError,
   getGoogleAvatar,
+  getTrainingStatus,
 };
 export default authSelectors;

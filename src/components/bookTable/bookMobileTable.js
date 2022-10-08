@@ -7,7 +7,7 @@ import {
   useDeleteBookMutation,
 } from 'redux/books/booksApi';
 import { useTranslation } from 'react-i18next';
-import RatingBook from 'components/RatingBook';
+import RatingBookWrapper from 'components/RatingBookWrapper';
 import NestingModal from 'components/RatingBook/RatingModal/NestingModal/NestingModal';
 
 export default function BookTableMobile() {
@@ -18,12 +18,6 @@ export default function BookTableMobile() {
     return status;
   };
   const { t } = useTranslation();
-
-  const [showModal, setShowModal] = useState(false);
-
-  const toggleModal = () => {
-    setShowModal(!showModal);
-  };
 
   return (
     <>
@@ -102,24 +96,11 @@ export default function BookTableMobile() {
                           </svg>
                         )}
                       </p>
-                      <button
-                        type="button"
+                      <RatingBookWrapper
                         id={_id}
-                        className={s.btn}
-                        onClick={toggleModal}
-                      >
-                        {t('resume')}
-                      </button>
-                      {showModal && (
-                        <NestingModal onClose={toggleModal}>
-                          <RatingBook
-                            toggleModal={toggleModal}
-                            id={_id}
-                            resume={resume}
-                            rating={rating}
-                          />
-                        </NestingModal>
-                      )}
+                        resume={resume}
+                        rating={rating}
+                      />
                     </li>
                   )
               )}

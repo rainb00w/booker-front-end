@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import Timer from 'components/Timer/Timer';
 import authOperations from './auth-operations';
 
 const initialState = {
@@ -8,6 +9,7 @@ const initialState = {
   isLoggedIn: false,
   isLogging: false,
   loginError: null,
+  trainingFinished: false,
 };
 
 const authSlice = createSlice({
@@ -15,7 +17,6 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     googleLogIn(state, action) {
-      // console.log('auth slice', action.payload)
      state.token = action?.payload.token;
      state.name = action?.payload.name;
      state.avatarGoogle = action?.payload.avatar;
@@ -23,12 +24,13 @@ const authSlice = createSlice({
      state.isLogging = false;
      state.loginError = null;
     },
+    setTrainingState(state, action) {
+      state.trainingFinished = action.payload;
+    }
   },
   extraReducers: {
     [authOperations.register.fulfilled](state, action) {
-      // state.user = action.payload.user;
-      // state.token = action.payload.token;
-      // state.isLoggedIn = true;
+
     },
     [authOperations.logIn.pending](state) {
       state.loginError = null;
@@ -60,5 +62,5 @@ const authSlice = createSlice({
 });
 
 
-export const { googleLogIn } = authSlice.actions;
+export const { googleLogIn, setTrainingState } = authSlice.actions;
 export default authSlice.reducer;

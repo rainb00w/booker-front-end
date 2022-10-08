@@ -30,10 +30,12 @@
     margin-bottom: 20px;
     /* justify-content: center; */
   }
-  .label {
+  .labelTitle,
+  .labelAuthor,
+  .labelDate {
     margin-bottom: 45px;
   }
-  .label:last-child {
+  .labelPages {
     margin-bottom: 40px;
   }
   .inputTitle,
@@ -58,24 +60,34 @@
     width: 704px;
     margin-bottom: 40px;
   }
-  .inputTitle {
+  .wrapper {
+    display: flex;
+  }
+  .labelTitle {
     max-width: 768px;
     width: 704px;
-    margin-bottom: 24px;
+    margin-bottom: 0px;
+    /* margin-bottom: 24px; */
   }
-  .inputAuthor {
+  .labelAuthor {
     width: 336px;
     margin-right: 32px;
   }
-  .inputDate {
+  .labelDate {
     width: 152px;
-    margin-right: 32px;
+    margin: auto 32px auto 0;
   }
-  .inputPages {
+  .labelPages {
     width: 152px;
+  }
+  .inputTitle,
+  .inputAuthor,
+  .inputDate,
+  .inputPages {
+    width: 100%;
   }
   .btn {
-    margin: 40px auto 0 auto;
+    margin: 10px auto 0 auto;
     display: block;
   }
 }
@@ -86,33 +98,45 @@
     display: flex;
     justify-content: flex-start;
     width: calc(100% - 2 * 16px);
-    margin-bottom: 80px;
+    margin-bottom: 50px;
   }
-  .inputTitle {
-    width: 346px;
+  .wrapper {
+    display: flex;
+  }
+  .labelTitle {
+    width: 350px;
     margin-right: 16px;
   }
-  .inputAuthor {
+  .labelAuthor {
     width: 250px;
     margin-right: 16px;
   }
-  .inputDate {
-    width: 134px;
+  .labelDate {
+    width: 145px;
     margin-right: 16px;
   }
-  .inputPages {
-    width: 134px;
+  .labelPages {
+    width: 145px;
     margin-right: 48px;
   }
+  .inputTitle,
+  .inputAuthor,
+  .inputDate,
+  .inputPages {
+    width: 100%;
+  }
   .btn {
-    margin: auto 0 0 0;
+    margin: 25px 0 auto 0;
   }
 }
 .form {
   margin-left: auto;
   margin-right: auto;
 }
-.label {
+.labelTitle,
+.labelAuthor,
+.labelDate,
+.labelPages {
   display: inline-block;
   font-family: 'Montserrat';
   font-style: normal;
@@ -120,6 +144,7 @@
   font-size: 14px;
   line-height: 1.21;
   color: #898f9f;
+  height: 100px;
 }
 
 .inputTitle {
@@ -129,14 +154,9 @@
   box-shadow: inset 0px 1px 2px rgba(29, 29, 27, 0.15);
   margin-top: 8px;
   height: 42px;
+  padding-left: 10px;
 }
-.inputAuthor {
-  display: block;
-  background: #f6f7fb;
-  border: 1px solid #a6abb9;
-  margin-top: 8px;
-  height: 42px;
-}
+.inputAuthor,
 .inputDate,
 .inputPages {
   display: block;
@@ -144,8 +164,8 @@
   border: 1px solid #a6abb9;
   margin-top: 8px;
   height: 42px;
+  padding-left: 10px;
 }
-
 .btn {
   font-family: 'Montserrat';
   font-style: normal;
@@ -158,11 +178,17 @@
   background: #f6f7fb;
   border: 1px solid #242a37;
   cursor: pointer;
+  padding: 0;
+  transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-
-.inputTitle,
-.inputAuthor,
-.inputDate,
-.inputPages {
-  padding-left: 10px;
+.btn:hover {
+  border: 1px solid #f25137;
+}
+.message {
+  margin-top: 5px;
+}
+.spinner {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }

@@ -6,10 +6,14 @@ const MyGoal = ({ days, books, booksLeft, isTrainigEmpty }) => {
   // console.log(days, books,booksLeft, isTrainigEmpty )
   const { t } = useTranslation();
 
+// console.log(days);
+  if (days < 0) {
+    days = 0;
+  }
+
   return (
     <>
-
-    {isTrainigEmpty ? (
+      {isTrainigEmpty ? (
         <div className={s.myGoalMainBox}>
           <div className={s.myGoalHeadingBox}>
             <h3 className={s.myGoalHeading}> {t('myGoals')} </h3>
@@ -25,14 +29,13 @@ const MyGoal = ({ days, books, booksLeft, isTrainigEmpty }) => {
                   {t('amountOfBooks')}{' '}
                 </span>
               </li>
-              
-                <li className={s.myGoalStatsListItem}>
-                  <span className={s.myGoalStatsDigitBox}>
-                    <p className={s.myGoalStatsDigit}>{days}</p>
-                  </span>
-                  <span className={s.myGoalStatsText}>{t('amountOfDays')}</span>
-                </li>
-              
+
+              <li className={s.myGoalStatsListItem}>
+                <span className={s.myGoalStatsDigitBox}>
+                  <p className={s.myGoalStatsDigit}>{days}</p>
+                </span>
+                <span className={s.myGoalStatsText}>{t('amountOfDays')}</span>
+              </li>
             </ul>
           </div>
         </div>
@@ -55,20 +58,19 @@ const MyGoal = ({ days, books, booksLeft, isTrainigEmpty }) => {
                 </span>
                 <span className={s.myGoalStatsText}>{t('amountOfDays')}</span>
               </li>
-              
-                <li className={s.myGoalStatsListItem_training}>
-                  <span className={s.myGoalStatsDigitBox_training}>
-                    <p className={s.myGoalStatsDigit_training_accent}>
-                      {booksLeft}
-                    </p>
-                  </span>
-                  <span className={s.myGoalStatsText}>{t('booksLeft')}</span>
-                </li>
-              
+
+              <li className={s.myGoalStatsListItem_training}>
+                <span className={s.myGoalStatsDigitBox_training}>
+                  <p className={s.myGoalStatsDigit_training_accent}>
+                    {booksLeft}
+                  </p>
+                </span>
+                <span className={s.myGoalStatsText}>{t('booksLeft')}</span>
+              </li>
             </ul>
           </div>
         </div>
-      )} 
+      )}
     </>
   );
 };

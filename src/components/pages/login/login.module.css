@@ -1,19 +1,8 @@
-.section {
-    display: block;
-}
-
 .login__form,
 .registr__form {
     padding: 32px 20px;
 
-    background-image: linear-gradient(
-        to right,
-        rgba(9, 30, 63, 0.8),
-        rgba(9, 30, 63, 0.8)),
-        url("../../../img/background1.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    margin-left: auto;
 }
 
 .form__border {
@@ -135,7 +124,8 @@
 }
 
 .auth__link,
-.authforgot__link {
+.authforgot__link,
+.loginauth__link {
     display: inline-block;
     text-align: center;
     font-size: 13px;
@@ -143,9 +133,11 @@
     text-decoration: underline;
 }
 
-.authforgot__link {
+.loginauth__link {
     margin-left: 5px;
 }
+
+
 
 .button__verify {
     display: inline-block;
@@ -159,17 +151,6 @@
 }
 
 /* =============================================== */
-
-.log__text {
-    text-align: center;
-    padding: 16px 45px;
-}
-
-.svg__qutation {
-    width: 30px;
-    height: 30px;
-    margin-bottom: 10px;
-}
 
 .quote {
     font-size: 13px;
@@ -206,7 +187,7 @@
 .subtitle {
     font-weight: 500;
     font-size: 20px;
-    color: #242A37;
+    color: #fff;
     margin: 0;
     margin-bottom: 14px;
 }
@@ -247,11 +228,6 @@
     .login__form,
     .registr__form {
         padding: 64px 185px;
-
-        background-image: linear-gradient(to right,
-            rgba(9, 30, 63, 0.8),
-            rgba(9, 30, 63, 0.8)),
-        url("../../../img/background2.jpg");
     }
 
     .form__border {
@@ -278,16 +254,12 @@
         margin-bottom: 22px;
     }
 
+    .subtitle {
+        color: #242A37;
+    }
+
 
     /* ===============================================  */
-    .log__text {
-        padding: 65px 121px 70px;
-    }
-
-    .svg__qutation {
-        margin-bottom: 20px;
-    }
-
     .quote {
         font-size: 24px;
         margin-bottom: 20px;
@@ -320,14 +292,6 @@
         display: flex;
     }
 
-    .login__form,
-    .registr__form {
-        background-image: linear-gradient(to right,
-            rgba(9, 30, 63, 0.8),
-            rgba(9, 30, 63, 0.8)),
-        url("../../../img/background3.jpg");
-    }
-
     .form__button {
         margin-bottom: 32px;
     }
@@ -338,11 +302,6 @@
 
     .registr__form {
         padding: 90px 75px;
-    }
-
-
-    .log__text {
-        padding: 205px 167px 0px;
     }
 
     .registration__text {
@@ -356,9 +315,9 @@ position: relative;
 
 .svg__eyeOffCont{
     position: absolute;
-    top: 40%;
-    right: 10px;
-    stroke: #898F9F;
+    top: 50%;
+    right: 15px;
+    /* stroke: #898F9F; */
 }
 
 .svg__eyeOffCont:hover,
