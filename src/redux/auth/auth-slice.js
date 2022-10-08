@@ -9,7 +9,7 @@ const initialState = {
   isLoggedIn: false,
   isLogging: false,
   loginError: null,
-  trainingStatus: false,
+  trainingFinished: false,
 };
 
 const authSlice = createSlice({
@@ -25,14 +25,7 @@ const authSlice = createSlice({
      state.loginError = null;
     },
     setTrainingState(state, action) {
-      // console.log('action payload -', action.payload);
-      if (action.payload === 'true') {
-          state.trainingStatus = true;
-      } 
-      if (action.payload === 'false') {
-        state.trainingStatus = false;
-    } 
-      
+      state.trainingFinished = action.payload;
     }
   },
   extraReducers: {
