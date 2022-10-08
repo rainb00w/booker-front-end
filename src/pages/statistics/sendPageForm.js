@@ -8,7 +8,7 @@ import { setTrainingState } from 'redux/auth/auth-slice';
 
 import s from './statisticsList.module.css';
 
-const SendPageForm = ({ startDate = null }) => {
+const SendPageForm = ({ startDate = null, refetchFucntion }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [updateTraining, { error }] = useUpdateTrainingMutation();
@@ -28,10 +28,12 @@ const SendPageForm = ({ startDate = null }) => {
       (dd > 9 ? '' : '0') + dd,
     ].join('-');
   };
-  console.log(startDate);
+
+  
   const d = new Date(startDate);
   const minDate = d.setDate(d.getDate() - 1);
-  console.log(minDate);
+
+  
   const formik = useFormik({
     initialValues: {
       dateInput: new Date().yyyymmdd(),
@@ -61,7 +63,8 @@ const SendPageForm = ({ startDate = null }) => {
         pages: pageInput,
       }).then(info => {
         if (info.data.completed) {
-          dispatch(setTrainingState(true));
+          refetchFucntion();
+          dispatch(setTrainingState('false'));
         }
       });
       if (error) {

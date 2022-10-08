@@ -3,17 +3,15 @@ import { useGetAllTrainingsQuery } from 'redux/books/trainingApi';
 import s from './MyGoal.module.css';
 
 const MyGoal = ({ days, books, booksLeft, isTrainigEmpty }) => {
-  // console.log(days, books,booksLeft, isTrainigEmpty )
   const { t } = useTranslation();
 
-// console.log(days);
   if (days < 0) {
     days = 0;
   }
 
   return (
     <>
-      {isTrainigEmpty ? (
+      {!isTrainigEmpty ? (
         <div className={s.myGoalMainBox}>
           <div className={s.myGoalHeadingBox}>
             <h3 className={s.myGoalHeading}> {t('myGoals')} </h3>
