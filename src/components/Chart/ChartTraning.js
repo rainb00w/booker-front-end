@@ -79,7 +79,7 @@ const ChartTraning = ({ trainingData = {
     }
     return acc;
   }, {})) : [];
-  for (let i = 0; i < totalDays; i += 1) {
+  for (let i = 0; i <= totalDays; i += 1) {
     planData.push(pagesToRead);
   }
   datesArray.forEach((item, index) => {
@@ -95,7 +95,6 @@ const ChartTraning = ({ trainingData = {
       }
   });
   const maxPoint = isArrayNotEmpty(books) ? Math.max(...planData, ...resultData) : 10;
-
   const data = {
     labels: datesArray, // масив дат для кожного дня тренування
     datasets: [
