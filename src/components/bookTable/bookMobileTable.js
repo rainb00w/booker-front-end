@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import s from './bookTable.module.css';
 import icons from './symbol-defs.svg';
-import EllipsisText from "react-ellipsis-text";
+import EllipsisText from 'react-ellipsis-text';
 import {
   useGetAllBooksQuery,
   useDeleteBookMutation,
@@ -11,6 +11,7 @@ import { useTranslation } from 'react-i18next';
 import RatingBookWrapper from 'components/RatingBookWrapper';
 // import NestingModal from 'components/RatingBook/RatingModal/NestingModal/NestingModal';
 
+window.React = React;
 export default function BookTableMobile() {
   const { data } = useGetAllBooksQuery();
   const [deleteContact, { isLoading: isDeleting }] = useDeleteBookMutation();
