@@ -16,9 +16,7 @@ const RatingBook = ({ toggleModal, id, resume = '', rating = 0 }) => {
       initialValues={{ resume: resume }}
       validationSchema={schemaValidChooseRating}
       onSubmit={async ({ resume }) => {
-        if (ratingValue < 1) await updateBookResume({ id, resume });
-        if (resume === '') await updateBookResume({ id, rating: ratingValue });
-        if (ratingValue >= 1 && resume.length > 0) await updateBookResume({ id, rating: ratingValue, resume });
+        await updateBookResume({ id, rating: ratingValue, resume });
         toggleModal();
       }}
     >
