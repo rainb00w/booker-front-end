@@ -9,7 +9,6 @@ import { setTrainingState } from 'redux/auth/auth-slice';
 import { setTrainingStatusJustCompleted } from 'redux/auth/auth-slice';
 import ModalFinish from 'components/ModalFinish/ModalFinish';
 
-
 import s from './statisticsList.module.css';
 
 const SendPageForm = ({ startDate = null, refetchFucntion }) => {
@@ -17,14 +16,13 @@ const SendPageForm = ({ startDate = null, refetchFucntion }) => {
   const dispatch = useDispatch();
   const [updateTraining, { error }] = useUpdateTrainingMutation();
 
- const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
- const handleExit = () => {
-   setOpen(false);
-   refetchFucntion();
-   dispatch(setTrainingState('false'));
- };
-
+  const handleExit = () => {
+    setOpen(false);
+    refetchFucntion();
+    dispatch(setTrainingState('false'));
+  };
 
   const now = new Date();
   const today = Date.parse(now) + 3600 * 1000;
@@ -40,10 +38,8 @@ const SendPageForm = ({ startDate = null, refetchFucntion }) => {
     ].join('-');
   };
 
-
   const d = new Date(startDate);
   const minDate = d.setDate(d.getDate() - 1);
-
 
   const formik = useFormik({
     initialValues: {
@@ -52,10 +48,7 @@ const SendPageForm = ({ startDate = null, refetchFucntion }) => {
     },
     validationSchema: Yup.object().shape({
       dateInput: Yup.date()
-        .min(
-          new Date(minDate).yyyymmdd(),
-          t('results_err1')
-        )
+        .min(new Date(minDate).yyyymmdd(), t('results_err1'))
         .max(new Date(today).yyyymmdd(), t('results_err2')),
       pageInput: Yup.number()
         .positive(t('results_err3'))
@@ -75,11 +68,9 @@ const SendPageForm = ({ startDate = null, refetchFucntion }) => {
       }).then(info => {
         if (info.data.completed) {
           setOpen(true);
-          // refetchFucntion();
-          // dispatch(setTrainingState('false'));
-          // dispatch(setTrainingStatusJustCompleted('completedByPages'));
-        
-
+          refetchFucntion();
+          dispatch(setTrainingState('false'));
+          dispatch(setTrainingStatusJustCompleted('completedByPages'));
         }
       });
       if (error) {
@@ -134,7 +125,7 @@ const SendPageForm = ({ startDate = null, refetchFucntion }) => {
       <button className={s.addResultBtn} type="submit">
         {t('addResult')}
       </button>
-       {open && <ModalFinish onClose={handleExit} />} 
+      {open && <ModalFinish onClose={handleExit} />}
     </form>
   );
 };

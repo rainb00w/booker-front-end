@@ -45,7 +45,7 @@ const Timer = ({ selectedDate, title }) => {
   );
 
   if (deltaTime < 0) {
-    // clearInterval(intervalId.current);
+     clearInterval(intervalId.current);
     //  setOpenModal(true);
   }
 
@@ -59,13 +59,13 @@ const Timer = ({ selectedDate, title }) => {
     if (intervalId.current === null) {
       intervalId.current = setInterval(() => {
         setTime(Date.now());
-        console.log(intervalId.current);
+        // console.log(intervalId.current);
       }, 1000);
     }
   }, []);
 
   useEffect(() => {
-    console.log(selectedDate);
+    // console.log(selectedDate);
     if (deltaTime <= 1000) {
       setOpenModal(true);
       // clearInterval(intervalId.current);

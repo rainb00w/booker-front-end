@@ -168,8 +168,8 @@ const Training = () => {
   const [daysNumber, setDaysNumber] = useState(0);
   const [disable, setDisable] = useState(false);
 
-  const { data } = useGetAllBooksQuery();
-  const incomeBooks = data?.payload?.books;
+  const incomeBooksData = useGetAllBooksQuery();
+  const incomeBooks = incomeBooksData?.data?.payload?.books;
   const booksThatHaveToReadStatus = incomeBooks?.filter(
     book => book.status === 'toRead'
   );
@@ -262,6 +262,7 @@ const Training = () => {
         setTimeout(() => {
           setDaysNumber(0);
           setBooksArrayToSend([]);
+          incomeBooksData.refetch();
           setStartDate(initialState.startDate);
           setEndDate(initialState.endDate)
           setTrainingStatusJustCompleted('false');
