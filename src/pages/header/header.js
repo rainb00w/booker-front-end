@@ -149,7 +149,7 @@ const Header = () => {
             onClose={handleClose}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
-            style={{backgroundColor: 'rgba(43, 43, 43, 0.1)', outline: 0}}
+            style={{ backgroundColor: 'rgba(43, 43, 43, 0.1)', outline: 0, '&:focus': { outline: 'none' } }}
           >
             <Box sx={style} className={s.modal}>
               <p className={s.modal_text}>{t('modal1_notification')}</p>
