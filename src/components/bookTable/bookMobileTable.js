@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import s from './bookTable.module.css';
 import icons from './symbol-defs.svg';
+import EllipsisText from 'react-ellipsis-text';
 import {
   useGetAllBooksQuery,
   useDeleteBookMutation,
@@ -9,7 +10,6 @@ import {
 import { useTranslation } from 'react-i18next';
 import RatingBookWrapper from 'components/RatingBookWrapper';
 // import NestingModal from 'components/RatingBook/RatingModal/NestingModal/NestingModal';
-
 export default function BookTableMobile() {
   const { data } = useGetAllBooksQuery();
   const [deleteContact, { isLoading: isDeleting }] = useDeleteBookMutation();
@@ -38,7 +38,9 @@ export default function BookTableMobile() {
                       </p>
                       <p className={s.subtitle}>
                         <span className={s.topic}>{t('book_author')}:</span>
-                        <span className={s.meaning}>{author}</span>
+                        <span className={s.meaning}>
+                          <EllipsisText text={author} length={20} />
+                        </span>
                       </p>
                       <p className={s.subtitle}>
                         <span className={s.topic}> {t('book_year')}:</span>
@@ -123,7 +125,9 @@ export default function BookTableMobile() {
                       </p>
                       <p className={s.subtitle}>
                         <span className={s.topic}>{t('book_author')}:</span>
-                        <span className={s.meaning}>{author}</span>
+                        <span className={s.meaning}>
+                          <EllipsisText text={author} length={20} />
+                        </span>
                       </p>
                       <p className={s.subtitle}>
                         <span className={s.topic}>{t('book_year')}:</span>
@@ -166,7 +170,9 @@ export default function BookTableMobile() {
                       </p>
                       <p className={s.subtitle}>
                         <span className={s.topic}>{t('book_author')}:</span>
-                        <span className={s.meaning}>{author}</span>
+                        <span className={s.meaning}>
+                          <EllipsisText text={author} length={20} />
+                        </span>
                       </p>
                       <p className={s.subtitle}>
                         <span className={s.topic}>{t('book_year')}:</span>
