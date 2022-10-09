@@ -34,9 +34,7 @@ export default function BookTableMobile() {
                         <svg width={22} height={17} className={s.img}>
                           <use href={`${icons}#white_book`}></use>
                         </svg>
-                        <span className={s.meaningTitle}>
-                          <EllipsisText text={title} length={60} />
-                        </span>
+                        <span className={s.meaningTitle}>{title}</span>
                       </p>
                       <p className={s.subtitle}>
                         <span className={s.topic}>{t('book_author')}:</span>
@@ -123,13 +121,13 @@ export default function BookTableMobile() {
                         <svg width={22} height={17} className={s.img}>
                           <use href={`${icons}#yellow_book`}></use>
                         </svg>
-                        <span className={s.meaningTitle}>
-                          <EllipsisText text={title} length={25} />
-                        </span>
+                        <span className={s.meaningTitle}>{title}</span>
                       </p>
                       <p className={s.subtitle}>
                         <span className={s.topic}>{t('book_author')}:</span>
-                        <span className={s.meaning}>{author}</span>
+                        <span className={s.meaning}>
+                          <EllipsisText text={author} length={20} />
+                        </span>
                       </p>
                       <p className={s.subtitle}>
                         <span className={s.topic}>{t('book_year')}:</span>
@@ -157,9 +155,7 @@ export default function BookTableMobile() {
                         <svg width={22} height={17} className={s.img}>
                           <use href={`${icons}#white_book`}></use>
                         </svg>
-                        <span className={s.meaningTitle}>
-                          <EllipsisText text={title} length={25} />
-                        </span>
+                        <span className={s.meaningTitle}>{title}</span>
                         <button
                           className={s.btnDelete}
                           id={_id}
