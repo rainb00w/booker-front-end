@@ -61,9 +61,8 @@ const ChartTraning = ({ trainingData = {
   const totalBooksPages = books.reduce((acc, item) => acc + item.pages, 0);
   const pagesToRead = Math.ceil(totalBooksPages / totalDays);
   const resultsArray = isArrayNotEmpty(results) ? results.map(result => {
-    const dateCropped = result.date.slice(0, 10)
     return {
-      date: dateCropped,
+      date: formatDate(result.date),
       pages: result.pages
     }
   }) : [];
@@ -79,7 +78,7 @@ const ChartTraning = ({ trainingData = {
     }
     return acc;
   }, {})) : [];
-  for (let i = 0; i < totalDays; i += 1) {
+  for (let i = 0; i <= totalDays; i += 1) {
     planData.push(pagesToRead);
   }
   datesArray.forEach((item, index) => {
@@ -95,7 +94,6 @@ const ChartTraning = ({ trainingData = {
       }
   });
   const maxPoint = isArrayNotEmpty(books) ? Math.max(...planData, ...resultData) : 10;
-
   const data = {
     labels: datesArray, // масив дат для кожного дня тренування
     datasets: [
@@ -145,12 +143,6 @@ const ChartTraning = ({ trainingData = {
         {t('amontOfPages_day')}
         <span className={s.planedPages}>{isNaN(pagesToRead) ? 0 : pagesToRead}</span>
       </p>
-      {/* <div className={s.lineBox}>
-            <ul className={s.lineList}>
-              <li className={s.lineItem}>{t('plan')}</li>
-              <li className={s.lineItem}>  {t('act')}</li>
-            </ul>
-          </div> */}
       <div className={s.chart}>
         <Line options={createOptions(normalizedResults, maxPoint, planData.length)} data={isArrayNotEmpty(books) ? data : emptyData} />
       </div>

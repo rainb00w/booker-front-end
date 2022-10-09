@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useTranslation } from 'react-i18next';
@@ -5,6 +6,9 @@ import { useUpdateTrainingMutation } from '../../redux/books/trainingApi';
 import { ReactComponent as Triangle } from '../../img/Triangle.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTrainingState } from 'redux/auth/auth-slice';
+import { setTrainingStatusJustCompleted } from 'redux/auth/auth-slice';
+import ModalFinish from 'components/ModalFinish/ModalFinish';
+
 
 import s from './statisticsList.module.css';
 
@@ -13,7 +17,14 @@ const SendPageForm = ({ startDate = null, refetchFucntion }) => {
   const dispatch = useDispatch();
   const [updateTraining, { error }] = useUpdateTrainingMutation();
 
-  // console.log(error);
+ const [open, setOpen] = useState(false);
+
+ const handleExit = () => {
+   setOpen(false);
+   refetchFucntion();
+   dispatch(setTrainingState('false'));
+ };
+
 
   const now = new Date();
   const today = Date.parse(now) + 3600 * 1000;
@@ -63,8 +74,12 @@ const SendPageForm = ({ startDate = null, refetchFucntion }) => {
         pages: pageInput,
       }).then(info => {
         if (info.data.completed) {
-          refetchFucntion();
-          dispatch(setTrainingState('false'));
+          setOpen(true);
+          // refetchFucntion();
+          // dispatch(setTrainingState('false'));
+          // dispatch(setTrainingStatusJustCompleted('completedByPages'));
+        
+
         }
       });
       if (error) {
@@ -119,6 +134,7 @@ const SendPageForm = ({ startDate = null, refetchFucntion }) => {
       <button className={s.addResultBtn} type="submit">
         {t('addResult')}
       </button>
+       {open && <ModalFinish onClose={handleExit} />} 
     </form>
   );
 };

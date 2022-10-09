@@ -10,6 +10,7 @@ const initialState = {
   isLogging: false,
   loginError: null,
   trainingStatus: false,
+  trainingStatusJustCompleted: null,
 };
 
 const authSlice = createSlice({
@@ -17,28 +18,36 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     googleLogIn(state, action) {
-     state.token = action?.payload.token;
-     state.name = action?.payload.name;
-     state.avatarGoogle = action?.payload.avatar;
-     state.isLoggedIn = true;
-     state.isLogging = false;
-     state.loginError = null;
+      state.token = action?.payload.token;
+      state.name = action?.payload.name;
+      state.avatarGoogle = action?.payload.avatar;
+      state.isLoggedIn = true;
+      state.isLogging = false;
+      state.loginError = null;
     },
     setTrainingState(state, action) {
-      // console.log('action payload -', action.payload);
+
       if (action.payload === 'true') {
-          state.trainingStatus = true;
-      } 
+        state.trainingStatus = true;
+      }
       if (action.payload === 'false') {
         state.trainingStatus = false;
-    } 
-      
-    }
+      }
+    },
+    setTrainingStatusJustCompleted(state, action) {
+      if (action.payload === 'false') {
+        state.trainingStatusJustCompleted = 'false';
+      }
+      if (action.payload === 'completedByPages') {
+        state.trainingStatusJustCompleted = 'completedByPages';
+      }
+      if (action.payload === 'completedByTime') {
+        state.trainingStatusJustCompleted = 'completedByTime';
+      }
+    },
   },
   extraReducers: {
-    [authOperations.register.fulfilled](state, action) {
-
-    },
+    [authOperations.register.fulfilled](state, action) {},
     [authOperations.logIn.pending](state) {
       state.loginError = null;
       state.isLogging = true;
@@ -55,11 +64,11 @@ const authSlice = createSlice({
       state.loginError = null;
     },
     [authOperations.logOut.fulfilled](state) {
-      state.name =  null;
+      state.name = null;
       state.token = null;
       state.isLoggedIn = false;
     },
-  
+
     // [authOperations.fetchCurrentUser.fulfilled](state, action) {
     //   state.user = action.payload;
     //   state.isLoggedIn = true;
@@ -68,6 +77,5 @@ const authSlice = createSlice({
   },
 });
 
-
-export const { googleLogIn, setTrainingState } = authSlice.actions;
+export const { googleLogIn, setTrainingState, setTrainingStatusJustCompleted } = authSlice.actions;
 export default authSlice.reducer;
