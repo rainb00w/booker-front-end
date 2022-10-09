@@ -33,7 +33,7 @@
   .labelTitle,
   .labelAuthor,
   .labelDate {
-    margin-bottom: 45px;
+    margin-bottom: 20px;
   }
   .labelPages {
     margin-bottom: 40px;
@@ -71,17 +71,21 @@
     width: 704px;
     margin-bottom: 0px;
     /* margin-bottom: 24px; */
+    height: 100px;
   }
   .labelAuthor {
     width: 336px;
     margin-right: 32px;
+    height: 120px;
   }
   .labelDate {
     width: 152px;
     margin: auto 32px auto 0;
+    height: 120px;
   }
   .labelPages {
     width: 152px;
+    height: 120px;
   }
   .inputTitle,
   .inputAuthor,
@@ -111,18 +115,22 @@
   .labelTitle {
     width: 350px;
     margin-right: 16px;
+    height: 100px;
   }
   .labelAuthor {
     width: 250px;
     margin-right: 16px;
+    height: 100px;
   }
   .labelDate {
     width: 145px;
     margin-right: 16px;
+    height: 100px;
   }
   .labelPages {
     width: 145px;
     margin-right: 48px;
+    height: 100px;
   }
   .inputTitle,
   .inputAuthor,
@@ -149,7 +157,6 @@
   font-size: 14px;
   line-height: 1.21;
   color: #898f9f;
-  height: 100px;
 }
 
 .inputTitle {
