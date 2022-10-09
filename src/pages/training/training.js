@@ -21,6 +21,8 @@ import SelectBooksFirstStyled from 'components/SelectBooks/SelectBooksFirstStyle
 import Timer from 'components/Timer/Timer';
 import convertMs from 'components/Timer/convertMs';
 import { setTrainingState } from 'redux/auth/auth-slice';
+import { setTrainingStatusJustCompleted } from 'redux/auth/auth-slice';
+import ModalFinish from 'components/ModalFinish/ModalFinish';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { authSelectors } from '../../redux/auth';
@@ -156,6 +158,7 @@ const Training = () => {
 
   const [addTraining] = useAddTrainingMutation();
   const trainingStatus = useSelector(authSelectors.getTrainingStatus);
+  const trainingStatusCompleted = useSelector(authSelectors.getTrainingStatusJustCompleted);
 
   const nowDate = new Date();
   const [startDate, setStartDate] = useState(initialState.startDate);
@@ -183,9 +186,9 @@ const Training = () => {
   if (!currentData?.completed && finishDateFromTraining > nowDate) {
     dispatch(setTrainingState('true'));
   }
-  if (currentData?.completed) {
-    dispatch(setTrainingState('false'));
-  }
+  // if (currentData?.completed) {
+  //   dispatch(setTrainingState('false'));
+  // }
 
   const oneDay = 24 * 60 * 60 * 1000;
   let bookTableArray = [];
@@ -202,7 +205,7 @@ const Training = () => {
     bookTableArray = booksArrayToSend;
   } else {
     bookTableArray = booksFromTraining;
-    booksNumbeFromBack = booksFromTraining.length;
+    booksNumbeFromBack = booksFromTraining?.length;
   }
 
 
@@ -259,6 +262,9 @@ const Training = () => {
         setTimeout(() => {
           setDaysNumber(0);
           setBooksArrayToSend([]);
+          setStartDate(initialState.startDate);
+          setEndDate(initialState.endDate)
+          setTrainingStatusJustCompleted('false');
         }, 2000)
       )
       .catch(error => Notify.success(error.data.message));
@@ -440,6 +446,8 @@ const Training = () => {
               )}
             </div>
 
+        
+
             {trainingStatus && (
               <>
                 <div className={s.gridItem3}>
@@ -461,7 +469,6 @@ const Training = () => {
         </div>
       )}
 
-      {/* {open && <ModalFinish onClose={handleExit} />} */}
     </>
   );
 };
