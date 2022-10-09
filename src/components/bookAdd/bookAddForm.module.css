@@ -57,14 +57,17 @@
 @media screen and (min-width: 768px) and (max-width: 1279px) {
   .form {
     max-width: 768px;
-    width: 704px;
+    width: 100%;
     margin-bottom: 40px;
+    padding-left: 32px;
+    padding-right: 32px;
   }
   .wrapper {
+    width: 704px;
     display: flex;
   }
   .labelTitle {
-    max-width: 768px;
+    /* max-width: 768px; */
     width: 704px;
     margin-bottom: 0px;
     /* margin-bottom: 24px; */
@@ -97,8 +100,10 @@
     max-width: 1280px;
     display: flex;
     justify-content: flex-start;
-    width: calc(100% - 2 * 16px);
+    width: 100%;
     margin-bottom: 50px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
   .wrapper {
     display: flex;
@@ -129,10 +134,10 @@
     margin: 25px 0 auto 0;
   }
 }
-.form {
+/* .form {
   margin-left: auto;
   margin-right: auto;
-}
+} */
 .labelTitle,
 .labelAuthor,
 .labelDate,
