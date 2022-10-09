@@ -19,6 +19,7 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: 280,
   bgcolor: 'background.paper',
+  outline: 0,
 };
 
 const Header = () => {
@@ -148,14 +149,15 @@ const Header = () => {
             onClose={handleClose}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
+            style={{ backgroundColor: 'rgba(43, 43, 43, 0.1)', outline: 0, '&:focus': { outline: 'none' } }}
           >
             <Box sx={style} className={s.modal}>
               <p className={s.modal_text}>{t('modal1_notification')}</p>
               <div className={s.btn_modal}>
-                <button type="button" onClick={handleClose}>
+                <button className={s.btn_modal_cancel} type="button" onClick={handleClose}>
                   {t('btnCancel')}
                 </button>
-                <button type="button" onClick={handleExit}>
+                <button className={s.btn_modal_exit} type="button" onClick={handleExit}>
                   {t('btnLeave')}
                 </button>
               </div>

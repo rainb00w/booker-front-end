@@ -31,7 +31,7 @@ const BookAddForm = ({ handleClickClose, showAdd }) => {
       .max(50, t('book_err_author2'))
       .matches(/^[^\s-]/, t('book_err_author3'))
         .matches(
-          /^[a-zA-Zа-яА-ЯіІїЇєЄ]+(([' -][a-zA-Zа-яА-ЯіІїЇєЄ.])?[a-zA-Zа-яА-ЯіІїЇєЄ.]*)*$/,
+          /^[a-zA-Zа-яА-ЯіІїЇєЄ]+(([`' -][a-zA-Zа-яА-ЯіІїЇєЄ.,])?[a-zA-Zа-яА-ЯіІїЇєЄ,.]*)*$/,
           t('book_err_author4')
         )
         .required(t('book_err_author5')),
