@@ -10,8 +10,6 @@ import {
 import { useTranslation } from 'react-i18next';
 import RatingBookWrapper from 'components/RatingBookWrapper';
 // import NestingModal from 'components/RatingBook/RatingModal/NestingModal/NestingModal';
-
-window.React = React;
 export default function BookTableMobile() {
   const { data } = useGetAllBooksQuery();
   const [deleteContact, { isLoading: isDeleting }] = useDeleteBookMutation();
@@ -37,13 +35,13 @@ export default function BookTableMobile() {
                           <use href={`${icons}#white_book`}></use>
                         </svg>
                         <span className={s.meaningTitle}>
-                          <EllipsisText text={title} length={'60'} />
+                          <EllipsisText text={title} length={60} />
                         </span>
                       </p>
                       <p className={s.subtitle}>
                         <span className={s.topic}>{t('book_author')}:</span>
                         <span className={s.meaning}>
-                          <EllipsisText text={author} length={'60'} />
+                          <EllipsisText text={author} length={20} />
                         </span>
                       </p>
                       <p className={s.subtitle}>
@@ -126,7 +124,7 @@ export default function BookTableMobile() {
                           <use href={`${icons}#yellow_book`}></use>
                         </svg>
                         <span className={s.meaningTitle}>
-                          <EllipsisText text={title} length={'60'} />
+                          <EllipsisText text={title} length={25} />
                         </span>
                       </p>
                       <p className={s.subtitle}>
@@ -160,7 +158,7 @@ export default function BookTableMobile() {
                           <use href={`${icons}#white_book`}></use>
                         </svg>
                         <span className={s.meaningTitle}>
-                          <EllipsisText text={title} length={'30'} />
+                          <EllipsisText text={title} length={25} />
                         </span>
                         <button
                           className={s.btnDelete}
@@ -177,7 +175,7 @@ export default function BookTableMobile() {
                       <p className={s.subtitle}>
                         <span className={s.topic}>{t('book_author')}:</span>
                         <span className={s.meaning}>
-                          <EllipsisText text={author} length={'30'} />
+                          <EllipsisText text={author} length={20} />
                         </span>
                       </p>
                       <p className={s.subtitle}>
