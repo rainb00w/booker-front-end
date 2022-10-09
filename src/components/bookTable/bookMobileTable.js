@@ -9,6 +9,7 @@ import {
 } from 'redux/books/booksApi';
 import { useTranslation } from 'react-i18next';
 import RatingBookWrapper from 'components/RatingBookWrapper';
+import DeleteModal from './deleteModal';
 // import NestingModal from 'components/RatingBook/RatingModal/NestingModal/NestingModal';
 export default function BookTableMobile() {
   const { data } = useGetAllBooksQuery();
@@ -18,6 +19,10 @@ export default function BookTableMobile() {
     return status;
   };
   const { t } = useTranslation();
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <>
@@ -51,7 +56,9 @@ export default function BookTableMobile() {
                         <span className={s.meaning}>{pages}</span>
                       </p>
                       <p className={s.subtitle}>
-                        <span className={s.topic}> {t('book_rating_mobile')}:</span>
+                        <span className={s.topic}>
+                          {t('book_rating_mobile')}:
+                        </span>
                         {rating >= 1 ? (
                           <svg width={17} height={17}>
                             <use href={`${icons}#yellow_star`}></use>
@@ -160,13 +167,22 @@ export default function BookTableMobile() {
                           className={s.btnDelete}
                           id={_id}
                           type="button"
-                          onClick={() => deleteContact(_id)}
-                          disabled={isDeleting}
+                          onClick={handleOpen}
+                          // disabled={isDeleting}
                         >
                           <svg width={22} height={17}>
                             <use href={`${icons}#delete_book`}></use>
                           </svg>
                         </button>
+                        <DeleteModal
+                          open={open}
+                          handleClose={handleClose}
+                          handleDelete={() => {
+                            deleteContact(_id);
+                            setOpen(false);
+                          }}
+                          isDeleting={isDeleting}
+                        />
                       </p>
                       <p className={s.subtitle}>
                         <span className={s.topic}>{t('book_author')}:</span>

@@ -10,17 +10,22 @@ import { useTranslation } from 'react-i18next';
 import RatingBookWrapper from 'components/RatingBookWrapper';
 import EllipsisText from 'react-ellipsis-text';
 import { useMediaQuery } from 'react-responsive';
+import DeleteModal from './deleteModal';
 
 export default function BookTable() {
   const { data } = useGetAllBooksQuery();
   const [deleteContact, { isLoading: isDeleting }] = useDeleteBookMutation();
   const { t, i18n } = useTranslation();
-  const isDesktop = useMediaQuery({ query: '(min-width: 1280px)'})
+  const isDesktop = useMediaQuery({ query: '(min-width: 1280px)' });
   // console.log(data);
   const status = e => {
     const status = data?.payload.books.some(book => book.status === e);
     return status;
   };
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <>
@@ -66,10 +71,16 @@ export default function BookTable() {
                           <svg width={22} height={17} className={s.img}>
                             <use href={`${icons}#white_book`}></use>
                           </svg>
-                          <EllipsisText text={title} length={isDesktop ? 40 : 18} />
+                          <EllipsisText
+                            text={title}
+                            length={isDesktop ? 40 : 18}
+                          />
                         </td>
                         <td className={s.subtitle}>
-                          <EllipsisText text={author} length={isDesktop ? 30 : 18} />
+                          <EllipsisText
+                            text={author}
+                            length={isDesktop ? 30 : 18}
+                          />
                         </td>
                         <td className={s.subtitle}>{year}</td>
                         <td className={s.subtitle}>{pages}</td>
@@ -162,10 +173,16 @@ export default function BookTable() {
                           <svg width={22} height={17} className={s.img}>
                             <use href={`${icons}#yellow_book`}></use>
                           </svg>
-                          <EllipsisText text={title} length={isDesktop ? 50 : 25} />
+                          <EllipsisText
+                            text={title}
+                            length={isDesktop ? 50 : 25}
+                          />
                         </td>
                         <td className={s.subtitle}>
-                          <EllipsisText text={author} length={isDesktop ? 32 : 18} />
+                          <EllipsisText
+                            text={author}
+                            length={isDesktop ? 32 : 18}
+                          />
                         </td>
                         <td className={s.subtitle}>{year}</td>
                         <td className={s.subtitle}>{pages}</td>
@@ -206,10 +223,16 @@ export default function BookTable() {
                           <svg width={22} height={17} className={s.img}>
                             <use href={`${icons}#white_book`}></use>
                           </svg>
-                          <EllipsisText text={title} length={isDesktop ? 50 : 25} />
+                          <EllipsisText
+                            text={title}
+                            length={isDesktop ? 50 : 25}
+                          />
                         </td>
                         <td className={s.subtitle}>
-                          <EllipsisText text={author} length={isDesktop ? 32 : 18} />
+                          <EllipsisText
+                            text={author}
+                            length={isDesktop ? 32 : 18}
+                          />
                         </td>
                         <td className={s.subtitle}>{year}</td>
                         <td className={s.subtitle}>{pages}</td>
@@ -218,13 +241,22 @@ export default function BookTable() {
                             className={s.btnDelete}
                             id={_id}
                             type="button"
-                            onClick={() => deleteContact(_id)}
-                            disabled={isDeleting}
+                            onClick={handleOpen}
+                            // disabled={isDeleting}
                           >
                             <svg width={22} height={17}>
                               <use href={`${icons}#delete_book`}></use>
                             </svg>
                           </button>
+                          <DeleteModal
+                            open={open}
+                            handleClose={handleClose}
+                            handleDelete={() => {
+                              deleteContact(_id);
+                              setOpen(false);
+                            }}
+                            isDeleting={isDeleting}
+                          />
                         </td>
                       </tr>
                     )

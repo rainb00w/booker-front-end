@@ -163,5 +163,8 @@
   "results_err3": "Pages number should be positive",
   "results_err4": "Pages number should be integer",
   "results_err5": "Pages number should be no more than 3 characters long",
-  "results_err6": "Enter pages number"
+  "results_err6": "Enter pages number",
+
+  "modalDelete_notification": "Are you sure you want to delete the book?",
+  "btnDelete": "Delete"
 }
