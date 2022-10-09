@@ -1,8 +1,15 @@
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .section {
     padding-top: 20px;
-    width: 280px;
+    width: 100%;
     margin-bottom: 28px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .table {
+    width: 280px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .table + .table {
     margin-top: 20px;
@@ -12,6 +19,8 @@
   }
   .item {
     padding: 20px 26px 32px 20px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .item + .item {
     margin-top: 16px;
@@ -57,8 +66,10 @@
 @media screen and (min-width: 768px) and (max-width: 1279px) {
   .section {
     max-width: 768px;
-    width: calc(100% - 2 * 32px);
+    width: 100%;
     margin-bottom: 40px;
+    padding-left: 32px;
+    padding-right: 32px;
   }
   .subTable {
     width: 100%;
@@ -102,8 +113,10 @@
 @media screen and (min-width: 1280px) {
   .section {
     max-width: 1280px;
-    width: calc(100% - 2 * 16px);
+    width: 100%;
     margin-bottom: 40px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
   .table + .table {
     margin-top: 32px;
@@ -143,10 +156,11 @@
     margin-left: 40px;
   }
 }
-.section {
-  margin-left: auto;
-  margin-right: auto;
-}
+/* .section {
+  padding-left: 32px;
+  padding-right: 32px;
+  margin: 0;
+} */
 .title {
   font-family: 'Montserrat';
   font-style: normal;

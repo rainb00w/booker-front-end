@@ -22,28 +22,28 @@ const BookAddForm = ({ handleClickClose, showAdd }) => {
     },
     validationSchema: Yup.object().shape({
       title: Yup.string()
-      .min(1, t('book_err_title1'))
-      .max(50, t('book_err_title2'))
-      .matches(/^[^\s-]/, t('book_err_title3'))
-      .required(t('book_err_title4')),
+        .min(1, t('book_err_title1'))
+        .max(50, t('book_err_title2'))
+        .matches(/^[^\s-]/, t('book_err_title3'))
+        .required(t('book_err_title4')),
       author: Yup.string()
-      .min(1, t('book_err_author1'))
-      .max(50, t('book_err_author2'))
-      .matches(/^[^\s-]/, t('book_err_author3'))
+        .min(1, t('book_err_author1'))
+        .max(50, t('book_err_author2'))
+        .matches(/^[^\s-]/, t('book_err_author3'))
         .matches(
           /^[a-zA-Zа-яА-ЯіІїЇєЄ]+(([`' -][a-zA-Zа-яА-ЯіІїЇєЄ.,])?[a-zA-Zа-яА-ЯіІїЇєЄ,.]*)*$/,
           t('book_err_author4')
         )
         .required(t('book_err_author5')),
       year: Yup.number()
-      .typeError(t('book_err_year1'))
-      .min(1000, t('book_err_year2'))
-      .max(2022, t('book_err_year3')),
+        .typeError(t('book_err_year1'))
+        .min(1000, t('book_err_year2'))
+        .max(2022, t('book_err_year3')),
       pages: Yup.number()
-      .typeError(t('book_err_pages1'))
-      .min(10, t('book_err_pages2'))
-      .max(9999, t('book_err_pages3'))
-      .required(t('book_err_pages4')),
+        .typeError(t('book_err_pages1'))
+        .min(10, t('book_err_pages2'))
+        .max(9999, t('book_err_pages3'))
+        .required(t('book_err_pages4')),
     }),
     onSubmit: async ({ title, author, year, pages }, { resetForm }) => {
       if (year === '') {
