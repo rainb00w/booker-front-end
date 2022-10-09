@@ -27,21 +27,25 @@ const Timer = ({ selectedDate, title }) => {
   const deltaTime = selectedDate - time;
   const timeLeft = convertMs(deltaTime);
 
+  const deltaTimeAfterEnd = -(selectedDate - time);
+  const timeAfterEnd = convertMs(deltaTimeAfterEnd);
+
+  const timeToShow = deltaTime >= 0 ? timeLeft : timeAfterEnd;
+
   const [openModal, setOpenModal] = useState(false);
 
-  // const handleExit = () => {
-  //   setOpenModal(false);
-  //   // refetchFucntion();
-  //   // dispatch(setTrainingState('false'));
-  // };
+  const handleExit = () => {
+    setOpenModal(false);
+    // refetchFucntion();
+    dispatch(setTrainingState('false'));
+  };
 
   const trainingStatusCompleted = useSelector(
     authSelectors.getTrainingStatusJustCompleted
   );
 
   if (deltaTime < 0) {
-    clearInterval(intervalId.current);
-
+    // clearInterval(intervalId.current);
     //  setOpenModal(true);
   }
 
@@ -55,9 +59,27 @@ const Timer = ({ selectedDate, title }) => {
     if (intervalId.current === null) {
       intervalId.current = setInterval(() => {
         setTime(Date.now());
+        console.log(intervalId.current);
       }, 1000);
     }
   }, []);
+
+  useEffect(() => {
+    console.log(selectedDate);
+    if (deltaTime <= 1000) {
+      setOpenModal(true);
+      // clearInterval(intervalId.current);
+      // intervalId.current = setInterval(() => {
+      //   setTime(Date.now());
+      //   console.log('new interval');
+      // }, 1000);
+      // return () => {
+      //   console.log('unmount');
+      //   console.log(intervalId.current);
+      //   clearInterval(intervalId.current);
+      // };
+    }
+  });
 
   return (
     <>
@@ -65,14 +87,18 @@ const Timer = ({ selectedDate, title }) => {
         <TimerTitle>{title}</TimerTitle>
         <StyledContainer>
           <StyledItem>
-            <StyledValue>{timeLeft.days}</StyledValue>
+            <StyledValue>
+              {timeToShow.days < 10 ? '0' + timeToShow.days : timeToShow.days}
+            </StyledValue>
             <StyledSpan>{t('days')}</StyledSpan>
           </StyledItem>
 
           <StyledItem>
             <StyledValue>
               <StyledSeparator>:</StyledSeparator>
-              {timeLeft.hours}
+              {timeToShow.hours < 10
+                ? '0' + timeToShow.hours
+                : timeToShow.hours}
             </StyledValue>
             <StyledSpan>{t('hrs')}</StyledSpan>
           </StyledItem>
@@ -80,7 +106,9 @@ const Timer = ({ selectedDate, title }) => {
           <StyledItem>
             <StyledValue>
               <StyledSeparator>:</StyledSeparator>
-              {timeLeft.minutes}
+              {timeToShow.minutes < 10
+                ? '0' + timeToShow.minutes
+                : timeToShow.minutes}
             </StyledValue>
             <StyledSpan>{t('mins')}</StyledSpan>
           </StyledItem>
@@ -88,13 +116,15 @@ const Timer = ({ selectedDate, title }) => {
           <StyledItem>
             <StyledValue>
               <StyledSeparator>:</StyledSeparator>
-              {timeLeft.seconds}
+              {timeToShow.seconds < 10
+                ? '0' + timeToShow.seconds
+                : timeToShow.seconds}
             </StyledValue>
             <StyledSpan>{t('secs')}</StyledSpan>
           </StyledItem>
         </StyledContainer>
       </StyledTimerWrapper>{' '}
-      {/* {openModal && <ModalFinishByTime onClose={handleExit} />}  */}
+      {openModal && <ModalFinishByTime onClose={handleExit} />}
     </>
   );
 };
