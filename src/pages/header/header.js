@@ -19,6 +19,7 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: 280,
   bgcolor: 'background.paper',
+  outline: 0,
 };
 
 const Header = () => {
@@ -148,7 +149,7 @@ const Header = () => {
             onClose={handleClose}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
-            style={{backgroundColor: 'rgba(43, 43, 43, 0.1)'}}
+            style={{backgroundColor: 'rgba(43, 43, 43, 0.1)', outline: 0}}
           >
             <Box sx={style} className={s.modal}>
               <p className={s.modal_text}>{t('modal1_notification')}</p>
