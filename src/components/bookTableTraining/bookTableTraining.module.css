@@ -1,6 +1,8 @@
 @media screen and (max-width: 767px) {
   .section {
     width: calc(100% - 2 * 20px);
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: 40px;
   }
   .sectionEmpty {
@@ -154,6 +156,7 @@
 .btnDelete {
   background-color: inherit;
   border: 0;
+  cursor: pointer;
 }
 
 /* mobile */
