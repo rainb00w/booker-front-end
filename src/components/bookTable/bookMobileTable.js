@@ -21,7 +21,11 @@ export default function BookTableMobile() {
   const { t } = useTranslation();
 
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
+  const [id, serId] = useState(null);
+  const handleOpen = id => {
+    serId(id);
+    setOpen(true);
+  };
   const handleClose = () => setOpen(false);
 
   return (
@@ -167,22 +171,15 @@ export default function BookTableMobile() {
                           className={s.btnDelete}
                           id={_id}
                           type="button"
-                          onClick={handleOpen}
+                          onClick={() => {
+                            handleOpen(_id);
+                          }}
                           // disabled={isDeleting}
                         >
                           <svg width={22} height={17}>
                             <use href={`${icons}#delete_book`}></use>
                           </svg>
                         </button>
-                        <DeleteModal
-                          open={open}
-                          handleClose={handleClose}
-                          handleDelete={() => {
-                            deleteContact(_id);
-                            setOpen(false);
-                          }}
-                          isDeleting={isDeleting}
-                        />
                       </p>
                       <p className={s.subtitle}>
                         <span className={s.topic}>{t('book_author')}:</span>
@@ -202,6 +199,15 @@ export default function BookTableMobile() {
                   )
               )}
             </ul>
+            <DeleteModal
+              open={open}
+              handleClose={handleClose}
+              handleDelete={() => {
+                deleteContact(id);
+                setOpen(false);
+              }}
+              isDeleting={isDeleting}
+            />
           </div>
         )}
       </section>
