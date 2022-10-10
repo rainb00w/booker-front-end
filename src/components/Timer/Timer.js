@@ -61,7 +61,6 @@ const Timer = ({ selectedDate, title }) => {
         console.log(intervalId.current);
       }, 1000);
     }
-    setFirstRender(false);
   }, []);
 
   useEffect(() => {
