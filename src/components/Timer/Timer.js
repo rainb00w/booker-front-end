@@ -58,7 +58,7 @@ const Timer = ({ selectedDate, title }) => {
     if (intervalId.current === null) {
       intervalId.current = setInterval(() => {
         setTime(Date.now());
-        console.log(intervalId.current);
+        // console.log(intervalId.current);
       }, 1000);
     }
   }, []);

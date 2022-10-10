@@ -21,6 +21,7 @@
 .btn_modal {
   display: flex;
   justify-content: space-evenly;
+  
 }
 
 .btn_modal button {
@@ -31,6 +32,7 @@
   width: 98px;
   height: 40px;
   color: #ffffff;
+  border: none;
   cursor: pointer;
   font-family: 'Montserrat';
   font-style: normal;
