@@ -68,8 +68,8 @@ const SendPageForm = ({ startDate = null, refetchFucntion }) => {
       }).then(info => {
         if (info.data.completed) {
           setOpen(true);
-          refetchFucntion();
-          dispatch(setTrainingState('false'));
+          // refetchFucntion();
+          // dispatch(setTrainingState('false'));
           dispatch(setTrainingStatusJustCompleted('completedByPages'));
         }
       });

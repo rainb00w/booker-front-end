@@ -158,7 +158,9 @@ const Training = () => {
 
   const [addTraining] = useAddTrainingMutation();
   const trainingStatus = useSelector(authSelectors.getTrainingStatus);
-  const trainingStatusCompleted = useSelector(authSelectors.getTrainingStatusJustCompleted);
+  const trainingStatusCompleted = useSelector(
+    authSelectors.getTrainingStatusJustCompleted
+  );
 
   const nowDate = new Date();
   const [startDate, setStartDate] = useState(initialState.startDate);
@@ -167,6 +169,7 @@ const Training = () => {
 
   const [daysNumber, setDaysNumber] = useState(0);
   const [disable, setDisable] = useState(false);
+
 
   const incomeBooksData = useGetAllBooksQuery();
   const incomeBooks = incomeBooksData?.data?.payload?.books;
@@ -191,6 +194,7 @@ const Training = () => {
   // }
 
   const oneDay = 24 * 60 * 60 * 1000;
+  let trainingDisable = true;
   let bookTableArray = [];
   let booksNumbeFromBack = 0;
   let daysLeftFromBackEnd = Math.ceil(
@@ -200,14 +204,12 @@ const Training = () => {
   const [booksArrayToSend, setBooksArrayToSend] = useState([]);
   const booksNumber = booksArrayToSend?.length;
 
-
   if (!trainingStatus) {
     bookTableArray = booksArrayToSend;
   } else {
     bookTableArray = booksFromTraining;
     booksNumbeFromBack = booksFromTraining?.length;
   }
-
 
 
   useEffect(() => {
@@ -248,12 +250,25 @@ const Training = () => {
     setBooksArrayToSend(newBooksArrayToSend);
   };
 
+  // console.log('startDate', startDate, 'endDate', endDate, booksArrayToSend )
+
+  if (startDate && endDate && booksArrayToSend.length > 0) {
+    trainingDisable = false;
+  }
+
+  // console.log(startDate)
+  // console.log(endDate)
+
+
   const startTraining = () => {
+
     const array = {
       startDate: startDate,
       finishDate: endDate,
       books: booksArrayToSend.map(element => ({ _id: element._id })),
     };
+    console.log(array);
+
 
     addTraining(array)
       .unwrap()
@@ -415,6 +430,7 @@ const Training = () => {
                   {!trainingStatus && (
                     <>
                       <button
+                        disabled={trainingDisable}
                         className={s.startTrainingButton}
                         onClick={() => startTraining()}
                       >
@@ -447,8 +463,6 @@ const Training = () => {
               )}
             </div>
 
-        
-
             {trainingStatus && (
               <>
                 <div className={s.gridItem3}>
@@ -469,7 +483,6 @@ const Training = () => {
           </div>
         </div>
       )}
-
     </>
   );
 };
