@@ -23,38 +23,32 @@ const Timer = ({ selectedDate, title }) => {
   const { t } = useTranslation();
 
   const intervalId = useRef(null);
-  // const deltaTime = Object.values(selectedDate)[0] - time;
-
   const deltaTime = Date.parse(selectedDate) - time;
-
-  // console.log('time', typeof time, time)
-  // console.log('selectedDate', typeof selectedDate, selectedDate)
-
-  // console.log(typeof deltaTime, deltaTime)
   const timeLeft = convertMs(deltaTime);
-
   const deltaTimeAfterEnd = -(Date.parse(selectedDate) - time);
   const timeAfterEnd = convertMs(deltaTimeAfterEnd);
-
   const timeToShow = deltaTime >= 0 ? timeLeft : timeAfterEnd;
 
-  // console.log(timeToShow);
 
   const [openModal, setOpenModal] = useState(false);
 
+  console.log('intervalId.current', intervalId.current)
   const handleExit = () => {
     setOpenModal(false);
-    // refetchFucntion();
     dispatch(setTrainingState('false'));
+    intervalId.current = null;
+    // refetchFucntion();
+  
   };
 
+  
   // console.log(typeof selectedDate, selectedDate)
   // const trainingStatusCompleted = useSelector(
   //   authSelectors.getTrainingStatusJustCompleted
   // );
 
   if (deltaTime < 0) {
-    clearInterval(intervalId.current);
+     clearInterval(intervalId.current);
   }
 
   //Эта опция меняет статус тренировки и перерендеривается страница
@@ -74,7 +68,7 @@ const Timer = ({ selectedDate, title }) => {
 
   useEffect(() => {
     // console.log(selectedDate);
-    if (deltaTime <= 1000) {
+    if (intervalId.current !== null && deltaTime <= 1000) {
       setOpenModal(true);
       // clearInterval(intervalId.current);
       // intervalId.current = setInterval(() => {
@@ -87,7 +81,7 @@ const Timer = ({ selectedDate, title }) => {
       //   clearInterval(intervalId.current);
       // };
     }
-  });
+  }, []);
 
   return (
     <>
@@ -96,9 +90,7 @@ const Timer = ({ selectedDate, title }) => {
         <StyledContainer>
           <StyledItem>
             <StyledValue>
-              {timeToShow?.days < 10
-                ? '0' + timeToShow?.days
-                : timeToShow?.days}
+              {timeToShow?.days < 10 ? '0' + timeToShow?.days : timeToShow?.days}
             </StyledValue>
             <StyledSpan>{t('days')}</StyledSpan>
           </StyledItem>
