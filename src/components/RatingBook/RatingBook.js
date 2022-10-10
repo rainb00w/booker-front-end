@@ -35,6 +35,7 @@ const RatingBook = ({ toggleModal, id, resume = '', rating = 0 }) => {
               placeholder="..."
               type="text"
               name="resume"
+              maxLength={1000}
               className={
                 `${touched.resume && errors.resume}` ? `${s.textarea}` : ''
               }
