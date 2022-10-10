@@ -22,9 +22,12 @@ export default function BookTable() {
     const status = data?.payload.books.some(book => book.status === e);
     return status;
   };
-
+  const [id, serId] = useState(null);
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
+  const handleOpen = id => {
+    serId(id);
+    setOpen(true);
+  };
   const handleClose = () => setOpen(false);
 
   return (
@@ -241,28 +244,30 @@ export default function BookTable() {
                             className={s.btnDelete}
                             id={_id}
                             type="button"
-                            onClick={handleOpen}
+                            onClick={() => {
+                              handleOpen(_id);
+                            }}
                             // disabled={isDeleting}
                           >
                             <svg width={22} height={17}>
                               <use href={`${icons}#delete_book`}></use>
                             </svg>
                           </button>
-                          <DeleteModal
-                            open={open}
-                            handleClose={handleClose}
-                            handleDelete={() => {
-                              deleteContact(_id);
-                              setOpen(false);
-                            }}
-                            isDeleting={isDeleting}
-                          />
                         </td>
                       </tr>
                     )
                 )}
               </tbody>
             </table>
+            <DeleteModal
+              open={open}
+              handleClose={handleClose}
+              handleDelete={() => {
+                deleteContact(id);
+                setOpen(false);
+              }}
+              isDeleting={isDeleting}
+            />
           </div>
         )}
       </section>
