@@ -55,22 +55,24 @@ const MyTrainingStyled = styled.div`
 const DatePickerTrainingStyled = styled.div`
   @media screen and (min-width: 768px) {
     display: flex;
-    justify-content: space-evenly;
+    gap: 40px;
     margin-top: 30px;
   }
 
   @media screen and (min-width: 1280px) {
-    display: flex;
     justify-content: center;
+    gap: 44px;
     margin-top: 25px;
   }
 
   .datePickerWrapper {
     position: relative;
 
-    @media screen and (min-width: 1280px) {
-      &:not(:first-child) {
-        margin-left: 45px;
+    &:first-of-type {
+      margin-bottom: 20px;
+
+      @media screen and (min-width: 768px) {
+        margin-bottom: 0;
       }
     }
   }
