@@ -80,6 +80,7 @@ const DatePickerTrainingStyled = styled.div`
     top: 11px;
     width: 17px;
     height: 17px;
+    cursor: pointer;
   }
   .datePickerIconPolygon {
     position: absolute;
@@ -87,6 +88,7 @@ const DatePickerTrainingStyled = styled.div`
     top: 17px;
     width: 13px;
     height: 7px;
+    cursor: pointer;
   }
   .datePickerTraining {
     font-size: 14px;
