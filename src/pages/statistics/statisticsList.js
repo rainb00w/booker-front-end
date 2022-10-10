@@ -23,7 +23,7 @@ const StatisticsList = results => {
   let rows = [];
 
   results.results.forEach(({ date, pages, _id }) => {
-    rows.push({
+    rows.unshift({
       date: new Date(date).yyyymmdd(),
       time: new Date(date).hhmmss(),
       pages,
@@ -32,7 +32,7 @@ const StatisticsList = results => {
   });
   const visibleRows = rows.slice(-5);
 
- 
+
 
   return (
     <ul className={s.statisticsList}>

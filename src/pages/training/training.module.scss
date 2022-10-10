@@ -44,6 +44,7 @@
   }
   @media screen and (min-width: 1280px) {
     grid-area: headmain;
+    margin-top: 0;
   }
 }
 
@@ -65,6 +66,7 @@
   }
   @media screen and (min-width: 1280px) {
     margin-top: 80px;
+    margin-bottom: 20px;
     margin-right: 32px;
 
     grid-area: main;
@@ -310,7 +312,8 @@
   &:disabled {
     color: #b1b5c2;
     background-color: transparent;
-    border-color: #b1b5c2;
+    border: 1px solid #b1b5c2;
+    cursor: auto;
   }
   @media screen and (min-width: 768px) {
     width: 200px;
@@ -319,10 +322,6 @@
     line-height: 1.25;
     font-weight: 600;
   }
-}
-
-.startTrainingButton:disabled{
-  border: 1px solid grey;
 }
 
 .profileMainLoader {
