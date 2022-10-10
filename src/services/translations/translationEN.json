@@ -109,7 +109,7 @@
 
   "the field contains an error": "the field contains an error",
   "this field is required": "this field is required",
-  "password don't match": "password don't match",
+  "password don't match": "passwords don't match",
 
   "this name is already taken, choose other": "this name is already taken, choose other",
   "this email is already taken, choose other": "this email is already taken, choose other",
