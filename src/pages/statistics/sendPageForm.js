@@ -38,9 +38,13 @@ const SendPageForm = ({ startDate = null, refetchFucntion }) => {
     ].join('-');
   };
 
-  const d = new Date(startDate);
-  const minDate = d.setDate(d.getDate() - 1);
 
+  // console.log('yesterday',typeof yesterday, yesterday)
+  // console.log('today',typeof today, today)
+  // console.log('minDate',typeof minDate, minDate)
+
+
+  
   const formik = useFormik({
     initialValues: {
       dateInput: new Date().yyyymmdd(),
@@ -48,7 +52,7 @@ const SendPageForm = ({ startDate = null, refetchFucntion }) => {
     },
     validationSchema: Yup.object().shape({
       dateInput: Yup.date()
-        .min(new Date(minDate).yyyymmdd(), t('results_err1'))
+        .min(new Date(yesterday).yyyymmdd(), t('results_err1'))
         .max(new Date(today).yyyymmdd(), t('results_err2')),
       pageInput: Yup.number()
         .positive(t('results_err3'))

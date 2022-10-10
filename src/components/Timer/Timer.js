@@ -24,13 +24,21 @@ const Timer = ({ selectedDate, title }) => {
 
   const intervalId = useRef(null);
   // const deltaTime = Object.values(selectedDate)[0] - time;
-  const deltaTime = selectedDate - time;
+
+  const deltaTime = Date.parse(selectedDate) - time;
+
+  // console.log('time', typeof time, time)
+  // console.log('selectedDate', typeof selectedDate, selectedDate)
+
+  // console.log(typeof deltaTime, deltaTime)
   const timeLeft = convertMs(deltaTime);
 
-  const deltaTimeAfterEnd = -(selectedDate - time);
+  const deltaTimeAfterEnd = -(Date.parse(selectedDate) - time);
   const timeAfterEnd = convertMs(deltaTimeAfterEnd);
 
   const timeToShow = deltaTime >= 0 ? timeLeft : timeAfterEnd;
+
+  // console.log(timeToShow);
 
   const [openModal, setOpenModal] = useState(false);
 
@@ -40,13 +48,13 @@ const Timer = ({ selectedDate, title }) => {
     dispatch(setTrainingState('false'));
   };
 
-  const trainingStatusCompleted = useSelector(
-    authSelectors.getTrainingStatusJustCompleted
-  );
+  // console.log(typeof selectedDate, selectedDate)
+  // const trainingStatusCompleted = useSelector(
+  //   authSelectors.getTrainingStatusJustCompleted
+  // );
 
   if (deltaTime < 0) {
-     clearInterval(intervalId.current);
-    //  setOpenModal(true);
+    clearInterval(intervalId.current);
   }
 
   //Эта опция меняет статус тренировки и перерендеривается страница
@@ -88,7 +96,9 @@ const Timer = ({ selectedDate, title }) => {
         <StyledContainer>
           <StyledItem>
             <StyledValue>
-              {timeToShow.days < 10 ? '0' + timeToShow.days : timeToShow.days}
+              {timeToShow?.days < 10
+                ? '0' + timeToShow?.days
+                : timeToShow?.days}
             </StyledValue>
             <StyledSpan>{t('days')}</StyledSpan>
           </StyledItem>
@@ -96,9 +106,9 @@ const Timer = ({ selectedDate, title }) => {
           <StyledItem>
             <StyledValue>
               <StyledSeparator>:</StyledSeparator>
-              {timeToShow.hours < 10
-                ? '0' + timeToShow.hours
-                : timeToShow.hours}
+              {timeToShow?.hours < 10
+                ? '0' + timeToShow?.hours
+                : timeToShow?.hours}
             </StyledValue>
             <StyledSpan>{t('hrs')}</StyledSpan>
           </StyledItem>
@@ -106,9 +116,9 @@ const Timer = ({ selectedDate, title }) => {
           <StyledItem>
             <StyledValue>
               <StyledSeparator>:</StyledSeparator>
-              {timeToShow.minutes < 10
-                ? '0' + timeToShow.minutes
-                : timeToShow.minutes}
+              {timeToShow?.minutes < 10
+                ? '0' + timeToShow?.minutes
+                : timeToShow?.minutes}
             </StyledValue>
             <StyledSpan>{t('mins')}</StyledSpan>
           </StyledItem>
@@ -116,9 +126,9 @@ const Timer = ({ selectedDate, title }) => {
           <StyledItem>
             <StyledValue>
               <StyledSeparator>:</StyledSeparator>
-              {timeToShow.seconds < 10
-                ? '0' + timeToShow.seconds
-                : timeToShow.seconds}
+              {timeToShow?.seconds < 10
+                ? '0' + timeToShow?.seconds
+                : timeToShow?.seconds}
             </StyledValue>
             <StyledSpan>{t('secs')}</StyledSpan>
           </StyledItem>

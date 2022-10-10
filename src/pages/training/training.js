@@ -80,7 +80,6 @@ const DatePickerTrainingStyled = styled.div`
     top: 11px;
     width: 17px;
     height: 17px;
-    cursor: pointer;
   }
   .datePickerIconPolygon {
     position: absolute;
@@ -88,7 +87,6 @@ const DatePickerTrainingStyled = styled.div`
     top: 17px;
     width: 13px;
     height: 7px;
-    cursor: pointer;
   }
   .datePickerTraining {
     font-size: 14px;
@@ -167,11 +165,10 @@ const Training = () => {
   const nowDate = new Date();
   const [startDate, setStartDate] = useState(initialState.startDate);
   const [endDate, setEndDate] = useState(initialState.endDate);
-  const [endYear, setEndYear] = useState(new Date(2023, 0, 1));
+  const [endYear, setEndYear] = useState(new Date(2023, 0, 1).toString());
 
   const [daysNumber, setDaysNumber] = useState(0);
   const [disable, setDisable] = useState(false);
-
 
   const incomeBooksData = useGetAllBooksQuery();
   const incomeBooks = incomeBooksData?.data?.payload?.books;
@@ -188,6 +185,8 @@ const Training = () => {
   const resultsFromTraining = currentData?.results;
   const booksFromTraining = currentData?.books;
 
+  // console.log('resultsFromTraining', resultsFromTraining);
+
   if (!currentData?.completed && finishDateFromTraining > nowDate) {
     dispatch(setTrainingState('true'));
   }
@@ -199,9 +198,14 @@ const Training = () => {
   let trainingDisable = true;
   let bookTableArray = [];
   let booksNumbeFromBack = 0;
+
   let daysLeftFromBackEnd = Math.ceil(
     Math.abs((finishDateFromTraining - nowDate) / oneDay) - 1
   );
+
+  // console.log('endYear', endYear);
+  // console.log('daysLeftFromBackEnd', daysLeftFromBackEnd);
+
   const [selectedBook, setSelectedBook] = useState(null);
   const [booksArrayToSend, setBooksArrayToSend] = useState([]);
   const booksNumber = booksArrayToSend?.length;
@@ -212,7 +216,6 @@ const Training = () => {
     bookTableArray = booksFromTraining;
     booksNumbeFromBack = booksFromTraining?.length;
   }
-
 
   useEffect(() => {
     if (startDate && endDate) {
@@ -252,25 +255,17 @@ const Training = () => {
     setBooksArrayToSend(newBooksArrayToSend);
   };
 
-  // console.log('startDate', startDate, 'endDate', endDate, booksArrayToSend )
-
   if (startDate && endDate && booksArrayToSend.length > 0) {
     trainingDisable = false;
   }
 
-  // console.log(startDate)
-  // console.log(endDate)
-
-
   const startTraining = () => {
-
     const array = {
       startDate: startDate,
       finishDate: endDate,
       books: booksArrayToSend.map(element => ({ _id: element._id })),
     };
     console.log(array);
-
 
     addTraining(array)
       .unwrap()
@@ -281,7 +276,7 @@ const Training = () => {
           setBooksArrayToSend([]);
           incomeBooksData.refetch();
           setStartDate(initialState.startDate);
-          setEndDate(initialState.endDate)
+          setEndDate(initialState.endDate);
           setTrainingStatusJustCompleted('false');
         }, 2000)
       )
@@ -407,12 +402,14 @@ const Training = () => {
                   <div>
                     <Timer selectedDate={endYear} title={yearTitle} />
                   </div>
-                  <div>
-                    <Timer
-                      selectedDate={finishDateFromTraining}
-                      title={trainingTitle}
-                    />
-                  </div>
+                  {finishDateFromTraining && (
+                    <div>
+                      <Timer
+                        selectedDate={finishDateFromTraining}
+                        title={trainingTitle}
+                      />
+                    </div>
+                  )}
                 </div>
               )}
 
