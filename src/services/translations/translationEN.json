@@ -160,7 +160,7 @@
 
   "results_err1": "You cannot enter a date earlier than Training start date",
   "results:err2": "You cannot enter this date",
-  "results_err3": "Minimum number of pages is 1",
+  "results_err3": "Value should be greater than 0",
   "results_err4": "Pages number should be integer",
   "results_err5": "Pages number should be no more than 3 characters long",
   "results_err6": "Field is required",
