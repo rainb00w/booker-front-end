@@ -40,7 +40,7 @@ const BookAddForm = ({ handleClickClose, showAdd }) => {
         .max(2022, t('book_err_year3')),
       pages: Yup.number()
         .typeError(t('book_err_pages1'))
-        .min(10, t('book_err_pages2'))
+        .min(1, t('book_err_pages2'))
         .max(9999, t('book_err_pages3'))
         .required(t('book_err_pages4')),
     }),
