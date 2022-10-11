@@ -4,14 +4,16 @@ import s from './bookAddForm.module.css';
 import svgPath from 'services/svgPath';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useAddBookMutation } from 'redux/books/booksApi';
+import { useAddBookMutation, useGetAllBooksQuery } from 'redux/books/booksApi';
 import { useTranslation } from 'react-i18next';
 import { SpinnerCircular } from 'spinners-react';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import Info from '../../components/EmptyLibrary/EmptyLibrary';
 
 const BookAddForm = ({ handleClickClose, showAdd }) => {
   const [addBook, { isLoading, error }] = useAddBookMutation();
   const { t, i18n } = useTranslation();
+  const { data } = useGetAllBooksQuery();
 
   const formik = useFormik({
     initialValues: {
@@ -155,7 +157,11 @@ const BookAddForm = ({ handleClickClose, showAdd }) => {
             {t('btnAdd')}
           </button>
         </form>
-        {isLoading && <SpinnerCircular className={s.spinner} />}
+        {isLoading ? (
+          <SpinnerCircular className={s.spinner} />
+        ) : (
+          data?.payload.books.length === 0 && <Info />
+        )}
       </div>
     </div>
   );
