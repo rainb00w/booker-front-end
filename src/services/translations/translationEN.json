@@ -160,10 +160,10 @@
 
   "results_err1": "You cannot enter a date earlier than Training start date",
   "results:err2": "You cannot enter this date",
-  "results_err3": "Pages number should be positive",
+  "results_err3": "Minimum number of pages is 1",
   "results_err4": "Pages number should be integer",
   "results_err5": "Pages number should be no more than 3 characters long",
-  "results_err6": "Enter pages number",
+  "results_err6": "Field is required",
 
   "modalDelete_notification": "Are you sure you want to delete the book?",
   "btnDelete": "Delete"
