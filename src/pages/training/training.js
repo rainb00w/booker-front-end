@@ -158,7 +158,7 @@ const Training = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const [addTraining] = useAddTrainingMutation();
+  const [addTraining, { error }] = useAddTrainingMutation();
   const trainingStatus = useSelector(authSelectors.getTrainingStatus);
   const trainingStatusCompleted = useSelector(
     authSelectors.getTrainingStatusJustCompleted
@@ -267,22 +267,21 @@ const Training = () => {
       finishDate: endDate,
       books: booksArrayToSend.map(element => ({ _id: element._id })),
     };
-    console.log(array);
 
     addTraining(array)
       .unwrap()
-      .then(
-        console.log('then')
-        // dispatch(setTrainingState('true')),
-        // setTimeout(() => {
-        //   setDaysNumber(0);
-        //   setBooksArrayToSend([]);
-        //   incomeBooksData.refetch();
-        //   setStartDate(initialState.startDate);
-        //   setEndDate(initialState.endDate);
-        //   setTrainingStatusJustCompleted('false');
-        // }, 2000)
-      )
+      .then(() => {
+        // console.log('smth')
+        dispatch(setTrainingState('true')),
+          setTimeout(() => {
+            setDaysNumber(0);
+            setBooksArrayToSend([]);
+            incomeBooksData.refetch();
+            setStartDate(initialState.startDate);
+            setEndDate(initialState.endDate);
+            setTrainingStatusJustCompleted('false');
+          }, 2000);
+      })
       .catch(error => Notify.success(error.data.message));
   };
 
