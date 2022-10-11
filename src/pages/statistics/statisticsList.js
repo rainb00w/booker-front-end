@@ -30,18 +30,12 @@ const StatisticsList = results => {
       id: _id,
     });
   });
-  const visibleRows = rows.slice(-5);
-
-
+  const visibleRows = rows.slice(0, 5).reverse();
 
   return (
     <ul className={s.statisticsList}>
       {visibleRows.map(row => (
-        <StatisticsRow
-          key={row.id}
-          row={row}
-          className={s.statisticsList}
-        />
+        <StatisticsRow key={row.id} row={row} className={s.statisticsList} />
       ))}
     </ul>
   );
