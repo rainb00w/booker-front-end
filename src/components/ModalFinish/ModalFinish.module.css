@@ -1,6 +1,7 @@
 .modal {
   width: 300px;
 padding: 20px 10px;
+text-align: center;
 }
 
 .modal_text {
@@ -70,4 +71,11 @@ padding: 20px 10px;
 .nav img {
   display: block;
   margin-right: 0;
+}
+
+.thumbUp {
+  margin-bottom: 4px;
+  width: 54px;
+  height: 54px;
+  color: #ff6b08;
 }

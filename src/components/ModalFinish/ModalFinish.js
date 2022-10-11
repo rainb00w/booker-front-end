@@ -1,5 +1,5 @@
 import React from 'react';
-// import { ReactComponent as ThumbUp } from '../../../img/thumb_up-24px.svg';
+import { ReactComponent as ThumbUp } from '../../img/thumb_up-24px.svg';
 import s from './ModalFinish.module.css';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -30,6 +30,7 @@ const ModalFinish = ({ onClose }) => {
         }}
       >
         <Box sx={style} className={s.modal}>
+        <ThumbUp className={s.thumbUp} />
           <p className={s.modal_text}>{t('You_are_the_best')}</p>
           <div className={s.btn_modal}>
             <button type="button" onClick={onClose}>
