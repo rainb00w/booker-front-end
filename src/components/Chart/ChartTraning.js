@@ -10,10 +10,11 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import Chart from 'chart.js/auto';
 import { createOptions } from './ChartTrainingOptions';
 import s from './ChartTraning.module.css';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { authSelectors } from '../../redux/auth';
 
 ChartJS.register(
   CategoryScale,
@@ -56,6 +57,7 @@ const ChartTraning = ({ trainingData = {
 } }) => {
   const { startDate, finishDate, books, results } = trainingData;
   const { t } = useTranslation();
+  const trainingStatus = useSelector(authSelectors.getTrainingStatus);
   const duration = Date.parse(finishDate) - Date.parse(startDate);
   const totalDays = Math.ceil(duration / (1000 * 3600 * 24));
   const totalBooksPages = books.reduce((acc, item) => acc + item.pages, 0);
@@ -107,6 +109,7 @@ const ChartTraning = ({ trainingData = {
       {
         label: t('act'),
         fill: false,
+        lineTension: 0.3,
         borderColor: '#ff6b08',
         pointBackgroundColor: '#ff6b08',
         data: resultData, // масив значень кількості прочитаних сторінок для кожного дня тренування
@@ -120,7 +123,6 @@ const ChartTraning = ({ trainingData = {
       {
         label: t('plan'),
         fill: false,
-        lineTension: 0.3,
         borderColor: '#091e3f',
         pointBackgroundColor: '#091e3f',
         pointHighlightFill: '#F5F7FA',
@@ -141,10 +143,10 @@ const ChartTraning = ({ trainingData = {
     <div className={s.chartBox}>
       <p className={s.title}>
         {t('amontOfPages_day')}
-        <span className={s.planedPages}>{isNaN(pagesToRead) ? 0 : pagesToRead}</span>
+        <span className={s.planedPages}>{isNaN(pagesToRead) ? 0 : trainingStatus ? pagesToRead : 0}</span>
       </p>
       <div className={s.chart}>
-        <Line options={createOptions(normalizedResults, maxPoint, planData.length)} data={isArrayNotEmpty(books) ? data : emptyData} />
+        <Line options={createOptions(trainingStatus ? normalizedResults : [0, 0, 0, 0, 0], trainingStatus ? maxPoint : 10, trainingStatus ? planData.length : 5)} data={trainingStatus ? data : emptyData} />
       </div>
       <p className={s.chartValue}> {t('time')}</p>
     </div>
