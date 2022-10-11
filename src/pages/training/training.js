@@ -272,15 +272,16 @@ const Training = () => {
     addTraining(array)
       .unwrap()
       .then(
-        dispatch(setTrainingState('true')),
-        setTimeout(() => {
-          setDaysNumber(0);
-          setBooksArrayToSend([]);
-          incomeBooksData.refetch();
-          setStartDate(initialState.startDate);
-          setEndDate(initialState.endDate);
-          setTrainingStatusJustCompleted('false');
-        }, 2000)
+        console.log('then')
+        // dispatch(setTrainingState('true')),
+        // setTimeout(() => {
+        //   setDaysNumber(0);
+        //   setBooksArrayToSend([]);
+        //   incomeBooksData.refetch();
+        //   setStartDate(initialState.startDate);
+        //   setEndDate(initialState.endDate);
+        //   setTrainingStatusJustCompleted('false');
+        // }, 2000)
       )
       .catch(error => Notify.success(error.data.message));
   };

@@ -10,7 +10,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 280,
+  width: 300,
   bgcolor: 'background.paper',
 };
 
@@ -26,7 +26,7 @@ const ModalFinishByTime = ({ onClose }) => {
       >
         <Box sx={style} className={s.modal}>
           <p className={s.modal_text}>
-          ТИ МОЛОДЧИНА, АЛЕ ПОТРІБНО ШВИДШЕ! НАСТУПНОГО РАЗУ ТОБІ ВСЕ ВДАСТЬСЯ 
+          Ти молодчина, але потрібно швидше! Наступного разу тобі все вдасться!
           </p>
           <div className={s.btn_modal}>
             <button type="button" onClick={onClose}>
