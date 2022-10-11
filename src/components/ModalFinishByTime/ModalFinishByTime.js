@@ -26,11 +26,11 @@ const ModalFinishByTime = ({ onClose }) => {
       >
         <Box sx={style} className={s.modal}>
           <p className={s.modal_text}>
-          Ти молодчина, але потрібно швидше! Наступного разу тобі все вдасться!
+          {t('Youre_doing_fine')}
           </p>
           <div className={s.btn_modal}>
             <button type="button" onClick={onClose}>
-              нове тренування
+            {t('new_training_after_finish')}
             </button>
           </div>
         </Box>
