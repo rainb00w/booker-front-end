@@ -164,6 +164,7 @@
   "results_err4": "Pages number should be integer",
   "results_err5": "Pages number should be no more than 3 characters long",
   "results_err6": "Field is required",
+  "results_pages": "pages",
 
   "modalDelete_notification": "Are you sure you want to delete the book?",
   "btnDelete": "Delete",
