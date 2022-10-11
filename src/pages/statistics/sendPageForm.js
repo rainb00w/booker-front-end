@@ -44,7 +44,7 @@ const SendPageForm = ({ startDate = null, refetchFucntion }) => {
   // console.log('minDate',typeof minDate, minDate)
 
 
-  
+
   const formik = useFormik({
     initialValues: {
       dateInput: new Date().yyyymmdd(),
@@ -55,8 +55,8 @@ const SendPageForm = ({ startDate = null, refetchFucntion }) => {
         .min(new Date(yesterday).yyyymmdd(), t('results_err1'))
         .max(new Date(today).yyyymmdd(), t('results_err2')),
       pageInput: Yup.number()
-        .positive(t('results_err3'))
         .integer(t('results_err4'))
+        .min(1, t('results_err3'))
         .max(999, t('results_err5'))
         .required(t('results_err6')),
     }),

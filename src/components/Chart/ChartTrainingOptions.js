@@ -70,7 +70,6 @@ export const createOptions = (normalizeResults, maxPoint, labelsQuantity) => ({
       hoverBorderWidth: 0,
     },
     line: {
-      tension: 0.3,
       borderCapStyle: 'round',
     },
   },
