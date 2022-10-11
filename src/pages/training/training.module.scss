@@ -38,9 +38,9 @@
 }
 
 .gridItem1 {
-  margin: 30px 0 20px 0;
+  margin: 30px 0 0 0;
   @media screen and (min-width: 768px) {
-    margin: 30px 0 20px 0;
+    margin: 30px 0 40px 0;
   }
   @media screen and (min-width: 1280px) {
     grid-area: headmain;
@@ -85,6 +85,8 @@
     margin-bottom: 53px;
   }
   @media screen and (min-width: 1280px) {
+    position: relative;
+    left: 6px;
     margin-top: 80px;
     margin-bottom: 20px;
 

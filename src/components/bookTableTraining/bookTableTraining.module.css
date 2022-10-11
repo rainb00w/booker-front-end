@@ -1,7 +1,7 @@
 @media screen and (max-width: 767px) {
   .section {
-    width: 100%;
-    margin-bottom: 40px;
+    width: calc(100% - 2 * 20px);
+    /* margin-bottom: 40px; */
   }
   .sectionEmpty {
     width: 100%;
@@ -47,6 +47,7 @@
   .sectionTable {
     padding-top: 20px;
     padding-bottom: 32px;
+    /* margin-bottom: 40px; */
     margin-left: auto;
     margin-right: auto;
   }
@@ -58,7 +59,7 @@
   max-height: 180px;
   overflow-x: auto;
   margin-top: 0px;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   border-bottom: 1px solid #eee;
 }
 
@@ -207,7 +208,7 @@
   margin-left: auto;
   /* margin-right: auto; */
   border-bottom: 1px solid rgba(224, 229, 235, 1);
-  height: 300px;
+  /* height: 300px; */
   overflow-x: auto;
 }
 
