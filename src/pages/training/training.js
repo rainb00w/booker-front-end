@@ -288,6 +288,9 @@ const Training = () => {
   // setDaysNumber(0)
 
   const today = new Date();
+  // let nextDayToStart = new Date(startDate);
+  // nextDayToStart?.setDate(nextDayToStart.getDate()+1);
+
   const yearTitle = t('yearsCountdown');
   const trainingTitle = t('goalsCountdown');
 
@@ -329,8 +332,44 @@ const Training = () => {
       ) : (
         <div className={s.main_container}>
           <div className={s.gridContainer}>
-            <div className={s.gridItem1}>
+            {trainingStatus && (
+              <div className={s.gridItem5}>
+                <div>
+                  <Timer selectedDate={endYear} title={yearTitle} />
+                </div>
+                {finishDateFromTraining && (
+                  <div>
+                    <Timer
+                      selectedDate={finishDateFromTraining}
+                      title={trainingTitle}
+                    />
+                  </div>
+                )}
+              </div>
+            )}
+            <div className={s.gridItem2}>
               {!trainingStatus ? (
+                <>
+                  <MyGoal
+                    days={daysNumber}
+                    books={booksNumber}
+                    isTrainigEmpty={trainingStatus}
+                  />
+                </>
+              ) : (
+                <>
+                  <MyGoal
+                    days={daysLeftFromBackEnd}
+                    books={booksNumbeFromBack}
+                    booksLeft={booksLeftFromTraining}
+                    isTrainigEmpty={trainingStatus}
+                  />
+                </>
+              )}
+            </div>
+
+            <div className={s.gridItem1}>
+              {!trainingStatus && (
                 <div className={s.myTrainingContainer}>
                   <h3 className={s.myTrainingHeader}> {t('myTraining')}</h3>
                   <div className={s.datePicker_wrapper}>
@@ -364,7 +403,7 @@ const Training = () => {
                           selectsEnd
                           startDate={startDate}
                           endDate={endDate}
-                          minDate={startDate}
+                          minDate={today}
                         />
                         <svg className="datePickerIcon">
                           <use href={sprite + '#icon-calendar'} />
@@ -399,20 +438,6 @@ const Training = () => {
                     </SelectBooksFirstStyled>
                   </div>
                 </div>
-              ) : (
-                <div className={s.gridItem5}>
-                  <div>
-                    <Timer selectedDate={endYear} title={yearTitle} />
-                  </div>
-                  {finishDateFromTraining && (
-                    <div>
-                      <Timer
-                        selectedDate={finishDateFromTraining}
-                        title={trainingTitle}
-                      />
-                    </div>
-                  )}
-                </div>
               )}
 
               {bookTableArray && (
@@ -443,32 +468,12 @@ const Training = () => {
               )}
             </div>
 
-            <div className={s.gridItem2}>
-              {!trainingStatus ? (
-                <>
-                  <MyGoal
-                    days={daysNumber}
-                    books={booksNumber}
-                    isTrainigEmpty={trainingStatus}
-                  />
-                </>
-              ) : (
-                <>
-                  <MyGoal
-                    days={daysLeftFromBackEnd}
-                    books={booksNumbeFromBack}
-                    booksLeft={booksLeftFromTraining}
-                    isTrainigEmpty={trainingStatus}
-                  />
-                </>
-              )}
+            <div className={s.gridItem3}>
+              <ChartTraning trainingData={currentData} />
             </div>
 
             {trainingStatus && (
               <>
-                <div className={s.gridItem3}>
-                  <ChartTraning trainingData={currentData} />
-                </div>
                 <div className={s.gridItem4}>
                   <h2 className={s.resultsHeader}> {t('results')}</h2>
                   <SendPageForm
