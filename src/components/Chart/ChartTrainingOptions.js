@@ -45,6 +45,7 @@ export const createOptions = (normalizeResults, maxPoint, labelsQuantity) => ({
       },
       padding: 10,
       displayColors: false,
+      cornerRadius: 0,
     },
   },
   layout: {
