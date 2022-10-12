@@ -3,7 +3,7 @@ import { ReactComponent as DeleteIcon } from './delete-icon.svg';
 import styles from 'components/TrainingBooksList/TrainingBooksList.module.css';
 
 const TrainingBooksList = ({ books, onDelete }) => {
-  console.log('arr', books);
+  // console.log('arr', books);
   return (
     <ul className={styles.list}>
       {books.map(({ _id, title, author, year, pages }) => (

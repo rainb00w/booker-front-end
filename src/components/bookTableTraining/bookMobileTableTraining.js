@@ -10,7 +10,7 @@ export default function BookMobileTableTraining({
   isEmptyTraining,
 }) {
   const handleDelete = e => {
-    console.log(e.currentTarget);
+    // console.log(e.currentTarget);
     onClick(e.currentTarget.id);
   };
 

@@ -22,7 +22,7 @@ const PeriodSelection = ({ onStartTraining }) => {
   });
 
   const onSubmit = values => {
-    console.log('Form data', values);
+    // console.log('Form data', values);
     onStartTraining(values);
   };
   return (

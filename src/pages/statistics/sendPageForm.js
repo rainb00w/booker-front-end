@@ -70,16 +70,16 @@ const SendPageForm = ({ startDate = null, refetchFucntion }) => {
         date: dateToSend,
         pages: pageInput,
       }).then(info => {
-        if (info.data.completed) {
+        if (info.data?.completed) {
           setOpen(true);
           // refetchFucntion();
           // dispatch(setTrainingState('false'));
           dispatch(setTrainingStatusJustCompleted('completedByPages'));
         }
       });
-      if (error) {
-        console.log(error);
-      }
+      // if (error) {
+      //   console.log(error.message);
+      // }
       resetForm();
     },
   });

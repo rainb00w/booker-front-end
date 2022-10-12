@@ -11,12 +11,12 @@ const SelectBooks = ({ options, setArrayValue, ...rest }) => {
 
   useEffect(() => {
     setArrayValue(booksList);
-    console.log('useeffect');
+    // console.log('useeffect');
   }, [booksList]);
 
   const onAddButtonClick = e => {
     const selectBook = options.find(book => book.title === value);
-    console.log('selectBook', selectBook);
+    // console.log('selectBook', selectBook);
 
     setBooksList(prevBooksList => [...prevBooksList, selectBook]);
     // console.log('booksList', booksList);
