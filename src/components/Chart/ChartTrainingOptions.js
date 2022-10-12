@@ -20,9 +20,31 @@ export const createOptions = (normalizeResults, maxPoint, labelsQuantity) => ({
             text: dataset.label,
             fillStyle: dataset.borderColor,
             fontColor: '#091E3F',
+            strokeStyle: 'transparent',
           }));
         },
       },
+    },
+    tooltip: {
+      backgroundColor: '#F5F7FA',
+      titleColor: '#091E3F',
+      titleFont: {
+        family: 'Montserrat',
+        size: 12,
+        weight: 600,
+        lineHeight: 1.25,
+        color: '#091E3F',
+      },
+      bodyColor: '#091E3F',
+      bodyFont: {
+        family: 'Montserrat',
+        size: 12,
+        weight: 600,
+        lineHeight: 1.25,
+        color: '#091E3F',
+      },
+      padding: 10,
+      displayColors: false,
     },
   },
   layout: {
