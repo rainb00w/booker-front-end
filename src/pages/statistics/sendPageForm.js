@@ -70,7 +70,7 @@ const SendPageForm = ({ startDate = null, refetchFucntion }) => {
         date: dateToSend,
         pages: pageInput,
       }).then(info => {
-        if (info.data.completed) {
+        if (info.data?.completed) {
           setOpen(true);
           // refetchFucntion();
           // dispatch(setTrainingState('false'));
@@ -78,7 +78,7 @@ const SendPageForm = ({ startDate = null, refetchFucntion }) => {
         }
       });
       if (error) {
-        console.log(error);
+        console.log(error.message);
       }
       resetForm();
     },

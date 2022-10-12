@@ -23,7 +23,7 @@ const StatisticsList = results => {
   let rows = [];
 
   results?.results?.forEach(({ date, pages, _id }) => {
-    rows.unshift({
+    rows.push({
       date: new Date(date).yyyymmdd(),
       time: new Date(date).hhmmss(),
       pages,
