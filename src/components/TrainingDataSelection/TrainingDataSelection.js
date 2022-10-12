@@ -25,7 +25,7 @@ const TrainingDataSelection = ({ onStartTraining }) => {
   const [booksArray, setBooksArray] = useState([]);
 
   useEffect(() => {
-    console.log(startDate);
+    // console.log(startDate);
 
     if (startDate && endDate) {
       const start = new Date(startDate);
@@ -33,7 +33,7 @@ const TrainingDataSelection = ({ onStartTraining }) => {
       const deltaTime = end.valueOf() - start.valueOf();
       const deltaTimeObj = convertMs(deltaTime);
       setDaysNumber(deltaTimeObj.days);
-      console.log(deltaTimeObj.days);
+      // console.log(deltaTimeObj.days);
     }
   }, [startDate, endDate]);
 
@@ -57,7 +57,7 @@ const TrainingDataSelection = ({ onStartTraining }) => {
   });
 
   const onSubmit = values => {
-    console.log('Form data', values);
+    // console.log('Form data', values);
     onStartTraining(values);
     const [addTraining, { isLoading }] = useAddTrainingMutation();
     addTraining(values)
