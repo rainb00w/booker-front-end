@@ -77,9 +77,9 @@ const SendPageForm = ({ startDate = null, refetchFucntion }) => {
           dispatch(setTrainingStatusJustCompleted('completedByPages'));
         }
       });
-      if (error) {
-        console.log(error.message);
-      }
+      // if (error) {
+      //   console.log(error.message);
+      // }
       resetForm();
     },
   });
