@@ -81,7 +81,7 @@ export default function CustomizedSwitches({ onChangeLanguage }) {
           inputProps={{ 'aria-label': 'ant design' }}
           onChange={handleChange}
           name="checkedA"
-          defaultChecked={localStorage.getItem('i18nextLng') === 'ua' && true}
+          checked={localStorage.getItem('i18nextLng') === 'ua' && true}
           className={s.switch}
         />
       </Stack>

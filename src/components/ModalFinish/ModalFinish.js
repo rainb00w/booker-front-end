@@ -20,7 +20,7 @@ const ModalFinish = ({ onClose }) => {
   return (
     <div>
       <Modal
-        open={open}
+        open={true}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         style={{
