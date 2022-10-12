@@ -7,60 +7,46 @@ import LoginPage from './pages/login/loginPage';
 import RegistrationPage from './pages/registration/registrationPage';
 import ChangePasswordPage from 'pages/changePassword/changePasswordPage';
 import Header from './pages/header/header';
-import Training from './pages/training/training';
-import Library from './pages/library/library';
-import Statistics from './pages/statistics/statistics';
 
 import PrivateRoute from './components/routes/privateRoute';
 import PublicRoute from './components/routes/publicRoute';
 
-// const Header = lazy(() => import('./pages/header'));
-// const Library = lazy(() => import('./pages/library/library'));
-// const Statistics = lazy(() => import('./pages/statistics/statistics'));
-// const Training = lazy(() => import('./pages/training/training'));
+
+const Library = lazy(() => import('./pages/library/library'));
+const Training = lazy(() => import('./pages/training/training'));
 
 function App() {
   return (
     <>
       <Header />
-      <div className='main_container'>
-        <Suspense fallback="Load...">
+      <div className="main_container">
+        <Suspense >
           <Routes>
-            {/* <Route path="/" element={<Library />} /> */}
-
-            <Route path="/" element={
-                <PrivateRoute>
-                  <MainContainer />
-                </PrivateRoute>
-              }>
-
             <Route
               path="/"
               element={
                 <PrivateRoute>
-                  <Library />
+                  <MainContainer />
                 </PrivateRoute>
               }
-            />
-
-            <Route
-              path="/statistics"
-              element={
-                <PrivateRoute>
-                  <Statistics />
-                </PrivateRoute>
-              }
-            />
-
-            <Route
-              path="/training"
-              element={
-                <PrivateRoute>
-                  <Training />
-                </PrivateRoute>
-              }
+            >
+              <Route
+                path="/"
+                element={
+                  <PrivateRoute>
+                    <Library />
+                  </PrivateRoute>
+                }
               />
-              
+
+              <Route
+                path="/training"
+                element={
+                  <PrivateRoute>
+                    <Training />
+                  </PrivateRoute>
+                }
+              />
             </Route>
 
             <Route

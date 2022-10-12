@@ -45,7 +45,7 @@ const logOut = createAsyncThunk('user/logout', async () => {
     await axios.get('user/logout');
     token.unset();
   } catch (error) {
-    return rejectWithValue(error);
+   console.log(error)
   }
 });
 

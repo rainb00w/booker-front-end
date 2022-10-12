@@ -189,9 +189,13 @@ const Training = () => {
 
   // console.log('resultsFromTraining', resultsFromTraining);
 
-  if (!currentData?.completed && finishDateFromTraining > nowDate) {
-    dispatch(setTrainingState('true'));
-  }
+  
+  useEffect(() => {
+    if (!currentData?.completed && finishDateFromTraining > nowDate) {
+      dispatch(setTrainingState('true'));
+    }
+  }, []);
+
   // if (currentData?.completed) {
   //   dispatch(setTrainingState('false'));
   // }
