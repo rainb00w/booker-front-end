@@ -27,6 +27,7 @@ export const createOptions = (normalizeResults, maxPoint, labelsQuantity) => ({
     },
     tooltip: {
       backgroundColor: '#F5F7FA',
+      caretPadding: 10,
       titleColor: '#091E3F',
       titleFont: {
         family: 'Montserrat',
